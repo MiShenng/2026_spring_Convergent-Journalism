@@ -30,3 +30,22 @@
 
 - 来源：项目原始素材。
 - 页面用途：首页主视觉背景。
+
+## `assets/_src/manifest.json` 与 `assets/*.webp`
+
+- 来源：新增素材元数据统一记录于 `assets/_src/manifest.json`。
+- 页面使用文件：
+  - `assets/dh_scene_tang.webp`
+  - `assets/dh_apsaras_wide.webp`
+  - `assets/dh_procession.webp`
+  - `assets/dh_bodhisattva.webp`
+  - `assets/dh_bodhisattva_tall.webp`
+  - `assets/dh_caves_exterior.webp`
+  - `assets/dh_caves_interior.webp`
+  - `assets/dh_mural_217.webp`
+  - `assets/anatomy.webp`
+  - `assets/mogao.webp`
+  - `assets/mural.webp`
+  - `assets/restored.webp`
+- 说明：`.webp` 文件为页面展示优化版本；`assets/_src/` 保留原始下载文件与 manifest，便于核对作者、许可、尺寸和原始 URL。
+- 许可：逐项以 `assets/_src/manifest.json` 中记录为准，包含 Public domain 与 CC BY 2.0 等开放许可。

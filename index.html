@@ -120,7 +120,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .hero-img{
   position:absolute;inset:0;z-index:-2;
-  background:url('Materials/opeing.png') center 36%/cover no-repeat;
+  background:url('assets/dh_scene_tang.webp') center 46%/cover no-repeat;
   filter:saturate(1.05) contrast(1.02);
   animation:kenburns 26s ease-in-out infinite alternate;
 }
@@ -190,15 +190,28 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .portal-card::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.58;transition:transform .6s ease,opacity .35s ease}
 .portal-card:hover::before{transform:scale(1.08);opacity:.72}
 .portal-card::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 20%,rgba(7,8,16,.92))}
-.portal-card:nth-child(1)::before{background-image:url('Materials/dunhuang-flying-apsara-western-wei.jpg')}
-.portal-card:nth-child(2)::before{background-image:url('assets/anatomy.png')}
-.portal-card:nth-child(3)::before{background-image:url('Materials/dunhuang-reverse-pipa-stage.jpg')}
-.portal-card:nth-child(4)::before{background-image:url('assets/restored.png')}
-.portal-card:nth-child(5)::before{background-image:url('Materials/met-flying-celestial-apsara.jpg')}
+.portal-card:nth-child(1)::before{background-image:url('assets/dh_caves_exterior.webp')}
+.portal-card:nth-child(2)::before{background-image:url('assets/dh_apsaras_wide.webp')}
+.portal-card:nth-child(3)::before{background-image:url('assets/dh_caves_interior.webp')}
+.portal-card:nth-child(4)::before{background-image:url('assets/dh_mural_217.webp')}
+.portal-card:nth-child(5)::before{background-image:url('assets/dh_bodhisattva_tall.webp')}
 .portal-card .txt{position:relative;z-index:2}
 .portal-card .n{font-family:'Cinzel',serif;color:var(--gold-soft);font-size:.75rem;letter-spacing:.16em}
 .portal-card h3{font-family:var(--font-cn);font-size:1.25rem;margin:.35rem 0 .45rem}
 .portal-card p{font-size:.82rem;color:var(--silk-dim);line-height:1.5}
+
+.material-wall{position:relative;z-index:3;padding:5rem clamp(1.2rem,5vw,5rem);background:rgba(7,8,16,.96)}
+.material-inner{max-width:var(--maxw);margin:0 auto}
+.material-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:1.8rem}
+.material-head h2{font-family:var(--font-cn);font-size:clamp(1.6rem,3.6vw,2.7rem);font-weight:600;color:var(--silk)}
+.material-head p{max-width:44ch;color:var(--silk-dim);font-size:.95rem}
+.material-grid{display:grid;grid-template-columns:1.2fr .8fr 1fr 1fr;gap:.75rem;grid-auto-rows:220px}
+.material-card{position:relative;overflow:hidden;border:1px solid var(--rule);border-radius:4px;background:var(--panel-soft)}
+.material-card.wide{grid-column:span 2}
+.material-card.tall{grid-row:span 2}
+.material-card img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03);transition:transform .7s ease}
+.material-card:hover img{transform:scale(1.07)}
+.material-card figcaption{position:absolute;left:0;right:0;bottom:0;padding:.75rem .85rem;background:linear-gradient(transparent,rgba(7,8,16,.92));font-size:.78rem;color:var(--silk);line-height:1.45}
 
 /* ============================================================
    CHAPTER + SCREEN LAYOUT
@@ -276,9 +289,9 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .vcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .vcard .ph{position:absolute;inset:0;opacity:.5;background-size:cover;background-position:center;transition:opacity .4s,transform .6s}
 .vcard:hover .ph{opacity:.7;transform:scale(1.06)}
-.vcard .ph.a{background-image:url('assets/anatomy.png')}
-.vcard .ph.b{background-image:url('assets/mural.png')}
-.vcard .ph.c{background-image:url('assets/restored.png')}
+.vcard .ph.a{background-image:url('assets/dh_apsaras_wide.webp')}
+.vcard .ph.b{background-image:url('assets/dh_procession.webp')}
+.vcard .ph.c{background-image:url('assets/dh_bodhisattva.webp')}
 .vcard::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(7,8,16,.92))}
 .vcard .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border:1px solid var(--silk);border-radius:50%;display:grid;place-items:center;z-index:2;transition:.3s}
 .vcard .play::before{content:"";border-left:11px solid var(--silk);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
@@ -309,8 +322,8 @@ h1,h2,h3{font-weight:500;line-height:1.12}
    ============================================================ */
 .compare{position:relative;width:100%;aspect-ratio:4/3;border-radius:4px;overflow:hidden;border:1px solid var(--rule);user-select:none;box-shadow:var(--shadow)}
 .compare .layer{position:absolute;inset:0;background-size:cover;background-position:center}
-.compare .after{background-image:url('assets/restored.png')}
-.compare .before{background-image:url('assets/mural.png');width:50%;border-right:2px solid var(--gold)}
+.compare .after{background-image:url('assets/restored.webp')}
+.compare .before{background-image:url('assets/mural.webp');width:50%;border-right:2px solid var(--gold)}
 .compare .before.degrade{filter:grayscale(.55) brightness(.7) contrast(1.1)}
 .compare .tag{position:absolute;bottom:.8rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silk);background:rgba(7,8,16,.7);padding:.3rem .6rem;border-radius:2px;z-index:3}
 .compare .tag.l{left:.8rem}.compare .tag.r{right:.8rem;color:var(--gold-soft)}
@@ -433,8 +446,8 @@ h1,h2,h3{font-weight:500;line-height:1.12}
    ============================================================ */
 .coda{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.4rem;z-index:3;overflow:hidden}
 .coda .split{position:absolute;inset:0;z-index:-2;display:grid;grid-template-columns:1fr 1fr}
-.coda .split .mural{background:url('assets/mural.png') center/cover;filter:grayscale(.4) brightness(.5)}
-.coda .split .digital{background:url('assets/anatomy.png') center/cover}
+.coda .split .mural{background:url('assets/dh_mural_217.webp') center/cover;filter:grayscale(.4) brightness(.5)}
+.coda .split .digital{background:url('assets/anatomy.webp') center/cover}
 .coda::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at center,rgba(11,12,22,.5),rgba(11,12,22,.92))}
 .coda .seam{position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(transparent,var(--gold),transparent);z-index:-1}
 .coda-inner{max-width:760px}
@@ -461,12 +474,18 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .brand .cn{display:none}
   .portal-head{grid-template-columns:1fr}
   .portal-grid{grid-template-columns:repeat(2,1fr)}
+  .material-grid{grid-template-columns:repeat(2,1fr)}
+  .material-card.wide{grid-column:span 1}
 }
 @media(max-width:767px){
   .nav-links{display:none}
   .story-portal{padding:4rem 1.2rem}
   .portal-grid{grid-template-columns:1fr}
   .portal-card{min-height:220px}
+  .material-head{display:block}
+  .material-head p{margin-top:.8rem}
+  .material-grid{grid-template-columns:1fr;grid-auto-rows:230px}
+  .material-card.tall{grid-row:span 1}
   .screen{grid-template-columns:1fr;min-height:auto;padding:9vh clamp(1.2rem,5vw,2rem);gap:2rem}
   .screen.flip .visual{order:0}
   .dash.cols-3{grid-template-columns:1fr 1fr}
@@ -533,6 +552,40 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   </div>
 </section>
 
+<section class="material-wall" id="materials">
+  <div class="material-inner">
+    <div class="material-head">
+      <div>
+        <div class="eyebrow reveal">素材证据墙</div>
+        <h2 class="reveal d1">让素材本身成为叙事的一部分</h2>
+      </div>
+      <p class="reveal d2">新增素材覆盖洞窟外景、洞窟内壁画、飞天群像、经变画与历史场景。它们不只是装饰，而是对应“保存、识别、传播、再生产、边界”五条叙事线索。</p>
+    </div>
+    <div class="material-grid reveal d2">
+      <figure class="material-card wide">
+        <img src="assets/dh_apsaras_wide.webp" alt="莫高窟第428窟壁画中的飞天群像">
+        <figcaption>第428窟飞天群像：飞天作为稳定视觉母题，被反复观看和抽取。</figcaption>
+      </figure>
+      <figure class="material-card tall">
+        <img src="assets/dh_bodhisattva_tall.webp" alt="莫高窟第322窟药师佛壁画局部">
+        <figcaption>第322窟壁画局部：高幅构图强化“洞窟内部观看”的纵深感。</figcaption>
+      </figure>
+      <figure class="material-card">
+        <img src="assets/dh_caves_exterior.webp" alt="莫高窟洞窟外景">
+        <figcaption>洞窟外景：将线上热度重新拉回真实地理空间。</figcaption>
+      </figure>
+      <figure class="material-card">
+        <img src="assets/dh_procession.webp" alt="敦煌张议潮出行图">
+        <figcaption>张议潮出行图：展示敦煌图像并不只关乎宗教，也包含历史社会叙事。</figcaption>
+      </figure>
+      <figure class="material-card wide">
+        <img src="assets/dh_mural_217.webp" alt="莫高窟第217窟法华经变壁画">
+        <figcaption>第217窟经变画：复杂场景说明“活化”不能只提取表面纹样。</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <main>
 
 <!-- ====================================================================
@@ -550,7 +603,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <!-- S1.1 -->
   <div class="screen">
     <div class="visual reveal">
-      <div class="anatomy"><img src="assets/mogao.png" alt="敦煌莫高窟外景"></div>
+      <div class="anatomy"><img src="assets/dh_caves_exterior.webp" alt="敦煌莫高窟洞窟外景"></div>
     </div>
     <div class="copy reveal d1">
       <div class="scr-id">S1.1 · 洞窟与问题</div>
@@ -663,7 +716,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen flip">
     <div class="visual reveal">
       <div class="anatomy">
-        <img src="assets/anatomy.png" alt="敦煌飞天反弹琵琶姿态的视觉拆解">
+        <img src="assets/anatomy.webp" alt="敦煌飞天反弹琵琶姿态的视觉拆解">
         <div class="hot" style="left:62%;top:30%"><div class="tip"><b>飘带</b><span>丝带的弧线让“飞行”可以被一眼识别。</span></div></div>
         <div class="hot" style="left:42%;top:40%"><div class="tip"><b>反弹琵琶</b><span>背后弹奏琵琶，是飞天传播中最醒目的动作符号。</span></div></div>
         <div class="hot" style="left:46%;top:66%"><div class="tip"><b>敦煌色系</b><span>石青、石绿、朱砂等矿物色构成视觉记忆。</span></div></div>

@@ -1,0 +1,82 @@
+[
+  {
+    "base": "dh_scene_tang",
+    "file": "assets/_src/dh_scene_tang.jpg",
+    "title": "Dunhuang217.jpg",
+    "lic": "Public domain",
+    "artist": "Unknown painter",
+    "w": 3000,
+    "h": 2298,
+    "src_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Dunhuang217.jpg"
+  },
+  {
+    "base": "dh_apsaras_wide",
+    "file": "assets/_src/dh_apsaras_wide.jpg",
+    "title": "Buddha flanked by bodhisattvas with flying apsaras. Dunhuang mural. Cave 428, Northern Zhou dynasty..jpg",
+    "lic": "Public domain",
+    "artist": "AnonymousUnknown author",
+    "w": 1585,
+    "h": 838,
+    "src_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/Buddha_flanked_by_bodhisattvas_with_flying_apsaras._Dunhuang_mural._Cave_428%2C_Northern_Zhou_dynasty..jpg"
+  },
+  {
+    "base": "dh_procession",
+    "file": "assets/_src/dh_procession.jpg",
+    "title": "Dunhuang Zhang Yichao army.jpg",
+    "lic": "Public domain",
+    "artist": "Unknown authorUnknown author",
+    "w": 1234,
+    "h": 624,
+    "src_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Dunhuang_Zhang_Yichao_army.jpg"
+  },
+  {
+    "base": "dh_bodhisattva",
+    "file": "assets/_src/dh_bodhisattva.jpeg",
+    "title": "Dunhuang Central Asian Bodhisattva.jpeg",
+    "lic": "Public domain",
+    "artist": "Photo by Bradley Mayhew. Painting by an ",
+    "w": 1600,
+    "h": 1067,
+    "src_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Dunhuang_Central_Asian_Bodhisattva.jpeg"
+  },
+  {
+    "base": "dh_caves_exterior",
+    "file": "assets/_src/dh_caves_exterior.jpeg",
+    "title": "Mogao Caves Exterior And Chambers.jpeg",
+    "lic": "CC BY 2.0",
+    "artist": "Flickr user: eviltomthai",
+    "w": 2981,
+    "h": 1987,
+    "src_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Mogao_Caves_Exterior_And_Chambers.jpeg"
+  },
+  {
+    "base": "dh_caves_interior",
+    "file": "assets/_src/dh_caves_interior.jpg",
+    "title": "Mogao Caves (54376968807).jpg",
+    "lic": "CC BY 2.0",
+    "artist": "xiquinhosilva",
+    "w": 2560,
+    "h": 1822,
+    "src_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Mogao_Caves_%2854376968807%29.jpg"
+  },
+  {
+    "base": "dh_bodhisattva_tall",
+    "file": "assets/_src/dh_bodhisattva_tall.jpg",
+    "title": "Bhaisajyaguru mural from Mogao Cave 322, Dunhuang.jpg",
+    "lic": "Public domain",
+    "artist": "Unknown authorUnknown author",
+    "w": 1850,
+    "h": 2831,
+    "src_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Bhaisajyaguru_mural_from_Mogao_Cave_322%2C_Dunhuang.jpg"
+  },
+  {
+    "base": "dh_mural_217",
+    "file": "assets/_src/dh_mural_217.png",
+    "title": "Mogao Cave 217 - South Wall of the Main Chamber - Lotus Sutra tableau (preaching Buddha with Summit of Being atop; parable of the Phantom city to the right).png",
+    "lic": "Public domain",
+    "artist": "Unknown 8th century mural painter",
+    "w": 1341,
+    "h": 832,
+    "src_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Mogao_Cave_217_-_South_Wall_of_the_Main_Chamber_-_Lotus_Sutra_tableau_%28preaching_Buddha_with_Summit_of_Being_atop%3B_parable_of_the_Phantom_city_to_the_right%29.png"
+  }
+]
