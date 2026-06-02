@@ -193,7 +193,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .character-gate{
   position:relative;z-index:3;
   min-height:100vh;
-  padding:54px 5vw 34px;
+  padding:38px 4vw 26px;
   background:
     radial-gradient(circle at 50% 0%, rgba(58,45,30,.12), transparent 42%),
     #070812;
@@ -203,16 +203,16 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   overflow:hidden;
 }
 .gate-header{
-  width:90vw;
+  width:92vw;
   max-width:1400px;
-  margin:0 auto 10px;
+  margin:0 auto 8px;
 }
 .gate-label{
   font-family:var(--font-sans-cn);
   color:#c8a45c;
   letter-spacing:.2em;
   font-size:15px;
-  margin-bottom:10px;
+  margin-bottom:0;
 }
 .gate-header h2{
   font-family:"Songti SC","SimSun","Noto Serif SC",serif;
@@ -225,14 +225,14 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .gate-intro{
   position:absolute;
-  right:9%;
-  top:11%;
+  right:23%;
+  top:10%;
   z-index:4;
   font-family:var(--font-cn);
-  width:min(32%,430px);
+  width:min(28%,380px);
   color:rgba(242,234,216,.62);
-  font-size:15px;
-  line-height:1.75;
+  font-size:14.5px;
+  line-height:1.72;
   margin:0;
   padding:18px 20px;
   background:linear-gradient(90deg,rgba(7,8,18,.38),rgba(7,8,18,.08));
@@ -240,12 +240,12 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .painting-stage{
   position:relative;
-  width:90vw;
+  width:92vw;
   max-width:1400px;
-  height:72vh;
-  min-height:660px;
+  height:82vh;
+  min-height:760px;
   margin:0 auto;
-  margin-top:-2px;
+  margin-top:4px;
   overflow:visible;
 }
 .painting-stage::before {
@@ -289,9 +289,9 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .chapter-text{
   position:absolute;
-  left:8%;
-  top:24%;
-  width:390px;
+  left:7.5%;
+  top:25%;
+  width:480px;
   z-index:4;
   transition:opacity .35s ease, transform .35s ease;
 }
@@ -301,13 +301,13 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 #chapter-number{
   color:#c8a45c;
-  font-size:14px;
+  font-size:18px;
   letter-spacing:.18em;
   margin:0 0 10px;
 }
 #chapter-title{
   font-family:"Songti SC","SimSun","Noto Serif SC",serif;
-  font-size:36px;
+  font-size:clamp(48px,4.3vw,64px);
   line-height:1.18;
   font-weight:500;
   margin:0 0 14px;
@@ -316,15 +316,15 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 #chapter-desc{
   font-family:"Songti SC","SimSun","Noto Serif SC",serif;
   color:rgba(242,234,216,.66);
-  font-size:15.5px;
+  font-size:18px;
   line-height:1.8;
   margin:0;
 }
 .hero-feitian{
   position:absolute;
-  right:-2.5%;
-  top:-4%;
-  width:24%;
+  right:-7%;
+  top:-7%;
+  width:25%;
   z-index:8;
   pointer-events:none;
   animation:heroFloat 5.2s ease-in-out infinite;
@@ -349,7 +349,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   left:12%;
   right:12%;
   bottom:0;
-  height:14%;
+  height:18%;
   z-index:0;
   pointer-events:none;
   background:radial-gradient(ellipse at center, rgba(45,28,13,.26), transparent 70%);
@@ -361,17 +361,17 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   width:100%;
   display:block;
   transition:transform .45s ease, filter .45s ease, opacity .45s ease;
-  filter:brightness(.86) saturate(.9) drop-shadow(0 14px 10px rgba(0,0,0,.28));
+  filter:brightness(.9) saturate(.94) drop-shadow(0 16px 12px rgba(0,0,0,.3));
 }
 .gate-person:hover img,.gate-person.active img{
-  transform:translateY(-9px) scale(1.035);
-  filter:brightness(1.08) saturate(1) drop-shadow(0 20px 16px rgba(0,0,0,.36));
+  transform:translateY(-12px) scale(1.045);
+  filter:brightness(1.14) saturate(1.04) drop-shadow(0 22px 18px rgba(0,0,0,.38));
 }
-.person-1{left:9%;bottom:11%;width:8.6%}
-.person-2{left:25%;bottom:12%;width:7.9%}
-.person-3{left:41%;bottom:10%;width:8.2%}
-.person-4{left:57%;bottom:11.5%;width:7.8%}
-.person-5{left:72%;bottom:10.5%;width:8.1%}
+.person-1{left:8.5%;bottom:8%;width:10.6%}
+.person-2{left:24.5%;bottom:9%;width:9.6%}
+.person-3{left:40.5%;bottom:7.2%;width:10%}
+.person-4{left:56.5%;bottom:8.7%;width:9.4%}
+.person-5{left:71.5%;bottom:7.6%;width:9.8%}
 
 .material-wall{position:relative;z-index:3;padding:5rem clamp(1.2rem,5vw,5rem);background:rgba(7,8,16,.96)}
 .material-inner{max-width:var(--maxw);margin:0 auto}
@@ -907,7 +907,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="gate-header">
     <div>
       <p class="gate-label reveal">阅读入口</p>
-      <h2 class="reveal d1">五条路径，都通往同一个问题</h2>
     </div>
   </div>
   <div class="painting-stage reveal d2">
