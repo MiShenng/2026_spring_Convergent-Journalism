@@ -2,7 +2,19 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" id="vp">
+<script>
+/* Mobile adaptation (additive — desktop layout & CSS untouched):
+   on phones, render the full desktop layout at a fixed 1280px width and let the
+   browser scale it to fit, so the phone shows a shrunk-down copy of the desktop
+   view instead of a reflowed layout. Tablets/desktop keep their normal behavior. */
+(function(){
+  var shortSide = Math.min(screen.width || 9999, screen.height || 9999);
+  if (shortSide <= 480) {
+    document.getElementById('vp').setAttribute('content', 'width=1280, viewport-fit=cover');
+  }
+})();
+</script>
 <title>飞天何以被看见：莫高窟文化符号的数字流转</title>
 <meta name="description" content="一篇融合叙事作品，讲述莫高窟飞天如何从洞窟壁画进入数字档案、平台传播、日常消费与海外语境。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
