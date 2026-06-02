@@ -188,48 +188,152 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 @keyframes flow{to{stroke-dashoffset:-1408}}
 
 /* ============================================================
-   STORY PORTAL — borrowed from CGTN's "choose a world" logic
+   CHARACTER GATE — painting-like chapter entrance
    ============================================================ */
-.story-portal{
+.character-gate{
   position:relative;z-index:3;
-  padding:5.5rem clamp(1.2rem,5vw,5rem) 6rem;
+  min-height:100vh;
+  padding:110px 7vw 120px;
   background:
-    linear-gradient(180deg,rgba(11,12,22,.92),rgba(11,12,22,.98)),
-    radial-gradient(900px 520px at 50% 0%,rgba(201,162,75,.14),transparent 62%);
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
+    radial-gradient(circle at 50% 0%, rgba(58,45,30,.16), transparent 42%),
+    #070812;
+  color:#f2ead8;
+  border-top:1px solid rgba(197,156,86,.3);
+  border-bottom:1px solid rgba(197,156,86,.3);
+  overflow:hidden;
 }
-.portal-head{max-width:var(--maxw);margin:0 auto 2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
-.portal-head h2{font-family:var(--font-cn);font-size:clamp(1.7rem,4vw,3rem);font-weight:600;color:var(--silk);max-width:15ch}
-.portal-head p{max-width:48ch;color:var(--silk-dim);font-size:1rem}
-.portal-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem}
-.portal-card{
-  position:relative;min-height:280px;border:1px solid var(--rule);border-radius:4px;overflow:hidden;
-  background:var(--panel-soft);display:flex;align-items:flex-end;padding:1rem;color:var(--silk);
-  transform:translateY(0);
-  transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease,opacity .8s ease;
+.gate-header{
+  max-width:var(--maxw);
+  margin:0 auto 42px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:70px;
+  align-items:end;
 }
-.portal-card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:var(--shadow)}
-.portal-card::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.58;transition:transform .6s ease,opacity .35s ease}
-.portal-card:hover::before{transform:scale(1.08);opacity:.72}
-.portal-card::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 20%,rgba(7,8,16,.92))}
-.portal-card:nth-child(1)::before{background-image:url('assets/dh_caves_exterior.webp')}
-.portal-card:nth-child(2)::before{background-image:url('assets/dh_apsaras_wide.webp')}
-.portal-card:nth-child(3)::before{background-image:url('assets/dh_caves_interior.webp')}
-.portal-card:nth-child(4)::before{background-image:url('assets/dh_mural_217.webp')}
-.portal-card:nth-child(5)::before{background-image:url('assets/dh_bodhisattva_tall.webp')}
-.portal-card .txt{position:relative;z-index:2}
-.portal-card .n{font-family:'Cinzel',serif;color:var(--gold-soft);font-size:.75rem;letter-spacing:.16em}
-.portal-card h3{font-family:var(--font-cn);font-size:1.25rem;margin:.35rem 0 .45rem}
-.portal-card p{font-size:.82rem;color:var(--silk-dim);line-height:1.5}
-.portal-grid.motion-ready .portal-card{opacity:0;transform:translateY(28px) scale(.97)}
-.portal-grid.motion-in .portal-card{opacity:1;transform:none}
-.portal-grid.motion-in .portal-card:nth-child(1){transition-delay:.04s}
-.portal-grid.motion-in .portal-card:nth-child(2){transition-delay:.14s}
-.portal-grid.motion-in .portal-card:nth-child(3){transition-delay:.24s}
-.portal-grid.motion-in .portal-card:nth-child(4){transition-delay:.34s}
-.portal-grid.motion-in .portal-card:nth-child(5){transition-delay:.44s}
-.portal-grid.motion-in .portal-card:hover{transform:translateY(-8px)}
+.gate-label{
+  font-family:var(--font-sans-cn);
+  color:#c8a45c;
+  letter-spacing:.2em;
+  font-size:15px;
+  margin-bottom:16px;
+}
+.gate-header h2{
+  font-family:var(--font-cn);
+  font-size:clamp(2.4rem,5vw,4.6rem);
+  line-height:1.15;
+  font-weight:500;
+  margin:0;
+}
+.gate-intro{
+  font-family:var(--font-cn);
+  color:rgba(242,234,216,.62);
+  font-size:1.12rem;
+  line-height:1.9;
+  margin:0;
+}
+.painting-stage{
+  position:relative;
+  max-width:var(--maxw);
+  width:100%;
+  height:590px;
+  margin:0 auto;
+  overflow:visible;
+}
+.stage-bg{
+  position:absolute;
+  left:6%;
+  top:8%;
+  width:88%;
+  height:68%;
+  object-fit:cover;
+  z-index:1;
+  border:1px solid rgba(201,162,77,.3);
+  box-shadow:0 28px 80px rgba(0,0,0,.42);
+  filter:brightness(.82) saturate(.95);
+}
+.painting-stage::after{
+  content:"";
+  position:absolute;
+  left:6%;
+  top:8%;
+  width:88%;
+  height:68%;
+  pointer-events:none;
+  z-index:2;
+  background:
+    linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,.08)),
+    radial-gradient(circle at 26% 42%, rgba(0,0,0,.28), transparent 38%);
+}
+.chapter-text{
+  position:absolute;
+  left:13%;
+  top:22%;
+  width:420px;
+  z-index:4;
+  transition:opacity .35s ease, transform .35s ease;
+}
+.chapter-text.is-changing{
+  opacity:0;
+  transform:translateY(10px);
+}
+#chapter-number{
+  color:#c8a45c;
+  font-size:18px;
+  letter-spacing:.18em;
+  margin:0 0 10px;
+}
+#chapter-title{
+  font-family:var(--font-cn);
+  font-size:clamp(2.1rem,4vw,3.25rem);
+  line-height:1.15;
+  font-weight:500;
+  margin:0 0 18px;
+  color:#f4ecd9;
+}
+#chapter-desc{
+  font-family:var(--font-cn);
+  color:rgba(242,234,216,.72);
+  font-size:1.12rem;
+  line-height:1.8;
+  margin:0;
+}
+.hero-feitian{
+  position:absolute;
+  right:-3%;
+  top:-22%;
+  width:34%;
+  z-index:6;
+  pointer-events:none;
+  animation:heroFloat 5.2s ease-in-out infinite;
+  filter:drop-shadow(0 24px 18px rgba(0,0,0,.25));
+}
+@keyframes heroFloat{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(12px) rotate(1deg)}
+}
+.gate-person{
+  position:absolute;
+  z-index:7;
+  border:0;
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+}
+.gate-person img{
+  width:100%;
+  display:block;
+  transition:transform .45s ease, filter .45s ease, opacity .45s ease;
+  filter:brightness(.92) drop-shadow(0 16px 12px rgba(0,0,0,.3));
+}
+.gate-person:hover img,.gate-person.active img{
+  transform:translateY(-12px) scale(1.04);
+  filter:brightness(1.14) drop-shadow(0 22px 18px rgba(0,0,0,.38));
+}
+.person-1{left:9%;bottom:1%;width:15%}
+.person-2{left:27%;bottom:4%;width:13%}
+.person-3{left:42%;bottom:0;width:13.5%}
+.person-4{left:58%;bottom:2%;width:13%}
+.person-5{left:73%;bottom:0;width:15%}
 
 .material-wall{position:relative;z-index:3;padding:5rem clamp(1.2rem,5vw,5rem);background:rgba(7,8,16,.96)}
 .material-inner{max-width:var(--maxw);margin:0 auto}
@@ -613,8 +717,16 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .nav-links{gap:.9rem}
   .nav-links a{font-size:.62rem;letter-spacing:.1em}
   .brand .cn{display:none}
-  .portal-head{grid-template-columns:1fr}
-  .portal-grid{grid-template-columns:repeat(2,1fr)}
+  .gate-header{grid-template-columns:1fr;gap:24px}
+  .painting-stage{height:560px}
+  .stage-bg,.painting-stage::after{left:0;width:100%;height:60%}
+  .chapter-text{left:8%;top:18%;width:76%}
+  .hero-feitian{right:-12%;top:-10%;width:46%}
+  .person-1{left:2%;bottom:4%;width:22%}
+  .person-2{left:22%;bottom:6%;width:20%}
+  .person-3{left:40%;bottom:4%;width:21%}
+  .person-4{left:58%;bottom:5%;width:20%}
+  .person-5{left:76%;bottom:4%;width:22%}
   .material-grid{grid-template-columns:repeat(2,1fr)}
   .material-card.wide{grid-column:span 1}
 }
@@ -622,9 +734,12 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .nav-links{gap:.55rem;overflow-x:auto;max-width:62vw;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .nav-links::-webkit-scrollbar{display:none}
   .nav-links a{font-size:.6rem;letter-spacing:.05em;white-space:nowrap}
-  .story-portal{padding:4rem 1.2rem}
-  .portal-grid{grid-template-columns:1fr}
-  .portal-card{min-height:220px}
+  .character-gate{padding:4rem 1.2rem 5rem;min-height:auto}
+  .gate-header h2{font-size:clamp(2rem,10vw,3.2rem)}
+  .gate-intro{font-size:.95rem}
+  .painting-stage{height:520px}
+  #chapter-title{font-size:2rem}
+  #chapter-desc{font-size:.92rem}
   .material-head{display:block}
   .material-head p{margin-top:.8rem}
   .material-grid{grid-template-columns:1fr;grid-auto-rows:230px}
@@ -724,11 +839,11 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <span class="cn">莫高窟文化符号的数字流转</span>
   </div>
   <ul class="nav-links">
-    <li><a href="#c1" class="active"><span class="nav-num">I</span>开场</a></li>
-    <li><a href="#c2"><span class="nav-num">II</span>识别</a></li>
-    <li><a href="#c3"><span class="nav-num">III</span>平台</a></li>
-    <li><a href="#c4"><span class="nav-num">IV</span>日常</a></li>
-    <li><a href="#c5"><span class="nav-num">V</span>海外</a></li>
+    <li><a href="#cave" class="active"><span class="nav-num">I</span>开场</a></li>
+    <li><a href="#identify"><span class="nav-num">II</span>识别</a></li>
+    <li><a href="#platform"><span class="nav-num">III</span>平台</a></li>
+    <li><a href="#daily"><span class="nav-num">IV</span>日常</a></li>
+    <li><a href="#global"><span class="nav-num">V</span>海外</a></li>
   </ul>
 </nav>
 <div id="progress"><div class="fill"></div></div>
@@ -750,20 +865,65 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   </div>
 </header>
 
-<section class="story-portal" id="portal">
-  <div class="portal-head">
+<section class="character-gate" id="gate">
+  <div class="gate-header">
     <div>
-      <div class="eyebrow reveal">阅读入口</div>
+      <p class="gate-label reveal">阅读入口</p>
       <h2 class="reveal d1">五条路径，都通往同一个问题</h2>
     </div>
-    <p class="reveal d2">她本在洞窟的墙上。今天，她出现在短视频、妆造、文创和海外平台里。从任意一条路径进入，最终都通向同一个问题——飞天如何被再度看见。</p>
+    <p class="gate-intro reveal d2">
+      她本在洞窟的墙上。今天，她出现在短视频、妆造、文创和海外平台里。
+      从任意一条路径进入，最终都通向同一个问题：飞天如何被再度看见。
+    </p>
   </div>
-  <div class="portal-grid reveal d2">
-    <a class="portal-card" href="#c1"><div class="txt"><div class="n">I</div><h3>洞窟如何看见</h3><p>从残损壁画出发，理解保护为什么是观看的前提。</p></div></a>
-    <a class="portal-card" href="#c2"><div class="txt"><div class="n">II</div><h3>飞天如何识别</h3><p>拆解飘带、反弹琵琶、矿物色与可迁移视觉部件。</p></div></a>
-    <a class="portal-card" href="#c3"><div class="txt"><div class="n">III</div><h3>平台如何改写</h3><p>看短视频、直播、评论和推荐机制如何重组观看方式。</p></div></a>
-    <a class="portal-card" href="#c4"><div class="txt"><div class="n">IV</div><h3>日常如何携带</h3><p>从文创、妆造、旅行到分享，追踪飞天进入生活的路径。</p></div></a>
-    <a class="portal-card" href="#c5"><div class="txt"><div class="n">V</div><h3>海外如何重读</h3><p>当飞天进入跨文化语境，解释、授权和边界随之出现。</p></div></a>
+  <div class="painting-stage reveal d2">
+    <img class="stage-bg" src="第二页动屏特效/background.png" alt="敦煌壁画背景">
+    <div class="chapter-text">
+      <p id="chapter-number">I</p>
+      <h3 id="chapter-title">洞窟如何看见</h3>
+      <p id="chapter-desc">从残损壁画出发，理解保护为什么是观看的前提。</p>
+    </div>
+    <img class="hero-feitian" src="第二页动屏特效/top-feitian.png" alt="引读飞天">
+    <button class="gate-person person-1 active"
+      data-number="I"
+      data-title="洞窟如何看见"
+      data-desc="从残损壁画出发，理解保护为什么是观看的前提。"
+      data-target="#cave"
+      aria-label="洞窟如何看见">
+      <img src="第二页动屏特效/guide-boy-cutout.png" alt="引路童子">
+    </button>
+    <button class="gate-person person-2"
+      data-number="II"
+      data-title="飞天如何识别"
+      data-desc="从乐舞、飘带、姿态与色彩中，辨认飞天的视觉语法。"
+      data-target="#identify"
+      aria-label="飞天如何识别">
+      <img src="第二页动屏特效/motif-maiden-cutout.png" alt="持乐伎人">
+    </button>
+    <button class="gate-person person-3"
+      data-number="III"
+      data-title="平台如何改写"
+      data-desc="看短视频、直播、评论和推荐机制如何重组观看方式。"
+      data-target="#platform"
+      aria-label="平台如何改写">
+      <img src="第二页动屏特效/scroll-recorder-cutout.png" alt="持卷录者">
+    </button>
+    <button class="gate-person person-4"
+      data-number="IV"
+      data-title="日常如何携带"
+      data-desc="从文创、妆造、旅行到分享，追踪飞天进入生活的路径。"
+      data-target="#daily"
+      aria-label="日常如何携带">
+      <img src="第二页动屏特效/traveler-woman-cutout.png" alt="行旅女子">
+    </button>
+    <button class="gate-person person-5"
+      data-number="V"
+      data-title="海外如何重读"
+      data-desc="当飞天进入跨文化语境，解释、授权和边界随之出现。"
+      data-target="#global"
+      aria-label="海外如何重读">
+      <img src="第二页动屏特效/silkroad-scholar-cutout.png" alt="西来学者">
+    </button>
   </div>
 </section>
 
@@ -784,7 +944,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <!-- ====================================================================
      CHAPTER I — OPENING
      ==================================================================== -->
-<section class="chapter" id="c1">
+<section class="chapter" id="cave">
   <div class="chapter-intro">
     <div class="idx cinzel">I</div>
     <div class="eyebrow reveal">第一章</div>
@@ -841,7 +1001,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <!-- ====================================================================
      CHAPTER II — ORIGINS
      ==================================================================== -->
-<section class="chapter" id="c2">
+<section class="chapter" id="identify">
   <div class="chapter-intro">
     <div class="idx cinzel">II</div>
     <div class="eyebrow reveal">第二章</div>
@@ -929,7 +1089,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <!-- ====================================================================
      CHAPTER III — BREAKOUT
      ==================================================================== -->
-<section class="chapter" id="c3">
+<section class="chapter" id="platform">
   <div class="chapter-intro">
     <div class="idx cinzel">III</div>
     <div class="eyebrow reveal">第三章</div>
@@ -1039,7 +1199,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <!-- ====================================================================
      CHAPTER IV — REVIVAL
      ==================================================================== -->
-<section class="chapter" id="c4">
+<section class="chapter" id="daily">
   <div class="chapter-intro">
     <div class="idx cinzel">IV</div>
     <div class="eyebrow reveal">第四章</div>
@@ -1133,7 +1293,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <!-- ====================================================================
      CHAPTER V — GLOBAL
      ==================================================================== -->
-<section class="chapter" id="c5">
+<section class="chapter" id="global">
   <div class="chapter-intro">
     <div class="idx cinzel">V</div>
     <div class="eyebrow reveal">第五章</div>
@@ -1273,7 +1433,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   /* ---------- NAV: shrink + active section ---------- */
   var nav = document.getElementById('nav');
   var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
-  var sections = ['c1','c2','c3','c4','c5'].map(function(id){return document.getElementById(id);});
+  var sections = ['cave','identify','platform','daily','global'].map(function(id){return document.getElementById(id);});
   var progressFill = document.querySelector('#progress .fill');
 
   function onScroll(){
@@ -1303,10 +1463,37 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     if(prefersReduced){ el.classList.add('in'); } else { revealObserver.observe(el); }
   });
 
+  /* ---------- CHARACTER GATE: hover text + smooth chapter jump ---------- */
+  var gatePeople = Array.prototype.slice.call(document.querySelectorAll('.gate-person'));
+  var chapterNumber = document.getElementById('chapter-number');
+  var chapterTitle = document.getElementById('chapter-title');
+  var chapterDesc = document.getElementById('chapter-desc');
+  var chapterText = document.querySelector('.chapter-text');
+  function setGatePerson(person){
+    if(!person || !chapterNumber || !chapterTitle || !chapterDesc || !chapterText) return;
+    gatePeople.forEach(function(item){ item.classList.remove('active'); });
+    person.classList.add('active');
+    chapterText.classList.add('is-changing');
+    window.setTimeout(function(){
+      chapterNumber.textContent = person.getAttribute('data-number');
+      chapterTitle.textContent = person.getAttribute('data-title');
+      chapterDesc.textContent = person.getAttribute('data-desc');
+      chapterText.classList.remove('is-changing');
+    }, 180);
+  }
+  gatePeople.forEach(function(person){
+    person.addEventListener('mouseenter', function(){ setGatePerson(person); });
+    person.addEventListener('focus', function(){ setGatePerson(person); });
+    person.addEventListener('click', function(){
+      var target = document.querySelector(person.getAttribute('data-target'));
+      if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+
   /* ---------- MOTION surfaces: staggered cards + wall-light scan ---------- */
   document.querySelectorAll('.visual').forEach(function(el){ el.classList.add('motion-stack'); });
   var motionTargets = Array.prototype.slice.call(document.querySelectorAll(
-    '.portal-grid,.material-grid,.material-card,.anatomy,.compare,.chart,.mapbox,.visual,.matrix,.cloud,.fdash,.platforms'
+    '.painting-stage,.material-grid,.material-card,.anatomy,.compare,.chart,.mapbox,.visual,.matrix,.cloud,.fdash,.platforms'
   ));
   motionTargets.forEach(function(el){ el.classList.add('motion-ready'); });
   if(prefersReduced){
