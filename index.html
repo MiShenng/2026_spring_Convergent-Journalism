@@ -786,30 +786,58 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .nav-links{gap:.55rem;overflow-x:auto;max-width:62vw;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .nav-links::-webkit-scrollbar{display:none}
   .nav-links a{font-size:.6rem;letter-spacing:.05em;white-space:nowrap}
-  .character-gate{padding:3rem 1.2rem 3.4rem}
-  .painting-stage{height:72vh;min-height:480px}
-  .chapter-text{width:90%;top:22%}
-  #chapter-title{font-size:1.7rem}
-  #chapter-desc{font-size:.9rem;line-height:1.8}
-  .hero-feitian{right:-10%;top:-4%;left:auto;width:60%}
+  /* hero */
+  .hero{padding:6rem 1.3rem 3.4rem}
+  .hero .sub{font-size:clamp(1rem,4.6vw,1.4rem)}
+  .scroll-cue{font-size:.56rem}
+  /* chapter intros: tighter on phones */
+  .chapter-intro{min-height:54vh;padding:4.4rem 1.3rem 2.4rem}
+  .chapter-intro .eyebrow{font-size:.8rem;letter-spacing:.4em}
+  .chapter-intro h2{font-size:clamp(1.9rem,8vw,2.6rem)}
+  .chapter-intro p{font-size:1rem}
+  /* gate */
+  .character-gate{padding:2.6rem 1rem 3rem}
+  .painting-stage{height:74vh;min-height:460px}
+  .chapter-text{width:92%;top:16%}
+  #chapter-title{font-size:clamp(1.5rem,6.6vw,2rem)}
+  #chapter-desc{font-size:.86rem;line-height:1.75}
+  .hero-feitian{right:-12%;top:-3%;left:auto;width:62%}
   .gate-person{width:18.5%}
-  .person-1{left:2%}
-  .person-2{left:23%}
-  .person-3{left:43%}
+  .person-1{left:1%}
+  .person-2{left:22.5%}
+  .person-3{left:42.5%}
   .person-4{left:62%}
-  .person-5{left:80%}
+  .person-5{left:81%}
   .material-head{display:block}
   .material-head p{margin-top:.8rem}
   .material-grid{grid-template-columns:1fr;grid-auto-rows:230px}
   .material-card.tall{grid-row:span 1}
-  .screen{grid-template-columns:1fr;min-height:auto;padding:9vh clamp(1.2rem,5vw,2rem);gap:2rem}
+  .screen{grid-template-columns:1fr;min-height:auto;padding:6.5vh clamp(1.2rem,5vw,2rem);gap:1.8rem}
   .screen.flip .visual{order:0}
+  .copy p,.copy h3{max-width:100%}
   .dash.cols-3{grid-template-columns:1fr 1fr}
-  .matrix{grid-template-columns:84px repeat(5,1fr);font-size:.56rem}
-  .matrix .rh{font-size:.58rem;padding:.3rem}
+  .dash.cols-2{grid-template-columns:1fr}
+  .vwall{gap:.5rem}
   .cwall{grid-template-columns:1fr}
   .fdash{grid-template-columns:1fr 1fr}
-  .coda .split{grid-template-columns:1fr 1fr}
+  .donut-wrap{justify-content:center}
+  .tl-node .era{font-size:.62rem}
+  .tl-node .yr{font-size:.54rem}
+  .platforms{gap:.6rem}
+  /* finale on phones */
+  .finale-text p{font-size:clamp(1.05rem,5vw,1.45rem)}
+  .finale-marks span{font-size:.72rem;letter-spacing:.22em}
+  footer{padding:2.2rem 1.3rem}
+  footer .src{font-size:.66rem}
+}
+@media(max-width:430px){
+  .brand .mark{font-size:.86rem;letter-spacing:.1em}
+  .nav-links{max-width:54vw}
+  #nav{padding:.7rem .9rem}
+  .painting-stage{height:76vh;min-height:430px}
+  .gate-person{width:19.5%}
+  .hero-feitian{width:66%;right:-14%}
+  .stat .num{font-size:clamp(1.9rem,9vw,2.6rem)}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.001s!important;animation-iteration-count:1!important}
