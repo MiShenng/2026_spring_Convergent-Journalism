@@ -307,7 +307,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   max-width:var(--maxw);margin:0 auto;padding:7vh clamp(1.4rem,5vw,3rem);min-height:88vh;
 }
 .screen.flip .visual{order:2}
-.screen.solo{grid-template-columns:1fr;text-align:center;justify-items:center}
+.screen.solo{grid-template-columns:1fr;text-align:center;justify-items:center;align-content:start;min-height:auto;padding-block:7vh;gap:2.8rem}
 .visual{position:relative}
 .visual.motion-stack{perspective:1200px}
 .visual.motion-stack>.dash,.visual.motion-stack>.vwall,.visual.motion-stack>.chart,.visual.motion-stack>.anatomy,.visual.motion-stack>.compare,.visual.motion-stack>.tiers,.visual.motion-stack>.cwall,.visual.motion-stack>.fdash,.visual.motion-stack>.mapbox{
@@ -834,7 +834,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>飞天不是可以任意截取的装饰，而是洞窟图像关系中的一部分。</h3>
       <p>她们与佛像、经变画、供养人、乐舞场景和窟顶结构共同构成完整空间。身体位置、飞行方向、手中乐器和衣带走势，都决定了飞天如何被我们发现。</p>
-      <span class="interact-tag">继续下滑进入叙事</span>
     </div>
   </div>
 
@@ -850,7 +849,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>正因为可见性并不稳固，保护才成为观看的前提。</h3>
       <p>没有保护，飞天会继续从墙面上消退；没有记录，许多细节会在后来的时间中难以追索。数字采集让飞天以高清图像进入档案系统，也让屏幕观看成为可能。</p>
-      <span class="interact-tag">数字随滚动递增</span>
     </div>
   </div>
 
@@ -866,7 +864,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>屏幕上的飞天扩大了可见范围，却不能替代洞窟中的飞天。</h3>
       <p>短视频、讲解和AI复原让更多人接近莫高窟，但数字图像必须不断回到壁画本体。前者扩大观看范围，后者提供历史深度和空间依据。</p>
-      <span class="interact-tag">媒体卡片悬停反馈</span>
     </div>
   </div>
 </section>
@@ -887,6 +884,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
       <h3>历史演变让飞天既有变化，也有稳定性。</h3>
+      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">从北凉到元代，飞天在不同时期和洞窟中呈现差异。但飘带、乐舞、反弹琵琶和敦煌色彩的组合足够稳定——使她在任何时代都能被一眼认出。点击各朝代节点，观察形态如何演变。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="chart">
@@ -929,7 +927,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>被识别之前，飞天先经历了时间留下的斑驳。</h3>
       <p>残损、褪色和模糊轮廓并不是背景信息，而是飞天可见方式的一部分。拖动滑块，可以看到从壁画残痕到数字读法的距离。</p>
-      <span class="interact-tag">拖动滑块对比</span>
     </div>
   </div>
 
@@ -947,7 +944,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>飘带、反弹琵琶、敦煌色和佩饰，构成飞天被识别的基础。</h3>
       <p>飞天没有翅膀，身体的凌空感主要由飘带完成；反弹琵琶提供动作记忆；石青、石绿、朱砂和赭色则让当代设计保留明显的来源感。</p>
-      <span class="interact-tag">悬停查看标记</span>
     </div>
   </div>
 </section>
@@ -968,6 +964,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
       <h3>不同平台塑造出不同的飞天。</h3>
+      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">抖音和快手强调动作与视觉冲击；B站更适合长视频讲解；小红书把飞天转化为审美和生活方式；视频号和直播延长了观看时间。横轴是平台，纵轴是内容形式，色块深浅表示相对传播强度。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="chart">
@@ -993,7 +990,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>短视频和直播改变了飞天的时间结构。</h3>
       <p>洞窟观看是缓慢的，短视频观看则是快速的。舞姿、妆容、修复对比和视觉转场在几十秒内完成吸引；直播和讲解又把这种观看延长为持续停留。</p>
-      <span class="interact-tag">数字随滚动递增</span>
     </div>
   </div>
 
@@ -1060,20 +1056,25 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   </div>
 
   <!-- S4.1 -->
-  <div class="screen solo">
-    <div class="copy reveal" style="max-width:60ch">
-      <h3>消费并不一定是文化理解的终点，也可能成为入口。</h3>
+  <div class="screen">
+    <div class="visual reveal">
+      <div class="anatomy"><img loading="lazy" decoding="async" src="assets/dh_scene_tang.webp" alt="敦煌盛唐壁画全景，色彩完整而丰富"></div>
     </div>
-    <div class="visual reveal d1" style="width:100%;max-width:1000px">
+    <div class="copy reveal d1">
+      <h3>消费并不一定是文化理解的终点，也可能成为入口。</h3>
+      <p>一件产品只是借用飞天图案，传播效果往往停留在审美层面。但如果它能够提示图像来源、呈现壁画细节，消费场景就可能变成文化传播的入口。</p>
+      <p>这条路径得以成立，依靠的是数字技术先把图像从墙面上完整地读出来。高清采集、AI修复、三维建模和AR互动，构成飞天从洞窟进入日常的技术前提。</p>
+    </div>
+  </div>
+  <div class="screen solo">
+    <div class="visual reveal" style="width:100%;max-width:1000px">
       <div class="flow" id="flow">
         <div class="fstep"><div class="n">01</div><h4>高清采集</h4><p>多光谱与高分辨率影像保留肉眼难以捕捉的细节。</p></div>
         <div class="fstep"><div class="n">02</div><h4>AI修复</h4><p>起甲、脱落、残缺区域被重新辨读，形成可解释图像。</p></div>
         <div class="fstep"><div class="n">03</div><h4>三维建模</h4><p>平面壁画获得空间导航层，便于展示与教育。</p></div>
         <div class="fstep"><div class="n">04</div><h4>AR互动</h4><p>洞窟图像被送到移动屏幕，进入个人观看场景。</p></div>
       </div>
-      <div class="chart" style="margin-top:1rem;border:none;background:transparent;box-shadow:none;padding:.4rem 0">
-        <div class="cnote">图 5：从高清采集到互动展示，数字技术为后续平台传播和日常消费提供素材基础。</div>
-      </div>
+      <p class="cnote" style="text-align:center;margin-top:.8rem;font-size:.68rem;color:var(--silk-faint);font-style:italic">图 5：从高清采集到互动展示，数字技术为后续平台传播和日常消费提供素材基础。</p>
     </div>
   </div>
 
@@ -1091,7 +1092,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>日常化不能切断飞天与文物本体之间的联系。</h3>
       <p>如果一件产品只是借用图案，传播效果往往停留在审美层面；如果它能够提示图像来源和莫高窟语境，消费场景就可能成为文化传播的入口。</p>
-      <span class="interact-tag">拖动滑块对比</span>
     </div>
   </div>
 
@@ -1131,7 +1131,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>平台和商品也可能把人重新带回敦煌。</h3>
       <p>短视频制造向往，妆造激发旅行想象，文创产品延长记忆。公众可能因为一次平台观看走向敦煌，也可能因为一次敦煌旅行继续在社交媒体上分享飞天。</p>
-      <span class="interact-tag">数字随滚动递增</span>
     </div>
   </div>
 </section>
@@ -1152,6 +1151,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
       <h3>海外观众会从不同入口认识飞天，也会形成不同理解。</h3>
+      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">博物馆展览、纪录片、舞蹈视频、游戏设计、社交平台——不同入口形成不同理解。飞天背后的宗教图像、丝路交流和敦煌历史，如果没有被说明，就可能被压缩为一种异域化的装饰图案。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <figure class="material-card" style="height:300px;margin-bottom:1.1rem">
@@ -1184,7 +1184,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>文化遗产的开放，不等于无限制使用。</h3>
       <p>研究、教育和非营利公共传播可以相对开放；商业联名、广告、影视、游戏和商品化开发则需要更清晰的授权和解释机制。</p>
-      <span class="interact-tag">悬停查看授权层级</span>
     </div>
   </div>
 
@@ -1209,7 +1208,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     <div class="copy reveal d1">
       <h3>飞天的可见性并不单纯。</h3>
       <p>她被更多人看见，可能意味着文化遗产进入公共生活；也可能意味着复杂语境被压缩为视觉消费。飞天的破圈，是一次关于保护、传播、产业和边界的持续协商。</p>
-      <span class="interact-tag">评论立场示意编码</span>
     </div>
   </div>
 
