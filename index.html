@@ -225,18 +225,18 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .gate-intro{
   position:absolute;
-  right:23%;
-  top:10%;
+  right:24%;
+  top:9%;
   z-index:4;
   font-family:var(--font-cn);
-  width:min(28%,380px);
-  color:rgba(242,234,216,.62);
-  font-size:14.5px;
-  line-height:1.72;
+  width:min(24%,330px);
+  color:rgba(242,234,216,.48);
+  font-size:13px;
+  line-height:1.68;
   margin:0;
-  padding:18px 20px;
-  background:linear-gradient(90deg,rgba(7,8,18,.38),rgba(7,8,18,.08));
-  border-left:1px solid rgba(201,162,77,.2);
+  padding:13px 16px;
+  background:linear-gradient(90deg,rgba(7,8,18,.22),rgba(7,8,18,.04));
+  border-left:1px solid rgba(201,162,77,.12);
 }
 .painting-stage{
   position:relative;
@@ -251,11 +251,13 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .painting-stage::before {
   content: "";
   position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 11%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201, 162, 77, 0.22), transparent);
+  left: 7%;
+  right: 7%;
+  bottom: 9%;
+  height: 80px;
+  background:
+    radial-gradient(ellipse at 50% 70%, rgba(226,194,110,.13), transparent 58%),
+    linear-gradient(to right, transparent, rgba(201,162,77,.2), transparent 50%, rgba(201,162,77,.2), transparent);
   z-index: 5;
 }
 .stage-bg{
@@ -283,48 +285,50 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   pointer-events:none;
   z-index:2;
   background:
-    linear-gradient(to top, rgba(0,0,0,.28), rgba(0,0,0,.02) 56%, rgba(0,0,0,.16)),
-    radial-gradient(circle at 22% 31%, rgba(0,0,0,.24), transparent 38%),
-    radial-gradient(circle at 90% 15%, rgba(7,8,18,.22), transparent 32%);
+    linear-gradient(to top, rgba(0,0,0,.22), rgba(0,0,0,.02) 56%, rgba(0,0,0,.12)),
+    radial-gradient(circle at 50% 31%, rgba(0,0,0,.28), transparent 36%),
+    radial-gradient(circle at 90% 12%, rgba(7,8,18,.24), transparent 30%);
 }
 .chapter-text{
   position:absolute;
-  left:7.5%;
+  left:50%;
   top:25%;
-  width:480px;
+  width:min(680px,58vw);
   z-index:4;
+  text-align:center;
+  transform:translateX(-50%);
   transition:opacity .35s ease, transform .35s ease;
 }
 .chapter-text.is-changing{
   opacity:0;
-  transform:translateY(10px);
+  transform:translateX(-50%) translateY(10px);
 }
 #chapter-number{
   color:#c8a45c;
-  font-size:18px;
-  letter-spacing:.18em;
-  margin:0 0 10px;
+  font-size:16px;
+  letter-spacing:.26em;
+  margin:0 0 18px;
 }
 #chapter-title{
   font-family:"Songti SC","SimSun","Noto Serif SC",serif;
-  font-size:clamp(48px,4.3vw,64px);
-  line-height:1.18;
+  font-size:clamp(46px,4vw,60px);
+  line-height:1.12;
   font-weight:500;
-  margin:0 0 14px;
+  margin:0 0 24px;
   color:#f4ecd9;
 }
 #chapter-desc{
   font-family:"Songti SC","SimSun","Noto Serif SC",serif;
   color:rgba(242,234,216,.66);
-  font-size:18px;
+  font-size:17px;
   line-height:1.8;
   margin:0;
 }
 .hero-feitian{
   position:absolute;
-  right:-7%;
-  top:-7%;
-  width:25%;
+  right:-12%;
+  top:-11%;
+  width:27%;
   z-index:8;
   pointer-events:none;
   animation:heroFloat 5.2s ease-in-out infinite;
@@ -346,14 +350,22 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .gate-person::after{
   content:"";
   position:absolute;
-  left:12%;
-  right:12%;
-  bottom:0;
-  height:18%;
+  left:6%;
+  right:6%;
+  bottom:-1%;
+  height:24%;
   z-index:0;
   pointer-events:none;
-  background:radial-gradient(ellipse at center, rgba(45,28,13,.26), transparent 70%);
-  filter:blur(2px);
+  background:radial-gradient(ellipse at center, rgba(45,28,13,.3), transparent 72%);
+  filter:blur(3px);
+}
+.gate-person.active::after{
+  left:-8%;
+  right:-8%;
+  height:34%;
+  background:
+    radial-gradient(ellipse at center, rgba(227,200,120,.34), rgba(201,162,75,.12) 42%, transparent 72%),
+    radial-gradient(ellipse at center, rgba(45,28,13,.28), transparent 78%);
 }
 .gate-person img{
   position:relative;
@@ -361,17 +373,17 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   width:100%;
   display:block;
   transition:transform .45s ease, filter .45s ease, opacity .45s ease;
-  filter:brightness(.9) saturate(.94) drop-shadow(0 16px 12px rgba(0,0,0,.3));
+  filter:brightness(.74) saturate(.82) opacity(.78) drop-shadow(0 14px 10px rgba(0,0,0,.28));
 }
 .gate-person:hover img,.gate-person.active img{
-  transform:translateY(-12px) scale(1.045);
-  filter:brightness(1.14) saturate(1.04) drop-shadow(0 22px 18px rgba(0,0,0,.38));
+  transform:translateY(-12px) scale(1.05);
+  filter:brightness(1.18) saturate(1.08) opacity(1) drop-shadow(0 24px 18px rgba(0,0,0,.4));
 }
-.person-1{left:8.5%;bottom:8%;width:10.6%}
-.person-2{left:24.5%;bottom:9%;width:9.6%}
-.person-3{left:40.5%;bottom:7.2%;width:10%}
-.person-4{left:56.5%;bottom:8.7%;width:9.4%}
-.person-5{left:71.5%;bottom:7.6%;width:9.8%}
+.person-1{left:10%;bottom:8.5%;width:11.2%}
+.person-2{left:26%;bottom:11%;width:10.4%}
+.person-3{left:50%;bottom:6.5%;width:14%;transform:translateX(-50%)}
+.person-4{left:64%;bottom:10%;width:10.2%}
+.person-5{left:78%;bottom:8%;width:10.8%}
 
 .material-wall{position:relative;z-index:3;padding:5rem clamp(1.2rem,5vw,5rem);background:rgba(7,8,16,.96)}
 .material-inner{max-width:var(--maxw);margin:0 auto}
@@ -916,12 +928,12 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       沿着五条路径进入，重新理解飞天如何被再度看见。
     </p>
     <div class="chapter-text">
-      <p id="chapter-number">I</p>
-      <h3 id="chapter-title">洞窟如何看见</h3>
-      <p id="chapter-desc">从残损壁画出发，理解保护为什么是观看的前提。</p>
+      <p id="chapter-number">III</p>
+      <h3 id="chapter-title">平台如何改写</h3>
+      <p id="chapter-desc">看短视频、直播、评论和推荐机制如何重组观看方式。</p>
     </div>
     <img class="hero-feitian" src="第二页动屏特效/top-feitian-cutout.png" alt="引读飞天">
-    <button class="gate-person person-1 active"
+    <button class="gate-person person-1"
       data-number="I"
       data-title="洞窟如何看见"
       data-desc="从残损壁画出发，理解保护为什么是观看的前提。"
@@ -937,7 +949,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       aria-label="飞天如何识别">
       <img src="第二页动屏特效/motif-maiden-cutout.png" alt="持乐伎人">
     </button>
-    <button class="gate-person person-3"
+    <button class="gate-person person-3 active"
       data-number="III"
       data-title="平台如何改写"
       data-desc="看短视频、直播、评论和推荐机制如何重组观看方式。"
