@@ -193,7 +193,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .character-gate{
   position:relative;z-index:3;
   min-height:100vh;
-  padding:72px 7vw 70px;
+  padding:54px 5vw 34px;
   background:
     radial-gradient(circle at 50% 0%, rgba(58,45,30,.12), transparent 42%),
     #070812;
@@ -203,84 +203,94 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   overflow:hidden;
 }
 .gate-header{
-  max-width:var(--maxw);
-  margin:0 auto 8px;
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:70px;
-  align-items:end;
+  width:90vw;
+  max-width:1400px;
+  margin:0 auto 10px;
 }
 .gate-label{
   font-family:var(--font-sans-cn);
   color:#c8a45c;
   letter-spacing:.2em;
   font-size:15px;
-  margin-bottom:16px;
+  margin-bottom:10px;
 }
 .gate-header h2{
   font-family:"Songti SC","SimSun","Noto Serif SC",serif;
-  font-size:clamp(48px,4.5vw,68px);
-  line-height:1.12;
+  max-width:36%;
+  font-size:clamp(42px,3.8vw,58px);
+  line-height:1.08;
   letter-spacing:0.02em;
   font-weight:500;
   margin:0;
 }
 .gate-intro{
+  position:absolute;
+  right:9%;
+  top:11%;
+  z-index:4;
   font-family:var(--font-cn);
-  max-width:520px;
-  color:rgba(242,234,216,.58);
-  font-size:16px;
-  line-height:1.85;
+  width:min(32%,430px);
+  color:rgba(242,234,216,.62);
+  font-size:15px;
+  line-height:1.75;
   margin:0;
+  padding:18px 20px;
+  background:linear-gradient(90deg,rgba(7,8,18,.38),rgba(7,8,18,.08));
+  border-left:1px solid rgba(201,162,77,.2);
 }
 .painting-stage{
   position:relative;
-  max-width:var(--maxw);
-  width:100%;
-  height:560px;
+  width:90vw;
+  max-width:1400px;
+  height:72vh;
+  min-height:660px;
   margin:0 auto;
-  margin-top:0;
+  margin-top:-2px;
   overflow:visible;
 }
 .painting-stage::before {
   content: "";
   position: absolute;
-  left: 9%;
-  right: 9%;
-  bottom: 20%;
+  left: 8%;
+  right: 8%;
+  bottom: 11%;
   height: 1px;
   background: linear-gradient(to right, transparent, rgba(201, 162, 77, 0.22), transparent);
   z-index: 5;
 }
 .stage-bg{
   position:absolute;
-  left:4%;
-  top:4%;
-  width:92%;
-  height:76%;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
   object-fit:cover;
   z-index:1;
   border:1px solid rgba(201,162,77,.26);
-  box-shadow:0 24px 70px rgba(0,0,0,.38);
-  filter:brightness(.94) saturate(.96);
+  box-shadow:
+    inset 0 0 80px rgba(7,8,18,.25),
+    0 24px 70px rgba(0,0,0,.38);
+  filter:brightness(.92) saturate(.96);
+  opacity:.96;
 }
 .painting-stage::after{
   content:"";
   position:absolute;
-  left:4%;
-  top:4%;
-  width:92%;
-  height:76%;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
   pointer-events:none;
   z-index:2;
   background:
-    linear-gradient(to top, rgba(0,0,0,.32), rgba(0,0,0,.04)),
-    radial-gradient(circle at 27% 42%, rgba(0,0,0,.22), transparent 44%);
+    linear-gradient(to top, rgba(0,0,0,.28), rgba(0,0,0,.02) 56%, rgba(0,0,0,.16)),
+    radial-gradient(circle at 22% 31%, rgba(0,0,0,.24), transparent 38%),
+    radial-gradient(circle at 90% 15%, rgba(7,8,18,.22), transparent 32%);
 }
 .chapter-text{
   position:absolute;
-  left:10%;
-  top:18%;
+  left:8%;
+  top:24%;
   width:390px;
   z-index:4;
   transition:opacity .35s ease, transform .35s ease;
@@ -312,9 +322,9 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .hero-feitian{
   position:absolute;
-  right:1%;
-  top:1.5%;
-  width:28%;
+  right:-2.5%;
+  top:-4%;
+  width:24%;
   z-index:8;
   pointer-events:none;
   animation:heroFloat 5.2s ease-in-out infinite;
@@ -333,7 +343,21 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   padding:0;
   cursor:pointer;
 }
+.gate-person::after{
+  content:"";
+  position:absolute;
+  left:12%;
+  right:12%;
+  bottom:0;
+  height:14%;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(45,28,13,.26), transparent 70%);
+  filter:blur(2px);
+}
 .gate-person img{
+  position:relative;
+  z-index:1;
   width:100%;
   display:block;
   transition:transform .45s ease, filter .45s ease, opacity .45s ease;
@@ -343,11 +367,11 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   transform:translateY(-9px) scale(1.035);
   filter:brightness(1.08) saturate(1) drop-shadow(0 20px 16px rgba(0,0,0,.36));
 }
-.person-1{left:12%;bottom:20%;width:9.4%}
-.person-2{left:28%;bottom:20%;width:8.6%}
-.person-3{left:43%;bottom:20%;width:8.9%}
-.person-4{left:58%;bottom:20%;width:8.4%}
-.person-5{left:72%;bottom:20%;width:8.8%}
+.person-1{left:9%;bottom:11%;width:8.6%}
+.person-2{left:25%;bottom:12%;width:7.9%}
+.person-3{left:41%;bottom:10%;width:8.2%}
+.person-4{left:57%;bottom:11.5%;width:7.8%}
+.person-5{left:72%;bottom:10.5%;width:8.1%}
 
 .material-wall{position:relative;z-index:3;padding:5rem clamp(1.2rem,5vw,5rem);background:rgba(7,8,16,.96)}
 .material-inner{max-width:var(--maxw);margin:0 auto}
@@ -885,13 +909,13 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       <p class="gate-label reveal">阅读入口</p>
       <h2 class="reveal d1">五条路径，都通往同一个问题</h2>
     </div>
-    <p class="gate-intro reveal d2">
-      她本在洞窟的墙上。今天，她出现在短视频、妆造、文创和海外平台里。
-      从任意一条路径进入，最终都通向同一个问题：飞天如何被再度看见。
-    </p>
   </div>
   <div class="painting-stage reveal d2">
     <img class="stage-bg" src="第二页动屏特效/background.png" alt="敦煌壁画背景">
+    <p class="gate-intro">
+      她本在洞窟的墙上。今天，她出现在短视频、妆造、文创和海外平台里。
+      沿着五条路径进入，重新理解飞天如何被再度看见。
+    </p>
     <div class="chapter-text">
       <p id="chapter-number">I</p>
       <h3 id="chapter-title">洞窟如何看见</h3>
