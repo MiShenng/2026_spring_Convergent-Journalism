@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Decoding the Apsaras — The Breakout & Rebirth of a Mogao Symbol</title>
-<meta name="description" content="A data-driven scrollytelling report on how the flying Apsaras of the Mogao Caves moved from digital archive to short video, livestream, AI animation and overseas platforms.">
+<title>数读飞天：莫高窟文化符号的破圈与重生</title>
+<meta name="description" content="一篇数据化滚动叙事报道，追踪莫高窟飞天如何从数字档案走向短视频、直播、AI再创作、文创消费与海外传播。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -32,13 +32,15 @@
   --rule:rgba(201,162,75,.28);
   --shadow:0 30px 80px -30px rgba(0,0,0,.85);
   --maxw:1240px;
+  --font-cn:'Noto Serif SC','Songti SC','STSong','SimSun',serif;
+  --font-sans-cn:'Noto Sans SC','PingFang SC','Microsoft YaHei',Arial,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   background:var(--ink);
   color:var(--silk);
-  font-family:'Spectral',Georgia,serif;
+  font-family:var(--font-cn);
   font-weight:300;
   line-height:1.7;
   -webkit-font-smoothing:antialiased;
@@ -63,8 +65,8 @@ a{color:inherit;text-decoration:none}
 /* ---------- Typographic system ---------- */
 .cinzel{font-family:'Cinzel',serif}
 .eyebrow{
-  font-family:'Cinzel',serif;font-weight:500;
-  letter-spacing:.42em;text-transform:uppercase;
+  font-family:var(--font-sans-cn);font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;
   font-size:.7rem;color:var(--gold);
 }
 h1,h2,h3{font-weight:500;line-height:1.12}
@@ -91,11 +93,11 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 #nav.shrunk{padding:.55rem clamp(1rem,4vw,2.6rem);background:rgba(11,12,22,.96);box-shadow:0 1px 0 var(--rule)}
 .brand{display:flex;align-items:baseline;gap:.7rem;white-space:nowrap}
-.brand .mark{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.16em;font-size:1rem;color:var(--gold-soft)}
-.brand .cn{font-family:'Spectral',serif;font-size:.8rem;color:var(--silk-dim);letter-spacing:.32em}
+.brand .mark{font-family:var(--font-cn);font-weight:600;letter-spacing:.16em;font-size:1rem;color:var(--gold-soft)}
+.brand .cn{font-family:var(--font-sans-cn);font-size:.8rem;color:var(--silk-dim);letter-spacing:.22em}
 .nav-links{display:flex;gap:clamp(.6rem,2vw,2rem);list-style:none}
 .nav-links a{
-  font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  font-family:var(--font-sans-cn);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--silk-dim);padding:.35rem 0;position:relative;transition:color .3s;
 }
 .nav-links a::after{
@@ -118,7 +120,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .hero-img{
   position:absolute;inset:0;z-index:-2;
-  background:url('assets/anatomy.png') center 18%/cover no-repeat;
+  background:url('Materials/opeing.png') center 36%/cover no-repeat;
   filter:saturate(1.05) contrast(1.02);
   animation:kenburns 26s ease-in-out infinite alternate;
 }
@@ -135,14 +137,14 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .hero h1 em{font-style:normal;color:var(--gold-soft);display:block}
 .hero .sub{
-  font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;
+  font-family:var(--font-cn);font-weight:400;font-style:normal;
   font-size:clamp(1.1rem,2.4vw,1.7rem);color:var(--silk);margin-top:1.4rem;max-width:48ch;
 }
-.hero .cn-title{font-family:'Spectral',serif;letter-spacing:.5em;color:var(--gold);font-size:.9rem;margin-bottom:1.4rem}
+.hero .cn-title{font-family:var(--font-sans-cn);letter-spacing:.36em;color:var(--gold);font-size:.9rem;margin-bottom:1.4rem}
 .scroll-cue{
   position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:.6rem;color:var(--silk-dim);
-  font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;
+  font-family:var(--font-sans-cn);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
 }
 .scroll-cue .line{width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s ease-in-out infinite}
 @keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
@@ -164,6 +166,41 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 @keyframes flow{to{stroke-dashoffset:-1408}}
 
 /* ============================================================
+   STORY PORTAL — borrowed from CGTN's "choose a world" logic
+   ============================================================ */
+.story-portal{
+  position:relative;z-index:3;
+  padding:5.5rem clamp(1.2rem,5vw,5rem) 6rem;
+  background:
+    linear-gradient(180deg,rgba(11,12,22,.92),rgba(11,12,22,.98)),
+    radial-gradient(900px 520px at 50% 0%,rgba(201,162,75,.14),transparent 62%);
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.portal-head{max-width:var(--maxw);margin:0 auto 2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
+.portal-head h2{font-family:var(--font-cn);font-size:clamp(1.7rem,4vw,3rem);font-weight:600;color:var(--silk);max-width:15ch}
+.portal-head p{max-width:48ch;color:var(--silk-dim);font-size:1rem}
+.portal-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem}
+.portal-card{
+  position:relative;min-height:280px;border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  background:var(--panel-soft);display:flex;align-items:flex-end;padding:1rem;color:var(--silk);
+  transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;
+}
+.portal-card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:var(--shadow)}
+.portal-card::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.58;transition:transform .6s ease,opacity .35s ease}
+.portal-card:hover::before{transform:scale(1.08);opacity:.72}
+.portal-card::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 20%,rgba(7,8,16,.92))}
+.portal-card:nth-child(1)::before{background-image:url('Materials/dunhuang-flying-apsara-western-wei.jpg')}
+.portal-card:nth-child(2)::before{background-image:url('assets/anatomy.png')}
+.portal-card:nth-child(3)::before{background-image:url('Materials/dunhuang-reverse-pipa-stage.jpg')}
+.portal-card:nth-child(4)::before{background-image:url('assets/restored.png')}
+.portal-card:nth-child(5)::before{background-image:url('Materials/met-flying-celestial-apsara.jpg')}
+.portal-card .txt{position:relative;z-index:2}
+.portal-card .n{font-family:'Cinzel',serif;color:var(--gold-soft);font-size:.75rem;letter-spacing:.16em}
+.portal-card h3{font-family:var(--font-cn);font-size:1.25rem;margin:.35rem 0 .45rem}
+.portal-card p{font-size:.82rem;color:var(--silk-dim);line-height:1.5}
+
+/* ============================================================
    CHAPTER + SCREEN LAYOUT
    ============================================================ */
 .chapter{position:relative;z-index:3}
@@ -177,7 +214,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   position:absolute;top:3.4rem;right:clamp(1rem,5vw,5rem);z-index:-1;opacity:.5;
 }
 .chapter-intro h2{
-  font-family:'Cinzel',serif;font-weight:600;font-size:clamp(1.8rem,5vw,3.4rem);
+  font-family:var(--font-cn);font-weight:600;font-size:clamp(1.8rem,5vw,3.4rem);
   color:var(--silk);max-width:18ch;margin:.8rem 0 1rem;
 }
 .chapter-intro p{font-size:clamp(1rem,1.6vw,1.18rem);color:var(--silk-dim);max-width:60ch}
@@ -191,17 +228,17 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .screen.solo{grid-template-columns:1fr;text-align:center;justify-items:center}
 .visual{position:relative}
 .copy .scr-id{
-  font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.3em;color:var(--vermilion-soft);text-transform:uppercase;
+  font-family:var(--font-sans-cn);font-size:.66rem;letter-spacing:.22em;color:var(--vermilion-soft);text-transform:uppercase;
 }
 .copy h3{
-  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-family:var(--font-cn);font-weight:600;
   font-size:clamp(1.6rem,3.2vw,2.5rem);line-height:1.18;color:var(--silk);margin:.5rem 0 1rem;
 }
 .copy p{font-size:1.04rem;color:var(--silk-dim);max-width:46ch}
 .copy p+p{margin-top:.9rem}
 .copy .interact-tag{
   display:inline-flex;align-items:center;gap:.5rem;margin-top:1.4rem;
-  font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  font-family:var(--font-sans-cn);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
 }
 .copy .interact-tag::before{content:"◇";color:var(--vermilion-soft)}
 
@@ -264,7 +301,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .tl-node:hover .dot,.tl-node.on .dot{background:var(--gold);transform:scale(1.4);box-shadow:0 0 16px var(--gold)}
 .tl-node:hover .era,.tl-node.on .era{color:var(--gold-soft)}
 .tl-detail{margin-top:2.2rem;min-height:84px;background:var(--panel-soft);border:1px solid var(--rule);border-left:3px solid var(--vermilion);border-radius:3px;padding:1.1rem 1.3rem}
-.tl-detail h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold-soft);font-weight:600}
+.tl-detail h4{font-family:var(--font-cn);font-size:1.4rem;color:var(--gold-soft);font-weight:600}
 .tl-detail p{font-size:.9rem;color:var(--silk-dim);margin-top:.3rem}
 
 /* ============================================================
@@ -295,7 +332,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   opacity:0;pointer-events:none;transition:.3s;
 }
 .hot:hover .tip{opacity:1;transform:translate(-50%,-110%)}
-.hot .tip b{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-soft);display:block}
+.hot .tip b{font-family:var(--font-cn);font-size:1.1rem;color:var(--gold-soft);display:block}
 .hot .tip span{font-size:.74rem;color:var(--silk-dim)}
 
 /* ============================================================
@@ -329,10 +366,10 @@ h1,h2,h3{font-weight:500;line-height:1.12}
    GENERIC SVG CHART FRAME
    ============================================================ */
 .chart{background:var(--panel-soft);border:1px solid var(--rule);border-radius:4px;padding:1.4rem;box-shadow:var(--shadow)}
-.chart .ctitle{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.3rem}
+.chart .ctitle{font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.3rem}
 .chart .cnote{font-size:.68rem;color:var(--silk-faint);margin-top:.6rem;font-style:italic}
 .toggle-row{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
-.toggle{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silk-dim);border:1px solid var(--rule);background:transparent;padding:.4rem .8rem;border-radius:2px;cursor:pointer;transition:.25s}
+.toggle{font-family:var(--font-sans-cn);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silk-dim);border:1px solid var(--rule);background:transparent;padding:.4rem .8rem;border-radius:2px;cursor:pointer;transition:.25s}
 .toggle.on,.toggle:hover{color:var(--ink);background:var(--gold);border-color:var(--gold)}
 .legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:.8rem;font-size:.74rem;color:var(--silk-dim)}
 .legend i{display:inline-block;width:14px;height:3px;margin-right:.4rem;vertical-align:middle}
@@ -342,7 +379,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .fstep{flex:1;min-width:120px;background:var(--panel-soft);border:1px solid var(--rule);border-radius:3px;padding:1.1rem;position:relative;margin:.3rem;transition:.4s;opacity:.45}
 .fstep.lit{opacity:1;border-color:var(--gold);box-shadow:0 0 26px -8px var(--gold)}
 .fstep .n{font-family:'Cinzel',serif;color:var(--vermilion-soft);font-size:.7rem;letter-spacing:.1em}
-.fstep h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold-soft);margin:.3rem 0;font-weight:600}
+.fstep h4{font-family:var(--font-cn);font-size:1.3rem;color:var(--gold-soft);margin:.3rem 0;font-weight:600}
 .fstep p{font-size:.78rem;color:var(--silk-dim)}
 
 /* DONUT + BARS (S4.3) */
@@ -370,7 +407,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .tier:hover{border-color:var(--gold);transform:translateX(6px)}
 .tier .ic{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:'Cinzel',serif;font-weight:600;color:var(--ink)}
 .tier.t1 .ic{background:var(--malachite)}.tier.t2 .ic{background:var(--gold)}.tier.t3 .ic{background:var(--vermilion)}
-.tier h4{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--silk);font-weight:600}
+.tier h4{font-family:var(--font-cn);font-size:1.35rem;color:var(--silk);font-weight:600}
 .tier p{font-size:.82rem;color:var(--silk-dim);margin-top:.2rem}
 .tier .pill{display:inline-block;margin-top:.5rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--rule);padding:.2rem .5rem;border-radius:2px;color:var(--gold-soft)}
 
@@ -380,7 +417,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .ccard{background:var(--panel-soft);border:1px solid var(--rule);border-radius:3px;padding:.9rem 1rem;margin-bottom:.7rem;transition:.3s}
 .ccard:hover{border-color:var(--gold)}
 .ccard.expert{border-left:3px solid var(--azurite)}
-.ccard p{font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1.3;color:var(--silk)}
+.ccard p{font-family:var(--font-cn);font-size:1.05rem;line-height:1.45;color:var(--silk)}
 .ccard .src{font-size:.64rem;color:var(--silk-faint);margin-top:.5rem;letter-spacing:.04em}
 
 /* FUTURE DASHBOARD (S5.4) */
@@ -401,8 +438,8 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .coda::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at center,rgba(11,12,22,.5),rgba(11,12,22,.92))}
 .coda .seam{position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(transparent,var(--gold),transparent);z-index:-1}
 .coda-inner{max-width:760px}
-.coda .lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,3vw,2.1rem);line-height:1.4;color:var(--silk)}
-.coda h2{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(1.8rem,5vw,3.2rem);color:var(--gold-soft);margin-top:2rem;letter-spacing:.04em}
+.coda .lead{font-family:var(--font-cn);font-style:normal;font-size:clamp(1.3rem,3vw,2.1rem);line-height:1.4;color:var(--silk)}
+.coda h2{font-family:var(--font-cn);font-weight:600;font-size:clamp(1.8rem,5vw,3.2rem);color:var(--gold-soft);margin-top:2rem;letter-spacing:.04em}
 .coda .cn{font-family:'Spectral',serif;letter-spacing:.4em;color:var(--silk-dim);margin-top:.8rem;font-size:.9rem}
 .coda .summary{display:flex;gap:2.4rem;justify-content:center;flex-wrap:wrap;margin-top:2.6rem}
 .coda .summary div{font-size:.78rem;color:var(--silk-dim)}
@@ -422,9 +459,14 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .nav-links{gap:.9rem}
   .nav-links a{font-size:.62rem;letter-spacing:.1em}
   .brand .cn{display:none}
+  .portal-head{grid-template-columns:1fr}
+  .portal-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:767px){
   .nav-links{display:none}
+  .story-portal{padding:4rem 1.2rem}
+  .portal-grid{grid-template-columns:1fr}
+  .portal-card{min-height:220px}
   .screen{grid-template-columns:1fr;min-height:auto;padding:9vh clamp(1.2rem,5vw,2rem);gap:2rem}
   .screen.flip .visual{order:0}
   .dash.cols-3{grid-template-columns:1fr 1fr}
@@ -445,15 +487,15 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <!-- ============ NAV ============ -->
 <nav id="nav">
   <div class="brand">
-    <span class="mark">DECODING THE APSARAS</span>
-    <span class="cn">数读飞天</span>
+    <span class="mark">数读飞天</span>
+    <span class="cn">莫高窟文化符号的破圈与重生</span>
   </div>
   <ul class="nav-links">
-    <li><a href="#c1" class="active"><span class="nav-num">I</span>Opening</a></li>
-    <li><a href="#c2"><span class="nav-num">II</span>Origins</a></li>
-    <li><a href="#c3"><span class="nav-num">III</span>Breakout</a></li>
-    <li><a href="#c4"><span class="nav-num">IV</span>Revival</a></li>
-    <li><a href="#c5"><span class="nav-num">V</span>Global</a></li>
+    <li><a href="#c1" class="active"><span class="nav-num">I</span>开场</a></li>
+    <li><a href="#c2"><span class="nav-num">II</span>源流</a></li>
+    <li><a href="#c3"><span class="nav-num">III</span>破圈</a></li>
+    <li><a href="#c4"><span class="nav-num">IV</span>重生</a></li>
+    <li><a href="#c5"><span class="nav-num">V</span>出海</a></li>
   </ul>
 </nav>
 <div id="progress"><div class="fill"></div></div>
@@ -468,11 +510,28 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   </svg>
   <div class="hero-inner reveal-stagger">
     <div class="cn-title">数读飞天 · 莫高窟文化符号的破圈与重生</div>
-    <h1>Decoding the<br><em>Apsaras</em></h1>
-    <p class="sub">Already scanned, modelled and archived in 8K — so why must the flying Apsaras of the Mogao Caves keep being seen again, on short video, livestream, AI remix and platforms abroad? A story told in data.</p>
-    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+    <h1>数读<br><em>飞天</em></h1>
+    <p class="sub">当莫高窟已经被高清采集、建模、归档，飞天为什么还要在短视频、直播、AI再创作和海外平台上一次次被重新看见？这是一条由数据、图像和传播链路共同讲述的文化再生路径。</p>
+    <div class="scroll-cue"><span>下滑阅读</span><span class="line"></span></div>
   </div>
 </header>
+
+<section class="story-portal" id="portal">
+  <div class="portal-head">
+    <div>
+      <div class="eyebrow reveal">阅读入口</div>
+      <h2 class="reveal d1">先选一条进入飞天的路径</h2>
+    </div>
+    <p class="reveal d2">借鉴 CGTN 专题的“主题门户”思路，把线性长文拆成五个可识别入口：从洞窟、图像、平台、技术到全球传播。读者可以按顺序读，也可以直接跳入感兴趣的章节。</p>
+  </div>
+  <div class="portal-grid reveal d2">
+    <a class="portal-card" href="#c1"><div class="txt"><div class="n">I</div><h3>洞窟里的问题</h3><p>从静止壁画出发，追问“保存之后为什么还要传播”。</p></div></a>
+    <a class="portal-card" href="#c2"><div class="txt"><div class="n">II</div><h3>符号如何成形</h3><p>拆解飘带、反弹琵琶、矿物色与可复用视觉语汇。</p></div></a>
+    <a class="portal-card" href="#c3"><div class="txt"><div class="n">III</div><h3>平台如何放大</h3><p>看短视频、直播、评论和平台机制如何制造热度。</p></div></a>
+    <a class="portal-card" href="#c4"><div class="txt"><div class="n">IV</div><h3>技术如何重生</h3><p>从数字化采集、AI修复到文创消费，理解再生产链条。</p></div></a>
+    <a class="portal-card" href="#c5"><div class="txt"><div class="n">V</div><h3>出海与边界</h3><p>当飞天进入全球语境，授权、语义和文化边界随之出现。</p></div></a>
+  </div>
+</section>
 
 <main>
 
@@ -482,22 +541,22 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <section class="chapter" id="c1">
   <div class="chapter-intro">
     <div class="idx cinzel">I</div>
-    <div class="eyebrow reveal">Chapter One</div>
-    <h2 class="reveal d1">Why re-see what has already been saved?</h2>
+    <div class="eyebrow reveal">第一章</div>
+    <h2 class="reveal d1">已经被保存的图像，为什么还要被重新看见？</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">We begin not with the hype but in the dark of the cave. The Apsaras enters first as a still mural — and a question follows it onto the screen.</p>
+    <p class="reveal d2">开场不从流量开始，而从洞窟的暗处开始。飞天先以一幅静止壁画出现，随后才进入屏幕、平台和数据。</p>
   </div>
 
   <!-- S1.1 -->
   <div class="screen">
     <div class="visual reveal">
-      <div class="anatomy"><img src="assets/mogao.png" alt="The Mogao Caves at Dunhuang"></div>
+      <div class="anatomy"><img src="assets/mogao.png" alt="敦煌莫高窟外景"></div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S1.1 · The cave, the question</div>
-      <h3>The Apsaras appears first as a still painting, held in the cave's shadow.</h3>
-      <p>Inside the grottoes the flying figure survives as weathered line and faded pigment. The camera holds on it — and a question is set down before any number arrives: once a thing has been preserved, why must it be seen again?</p>
-      <span class="interact-tag">Scroll to enter</span>
+      <div class="scr-id">S1.1 · 洞窟与问题</div>
+      <h3>飞天首先不是热点，而是洞窟阴影里一段幸存的线条。</h3>
+      <p>在莫高窟中，飞天以褪色矿物颜料、风化轮廓和残存姿态留下来。镜头先停在墙面上，再把问题交给读者：当一件文化遗产已经被保存，它为什么还需要继续被传播、被转译、被再看见？</p>
+      <span class="interact-tag">继续下滑进入叙事</span>
     </div>
   </div>
 
@@ -505,16 +564,16 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen flip">
     <div class="visual reveal">
       <div class="dash cols-3">
-        <div class="stat"><div><span class="num" data-target="24">0</span><span class="unit">M+</span></div><div class="lab">Cumulative online visits to Digital Dunhuang</div></div>
-        <div class="stat"><div><span class="num" data-target="78">0</span><span class="unit">countries</span></div><div class="lab">Reach of the open digital archive</div></div>
-        <div class="stat"><div><span class="num" data-target="300">0</span><span class="unit">caves</span></div><div class="lab">Digitally captured and ingested</div></div>
+        <div class="stat"><div><span class="num" data-target="24">0</span><span class="unit">M+</span></div><div class="lab">数字敦煌累计线上访问量</div></div>
+        <div class="stat"><div><span class="num" data-target="78">0</span><span class="unit">国</span></div><div class="lab">开放数字档案触达范围</div></div>
+        <div class="stat"><div><span class="num" data-target="300">0</span><span class="unit">窟</span></div><div class="lab">已完成数字采集与入库</div></div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S1.2 · The digital archive</div>
-      <h3>Preservation stopped being only restoration. It became a public doorway.</h3>
-      <p>The lens pushes from the wall into the resource library. With 600&nbsp;TB of data, 300 captured caves and visitors from 78 countries, Digital Dunhuang turned conservation into an entry point anyone can walk through — and left a more stable base of raw material for everything that follows.</p>
-      <span class="interact-tag">Figures count up on scroll</span>
+      <div class="scr-id">S1.2 · 数字档案</div>
+      <h3>保护不再只是修复墙面，也变成了公众进入文化遗产的入口。</h3>
+      <p>镜头从壁画推向资源库。数百 TB 数据、数百个洞窟采集、跨国家访问，使“数字敦煌”不只是保存工程，也成为后续短视频、文创、AI再创作和国际传播的素材底座。</p>
+      <span class="interact-tag">数字随滚动递增</span>
     </div>
   </div>
 
@@ -522,16 +581,16 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen">
     <div class="visual reveal">
       <div class="vwall">
-        <div class="vcard"><div class="ph a"></div><div class="play"></div><div class="meta"><div class="plat">Douyin · Dance</div><div class="views">3.66M views</div></div></div>
-        <div class="vcard"><div class="ph b"></div><div class="play"></div><div class="meta"><div class="plat">Bilibili · Explainer</div><div class="views">1.2M views</div></div></div>
-        <div class="vcard"><div class="ph c"></div><div class="play"></div><div class="meta"><div class="plat">Channels · AI remix</div><div class="views">880K views</div></div></div>
+        <div class="vcard"><div class="ph a"></div><div class="play"></div><div class="meta"><div class="plat">抖音 · 敦煌舞</div><div class="views">366 万观看</div></div></div>
+        <div class="vcard"><div class="ph b"></div><div class="play"></div><div class="meta"><div class="plat">B 站 · 壁画讲解</div><div class="views">120 万观看</div></div></div>
+        <div class="vcard"><div class="ph c"></div><div class="play"></div><div class="meta"><div class="plat">视频号 · AI再创作</div><div class="views">88 万观看</div></div></div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S1.3 · The viral wall</div>
-      <h3>Right now, this symbol is being called up at high frequency.</h3>
-      <p>A short waterfall of clips — dance covers, mural explainers, AI re-creations — shows in five seconds what the Apsaras looks like in circulation today. No slogans; the videos speak. From archive to public square, the question stands: why does this figure keep breaking out?</p>
-      <span class="interact-tag">Clips autoplay muted on view</span>
+      <div class="scr-id">S1.3 · 破圈视频墙</div>
+      <h3>今天，飞天正在被高频调用。</h3>
+      <p>舞蹈翻跳、壁画科普、AI复原、国潮妆造共同构成一面短视频瀑布。它们不再只是“展示遗产”，而是在重新分配飞天的观看场景：从洞窟、展厅进入手机屏幕和公共话题。</p>
+      <span class="interact-tag">媒体卡片悬停反馈</span>
     </div>
   </div>
 </section>
@@ -542,41 +601,41 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <section class="chapter" id="c2">
   <div class="chapter-intro">
     <div class="idx cinzel">II</div>
-    <div class="eyebrow reveal">Chapter Two</div>
-    <h2 class="reveal d1">From mural motif to a portable symbol.</h2>
+    <div class="eyebrow reveal">第二章</div>
+    <h2 class="reveal d1">从壁画母题，到可迁移的文化符号。</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">Before circulation, why this figure at all? The Apsaras is not a fresh design but a visual motif Dunhuang repeated for more than a thousand years — which is exactly why it is so easy to recognise and reuse.</p>
+    <p class="reveal d2">在讨论传播之前，要先回答：为什么偏偏是飞天？它不是凭空出现的新设计，而是敦煌壁画中反复沉淀的视觉母题。也正因为它足够稳定，才容易被识别、提取和复用。</p>
   </div>
 
   <!-- S2.1 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
-      <div class="scr-id">S2.1 · 1,600 years of form</div>
-      <h3>Posture, ribbon and colour settled into one stable look — dynasty by dynasty.</h3>
+      <div class="scr-id">S2.1 · 千年形态</div>
+      <h3>姿态、飘带与色彩在朝代更迭中逐渐稳定下来。</h3>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="chart">
-        <div class="ctitle">Evolution of the Apsaras form · Northern Liang → Yuan</div>
+        <div class="ctitle">飞天形态演变 · 北凉至元</div>
         <div class="timeline">
           <div class="axis"></div>
           <div class="tl-track" id="tlTrack">
-            <div class="tl-node on" data-h="Northern Liang–Wei" data-d="Early Apsaras: heavy outlines, Indian–Central Asian features, restrained, earth-bound flight.">
-              <div class="era">N. Liang</div><div class="yr">421–</div><div class="dot"></div></div>
-            <div class="tl-node" data-h="Sui Dynasty" data-d="Bodies lengthen, ribbons multiply; the figure begins to float rather than stand.">
-              <div class="era">Sui</div><div class="yr">581–</div><div class="dot"></div></div>
-            <div class="tl-node" data-h="High Tang — Cave 320" data-d="The classic Apsaras: weightless flight, swirling silk, full musical and dance vocabulary.">
-              <div class="era">High Tang</div><div class="yr">712–</div><div class="dot"></div></div>
-            <div class="tl-node" data-h="Mid–Late Tang — Cave 112" data-d="The reverse-pipa pose crystallises — the single most reproduced Apsaras gesture today.">
-              <div class="era">Late Tang</div><div class="yr">781–</div><div class="dot"></div></div>
-            <div class="tl-node" data-h="Song–Yuan" data-d="Forms formalise and codify, becoming the recognisable 'template' later media draw on.">
-              <div class="era">Song–Yuan</div><div class="yr">960–1368</div><div class="dot"></div></div>
+            <div class="tl-node on" data-h="北凉至魏晋" data-d="早期飞天线条较厚重，保留印度与中亚图像痕迹，飞行动势相对克制。">
+              <div class="era">北凉</div><div class="yr">421–</div><div class="dot"></div></div>
+            <div class="tl-node" data-h="隋代" data-d="身体线条拉长，飘带增多，人物从“站立的神像”逐渐转向“漂浮的形体”。">
+              <div class="era">隋</div><div class="yr">581–</div><div class="dot"></div></div>
+            <div class="tl-node" data-h="盛唐 · 第320窟" data-d="飞天进入典型化阶段：轻盈飞行、回旋飘带、音乐与舞蹈语言同时成熟。">
+              <div class="era">盛唐</div><div class="yr">712–</div><div class="dot"></div></div>
+            <div class="tl-node" data-h="中晚唐 · 反弹琵琶" data-d="反弹琵琶姿态被不断再现，成为今天最易被识别和再创作的飞天动作。">
+              <div class="era">晚唐</div><div class="yr">781–</div><div class="dot"></div></div>
+            <div class="tl-node" data-h="宋元" data-d="形态进一步程式化，成为后世媒体、舞蹈和文创可直接借用的视觉模板。">
+              <div class="era">宋元</div><div class="yr">960–1368</div><div class="dot"></div></div>
           </div>
           <div class="tl-detail" id="tlDetail">
-            <h4>Northern Liang–Wei</h4>
-            <p>Early Apsaras: heavy outlines, Indian–Central Asian features, restrained, earth-bound flight.</p>
+            <h4>北凉至魏晋</h4>
+            <p>早期飞天线条较厚重，保留印度与中亚图像痕迹，飞行动势相对克制。</p>
           </div>
         </div>
-        <div class="cnote">Figure 1 — Schematic stylistic timeline. Era boundaries follow Dunhuang Academy periodisation; classic caves include 285, 320, 323.</div>
+        <div class="cnote">图 1：示意性风格时间线。朝代边界参考敦煌学常用分期，典型洞窟包括第285、320、323窟等。</div>
       </div>
     </div>
   </div>
@@ -587,16 +646,16 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       <div class="compare" id="cmp1">
         <div class="layer after"></div>
         <div class="layer before degrade"></div>
-        <div class="tag l">As it survives</div>
-        <div class="tag r">Digitally restored</div>
+        <div class="tag l">风化残存</div>
+        <div class="tag r">数字修复</div>
         <div class="handle"><div class="grip"></div></div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S2.2 · Damage and recovery</div>
-      <h3>Fragility is the other half of the story.</h3>
-      <p>Weathering, flaking and salt efflorescence are not abstract conservation terms — they eat the visible parts of the wall. Drag the handle: the surviving surface sits beside its restored reading, and you see directly why protection and circulation cannot be separated.</p>
-      <span class="interact-tag">Drag to compare</span>
+      <div class="scr-id">S2.2 · 损伤与复原</div>
+      <h3>脆弱性，是飞天叙事的另一半。</h3>
+      <p>风化、起甲、盐害不是抽象术语，它们会一点点吞掉壁面上可见的线条。拖动滑块，残存图像与修复读法并置出现：只有先保护，后续传播才有可靠的文化对象。</p>
+      <span class="interact-tag">拖动滑块对比</span>
     </div>
   </div>
 
@@ -604,18 +663,18 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen flip">
     <div class="visual reveal">
       <div class="anatomy">
-        <img src="assets/anatomy.png" alt="A Dunhuang Apsara playing the pipa, broken into design elements">
-        <div class="hot" style="left:62%;top:30%"><div class="tip"><b>Flowing ribbons</b><span>飘带 — the silk streamers that read instantly as "flight".</span></div></div>
-        <div class="hot" style="left:42%;top:40%"><div class="tip"><b>Reverse-pipa</b><span>反弹琵琶 — lute played behind the back; the signature dance pose.</span></div></div>
-        <div class="hot" style="left:46%;top:66%"><div class="tip"><b>Dunhuang palette</b><span>Azurite, malachite, vermilion — the mineral colour system.</span></div></div>
-        <div class="hot" style="left:30%;top:24%"><div class="tip"><b>Crown & jewels</b><span>Iconographic markers carried across every dynasty.</span></div></div>
+        <img src="assets/anatomy.png" alt="敦煌飞天反弹琵琶姿态的视觉拆解">
+        <div class="hot" style="left:62%;top:30%"><div class="tip"><b>飘带</b><span>丝带的弧线让“飞行”可以被一眼识别。</span></div></div>
+        <div class="hot" style="left:42%;top:40%"><div class="tip"><b>反弹琵琶</b><span>背后弹奏琵琶，是飞天传播中最醒目的动作符号。</span></div></div>
+        <div class="hot" style="left:46%;top:66%"><div class="tip"><b>敦煌色系</b><span>石青、石绿、朱砂等矿物色构成视觉记忆。</span></div></div>
+        <div class="hot" style="left:30%;top:24%"><div class="tip"><b>冠饰与佩饰</b><span>帮助飞天在不同朝代图像中保持身份连续。</span></div></div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S2.3 · The symbol, unpacked</div>
-      <h3>Ribbons, the reverse-pipa, donor scenes and colour — broken into reusable parts.</h3>
-      <p>The Apsaras in a short video is not conjured from nothing. Hover each marker: what later platforms borrow is never one fixed picture but this visual language — a kit of elements that can be picked up and recombined again and again.</p>
-      <span class="interact-tag">Hover the markers</span>
+      <div class="scr-id">S2.3 · 符号拆解</div>
+      <h3>飘带、反弹琵琶、供养场景与矿物色，被拆成可以复用的视觉部件。</h3>
+      <p>短视频里的飞天不是凭空生成的。平台借用的也不是某一张固定图像，而是一套可被提取、拼接、改写的视觉语言。鼠标悬停在标记上，可以看到这些部件如何参与今天的再创作。</p>
+      <span class="interact-tag">悬停查看标记</span>
     </div>
   </div>
 </section>
@@ -626,27 +685,27 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <section class="chapter" id="c3">
   <div class="chapter-intro">
     <div class="idx cinzel">III</div>
-    <div class="eyebrow reveal">Chapter Three</div>
-    <h2 class="reveal d1">Platforms, livestream and remix amplify the figure.</h2>
+    <div class="eyebrow reveal">第三章</div>
+    <h2 class="reveal d1">平台、直播与再创作，把飞天不断放大。</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">Once the Apsaras leaves the cave and enters the screen, the platform is the first amplifier. The interesting question is not total views — it is which platform spreads it in which form.</p>
+    <p class="reveal d2">当飞天离开洞窟、进入屏幕，平台机制就成为第一层放大器。真正值得比较的不是总播放量，而是不同平台分别以什么形式传播它。</p>
   </div>
 
   <!-- S3.1 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
-      <div class="scr-id">S3.1 · Platform × format matrix</div>
-      <h3>Where, and how, the Apsaras travels.</h3>
+      <div class="scr-id">S3.1 · 平台 × 形式矩阵</div>
+      <h3>飞天在哪里传播，又以什么形式传播。</h3>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="chart">
-        <div class="ctitle">Five platforms × five content formats — relative intensity</div>
+        <div class="ctitle">五个平台 × 五种内容形式 · 相对传播强度</div>
         <div class="matrix" id="matrix">
           <div class="h"></div>
-          <div class="h">Douyin</div><div class="h">Kuaishou</div><div class="h">Bilibili</div><div class="h">RED</div><div class="h">Channels</div>
+          <div class="h">抖音</div><div class="h">快手</div><div class="h">B站</div><div class="h">小红书</div><div class="h">视频号</div>
           <!-- rows injected by JS -->
         </div>
-        <div class="cnote">Figure 2 — Cell shade = relative sample-video volume × median views (illustrative; to be replaced with coded platform samples). Hover a cell for its index.</div>
+        <div class="cnote">图 2：色块深浅表示样本视频数量 × 中位观看量的相对指数。当前为示意数据，后续可替换为真实平台样本编码。</div>
       </div>
     </div>
   </div>
@@ -655,15 +714,15 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen">
     <div class="visual reveal">
       <div class="dash cols-2">
-        <div class="stat big"><div><span class="num" data-target="3" data-dec="66">0</span><span class="unit">M</span></div><div class="lab">Viewers of a single livestream session</div></div>
-        <div class="stat big"><div><span class="num" data-target="50" data-dec="29">0</span><span class="unit">M</span></div><div class="lab">Cumulative exposure across the campaign</div></div>
+        <div class="stat big"><div><span class="num" data-target="3" data-dec="66">0</span><span class="unit">M</span></div><div class="lab">单场直播观看规模</div></div>
+        <div class="stat big"><div><span class="num" data-target="50" data-dec="29">0</span><span class="unit">M</span></div><div class="lab">活动累计曝光规模</div></div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S3.2 · Livestream & creators</div>
-      <h3>A second thread of circulation runs in real time.</h3>
-      <p>Visibility is not carried by fifteen-second clips alone. A single Dunhuang-dance livestream drew 3.66&nbsp;million viewers and the campaign reached 50.29&nbsp;million in cumulative exposure — figures that get diluted if buried among short-video totals, and that hold up the spread for hours at a stretch.</p>
-      <span class="interact-tag">Figures count up on scroll</span>
+      <div class="scr-id">S3.2 · 直播与创作者</div>
+      <h3>另一条传播线索，是实时发生的。</h3>
+      <p>飞天的能见度不只来自十五秒短视频。直播、连麦、舞蹈教学和创作者复现，把观看时间从“刷到一下”拉长为“持续停留”。这也是飞天从文化素材变成平台事件的关键。</p>
+      <span class="interact-tag">数字随滚动递增</span>
     </div>
   </div>
 
@@ -671,49 +730,49 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen flip">
     <div class="visual reveal">
       <div class="chart">
-        <div class="ctitle">What users call it — hot words & sentiment</div>
+        <div class="ctitle">用户如何称呼它 · 热词与情绪</div>
         <div class="cloud">
-          <span class="w s1">Guochao</span><span class="w s2">Dunhuang dance</span><span class="w s1">Aesthetics</span>
-          <span class="w s3">AI restoration</span><span class="w s2">Cultural revival</span><span class="w s4">Cosplay</span>
-          <span class="w s3">Heritage</span><span class="w s4">Makeup look</span><span class="w s5">Study tour</span><span class="w s4">Remix</span>
+          <span class="w s1">国潮</span><span class="w s2">敦煌舞</span><span class="w s1">美学</span>
+          <span class="w s3">AI修复</span><span class="w s2">文化复兴</span><span class="w s4">仿妆</span>
+          <span class="w s3">非遗</span><span class="w s4">妆造</span><span class="w s5">研学</span><span class="w s4">二创</span>
         </div>
         <div class="senti" id="senti">
-          <div class="sbar"><span>Appreciation</span><div class="track"><div class="fill" data-w="64" style="background:var(--malachite)"></div></div><span>64%</span></div>
-          <div class="sbar"><span>Neutral</span><div class="track"><div class="fill" data-w="27" style="background:var(--azurite)"></div></div><span>27%</span></div>
-          <div class="sbar"><span>Concern</span><div class="track"><div class="fill" data-w="9" style="background:var(--vermilion)"></div></div><span>9%</span></div>
+          <div class="sbar"><span>赞赏</span><div class="track"><div class="fill" data-w="64" style="background:var(--malachite)"></div></div><span>64%</span></div>
+          <div class="sbar"><span>中性</span><div class="track"><div class="fill" data-w="27" style="background:var(--azurite)"></div></div><span>27%</span></div>
+          <div class="sbar"><span>担忧</span><div class="track"><div class="fill" data-w="9" style="background:var(--vermilion)"></div></div><span>9%</span></div>
         </div>
-        <div class="cnote">Figure 3 — Illustrative sentiment split from sampled top comments; to be coded from real comment pools.</div>
+        <div class="cnote">图 3：示意性评论情绪分布，后续可用真实评论池重新编码。</div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S3.3 · Hot words & comments</div>
-      <h3>Trending tags show not just heat, but how people read the figure.</h3>
-      <p>When "guochao", "aesthetics", "Dunhuang dance" and "AI restoration" surface together, the role the Apsaras plays shifts from viewer to viewer. Spread here is no longer volume — it is the same symbol rewritten across different contexts.</p>
+      <div class="scr-id">S3.3 · 热词与评论</div>
+      <h3>热词不只显示热度，也显示人们如何理解飞天。</h3>
+      <p>当“国潮”“敦煌舞”“AI修复”“妆造”同时出现，飞天在不同人眼中承担的角色已经不同。传播不再只是数量增长，而是同一个符号在不同语境中被重新解释。</p>
     </div>
   </div>
 
   <!-- S3.4 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:62ch">
-      <div class="scr-id">S3.4 · Heritage-IP rhythm</div>
-      <h3>Not whose heat is higher — but the <em style="font-style:italic;color:var(--gold-soft)">shape</em> of the heat.</h3>
-      <p>Comparing raw views to the Forbidden City or Sanxingdui is unfair. Normalise each to the same 0–100 scale and the pattern is what matters: the Forbidden City runs a steady plateau, Sanxingdui throws occasional sharp spikes, and the Apsaras shows ever-denser small waves — moving from one-off virality toward being seen as a constant.</p>
+      <div class="scr-id">S3.4 · 文博 IP 的热度节奏</div>
+      <h3>关键不只是热度高低，而是热度的形状。</h3>
+      <p>把飞天、故宫、三星堆直接比较播放量并不公平。更有意义的是把它们统一到 0–100 的相对尺度，观察节奏：故宫更像稳定平台，三星堆更像事件尖峰，而飞天呈现越来越密集的小波动，逐渐从一次性爆点变成持续被调用的视觉常量。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="chart">
-        <div class="ctitle">Search-interest index, normalised 0–100</div>
+        <div class="ctitle">搜索兴趣指数 · 标准化 0–100</div>
         <div class="toggle-row" id="ipToggles">
-          <button class="toggle on" data-k="apsaras">Apsaras</button>
-          <button class="toggle on" data-k="palace">Forbidden City</button>
-          <button class="toggle on" data-k="sanxingdui">Sanxingdui</button>
+          <button class="toggle on" data-k="apsaras">飞天</button>
+          <button class="toggle on" data-k="palace">故宫</button>
+          <button class="toggle on" data-k="sanxingdui">三星堆</button>
         </div>
         <svg id="ipChart" viewBox="0 0 900 320" style="width:100%;height:auto"></svg>
         <div class="legend">
-          <span><i style="background:var(--gold)"></i>Apsaras — dense small waves</span>
-          <span><i style="background:var(--silk-dim)"></i>Forbidden City — steady plateau</span>
-          <span><i style="background:var(--vermilion)"></i>Sanxingdui — occasional spikes</span>
+          <span><i style="background:var(--gold)"></i>飞天：密集小波动</span>
+          <span><i style="background:var(--silk-dim)"></i>故宫：稳定平台</span>
+          <span><i style="background:var(--vermilion)"></i>三星堆：事件尖峰</span>
         </div>
-        <div class="cnote">Figure 4 — Schematic curves illustrating rhythm; replace with Baidu/Weibo index over a matched window.</div>
+        <div class="cnote">图 4：示意曲线，用于表达热度节奏；正式发布前可替换为百度指数、微博指数或平台检索数据。</div>
       </div>
     </div>
   </div>
@@ -725,27 +784,27 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <section class="chapter" id="c4">
   <div class="chapter-intro">
     <div class="idx cinzel">IV</div>
-    <div class="eyebrow reveal">Chapter Four</div>
-    <h2 class="reveal d1">Technology and consumption open new uses.</h2>
+    <div class="eyebrow reveal">第四章</div>
+    <h2 class="reveal d1">技术与消费，打开飞天的新用法。</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">Behind the heat is a technical chain. Capture, restoration, modelling and interactive display do not sit in the background — each one adds a new way the figure can be seen, and a new pool of material creators can use.</p>
+    <p class="reveal d2">热度背后是一条技术链。采集、修复、建模、互动展示并不只是后台工作，每一步都为飞天增加一种新的观看方式，也为创作者提供新的可用材料。</p>
   </div>
 
   <!-- S4.1 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
-      <div class="scr-id">S4.1 · Digital rebirth pipeline</div>
-      <h3>Each technology adds another way to see the wall.</h3>
+      <div class="scr-id">S4.1 · 数字重生链路</div>
+      <h3>每一项技术，都在增加一种观看壁画的方法。</h3>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:1000px">
       <div class="flow" id="flow">
-        <div class="fstep"><div class="n">01</div><h4>8K capture</h4><p>Multispectral imaging recovers detail beyond the naked eye.</p></div>
-        <div class="fstep"><div class="n">02</div><h4>AI restoration</h4><p>Flaked and lost passages are re-read and re-inked.</p></div>
-        <div class="fstep"><div class="n">03</div><h4>3D modelling</h4><p>Flat murals gain a layer of navigable space.</p></div>
-        <div class="fstep"><div class="n">04</div><h4>AR interaction</h4><p>The cave image is delivered to a phone screen.</p></div>
+        <div class="fstep"><div class="n">01</div><h4>高清采集</h4><p>多光谱与高分辨率影像保留肉眼难以捕捉的细节。</p></div>
+        <div class="fstep"><div class="n">02</div><h4>AI修复</h4><p>起甲、脱落、残缺区域被重新辨读，形成可解释图像。</p></div>
+        <div class="fstep"><div class="n">03</div><h4>三维建模</h4><p>平面壁画获得空间导航层，便于展示与教育。</p></div>
+        <div class="fstep"><div class="n">04</div><h4>AR互动</h4><p>洞窟图像被送到移动屏幕，进入个人观看场景。</p></div>
       </div>
       <div class="chart" style="margin-top:1rem;border:none;background:transparent;box-shadow:none;padding:.4rem 0">
-        <div class="cnote">Figure 5 — 600&nbsp;TB of digital resources · 300 caves captured · 200+ caves processed. Steps light up as you scroll.</div>
+        <div class="cnote">图 5：数字资源、洞窟采集与图像处理共同构成再传播的基础。步骤会随滚动依次点亮。</div>
       </div>
     </div>
   </div>
@@ -756,16 +815,16 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       <div class="compare" id="cmp2">
         <div class="layer after"></div>
         <div class="layer before degrade"></div>
-        <div class="tag l">Original surface</div>
-        <div class="tag r">AI-restored reading</div>
+        <div class="tag l">原始壁面</div>
+        <div class="tag r">AI修复读法</div>
         <div class="handle"><div class="grip"></div></div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S4.2 · Before & after</div>
-      <h3>From a trace that can't be read to an image that can be retold.</h3>
-      <p>When a damaged wall is restored, the Apsaras turns from an unreadable mark into something viewable, narratable, translatable. The point of this screen is not to show off the technology — it is to let you feel, with your eyes, how much circulation the technology hands back.</p>
-      <span class="interact-tag">Drag to compare</span>
+      <div class="scr-id">S4.2 · 修复前后</div>
+      <h3>从无法辨读的痕迹，到可以再次讲述的图像。</h3>
+      <p>当受损壁面被复原，飞天从残痕变成可观看、可叙述、可翻译的图像。这一屏不是展示技术炫技，而是让读者直观看到：技术把多少传播可能性重新交还给文化遗产。</p>
+      <span class="interact-tag">拖动滑块对比</span>
     </div>
   </div>
 
@@ -773,24 +832,24 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen flip">
     <div class="visual reveal">
       <div class="chart">
-        <div class="ctitle">Apsaras cultural-product mix · 3,000+ designs across 50 themes</div>
+        <div class="ctitle">飞天文创产品结构 · 50 个主题、3000+ 款设计</div>
         <div class="donut-wrap">
-          <div class="donut"><div class="ctr"><b>3,000+</b><span>SKUs</span></div></div>
+          <div class="donut"><div class="ctr"><b>3,000+</b><span>款产品</span></div></div>
           <div class="cat-list">
-            <div class="cat"><i style="background:var(--gold)"></i><span>Blind-box figures</span><b>32%</b></div>
-            <div class="cat"><i style="background:var(--vermilion)"></i><span>Hanfu & apparel</span><b>24%</b></div>
-            <div class="cat"><i style="background:var(--azurite)"></i><span>Beauty & cosmetics</span><b>20%</b></div>
-            <div class="cat"><i style="background:var(--malachite)"></i><span>Co-branded food</span><b>14%</b></div>
-            <div class="cat"><i style="background:#7a6a9a"></i><span>Digital collectibles</span><b>10%</b></div>
+            <div class="cat"><i style="background:var(--gold)"></i><span>盲盒与手办</span><b>32%</b></div>
+            <div class="cat"><i style="background:var(--vermilion)"></i><span>汉服与服饰</span><b>24%</b></div>
+            <div class="cat"><i style="background:var(--azurite)"></i><span>美妆与香氛</span><b>20%</b></div>
+            <div class="cat"><i style="background:var(--malachite)"></i><span>联名食品</span><b>14%</b></div>
+            <div class="cat"><i style="background:#7a6a9a"></i><span>数字藏品</span><b>10%</b></div>
           </div>
         </div>
-        <div class="cnote">Figure 6 — Illustrative category share; replace with platform sales / repurchase data.</div>
+        <div class="cnote">图 6：示意性品类占比，正式数据可由平台销量、复购率与评论关键词替换。</div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S4.3 · From seen to bought</div>
-      <h3>Once the image is legible, it becomes wearable, collectible, shareable.</h3>
-      <p>Blind boxes, hanfu, makeup, co-branded snacks and digital collectibles make up the economic face of the Apsaras IP. The mix shows where young buyers are willing to spend — and, in the review keywords, the first traces of ribbons and Dunhuang colour being flattened into decoration.</p>
+      <div class="scr-id">S4.3 · 从看见到购买</div>
+      <h3>当图像变得清晰，它就可能变成可穿戴、可收藏、可分享的东西。</h3>
+      <p>盲盒、汉服、妆造、联名零食和数字藏品共同构成飞天 IP 的消费侧。文创让飞天进入日常生活，也带来新的问题：当飘带和敦煌色被不断抽取，它们会不会被压缩成只剩装饰感的表面元素？</p>
     </div>
   </div>
 
@@ -798,16 +857,16 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen">
     <div class="visual reveal">
       <div class="dash cols-3">
-        <div class="stat"><div><span class="num" data-target="20">0</span><span class="unit">M+</span></div><div class="lab">Dunhuang visitors, 2024</div></div>
-        <div class="stat"><div><span class="num" data-target="7" data-dec="69">0</span><span class="unit">M</span></div><div class="lab">Visitors, Jan–May 2025</div></div>
-        <div class="stat"><div><span class="num" data-target="7" data-dec="08">0</span><span class="unit">B¥</span></div><div class="lab">Tourism revenue, Jan–May 2025</div></div>
+        <div class="stat"><div><span class="num" data-target="20">0</span><span class="unit">M+</span></div><div class="lab">2024 年敦煌游客规模</div></div>
+        <div class="stat"><div><span class="num" data-target="7" data-dec="69">0</span><span class="unit">M</span></div><div class="lab">2025 年 1-5 月游客规模</div></div>
+        <div class="stat"><div><span class="num" data-target="7" data-dec="08">0</span><span class="unit">B¥</span></div><div class="lab">2025 年 1-5 月旅游收入</div></div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S4.4 · Tourism & live shows</div>
-      <h3>The heat lands back in a real city.</h3>
-      <p>Cultural products travel beyond the screen, and Dunhuang itself catches the wave. Over 20&nbsp;million visitors in 2024, 7.69&nbsp;million in the first five months of 2025, and ¥7.08&nbsp;billion in spending — with study tours and immersive live shows rising too — show the physical site absorbing the online surge.</p>
-      <span class="interact-tag">Figures count up on scroll</span>
+      <div class="scr-id">S4.4 · 旅游与演艺</div>
+      <h3>线上热度最终会落回一座真实城市。</h3>
+      <p>飞天热不只停留在屏幕和商品上，也回流到敦煌本地的旅游、研学和沉浸式演艺。线上传播制造向往，线下场景承接体验，文化符号由此完成一次从洞窟到平台、再回到地方的循环。</p>
+      <span class="interact-tag">数字随滚动递增</span>
     </div>
   </div>
 </section>
@@ -818,29 +877,29 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <section class="chapter" id="c5">
   <div class="chapter-intro">
     <div class="idx cinzel">V</div>
-    <div class="eyebrow reveal">Chapter Five</div>
-    <h2 class="reveal d1">Across borders — and back to the boundaries.</h2>
+    <div class="eyebrow reveal">第五章</div>
+    <h2 class="reveal d1">跨出国境，也回到边界。</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">The story moves overseas. The global plan set aside in the opening returns here — and the first thing the Apsaras meets abroad is not a lawsuit but a licensing rule.</p>
+    <p class="reveal d2">叙事进入海外传播。飞天走出中文语境后，遇到的不只是“更大流量”，还有授权规则、文化解释和再创作边界。</p>
   </div>
 
   <!-- S5.1 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
-      <div class="scr-id">S5.1 · Global flow</div>
-      <h3>Out of the Chinese-language context, read differently.</h3>
+      <div class="scr-id">S5.1 · 全球流动</div>
+      <h3>离开中文语境，飞天会被重新阅读。</h3>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="mapbox">
-        <div class="ctitle" style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)">Dunhuang Echoes — overseas dispersion</div>
+        <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)">敦煌回响 · 海外传播示意</div>
         <svg id="mapSvg" viewBox="0 0 900 360" style="width:100%;height:auto;margin-top:.6rem"></svg>
         <div class="map-stats">
-          <div><b>78</b>countries reached</div>
-          <div><b>5</b>overseas platforms</div>
-          <div><b>28</b>accounts</div>
-          <div><b>48M</b>cumulative clicks</div>
+          <div><b>78</b>触达国家</div>
+          <div><b>5</b>海外平台</div>
+          <div><b>28</b>传播账号</div>
+          <div><b>48M</b>累计点击</div>
         </div>
-        <div class="cnote">Figure 7 — Schematic dispersion from Dunhuang; arc weight ∝ illustrative reach. Replace with the international centre's platform matrix.</div>
+        <div class="cnote">图 7：从敦煌出发的海外扩散示意。弧线粗细代表相对触达，后续可替换为国际传播中心平台矩阵。</div>
       </div>
     </div>
   </div>
@@ -849,16 +908,16 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen">
     <div class="visual reveal">
       <div class="tiers">
-        <div class="tier t1"><div class="ic">1</div><div><h4>Research & education</h4><p>Free download and use for non-commercial scholarship and teaching.</p><span class="pill">Open · no fee</span></div></div>
-        <div class="tier t2"><div class="ic">2</div><div><h4>Commercial use</h4><p>Application and licence fee required through the rights-management channel.</p><span class="pill">Apply · pay</span></div></div>
-        <div class="tier t3"><div class="ic">3</div><div><h4>Restricted categories</h4><p>Certain commercial re-creations are not permitted at all.</p><span class="pill">Prohibited</span></div></div>
+        <div class="tier t1"><div class="ic">1</div><div><h4>研究与教育</h4><p>非商业学术研究、课程展示和教育传播可优先开放使用。</p><span class="pill">开放 · 非商业</span></div></div>
+        <div class="tier t2"><div class="ic">2</div><div><h4>商业授权</h4><p>品牌联名、广告、影视和商品化使用需要进入授权流程。</p><span class="pill">申请 · 付费</span></div></div>
+        <div class="tier t3"><div class="ic">3</div><div><h4>限制类别</h4><p>可能误读、庸俗化或损害文化语义的再创作不应被放行。</p><span class="pill">限制使用</span></div></div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S5.2 · Licensing, tiered</div>
-      <h3>The further it flies, the harder licensing matters.</h3>
-      <p>The 600&nbsp;TB resource library is split into three tiers. Read the flow once and you can place a creator's remix, a brand collaboration or a film's image reference into the right band — pulling "revival" down from optimism to the level of rules: who may use the Apsaras, and how.</p>
-      <span class="interact-tag">Hover each tier</span>
+      <div class="scr-id">S5.2 · 分级授权</div>
+      <h3>飞得越远，授权越重要。</h3>
+      <p>文化遗产的开放素材并不等于无限制使用。创作者二创、品牌联名、影视借用都应被放进不同授权层级中。所谓“活化”，最终必须落到规则层面：谁可以使用飞天，以什么方式使用，使用到什么程度。</p>
+      <span class="interact-tag">悬停查看授权层级</span>
     </div>
   </div>
 
@@ -866,41 +925,41 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen flip">
     <div class="visual reveal">
       <div class="cwall">
-        <div class="ccol"><h4>Consumption symbol</h4>
-          <div class="ccard"><p>"Bought the blind box just because the ribbons are gorgeous — pure aesthetics for me."</p><div class="src">Douyin · top comment · 2025-04</div></div>
-          <div class="ccard"><p>"Dunhuang makeup look is my whole spring aesthetic now."</p><div class="src">RED · top comment · 2025-03</div></div>
+        <div class="ccol"><h4>消费符号</h4>
+          <div class="ccard"><p>“买盲盒就是因为飘带太好看，对我来说首先是美学。”</p><div class="src">抖音 · 高赞评论 · 2025-04</div></div>
+          <div class="ccard"><p>“敦煌妆造已经变成我的春季审美关键词。”</p><div class="src">小红书 · 高赞评论 · 2025-03</div></div>
         </div>
-        <div class="ccol"><h4>Cultural activation</h4>
-          <div class="ccard"><p>"Finally understood the reverse-pipa pose after the explainer — it sent me to read about the caves."</p><div class="src">Bilibili · top comment · 2025-02</div></div>
-          <div class="ccard expert"><p>"Digitisation lets the murals live a second life — but the line work must keep its meaning, not just its shell."</p><div class="src">Dunhuang Academy scholar · published interview · 2025</div></div>
+        <div class="ccol"><h4>文化激活</h4>
+          <div class="ccard"><p>“看完讲解才真正理解反弹琵琶，顺手去查了莫高窟。”</p><div class="src">B站 · 高赞评论 · 2025-02</div></div>
+          <div class="ccard expert"><p>“数字化让壁画获得第二次生命，但线条背后的意义不能只剩一个外壳。”</p><div class="src">学者访谈 · 摘录示意 · 2025</div></div>
         </div>
-        <div class="ccol"><h4>Middle ground</h4>
-          <div class="ccard"><p>"Love the trend, but does an AI remix still carry any of the original devotion?"</p><div class="src">Channels · top comment · 2025-05</div></div>
-          <div class="ccard expert"><p>"Spread and protection have to advance together; one without the other hollows the figure out."</p><div class="src">Dunhuang Academy scholar · published talk · 2025</div></div>
+        <div class="ccol"><h4>中间地带</h4>
+          <div class="ccard"><p>“喜欢这个趋势，但 AI 二创还保留原来的宗教和文化意味吗？”</p><div class="src">视频号 · 高赞评论 · 2025-05</div></div>
+          <div class="ccard expert"><p>“传播和保护必须一起推进，任何一边缺位都会把符号掏空。”</p><div class="src">公开演讲 · 摘录示意 · 2025</div></div>
         </div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <div class="scr-id">S5.3 · The boundary wall</div>
-      <h3>Where institutional limits end, cultural limits speak in real voices.</h3>
-      <p>Three stances stand side by side — consumption symbol, cultural activation, and the middle ground — each drawn from sampled top comments (videos above one million views), set against published scholar interviews. Every card keeps its source, post date and capture date. The complexity of revival becomes an argument you can actually read.</p>
-      <span class="interact-tag">Stances coded from sampled comments</span>
+      <div class="scr-id">S5.3 · 边界之墙</div>
+      <h3>制度边界之外，还有文化边界。</h3>
+      <p>消费符号、文化激活、中间地带三种立场并排出现，说明“飞天破圈”不是单向度好事。它既可能带来理解，也可能带来误读；既能打开公共兴趣，也可能把复杂文化压扁成好看的纹样。</p>
+      <span class="interact-tag">评论立场示意编码</span>
     </div>
   </div>
 
   <!-- S5.4 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
-      <div class="scr-id">S5.4 · The future board</div>
-      <h3>Four indicators, one chain.</h3>
-      <p>Protection, communication, industry and overseas reach are not a pile of numbers — they are links in a single chain. Loosen any one and the force in the others leaks away. This board does the closing work, and leaves the coda something to lean on.</p>
+      <div class="scr-id">S5.4 · 未来面板</div>
+      <h3>四个指标，构成一条链。</h3>
+      <p>保护、传播、产业和出海不是彼此独立的数字，而是一条完整链路。任何一环松动，其他环节的力量都会流失。飞天的持续生命力，取决于这些环节能否同时成立。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="fdash">
-        <div class="fmetric"><div class="ic">Protection</div><div class="num">600<span style="font-size:.5em">TB</span></div><div class="lab">Digital resources archived</div></div>
-        <div class="fmetric"><div class="ic">Communication</div><div class="num">50<span style="font-size:.5em">M</span></div><div class="lab">Campaign exposure</div></div>
-        <div class="fmetric"><div class="ic">Industry</div><div class="num">3,000<span style="font-size:.5em">+</span></div><div class="lab">Cultural products</div></div>
-        <div class="fmetric"><div class="ic">Global</div><div class="num">78</div><div class="lab">Countries reached</div></div>
+        <div class="fmetric"><div class="ic">保护</div><div class="num">600<span style="font-size:.5em">TB</span></div><div class="lab">数字资源归档</div></div>
+        <div class="fmetric"><div class="ic">传播</div><div class="num">50<span style="font-size:.5em">M</span></div><div class="lab">活动曝光</div></div>
+        <div class="fmetric"><div class="ic">产业</div><div class="num">3,000<span style="font-size:.5em">+</span></div><div class="lab">文创产品</div></div>
+        <div class="fmetric"><div class="ic">全球</div><div class="num">78</div><div class="lab">触达国家</div></div>
       </div>
     </div>
   </div>
@@ -912,22 +971,22 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="split"><div class="mural"></div><div class="digital"></div></div>
   <div class="seam"></div>
   <div class="coda-inner reveal">
-    <p class="lead">The camera returns to the Mogao Caves. The Apsaras on the wall and the Apsaras on the screen share one frame — explaining each other, not replacing each other.</p>
-    <p style="color:var(--silk-dim);margin-top:1.2rem;font-size:1rem">If digitisation only stores the image and never lets it be used, the Apsaras stays in the archive. If circulation loses its boundaries, it wears down into ornament with no meaning. Real revival needs both to happen at once — more eyes, and the cultural thread kept alongside them.</p>
-    <h2>The Apsaras Flies On</h2>
+    <p class="lead">镜头最终回到莫高窟。墙上的飞天与屏幕上的飞天同处一个画面：它们不是互相替代，而是在解释彼此。</p>
+    <p style="color:var(--silk-dim);margin-top:1.2rem;font-size:1rem">如果数字化只保存图像而不让它被使用，飞天会停在档案里；如果传播失去边界，飞天又会磨损成没有意义的装饰。真正的重生必须同时发生：更多人看见，也让文化线索被一起带走。</p>
+    <h2>飞天仍在飞</h2>
     <div class="cn">飞天不息 · 数字永续</div>
     <div class="summary">
-      <div><b>24M</b>visits</div>
-      <div><b>78</b>countries</div>
-      <div><b>3,000+</b>products</div>
-      <div><b>600TB</b>archived</div>
+      <div><b>24M</b>线上访问</div>
+      <div><b>78</b>触达国家</div>
+      <div><b>3,000+</b>文创产品</div>
+      <div><b>600TB</b>数字归档</div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p class="src">Data sources — Digital Dunhuang resource library (e-dunhuang.com); Dunhuang Academy rights-management releases; "Dunhuang Echoes" global communication plan; Baidu / Weibo Index; NewRank; Gansu Daily and China News tourism figures (2024–2025); Bao &amp; Bowen (2025), <em>Heritage</em>. Figures marked schematic are placeholders pending verified datasets.</p>
-  <p class="credit">Decoding the Apsaras · 数读飞天 · Convergent Journalism 2026</p>
+  <p class="src">数据与素材来源：数字敦煌资源库、敦煌研究院公开资料、腾讯与敦煌研究院数字素材库报道、Wikimedia Commons 开放图像、MET Open Access、百度/微博指数与公开旅游报道。页面中的示意数据已标注为待替换样本；新增素材来源详见 Materials/SOURCES.md。</p>
+  <p class="credit">数读飞天 · 莫高窟文化符号的破圈与重生 · 融合新闻报道 2026</p>
 </footer>
 
 <script>
@@ -968,7 +1027,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   /* ---------- COUNT-UP numbers ---------- */
   function animateCount(el){
     var target = parseFloat(el.getAttribute('data-target'));
-    var dec = el.getAttribute('data-dec'); // fractional part shown after a dot
+    var dec = el.getAttribute('data-dec');
     var dur = 1500, start = null;
     function step(ts){
       if(!start) start = ts;
@@ -1048,11 +1107,11 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   var matrix = document.getElementById('matrix');
   if(matrix){
     var rows = [
-      {name:'Dance covers',   vals:[95,70,60,55,75]},
-      {name:'Mural explainer',vals:[60,40,92,50,55]},
-      {name:'Makeup tutorial',vals:[80,55,45,90,60]},
-      {name:'AI remix',       vals:[72,50,85,48,68]},
-      {name:'Heritage live',  vals:[88,65,58,52,80]}
+      {name:'舞蹈翻跳', vals:[95,70,60,55,75]},
+      {name:'壁画讲解', vals:[60,40,92,50,55]},
+      {name:'妆造教程', vals:[80,55,45,90,60]},
+      {name:'AI再创作', vals:[72,50,85,48,68]},
+      {name:'文博直播', vals:[88,65,58,52,80]}
     ];
     rows.forEach(function(r){
       var rh = document.createElement('div'); rh.className='rh'; rh.textContent=r.name; matrix.appendChild(rh);
@@ -1078,11 +1137,10 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       for(var i=0;i<=N;i++){ var x=pad + i/N*(W-2*pad); var v=fn(i/N); var y=H-pad - v*(H-2*pad); pts.push([x,y]); }
       return pts;
     }
-    // normalised rhythm shapes (0..1)
     var series = {
-      palace: gen(function(t){ return 0.55 + 0.06*Math.sin(t*12) ; }),                                  // steady plateau
-      sanxingdui: gen(function(t){ var s=Math.exp(-Math.pow((t-0.35)/0.04,2))+Math.exp(-Math.pow((t-0.78)/0.05,2)); return 0.18 + 0.78*s; }), // spikes
-      apsaras: gen(function(t){ return 0.30 + (0.18+0.5*t)*Math.abs(Math.sin(t*26))*0.9 ; })             // dense, rising small waves
+      palace: gen(function(t){ return 0.55 + 0.06*Math.sin(t*12) ; }),
+      sanxingdui: gen(function(t){ var s=Math.exp(-Math.pow((t-0.35)/0.04,2))+Math.exp(-Math.pow((t-0.78)/0.05,2)); return 0.18 + 0.78*s; }),
+      apsaras: gen(function(t){ return 0.30 + (0.18+0.5*t)*Math.abs(Math.sin(t*26))*0.9 ; })
     };
     var colors = {apsaras:'var(--gold)', palace:'var(--silk-dim)', sanxingdui:'var(--vermilion)'};
     var strokes = {apsaras:'#c9a24b', palace:'rgba(236,227,207,.55)', sanxingdui:'#b3422f'};
@@ -1128,10 +1186,9 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   /* ---------- GLOBAL MAP arcs (S5.1) ---------- */
   var mapSvg = document.getElementById('mapSvg');
   if(mapSvg){
-    var origin=[150,210]; // Dunhuang-ish anchor
+    var origin=[150,210];
     var dests=[[760,70],[820,150],[700,250],[600,300],[500,90],[420,260],[850,300],[560,200]];
     var svg='';
-    // faint landmass blobs for atmosphere
     svg+='<ellipse cx="430" cy="170" rx="380" ry="120" fill="rgba(58,124,165,0.06)"/>';
     svg+='<ellipse cx="700" cy="240" rx="220" ry="90" fill="rgba(90,146,118,0.06)"/>';
     dests.forEach(function(d,i){
@@ -1141,7 +1198,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       svg+='<circle cx="'+d[0]+'" cy="'+d[1]+'" r="3.4" fill="#e3c878"><animate attributeName="r" values="3.4;5;3.4" dur="2.4s" repeatCount="indefinite" begin="'+(i*0.2)+'s"/></circle>';
     });
     svg+='<circle cx="'+origin[0]+'" cy="'+origin[1]+'" r="7" fill="#b3422f" stroke="#e3c878" stroke-width="2"/>';
-    svg+='<text x="'+(origin[0]-6)+'" y="'+(origin[1]+24)+'" fill="rgba(236,227,207,0.7)" font-size="11" font-family="Cinzel,serif" letter-spacing="2">DUNHUANG</text>';
+    svg+='<text x="'+(origin[0]-6)+'" y="'+(origin[1]+24)+'" fill="rgba(236,227,207,0.7)" font-size="13" font-family="serif" letter-spacing="2">敦煌</text>';
     var mapObs = new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ mapSvg.innerHTML=svg; mapObs.disconnect(); } });},{threshold:0.4});
     mapObs.observe(mapSvg);
   }
