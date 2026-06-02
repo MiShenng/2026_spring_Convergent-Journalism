@@ -12,6 +12,9 @@
   var shortSide = Math.min(screen.width || 9999, screen.height || 9999);
   if (shortSide <= 480) {
     document.getElementById('vp').setAttribute('content', 'width=1280, viewport-fit=cover');
+    // mark <html> so full-screen sections use a desktop 16:9 height instead of the
+    // phone's tall viewport — keeps each screen in the same proportion as desktop
+    document.documentElement.className += ' mobile-scaled';
   }
 })();
 </script>
@@ -877,6 +880,24 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .finale-apsara{width:min(58vh,420px)}
   .finale-ribbon{width:94vw;height:54vh}
 }
+
+/* ============================================================
+   PHONE: desktop-scaled mode (toggled by the head script on phones).
+   The viewport is locked to 1280px wide, so the only thing that breaks
+   is vh-based full-screen heights becoming the phone's tall viewport.
+   Here we pin them to desktop 16:9 proportions so every screen looks
+   like the desktop version, just shrunk to fit. Desktop never gets this.
+   ============================================================ */
+.mobile-scaled .hero{min-height:760px}
+.mobile-scaled .character-gate{min-height:auto}
+.mobile-scaled .painting-stage{height:640px;min-height:640px}
+.mobile-scaled .chapter-intro{min-height:480px}
+.mobile-scaled .screen{padding-top:52px;padding-bottom:52px}
+.mobile-scaled .finale{height:3344px}
+.mobile-scaled .finale-stage{height:760px}
+.mobile-scaled .finale-apsara{width:540px}
+.mobile-scaled .finale-ribbon{width:720px;height:480px}
+.mobile-scaled .finale-text[data-act="4"]{bottom:90px}
 </style>
 </head>
 <body>
