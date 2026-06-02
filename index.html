@@ -120,11 +120,24 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .hero-img{
   position:absolute;inset:0;z-index:-2;
-  background:url('assets/dh_apsaras_wide.webp') center 46%/cover no-repeat;
+  background:url('assets/anatomy.webp') center 24%/cover no-repeat;
   filter:saturate(1.05) contrast(1.02);
-  animation:kenburns 26s ease-in-out infinite alternate;
+  animation:heroDevelop 3.4s ease-out both, kenburns 30s 3.4s ease-in-out infinite alternate;
 }
-@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.14) translateY(-1.5%)}}
+/* #1 首屏慢速显影：壁画从模糊昏暗中逐渐被"看清" */
+@keyframes heroDevelop{
+  0%{filter:blur(28px) brightness(.18) saturate(.4);opacity:0;transform:scale(1.18)}
+  55%{opacity:1}
+  100%{filter:blur(0) brightness(1) saturate(1.05);opacity:1;transform:scale(1.06)}
+}
+@keyframes kenburns{from{transform:scale(1.06)}to{transform:scale(1.15) translateY(-1.6%)}}
+/* 光晕扫过壁画纹理（只播一次） */
+.hero .sweep{
+  position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:screen;
+  background:linear-gradient(105deg,transparent 30%,rgba(227,200,120,.24) 47%,rgba(236,227,207,.07) 55%,transparent 70%);
+  transform:translateX(-115%);animation:heroSweep 3s 1.2s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes heroSweep{to{transform:translateX(115%)}}
 .hero::before{
   content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(105deg,rgba(11,12,22,.93) 0%,rgba(11,12,22,.74) 38%,rgba(11,12,22,.32) 68%,rgba(11,12,22,.55) 100%);
@@ -151,11 +164,20 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 
 /* hero staggered entrance */
 .hero .reveal-stagger>*{opacity:0;transform:translateY(26px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
-.hero .reveal-stagger>*:nth-child(1){animation-delay:.25s}
-.hero .reveal-stagger>*:nth-child(2){animation-delay:.5s}
-.hero .reveal-stagger>*:nth-child(3){animation-delay:.78s}
-.hero .reveal-stagger>*:nth-child(4){animation-delay:1.05s}
+.hero .reveal-stagger>*:nth-child(1){animation-delay:1s}
+.hero .reveal-stagger>*:nth-child(2){animation-delay:1.45s}
+.hero .reveal-stagger>*:nth-child(3){animation-delay:1.95s}
+.hero .reveal-stagger>*:nth-child(4){animation-delay:2.5s}
 @keyframes rise{to{opacity:1;transform:none}}
+
+/* #2 图像自下而上"显影"展开（壁画先出现局部，再完整） */
+.anatomy.motion-ready img,.material-card.motion-ready img{clip-path:inset(0 0 100% 0)}
+.anatomy.motion-in img,.material-card.motion-in img{clip-path:inset(0 0 0 0);transition:clip-path 1.2s cubic-bezier(.2,.7,.2,1)}
+/* #9 数字化复原：一道扫描线掠过对比图 */
+.compare::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;z-index:6;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--gold-soft),transparent);box-shadow:0 0 12px var(--gold-soft);opacity:0}
+.compare.motion-in::before{animation:scanDown 2.4s .4s ease-out forwards}
+@keyframes scanDown{0%{top:0;opacity:0}12%{opacity:.95}100%{top:100%;opacity:0}}
 
 /* floating silk ribbons (signature motif) */
 .ribbon{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5}
@@ -640,6 +662,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="hero-img"></div>
+  <div class="sweep"></div>
   <svg class="ribbon" viewBox="0 0 1440 900" preserveAspectRatio="none">
     <path class="r1" d="M-50,250 C300,120 520,420 760,300 C1010,170 1240,440 1500,300"/>
     <path class="r2" d="M-50,520 C320,640 540,360 820,520 C1080,660 1280,420 1500,560"/>
@@ -714,15 +737,9 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 <section class="longform" id="longform">
   <div class="longform-inner">
     <article class="longform-article">
-      <h3>一、引子</h3>
       <p class="lead">莫高窟的飞天，最初并不是为屏幕而生。</p>
-      <p>她们栖身在洞窟的墙壁和窟顶之间，借飘带而起，伴乐舞而行。没有翅膀，却显出飞行的姿态；不在地面，却让人感到身体正在空中流动。石青、石绿、朱砂和赭色曾经在壁面上层层铺开，后来又在漫长岁月中慢慢褪去。风沙、湿度、盐分和时间共同作用，线条变浅，颜料起甲，局部图像残损，曾经清晰的身体和衣纹逐渐变得斑驳。</p>
-      <p>飞天可见，曾建立在这份脆弱之上。</p>
-      <p>然时过境迁，那些残损的图像已经被保存、采集、修复和归档。洞窟中的飞天并没有自然地抵达当代公众，飞天如何被看见的故事，还需要在转换中被述说。</p>
-      <p>飞天如何被看见，正是在这些转换中展开的。</p>
-      <p>她从洞窟深处走向屏幕，从壁画残痕进入数字图像，从文化遗产转化为公共视觉符号。人们看见的，有时是文物，有时是审美，有时是技术复原的结果，有时是平台推荐中的片段，有时是可购买、可穿戴、可分享的文化商品。</p>
-      <p>飞天仍在飞行，只是她的飞行路径已经不再只属于洞窟。</p>
-
+      <p>她们栖身在洞窟的墙壁与窟顶之间，借飘带而起，伴乐舞而行——没有翅膀，却显出飞行的姿态。石青、石绿、朱砂层层铺开，又在漫长岁月里慢慢褪去。</p>
+      <p class="closing">如今那些壁画已被保存、采集、修复和归档。但飞天如何被看见，仍是一个需要在转换中被讲述的故事——她从洞窟深处走向屏幕，从壁画残痕进入数字图像，从文化遗产转化为公共视觉符号。飞天仍在飞行，只是飞行的路径，已经不再只属于洞窟。</p>
     </article>
   </div>
 </section>
@@ -1241,7 +1258,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   function parallax(){
     if(prefersReduced) return;
     var y = window.scrollY || window.pageYOffset;
-    if(heroImg){ heroImg.style.backgroundPosition = 'center calc(46% + ' + (y * 0.035).toFixed(1) + 'px)'; }
+    if(heroImg){ heroImg.style.backgroundPosition = 'center calc(24% + ' + (y * 0.035).toFixed(1) + 'px)'; }
     if(codaSplit){
       var codaTop = document.querySelector('.coda').offsetTop;
       var delta = Math.max(-220, Math.min(220, y - codaTop));
