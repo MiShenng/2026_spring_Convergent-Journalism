@@ -1,0 +1,395 @@
+:root {
+    /* 敦煌主题色 */
+    --color-ochre: #B45B3E; /* 赭石 */
+    --color-dark-ochre: #8C4A3A;
+    --color-cyan-green: #2E7969; /* 青绿 */
+    --color-azurite: #2B4C7E; /* 石青 */
+    --color-earth-red: #A7382B; /* 土红 */
+    
+    /* 基础颜色 */
+    --color-bg: #12100F; /* 暗色深邃背景，呼应洞窟 */
+    --color-text-main: #EAE5D9; /* 暖白偏米黄文字 */
+    --color-text-muted: #A39D93;
+    --color-accent: var(--color-ochre);
+
+    /* 字体体系 */
+    --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-serif: 'Noto Serif SC', "Songti SC", "SimSun", serif;
+
+    /* 布局 */
+    --nav-height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    scroll-behavior: smooth; /* 支持锚点平滑滚动 */
+    overflow-x: hidden;
+}
+
+/* --- 导航栏 --- */
+#top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(18, 16, 15, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 2rem;
+}
+
+.site-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-ochre);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--color-text-main);
+}
+
+.nav-links a.active {
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 5px;
+}
+
+/* --- 右侧滚动进度条 --- */
+#scroll-progress-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100vh;
+    background: rgba(255,255,255,0.05);
+    z-index: 999;
+}
+
+#scroll-progress-bar {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to bottom, var(--color-ochre), var(--color-cyan-green));
+}
+
+/* --- 页面主体区块 --- */
+main {
+    padding-top: var(--nav-height);
+}
+
+.chapter-header {
+    max-width: 1200px;
+    margin: 4rem auto 2rem;
+    padding: 0 2rem;
+    font-family: var(--font-serif);
+    text-align: center;
+}
+
+.chapter-header h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--color-text-main);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+/* --- 分屏布局 (Grid) --- */
+.screen {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    gap: 4rem;
+    position: relative;
+}
+
+/* 根据内容决定文本在左在右，交替出现增加动感 */
+.text-content {
+    max-width: 480px;
+    grid-column: 1;
+    z-index: 2;
+}
+
+.text-content.right {
+    grid-column: 2;
+}
+
+.visual-center {
+    width: 100%;
+    height: 70vh;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    grid-column: 2;
+    grid-row: 1; /* 确保视觉中心和文本在同一行 */
+}
+
+.text-content.right + .visual-center,
+.screen:has(.text-content.right) .visual-center {
+    grid-column: 1;
+}
+
+/* 居中的尾声屏 */
+#epilogue-screen {
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+#epilogue-screen .text-content {
+    grid-column: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 2rem;
+}
+#epilogue-screen .visual-center {
+    grid-column: 1;
+    height: 60vh;
+}
+
+/* --- 文本样式 --- */
+.text-content p {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.text-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--color-text-main);
+    line-height: 1.4;
+}
+
+/* --- 数据看板组件 --- */
+.data-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.data-item {
+    text-align: center;
+}
+
+.data-number {
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: var(--font-serif);
+    color: var(--color-cyan-green);
+    display: inline-block;
+}
+
+.data-unit {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    margin-left: 0.2rem;
+}
+
+.data-label {
+    display: block;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.data-dashboard.large .data-number {
+    font-size: 6rem;
+    color: var(--color-azurite);
+}
+.data-dashboard.style-red .data-number {
+    color: var(--color-earth-red);
+}
+
+/* --- 占位符样式 --- */
+.placeholder-text {
+    color: rgba(255,255,255,0.3);
+    font-size: 1.2rem;
+    font-family: var(--font-serif);
+    letter-spacing: 2px;
+}
+
+/* 视频瀑布流占位 */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 90%;
+    height: 90%;
+}
+.video-item {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.9rem;
+    border: 1px dashed rgba(255,255,255,0.1);
+}
+.video-item:nth-child(1) { grid-row: span 2; }
+.video-item:nth-child(3) { grid-column: span 2; }
+
+/* 滑块对比占位 */
+.slider-placeholder {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.slider-placeholder .side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+}
+.slider-placeholder .left-side { background: rgba(140, 74, 58, 0.2); }
+.slider-placeholder .right-side { background: rgba(46, 121, 105, 0.2); }
+.slider-placeholder .center-side { background: rgba(43, 76, 126, 0.2); }
+.slider-placeholder .handle {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #fff;
+    cursor: ew-resize;
+}
+.slider-placeholder .handle::after {
+    content: '↔';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 标签云占位 */
+.tag-cloud-placeholder {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 3rem;
+}
+.tag {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.tag.large { font-size: 2rem; color: var(--color-ochre); border-color: var(--color-ochre); }
+.tag.medium { font-size: 1.5rem; color: var(--color-cyan-green); }
+.tag.small { font-size: 1rem; color: var(--color-text-muted); }
+
+/* --- 动画：Fade Up --- */
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 响应式适配 --- */
+@media (max-width: 1199px) { /* 平板 */
+    .screen {
+        padding: 4rem 2rem;
+        gap: 2rem;
+    }
+    .visual-center {
+        height: 50vh;
+    }
+    .text-content h3 { font-size: 1.5rem; }
+}
+
+@media (max-width: 767px) { /* 手机 */
+    .nav-container { padding: 0 1rem; }
+    .nav-links { display: none; /* 移动端暂时隐藏详细导航，可后续加汉堡菜单 */ }
+    
+    .screen {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        padding: 2rem 1rem;
+        gap: 2rem;
+        min-height: auto;
+    }
+    
+    .text-content, .text-content.right {
+        grid-column: 1;
+        grid-row: 2; /* 文本在下方 */
+    }
+    
+    .visual-center, .screen:has(.text-content.right) .visual-center {
+        grid-column: 1;
+        grid-row: 1; /* 视觉中心在上方 */
+        height: 40vh;
+    }
+    
+    .data-number { font-size: 2.5rem; }
+    .data-dashboard.large .data-number { font-size: 3.5rem; }
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
