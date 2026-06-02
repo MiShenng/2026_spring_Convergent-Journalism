@@ -49,3 +49,15 @@
   - `assets/restored.webp`
 - 说明：`.webp` 文件为页面展示优化版本；`assets/_src/` 保留原始下载文件与 manifest，便于核对作者、许可、尺寸和原始 URL。
 - 许可：逐项以 `assets/_src/manifest.json` 中记录为准，包含 Public domain 与 CC BY 2.0 等开放许可。
+
+## CC BY 署名（按许可要求显式标注）
+
+- `assets/dh_caves_exterior.webp` — “Mogao Caves Exterior And Chambers”，作者 Flickr user *eviltomthai*，许可 CC BY 2.0，来源 Wikimedia Commons。
+- `assets/dh_caves_interior.webp` — “Mogao Caves (54376968807)”，作者 *xiquinhosilva*，许可 CC BY 2.0，来源 Wikimedia Commons。
+- 其余 `dh_*.webp`（dh_scene_tang / dh_apsaras_wide / dh_procession / dh_bodhisattva / dh_bodhisattva_tall / dh_mural_217）均为 Public domain，详见 manifest。
+
+## 由 Materials 原图转换的展示版（webp）
+
+- `assets/dh_met_apsara.webp` ← `met-flying-celestial-apsara.jpg`（MET Open Access / CC0，海外章节具体案例）。
+- `assets/dh_reverse_pipa.webp` ← `dunhuang-reverse-pipa-stage.jpg`（CC BY-SA 2.0, 作者 Laika ac，素材墙“反弹琵琶”）。
+- `assets/dh_apsara_wei.webp` ← `dunhuang-flying-apsara-western-wei.jpg`（Public Domain，素材墙“千年形象流变”）。

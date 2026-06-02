@@ -431,7 +431,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   background:rgba(7,8,16,.94);border:1px solid var(--rule);border-radius:3px;padding:.5rem .7rem;width:max-content;max-width:200px;
   opacity:0;pointer-events:none;transition:.3s;
 }
-.hot:hover .tip{opacity:1;transform:translate(-50%,-110%)}
+.hot:hover .tip,.hot.open .tip{opacity:1;transform:translate(-50%,-110%)}
 .hot .tip b{font-family:var(--font-cn);font-size:1.1rem;color:var(--gold-soft);display:block}
 .hot .tip span{font-size:.74rem;color:var(--silk-dim)}
 
@@ -444,7 +444,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .matrix .cell{aspect-ratio:1.6/1;border-radius:2px;display:grid;place-items:center;cursor:pointer;color:rgba(7,8,16,.85);font-weight:500;position:relative;transition:.25s}
 .matrix .cell:hover{outline:2px solid var(--gold);outline-offset:1px;z-index:2}
 .matrix .cell span{opacity:0;transition:.25s;font-family:'Cinzel',serif;font-size:.7rem}
-.matrix .cell:hover span{opacity:1}
+.matrix .cell:hover span,.matrix .cell.open span{opacity:1}
 .matrix.motion-in .cell{animation:cellWake .7s cubic-bezier(.2,.7,.2,1) both}
 
 /* ============================================================
@@ -594,7 +594,9 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .material-card.wide{grid-column:span 1}
 }
 @media(max-width:767px){
-  .nav-links{display:none}
+  .nav-links{gap:.55rem;overflow-x:auto;max-width:62vw;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{font-size:.6rem;letter-spacing:.05em;white-space:nowrap}
   .story-portal{padding:4rem 1.2rem}
   .portal-grid{grid-template-columns:1fr}
   .portal-card{min-height:220px}
@@ -657,7 +659,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       <div class="eyebrow reveal">阅读入口</div>
       <h2 class="reveal d1">先选一条进入飞天的路径</h2>
     </div>
-    <p class="reveal d2">这篇作品把“飞天如何被看见”拆成五条路径：洞窟中的脆弱可见、视觉部件的识别、平台机制的放大、日常消费的携带，以及海外语境中的重新阅读。</p>
+    <p class="reveal d2">她本在洞窟的墙上。今天，她出现在短视频、妆造、文创和海外平台里。从任意一条路径进入，最终都通向同一个问题——飞天如何被再度看见。</p>
   </div>
   <div class="portal-grid reveal d2">
     <a class="portal-card" href="#c1"><div class="txt"><div class="n">I</div><h3>洞窟如何看见</h3><p>从残损壁画出发，理解保护为什么是观看的前提。</p></div></a>
@@ -679,24 +681,32 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     </div>
     <div class="material-grid reveal d2">
       <figure class="material-card wide">
-        <img src="assets/dh_apsaras_wide.webp" alt="莫高窟第428窟壁画中的飞天群像">
+        <img loading="lazy" decoding="async" src="assets/dh_apsaras_wide.webp" alt="莫高窟第428窟壁画中的飞天群像">
         <figcaption>第428窟飞天群像：飞天作为稳定视觉母题，被反复观看和抽取。</figcaption>
       </figure>
       <figure class="material-card tall">
-        <img src="assets/dh_bodhisattva_tall.webp" alt="莫高窟第322窟药师佛壁画局部">
+        <img loading="lazy" decoding="async" src="assets/dh_bodhisattva_tall.webp" alt="莫高窟第322窟药师佛壁画局部">
         <figcaption>第322窟壁画局部：高幅构图强化“洞窟内部观看”的纵深感。</figcaption>
       </figure>
       <figure class="material-card">
-        <img src="assets/dh_caves_exterior.webp" alt="莫高窟洞窟外景">
+        <img loading="lazy" decoding="async" src="assets/dh_caves_exterior.webp" alt="莫高窟洞窟外景">
         <figcaption>洞窟外景：将线上热度重新拉回真实地理空间。</figcaption>
       </figure>
       <figure class="material-card">
-        <img src="assets/dh_procession.webp" alt="敦煌张议潮出行图">
+        <img loading="lazy" decoding="async" src="assets/dh_procession.webp" alt="敦煌张议潮出行图">
         <figcaption>张议潮出行图：展示敦煌图像并不只关乎宗教，也包含历史社会叙事。</figcaption>
       </figure>
       <figure class="material-card wide">
-        <img src="assets/dh_mural_217.webp" alt="莫高窟第217窟法华经变壁画">
+        <img loading="lazy" decoding="async" src="assets/dh_mural_217.webp" alt="莫高窟第217窟法华经变壁画">
         <figcaption>第217窟经变画：复杂场景说明“活化”不能只提取表面纹样。</figcaption>
+      </figure>
+      <figure class="material-card">
+        <img loading="lazy" decoding="async" src="assets/dh_reverse_pipa.webp" alt="反弹琵琶舞台演绎">
+        <figcaption>反弹琵琶：从壁画姿态到舞台与短视频中最常被复刻的动作符号。</figcaption>
+      </figure>
+      <figure class="material-card">
+        <img loading="lazy" decoding="async" src="assets/dh_apsara_wei.webp" alt="西魏飞天形象">
+        <figcaption>西魏飞天：早期线条厚重，与盛唐轻盈飞天对照，可见千年形象流变。</figcaption>
       </figure>
     </div>
   </div>
@@ -704,7 +714,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 
 <section class="longform" id="longform">
   <div class="longform-inner">
-    <article class="longform-article reveal d2">
+    <article class="longform-article">
       <h3>一、引子</h3>
       <p class="lead">莫高窟的飞天，最初并不是为屏幕而生。</p>
       <p>她们栖身在洞窟的墙壁和窟顶之间，借飘带而起，伴乐舞而行。没有翅膀，却显出飞行的姿态；不在地面，却让人感到身体正在空中流动。石青、石绿、朱砂和赭色曾经在壁面上层层铺开，后来又在漫长岁月中慢慢褪去。风沙、湿度、盐分和时间共同作用，线条变浅，颜料起甲，局部图像残损，曾经清晰的身体和衣纹逐渐变得斑驳。</p>
@@ -819,7 +829,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <!-- S1.1 -->
   <div class="screen">
     <div class="visual reveal">
-      <div class="anatomy"><img src="assets/dh_caves_exterior.webp" alt="敦煌莫高窟洞窟外景"></div>
+      <div class="anatomy"><img loading="lazy" decoding="async" src="assets/dh_caves_exterior.webp" alt="敦煌莫高窟洞窟外景"></div>
     </div>
     <div class="copy reveal d1">
       <h3>飞天不是可以任意截取的装饰，而是洞窟图像关系中的一部分。</h3>
@@ -927,7 +937,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <div class="screen flip">
     <div class="visual reveal">
       <div class="anatomy">
-        <img src="assets/anatomy.webp" alt="敦煌飞天反弹琵琶姿态的视觉拆解">
+        <img loading="lazy" decoding="async" src="assets/anatomy.webp" alt="敦煌飞天反弹琵琶姿态的视觉拆解">
         <div class="hot" style="left:62%;top:30%"><div class="tip"><b>飘带</b><span>丝带的弧线让“飞行”可以被一眼识别。</span></div></div>
         <div class="hot" style="left:42%;top:40%"><div class="tip"><b>反弹琵琶</b><span>背后弹奏琵琶，是飞天传播中最醒目的动作符号。</span></div></div>
         <div class="hot" style="left:46%;top:66%"><div class="tip"><b>敦煌色系</b><span>石青、石绿、朱砂等矿物色构成视觉记忆。</span></div></div>
@@ -1144,6 +1154,10 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       <h3>海外观众会从不同入口认识飞天，也会形成不同理解。</h3>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
+      <figure class="material-card" style="height:300px;margin-bottom:1.1rem">
+        <img loading="lazy" decoding="async" src="assets/dh_met_apsara.webp" alt="美国大都会艺术博物馆藏敦煌飞天">
+        <figcaption>具体案例 · 美国大都会艺术博物馆（The Met）藏飞天：同一视觉母题进入海外馆藏后，常被重新归类为“东方艺术 / 佛教艺术”，理解入口随之改变。</figcaption>
+      </figure>
       <div class="mapbox">
         <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)">敦煌回响 · 海外传播示意</div>
         <svg id="mapSvg" viewBox="0 0 900 360" style="width:100%;height:auto;margin-top:.6rem"></svg>
@@ -1268,9 +1282,12 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   /* ---------- REVEAL on scroll ---------- */
   var revealObserver = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('in'); revealObserver.unobserve(e.target); }
+      // tall elements can never reach a high ratio; trigger them on entry
+      if(e.isIntersecting && (e.intersectionRatio>=0.15 || e.boundingClientRect.height>window.innerHeight*0.8)){
+        e.target.classList.add('in'); revealObserver.unobserve(e.target);
+      }
     });
-  }, {threshold:0.18});
+  }, {threshold:[0,0.15,0.3]});
   document.querySelectorAll('.reveal').forEach(function(el){
     if(prefersReduced){ el.classList.add('in'); } else { revealObserver.observe(el); }
   });
@@ -1500,6 +1517,13 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     var mapObs = new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ mapSvg.innerHTML=svg; mapObs.disconnect(); } });},{threshold:0.4});
     mapObs.observe(mapSvg);
   }
+
+  /* ---------- TAP support for hover-only elements (mobile) ---------- */
+  document.querySelectorAll('.hot').forEach(function(h){
+    h.addEventListener('click', function(e){ e.stopPropagation(); var was=h.classList.contains('open'); document.querySelectorAll('.hot.open').forEach(function(x){x.classList.remove('open');}); if(!was) h.classList.add('open'); });
+  });
+  if(matrix){ matrix.addEventListener('click', function(e){ var c=e.target.closest('.cell'); if(c) c.classList.toggle('open'); }); }
+  document.addEventListener('click', function(){ document.querySelectorAll('.hot.open').forEach(function(h){h.classList.remove('open');}); });
 })();
 </script>
 </body>
