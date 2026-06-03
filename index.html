@@ -975,6 +975,49 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 @media(max-width:560px){.sym-flow{grid-template-columns:1fr;gap:.5rem}.sym-arrow{transform:rotate(90deg)}}
 
 /* ============================================================
+   SECTION SEAMS — melt the hard edges between screens/chapters
+   ============================================================ */
+.chapter{border-top:0}
+/* fade the chapter-intro backdrop into the previous & next section */
+.chapter-intro{border-top:0}
+.chapter-intro::after{content:"";position:absolute;left:0;right:0;top:0;bottom:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,#0b0c16 0%,rgba(11,12,22,0) 24%,rgba(11,12,22,0) 72%,rgba(11,12,22,.85) 100%)}
+.chapter-intro>*{position:relative;z-index:1}
+/* soft connective glow that bridges a chapter-intro into its first screen */
+.chapter-intro::before{top:0;height:2px;width:120px;
+  background:linear-gradient(90deg,var(--gold-soft),transparent);opacity:.7}
+.chapter .screen:first-of-type{position:relative}
+.chapter .screen:first-of-type::before{content:"";position:absolute;left:0;right:0;top:-60px;height:60px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,12,22,.85),transparent)}
+
+/* ============================================================
+   S5.1 — OVERSEAS CASE GALLERY (real 流散 holdings)
+   ============================================================ */
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin:.4rem 0 1.1rem}
+.case{position:relative;background:var(--panel-soft);border:1px solid var(--rule);border-left:3px solid var(--accent,var(--gold));
+  border-radius:5px;padding:1rem 1.05rem;transition:transform .4s ease,border-color .4s ease,box-shadow .4s ease;opacity:0;transform:translateY(22px)}
+.case.span2{grid-column:span 2;border-left-color:var(--azurite)}
+.case:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 20px 50px -32px rgba(201,162,75,.7)}
+.material-grid.motion-in .case,.visual.motion-in .case,.motion-in .case{opacity:1;transform:none}
+.case .place{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.35rem}
+.case .place b{font-family:var(--font-cn);font-size:1.06rem;color:var(--silk);font-weight:600}
+.case .place .geo{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.12em;color:var(--gold-soft);text-transform:uppercase}
+.case .who{font-size:.7rem;color:var(--vermilion-soft);font-family:var(--font-sans-cn);letter-spacing:.03em;margin-bottom:.45rem}
+.case p{font-size:.82rem;color:var(--silk-dim);line-height:1.6}
+.case .reclass{display:inline-block;margin-top:.55rem;font-size:.66rem;color:var(--gold-soft);
+  border:1px solid var(--rule);border-radius:999px;padding:.18rem .6rem;letter-spacing:.04em}
+.case:nth-child(1){--accent:var(--vermilion)}.case:nth-child(2){--accent:var(--azurite)}
+.case:nth-child(3){--accent:var(--malachite)}.case:nth-child(4){--accent:var(--vermilion-soft)}
+@media(max-width:680px){.case-grid{grid-template-columns:1fr}.case.span2{grid-column:span 1}}
+
+/* digital-return data strip (S5.2) */
+.return-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-bottom:1rem}
+.return-strip div{background:var(--panel-soft);border:1px solid var(--rule);border-radius:4px;padding:.8rem .6rem;text-align:center}
+.return-strip b{display:block;font-family:'Cinzel',serif;font-size:1.5rem;color:var(--gold-soft);line-height:1}
+.return-strip span{font-size:.66rem;color:var(--silk-dim);letter-spacing:.02em;margin-top:.25rem;display:block}
+@media(max-width:560px){.return-strip{grid-template-columns:1fr 1fr}}
+
+/* ============================================================
    PHONE: desktop-scaled mode (toggled by the head script on phones).
    The viewport is locked to 1280px wide, so the only thing that breaks
    is vh-based full-screen heights becoming the phone's tall viewport.
@@ -1467,25 +1510,53 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 
   <!-- S5.1 -->
   <div class="screen solo">
-    <div class="copy reveal" style="max-width:60ch">
-      <h3>丝路回响：海外观众从不同入口认识飞天，也形成不同理解。</h3>
-      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">博物馆展览、纪录片、舞蹈视频、游戏设计、社交平台——不同入口形成不同理解。飞天背后的宗教图像、丝路交流和敦煌历史，如果没有被说明，就可能被压缩为一种异域化的装饰图案。</p>
+    <div class="copy reveal" style="max-width:68ch">
+      <h3>丝路回响：飞天散落世界，又在数字时代被重新看见。</h3>
+      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">1900 年藏经洞被发现，约六万件写本、绢画与法器出土；二十世纪初被探险队大量带走，如今分藏于英、法、俄、美等十余家机构。同一身飞天进入海外馆藏后，常被重新归类为“中国佛教绘画 / 亚洲艺术”——理解的入口，随之改变。</p>
     </div>
-    <div class="visual reveal d1" style="width:100%;max-width:980px">
-      <figure class="material-card" style="height:300px;margin-bottom:1.1rem">
-        <img loading="lazy" decoding="async" src="assets/dh_met_apsara.webp" alt="美国大都会艺术博物馆藏敦煌飞天">
-        <figcaption>具体案例 · 美国大都会艺术博物馆（The Met）藏飞天：同一视觉母题进入海外馆藏后，常被重新归类为“东方艺术 / 佛教艺术”，理解入口随之改变。</figcaption>
-      </figure>
+    <div class="visual reveal d1" style="width:100%;max-width:1060px">
+      <div class="case-grid">
+        <article class="case">
+          <div class="place"><b>大英博物馆 · 大英图书馆</b><span class="geo">UK · London</span></div>
+          <div class="who">奥莱尔·斯坦因 · 1907 / 1914</div>
+          <p>携走唐宋绢画约 200 件、写本数千卷；绢画多被归入“中国佛教绘画”，纸本写本入藏大英图书馆。</p>
+          <span class="reclass">归类 · 中国佛教绘画</span>
+        </article>
+        <article class="case">
+          <div class="place"><b>吉美博物馆 · 法国国家图书馆</b><span class="geo">FR · Paris</span></div>
+          <div class="who">保罗·伯希和 · 1908</div>
+          <p>取走写本约 6600 卷、唐代绢画与幡幢 200 余件；绘画藏吉美博物馆，写本入法国国家图书馆。</p>
+          <span class="reclass">归类 · 亚洲艺术</span>
+        </article>
+        <article class="case">
+          <div class="place"><b>哈佛福格艺术馆</b><span class="geo">US · Cambridge</span></div>
+          <div class="who">兰登·华尔纳 · 1924</div>
+          <p>以胶布剥离第 320、321、323、329、335 窟壁画，并掠走第 328 窟盛唐供养菩萨彩塑一身。</p>
+          <span class="reclass">争议 · 剥离壁画</span>
+        </article>
+        <article class="case">
+          <div class="place"><b>东方文献研究所 · 艾尔米塔什</b><span class="geo">RU · St.Petersburg</span></div>
+          <div class="who">谢尔盖·奥登堡 · 1914–1915</div>
+          <p>考察所获壁画残块、塑像与大量文献残片，分藏俄罗斯科学院东方文献研究所与艾尔米塔什博物馆。</p>
+          <span class="reclass">归类 · 中亚收集品</span>
+        </article>
+        <article class="case span2">
+          <div class="place"><b>国际敦煌项目 IDP · 数字重聚</b><span class="geo">EST. 1994 · British Library</span></div>
+          <div class="who">大英图书馆发起 · 中 / 英 / 法 / 俄 / 日 / 德 六语种</div>
+          <p>把散落于英、法、俄、日、德等 20 余家机构的敦煌文献与艺术品高清扫描、在线免费公开——让被带走的飞天，以数字方式重新聚回一处。截至 2024 年 9 月，已是全球最大的敦煌文献与文物图像数据库。</p>
+          <span class="reclass">数字回归 · 在线重聚</span>
+        </article>
+      </div>
       <div class="mapbox">
-        <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)">敦煌回响 · 海外传播示意</div>
+        <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)">敦煌散佚 · 海外馆藏地图</div>
         <svg id="mapSvg" viewBox="0 0 900 360" style="width:100%;height:auto;margin-top:.6rem"></svg>
         <div class="map-stats">
-          <div><b>78</b>触达国家</div>
-          <div><b>5</b>海外平台</div>
-          <div><b>28</b>传播账号</div>
-          <div><b>48M</b>累计点击</div>
+          <div><b>78</b>触达国家 · 数字敦煌资源库</div>
+          <div><b>20+</b>IDP 合作机构</div>
+          <div><b>6</b>语种在线数据库</div>
+          <div><b>6,500+</b>开放素材库高清资源</div>
         </div>
-        <div class="cnote">图 7：从敦煌出发的海外扩散示意。弧线粗细代表相对触达，后续可替换为国际传播中心平台矩阵。</div>
+        <div class="cnote">图 7：藏经洞文物海外散佚示意。数据据敦煌研究院、国际敦煌项目（IDP）与公开报道整理；弧线指向主要收藏地，非精确地理坐标。</div>
       </div>
     </div>
   </div>
@@ -1493,16 +1564,22 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   <!-- S5.2 -->
   <div class="screen">
     <div class="visual reveal">
+      <div class="return-strip">
+        <div><b>2022.12</b><span>开放素材库上线</span></div>
+        <div><b>6,500+</b><span>首批高清资源</span></div>
+        <div><b>350万+</b><span>累计访问 · 截至 2023</span></div>
+        <div><b>区块链</b><span>确权 · 可追溯</span></div>
+      </div>
       <div class="tiers">
-        <div class="tier t1"><div class="ic">1</div><div><h4>研究与教育</h4><p>非商业学术研究、课程展示和教育传播可优先开放使用。</p><span class="pill">开放 · 非商业</span></div></div>
-        <div class="tier t2"><div class="ic">2</div><div><h4>商业授权</h4><p>品牌联名、广告、影视和商品化使用需要进入授权流程。</p><span class="pill">申请 · 付费</span></div></div>
-        <div class="tier t3"><div class="ic">3</div><div><h4>限制类别</h4><p>可能误读、庸俗化或损害文化语义的再创作不应被放行。</p><span class="pill">限制使用</span></div></div>
+        <div class="tier t1"><div class="ic">1</div><div><h4>研究与教育</h4><p>非商业学术研究、课程展示与教育传播，可免费下载使用。</p><span class="pill">开放 · 非商业</span></div></div>
+        <div class="tier t2"><div class="ic">2</div><div><h4>商业授权</h4><p>品牌联名、广告、影视与商品化使用，须提交申请、获取授权。</p><span class="pill">申请 · 付费</span></div></div>
+        <div class="tier t3"><div class="ic">3</div><div><h4>限制类别</h4><p>涉及宗教核心语义、易被误读或庸俗化的再创作，不予放行。</p><span class="pill">限制使用</span></div></div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <h3>授权护航：文化遗产的开放，不等于无限制使用。</h3>
-      <p>数字资源按三档拆分：科研和教育免费使用；商业用途提交申请并支付费用；少数品类直接不允许商业再创作。顺着流程看完，就明白哪些飞天图能在哪种场景里被合法调用。</p>
-      <p>飞天飞得越远，授权就越不能绕开。这把复兴从乐观情绪拉回到制度层面——谁在使用，怎样使用，使用后是否保留文化来源。</p>
+      <h3>授权护航：开放，不等于无限制使用。</h3>
+      <p>2022 年底，敦煌研究院与腾讯上线“数字敦煌·开放素材库”——全球首个基于区块链的数字文化遗产开放共享平台，首批 6500 余份高清资源向全球开放下载，并通过“上链”实现可追溯、可查证、可管控。</p>
+      <p>资源按三档拆分：科研与教育免费使用；商业用途申请付费；少数涉及宗教核心语义的品类不允许商业再创作。飞天飞得越远，授权就越不能绕开——这把复兴从乐观情绪拉回到制度层面。</p>
     </div>
   </div>
 
@@ -1538,9 +1615,9 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="fdash">
-        <div class="fmetric"><div class="ic">保护</div><div class="num">600<span style="font-size:.5em">TB</span></div><div class="lab">数字资源归档</div></div>
-        <div class="fmetric"><div class="ic">传播</div><div class="num">50<span style="font-size:.5em">M</span></div><div class="lab">活动曝光</div></div>
-        <div class="fmetric"><div class="ic">产业</div><div class="num">3,000<span style="font-size:.5em">+</span></div><div class="lab">文创产品</div></div>
+        <div class="fmetric"><div class="ic">保护</div><div class="num">30<span style="font-size:.5em">窟+</span></div><div class="lab">数字敦煌上线洞窟</div></div>
+        <div class="fmetric"><div class="ic">开放</div><div class="num">350<span style="font-size:.5em">万+</span></div><div class="lab">开放素材库访问</div></div>
+        <div class="fmetric"><div class="ic">协作</div><div class="num">20<span style="font-size:.5em">+</span></div><div class="lab">IDP 合作机构</div></div>
         <div class="fmetric"><div class="ic">全球</div><div class="num">78</div><div class="lab">触达国家</div></div>
       </div>
     </div>
@@ -1580,7 +1657,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 </section>
 
 <footer>
-  <p class="src">数据与素材来源：数字敦煌资源库、敦煌研究院公开资料、腾讯与敦煌研究院数字素材库报道、Wikimedia Commons 开放图像、MET Open Access、百度/微博指数与公开旅游报道。页面中的示意数据已标注为待替换样本；新增素材来源详见 Materials/SOURCES.md。</p>
+  <p class="src">数据与素材来源：数字敦煌资源库、“数字敦煌·开放素材库”（敦煌研究院 × 腾讯，2022 年 12 月上线，首批 6500 余份高清资源、区块链确权）、国际敦煌项目 IDP（1994 年大英图书馆发起，六语种、20+ 合作机构）、藏经洞文物海外散佚史料（斯坦因—大英博物馆/大英图书馆、伯希和—吉美博物馆/法国国家图书馆、华尔纳—哈佛福格艺术馆、奥登堡—俄罗斯东方文献研究所/艾尔米塔什）、新华社等公开报道、Wikimedia Commons 与 MET Open Access 开放图像。文中部分传播与销量数据为示意样本，已在图注标注；详见 Materials/SOURCES.md。</p>
   <p class="credit">飞天何以被看见 · 莫高窟文化符号的数字流转 · 融合叙事作品 2026</p>
 </footer>
 
@@ -1878,19 +1955,23 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   /* ---------- GLOBAL MAP arcs (S5.1) ---------- */
   var mapSvg = document.getElementById('mapSvg');
   if(mapSvg){
-    var origin=[150,210];
-    var dests=[[760,70],[820,150],[700,250],[600,300],[500,90],[420,260],[850,300],[560,200]];
+    var origin=[210,250];
+    // real holding cities relative to 敦煌 (schematic, west→east)
+    var dests=[
+      {x:430,y:120,c:'伦敦'},{x:470,y:150,c:'巴黎'},{x:520,y:95,c:'柏林'},
+      {x:560,y:80,c:'圣彼得堡'},{x:700,y:300,c:'剑桥(美)'},{x:820,y:175,c:'京都'},{x:455,y:215,c:'新德里'}
+    ];
     var svg='';
-    svg+='<ellipse cx="430" cy="170" rx="380" ry="120" fill="rgba(58,124,165,0.06)"/>';
-    svg+='<ellipse cx="700" cy="240" rx="220" ry="90" fill="rgba(90,146,118,0.06)"/>';
+    svg+='<ellipse cx="500" cy="170" rx="420" ry="135" fill="rgba(58,124,165,0.06)"/>';
     dests.forEach(function(d,i){
-      var mx=(origin[0]+d[0])/2, my=Math.min(origin[1],d[1])-70-(i*4);
-      svg+='<path d="M'+origin[0]+' '+origin[1]+' Q'+mx+' '+my+' '+d[0]+' '+d[1]+'" fill="none" stroke="rgba(201,162,75,0.5)" stroke-width="1.2">'
+      var mx=(origin[0]+d.x)/2, my=Math.min(origin[1],d.y)-70-(i*4);
+      svg+='<path d="M'+origin[0]+' '+origin[1]+' Q'+mx+' '+my+' '+d.x+' '+d.y+'" fill="none" stroke="rgba(201,162,75,0.5)" stroke-width="1.2">'
          +'<animate attributeName="stroke-dasharray" from="0 600" to="600 0" dur="'+(2+i*0.3)+'s" begin="'+(i*0.15)+'s" fill="freeze"/></path>';
-      svg+='<circle cx="'+d[0]+'" cy="'+d[1]+'" r="3.4" fill="#e3c878"><animate attributeName="r" values="3.4;5;3.4" dur="2.4s" repeatCount="indefinite" begin="'+(i*0.2)+'s"/></circle>';
+      svg+='<circle cx="'+d.x+'" cy="'+d.y+'" r="3.4" fill="#e3c878"><animate attributeName="r" values="3.4;5;3.4" dur="2.4s" repeatCount="indefinite" begin="'+(i*0.2)+'s"/></circle>';
+      svg+='<text x="'+d.x+'" y="'+(d.y-9)+'" fill="rgba(236,227,207,0.62)" font-size="11" font-family="serif" text-anchor="middle">'+d.c+'</text>';
     });
     svg+='<circle cx="'+origin[0]+'" cy="'+origin[1]+'" r="7" fill="#b3422f" stroke="#e3c878" stroke-width="2"/>';
-    svg+='<text x="'+(origin[0]-6)+'" y="'+(origin[1]+24)+'" fill="rgba(236,227,207,0.7)" font-size="13" font-family="serif" letter-spacing="2">敦煌</text>';
+    svg+='<text x="'+origin[0]+'" y="'+(origin[1]+26)+'" fill="rgba(236,227,207,0.8)" font-size="13" font-family="serif" letter-spacing="2" text-anchor="middle">敦煌</text>';
     var mapObs = new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ mapSvg.innerHTML=svg; mapObs.disconnect(); } });},{threshold:0.4});
     mapObs.observe(mapSvg);
   }
