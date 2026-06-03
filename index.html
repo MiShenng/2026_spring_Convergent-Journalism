@@ -497,6 +497,8 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   font-family:var(--font-sans-cn);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
 }
 .copy .interact-tag::before{content:"◇";color:var(--vermilion-soft)}
+.copy-link{display:inline-block;margin-top:1.1rem;font-family:var(--font-sans-cn);font-size:.72rem;letter-spacing:.08em;color:var(--gold-soft);border:1px solid var(--rule);border-radius:999px;padding:.42rem .95rem;transition:background .3s,color .3s,border-color .3s}
+.copy-link:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 
 /* scroll reveal */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
@@ -998,6 +1000,9 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   border-radius:5px;padding:1rem 1.05rem;transition:transform .4s ease,border-color .4s ease,box-shadow .4s ease;opacity:0;transform:translateY(22px)}
 .case.span2{grid-column:span 2;border-left-color:var(--azurite)}
 .case:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 20px 50px -32px rgba(201,162,75,.7)}
+a.case{text-decoration:none;display:block}
+a.case::after{content:"↗";position:absolute;top:.7rem;right:.85rem;color:var(--gold-soft);opacity:.4;font-size:.82rem;transition:opacity .3s ease,transform .3s ease}
+a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 .material-grid.motion-in .case,.visual.motion-in .case,.motion-in .case{opacity:1;transform:none}
 .case .place{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.35rem}
 .case .place b{font-family:var(--font-cn);font-size:1.06rem;color:var(--silk);font-weight:600}
@@ -1016,6 +1021,46 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 .return-strip b{display:block;font-family:'Cinzel',serif;font-size:1.5rem;color:var(--gold-soft);line-height:1}
 .return-strip span{font-size:.66rem;color:var(--silk-dim);letter-spacing:.02em;margin-top:.25rem;display:block}
 @media(max-width:560px){.return-strip{grid-template-columns:1fr 1fr}}
+
+/* real world map (S5.1) */
+.worldmap{position:relative;width:100%;aspect-ratio:784/459;border-radius:5px;overflow:hidden;
+  background:radial-gradient(120% 120% at 60% 20%,rgba(28,40,66,.5),rgba(6,7,14,.9));border:1px solid var(--rule)}
+.wm-base{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:.9}
+.wm-overlay{position:absolute;inset:0;width:100%;height:100%}
+.map-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:1rem;text-align:center}
+.map-stats div{font-size:.7rem;color:var(--silk-dim);line-height:1.4}
+.map-stats b{font-family:'Cinzel',serif;color:var(--gold-soft);font-size:1.5rem;display:block;margin-bottom:.15rem}
+@media(max-width:560px){.map-stats{grid-template-columns:1fr 1fr}}
+
+/* S3.4 — real platform data viz: 抖音 vs B站 engines */
+.engines{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:stretch}
+.engine{background:var(--panel-soft);border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:5px;padding:1.1rem 1.15rem}
+.engine .ehead{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;margin-bottom:.2rem}
+.engine .ehead b{font-family:var(--font-cn);font-size:1.3rem;color:var(--silk);font-weight:600}
+.engine .ehead em{font-style:normal;font-family:var(--font-sans-cn);font-size:.6rem;letter-spacing:.08em;color:var(--accent)}
+.engine .esig{font-size:.7rem;color:var(--silk-faint);margin-bottom:.9rem}
+.erow{display:grid;grid-template-columns:3.6em 1fr auto;gap:.5rem;align-items:center;margin:.42rem 0;font-size:.74rem}
+.erow .k{color:var(--silk-dim)}
+.erow .bar{height:7px;background:rgba(236,227,207,.07);border-radius:4px;overflow:hidden}
+.erow .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold-soft));border-radius:4px;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.engines.lit .erow .bar i{width:var(--w)}
+.erow .v{font-family:'Cinzel',serif;color:var(--silk);font-size:.72rem}
+.engine.dy{--accent:var(--vermilion)}.engine.bz{--accent:var(--azurite)}
+.einsight{display:flex;flex-direction:column;justify-content:center;gap:1.1rem;min-width:128px;text-align:center}
+.einsight div{background:rgba(7,8,16,.45);border:1px solid var(--rule);border-radius:6px;padding:.7rem .5rem}
+.einsight b{display:block;font-family:'Cinzel',serif;font-size:1.7rem;color:var(--gold-soft);line-height:1}
+.einsight span{font-size:.62rem;color:var(--silk-dim);line-height:1.4;display:block;margin-top:.3rem}
+@media(max-width:760px){.engines{grid-template-columns:1fr}.einsight{flex-direction:row;min-width:0}}
+
+/* 抖音省份热度 bars */
+.prov{display:grid;gap:.42rem;margin-top:.4rem}
+.prow{display:grid;grid-template-columns:3.4em 1fr 3em;gap:.6rem;align-items:center;font-size:.74rem}
+.prow .pn{color:var(--silk-dim);text-align:right}
+.prow .pb{height:13px;background:rgba(236,227,207,.06);border-radius:3px;overflow:hidden}
+.prow .pb i{display:block;height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,var(--vermilion),var(--gold-soft));transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.prov.lit .pb i{width:var(--w)}
+.prow.home .pn{color:var(--gold-soft)}.prow.home .pb i{background:linear-gradient(90deg,var(--gold),var(--gold-soft))}
+.prow .pv{font-family:'Cinzel',serif;color:var(--silk-dim);font-size:.68rem}
 
 /* ============================================================
    PHONE: desktop-scaled mode (toggled by the head script on phones).
@@ -1380,25 +1425,51 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 
   <!-- S3.4 -->
   <div class="screen solo">
-    <div class="copy reveal" style="max-width:62ch">
-      <h3>IP 对标：关键不只是热度高低，而是热度的形状。</h3>
-      <p>把飞天、故宫、三星堆直接比较播放量并不公平。更有意义的是把它们统一到 0–100 的相对尺度，观察节奏：故宫更像稳定平台，三星堆更像事件尖峰，而飞天呈现越来越密集的小波动，逐渐从一次性爆点变成持续被调用的视觉常量。</p>
+    <div class="copy reveal" style="max-width:68ch">
+      <h3>数据实证：B站 × 抖音，是两种“被看见”。</h3>
+      <p>本作品抓取了两平台的飞天内容样本——抖音 263 条视频 / 18,996 条评论，B站 95 条视频 / 2,138 条评论。把每条视频的平均互动摊开看，两个平台塑造的是两种完全不同的飞天：<em style="color:var(--gold-soft);font-style:normal">抖音负责“被看见”，B站负责“被理解”。</em></p>
     </div>
-    <div class="visual reveal d1" style="width:100%;max-width:980px">
+    <div class="visual reveal d1" style="width:100%;max-width:1080px">
       <div class="chart">
-        <div class="ctitle">搜索兴趣指数 · 标准化 0–100</div>
-        <div class="toggle-row" id="ipToggles">
-          <button class="toggle on" data-k="apsaras">飞天</button>
-          <button class="toggle on" data-k="palace">故宫</button>
-          <button class="toggle on" data-k="sanxingdui">三星堆</button>
+        <div class="ctitle">单条视频平均互动 · 抖音 vs B站（真实抓取样本，2026-06 清洗）</div>
+        <div class="engines" id="engines">
+          <div class="engine dy">
+            <div class="ehead"><b>抖音</b><em>DOUYIN · 263 视频</em></div>
+            <div class="esig">舞蹈 · 妆造 · 短平快 · 爆发式传播</div>
+            <div class="erow"><span class="k">点赞</span><div class="bar"><i style="--w:100%"></i></div><span class="v">183,582</span></div>
+            <div class="erow"><span class="k">分享</span><div class="bar"><i style="--w:16%"></i></div><span class="v">28,713</span></div>
+            <div class="erow"><span class="k">收藏</span><div class="bar"><i style="--w:4%"></i></div><span class="v">7,070</span></div>
+            <div class="erow"><span class="k">评论</span><div class="bar"><i style="--w:3%"></i></div><span class="v">5,907</span></div>
+          </div>
+          <div class="einsight">
+            <div><b>275×</b><span>抖音单条均赞<br>≈ B站的 275 倍</span></div>
+            <div><b>65×</b><span>B站“收藏÷点赞”<br>≈ 抖音的 65 倍</span></div>
+          </div>
+          <div class="engine bz">
+            <div class="ehead"><b>B站</b><em>BILIBILI · 95 视频</em></div>
+            <div class="esig">纪录片 · 讲解 · 知识 · 深度沉淀</div>
+            <div class="erow"><span class="k">收藏</span><div class="bar"><i style="--w:100%"></i></div><span class="v">1,660</span></div>
+            <div class="erow"><span class="k">点赞</span><div class="bar"><i style="--w:40%"></i></div><span class="v">667</span></div>
+            <div class="erow"><span class="k">分享</span><div class="bar"><i style="--w:35%"></i></div><span class="v">577</span></div>
+            <div class="erow"><span class="k">弹幕</span><div class="bar"><i style="--w:13%"></i></div><span class="v">221</span></div>
+            <div class="erow"><span class="k">投币</span><div class="bar"><i style="--w:8%"></i></div><span class="v">129</span></div>
+          </div>
         </div>
-        <svg id="ipChart" viewBox="0 0 900 320" style="width:100%;height:auto"></svg>
-        <div class="legend">
-          <span><i style="background:var(--gold)"></i>飞天：密集小波动</span>
-          <span><i style="background:var(--silk-dim)"></i>故宫：稳定平台</span>
-          <span><i style="background:var(--vermilion)"></i>三星堆：事件尖峰</span>
+        <p class="cnote">注：bar 为各平台“内部归一化”（占该平台最高互动的比例），数字为单条视频平均值。抖音点赞一柱独大＝刷过即赞；B站收藏 ＞ 点赞、且独有投币与弹幕＝把飞天“存起来慢慢看”。</p>
+        <div class="ctitle" style="margin-top:1.5rem">抖音评论来自哪里 · IP 属地 Top 10（样本 18,996 条 / 覆盖 55 省区）</div>
+        <div class="prov" id="prov">
+          <div class="prow"><span class="pn">广东</span><div class="pb"><i style="--w:100%"></i></div><span class="pv">988</span></div>
+          <div class="prow"><span class="pn">河南</span><div class="pb"><i style="--w:50%"></i></div><span class="pv">494</span></div>
+          <div class="prow"><span class="pn">山东</span><div class="pb"><i style="--w:50%"></i></div><span class="pv">493</span></div>
+          <div class="prow"><span class="pn">浙江</span><div class="pb"><i style="--w:47%"></i></div><span class="pv">465</span></div>
+          <div class="prow"><span class="pn">四川</span><div class="pb"><i style="--w:47%"></i></div><span class="pv">460</span></div>
+          <div class="prow"><span class="pn">江苏</span><div class="pb"><i style="--w:44%"></i></div><span class="pv">434</span></div>
+          <div class="prow"><span class="pn">河北</span><div class="pb"><i style="--w:40%"></i></div><span class="pv">399</span></div>
+          <div class="prow home"><span class="pn">甘肃</span><div class="pb"><i style="--w:39%"></i></div><span class="pv">387</span></div>
+          <div class="prow home"><span class="pn">宁夏</span><div class="pb"><i style="--w:35%"></i></div><span class="pv">345</span></div>
+          <div class="prow"><span class="pn">湖南</span><div class="pb"><i style="--w:32%"></i></div><span class="pv">316</span></div>
         </div>
-        <div class="cnote">图 4：示意曲线，用于表达热度节奏；正式发布前可替换为百度指数、微博指数或平台检索数据。</div>
+        <p class="cnote">注：按抖音评论 IP 属地统计。广东居首；而敦煌所在的<em style="color:var(--gold-soft);font-style:normal">甘肃、宁夏</em>在人口体量不大的情况下挤进前列——一种“家乡视角”的超额关注。</p>
       </div>
     </div>
   </div>
@@ -1516,47 +1587,50 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:1060px">
       <div class="case-grid">
-        <article class="case">
+        <a class="case" href="https://www.britishmuseum.org" target="_blank" rel="noopener">
           <div class="place"><b>大英博物馆 · 大英图书馆</b><span class="geo">UK · London</span></div>
           <div class="who">奥莱尔·斯坦因 · 1907 / 1914</div>
           <p>携走唐宋绢画约 200 件、写本数千卷；绢画多被归入“中国佛教绘画”，纸本写本入藏大英图书馆。</p>
           <span class="reclass">归类 · 中国佛教绘画</span>
-        </article>
-        <article class="case">
+        </a>
+        <a class="case" href="https://www.guimet.fr" target="_blank" rel="noopener">
           <div class="place"><b>吉美博物馆 · 法国国家图书馆</b><span class="geo">FR · Paris</span></div>
           <div class="who">保罗·伯希和 · 1908</div>
           <p>取走写本约 6600 卷、唐代绢画与幡幢 200 余件；绘画藏吉美博物馆，写本入法国国家图书馆。</p>
           <span class="reclass">归类 · 亚洲艺术</span>
-        </article>
-        <article class="case">
+        </a>
+        <a class="case" href="https://harvardartmuseums.org" target="_blank" rel="noopener">
           <div class="place"><b>哈佛福格艺术馆</b><span class="geo">US · Cambridge</span></div>
           <div class="who">兰登·华尔纳 · 1924</div>
           <p>以胶布剥离第 320、321、323、329、335 窟壁画，并掠走第 328 窟盛唐供养菩萨彩塑一身。</p>
           <span class="reclass">争议 · 剥离壁画</span>
-        </article>
-        <article class="case">
+        </a>
+        <a class="case" href="https://www.orientalstudies.ru" target="_blank" rel="noopener">
           <div class="place"><b>东方文献研究所 · 艾尔米塔什</b><span class="geo">RU · St.Petersburg</span></div>
           <div class="who">谢尔盖·奥登堡 · 1914–1915</div>
           <p>考察所获壁画残块、塑像与大量文献残片，分藏俄罗斯科学院东方文献研究所与艾尔米塔什博物馆。</p>
           <span class="reclass">归类 · 中亚收集品</span>
-        </article>
-        <article class="case span2">
+        </a>
+        <a class="case span2" href="https://idp.bl.uk" target="_blank" rel="noopener">
           <div class="place"><b>国际敦煌项目 IDP · 数字重聚</b><span class="geo">EST. 1994 · British Library</span></div>
           <div class="who">大英图书馆发起 · 中 / 英 / 法 / 俄 / 日 / 德 六语种</div>
           <p>把散落于英、法、俄、日、德等 20 余家机构的敦煌文献与艺术品高清扫描、在线免费公开——让被带走的飞天，以数字方式重新聚回一处。截至 2024 年 9 月，已是全球最大的敦煌文献与文物图像数据库。</p>
           <span class="reclass">数字回归 · 在线重聚</span>
-        </article>
+        </a>
       </div>
       <div class="mapbox">
-        <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)">敦煌散佚 · 海外馆藏地图</div>
-        <svg id="mapSvg" viewBox="0 0 900 360" style="width:100%;height:auto;margin-top:.6rem"></svg>
+        <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.7rem">敦煌散佚 · 海外馆藏地图</div>
+        <div class="worldmap">
+          <img class="wm-base" src="assets/world-map.svg" alt="世界地图" loading="lazy">
+          <svg class="wm-overlay" id="mapSvg" viewBox="30.767 241.591 784.077 458.627" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
         <div class="map-stats">
-          <div><b>78</b>触达国家 · 数字敦煌资源库</div>
+          <div><b>78</b>触达国家 · 数字敦煌</div>
           <div><b>20+</b>IDP 合作机构</div>
           <div><b>6</b>语种在线数据库</div>
-          <div><b>6,500+</b>开放素材库高清资源</div>
+          <div><b>6,500+</b>开放素材库资源</div>
         </div>
-        <div class="cnote">图 7：藏经洞文物海外散佚示意。数据据敦煌研究院、国际敦煌项目（IDP）与公开报道整理；弧线指向主要收藏地，非精确地理坐标。</div>
+        <div class="cnote">图 7：藏经洞文物海外散佚示意。底图为真实世界地图（CC BY-SA 3.0），标点为主要收藏城市；数据据敦煌研究院、国际敦煌项目（IDP）与公开报道整理。</div>
       </div>
     </div>
   </div>
@@ -1580,6 +1654,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
       <h3>授权护航：开放，不等于无限制使用。</h3>
       <p>2022 年底，敦煌研究院与腾讯上线“数字敦煌·开放素材库”——全球首个基于区块链的数字文化遗产开放共享平台，首批 6500 余份高清资源向全球开放下载，并通过“上链”实现可追溯、可查证、可管控。</p>
       <p>资源按三档拆分：科研与教育免费使用；商业用途申请付费；少数涉及宗教核心语义的品类不允许商业再创作。飞天飞得越远，授权就越不能绕开——这把复兴从乐观情绪拉回到制度层面。</p>
+      <a class="copy-link" href="https://www.e-dunhuang.com" target="_blank" rel="noopener">前往「数字敦煌」资源库 ↗</a>
     </div>
   </div>
 
@@ -1658,7 +1733,10 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 
 <footer>
   <p class="src">数据与素材来源：数字敦煌资源库、“数字敦煌·开放素材库”（敦煌研究院 × 腾讯，2022 年 12 月上线，首批 6500 余份高清资源、区块链确权）、国际敦煌项目 IDP（1994 年大英图书馆发起，六语种、20+ 合作机构）、藏经洞文物海外散佚史料（斯坦因—大英博物馆/大英图书馆、伯希和—吉美博物馆/法国国家图书馆、华尔纳—哈佛福格艺术馆、奥登堡—俄罗斯东方文献研究所/艾尔米塔什）、新华社等公开报道、Wikimedia Commons 与 MET Open Access 开放图像。文中部分传播与销量数据为示意样本，已在图注标注；详见 Materials/SOURCES.md。</p>
-  <p class="src" style="margin-top:.9rem">学术参考：宋丽娜《敦煌壁画中各时期飞天形象特点及造型研究》（《国画家》）；缪斯《早期敦煌飞天的艺术风格与当代价值研究》（江西科技师范大学硕士学位论文）；蔡彦《地域性色彩初探——从敦煌飞天色彩演变谈地域性色彩的成因和演化规律》（《当代亚洲色彩应用：第四届亚洲色彩论坛论文集》）。</p>
+  <p class="src" style="margin-top:.9rem">学术参考（APA）：<br>
+  宋丽娜.（n.d.）.《敦煌壁画中各时期飞天形象特点及造型研究》. 国画家.<br>
+  缪斯.（2023）.《早期敦煌飞天的艺术风格与当代价值研究》［硕士学位论文，江西科技师范大学］. 中国知网（CNKI）.<br>
+  蔡彦.（n.d.）.《地域性色彩初探——从敦煌飞天色彩演变谈地域性色彩的成因和演化规律》. 载《当代亚洲色彩应用：第四届亚洲色彩论坛论文集》.</p>
   <p class="credit">飞天何以被看见 · 莫高窟文化符号的数字流转 · 融合叙事作品 2026</p>
 </footer>
 
@@ -1895,49 +1973,13 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
     });
   }
 
-  /* ---------- IP RHYTHM CHART (S3.4) ---------- */
-  var ipChart = document.getElementById('ipChart');
-  if(ipChart){
-    var W=900, H=320, pad=30;
-    function path(points){
-      return points.map(function(p,i){return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1);}).join(' ');
-    }
-    function gen(fn){
-      var pts=[]; var N=120;
-      for(var i=0;i<=N;i++){ var x=pad + i/N*(W-2*pad); var v=fn(i/N); var y=H-pad - v*(H-2*pad); pts.push([x,y]); }
-      return pts;
-    }
-    var series = {
-      palace: gen(function(t){ return 0.55 + 0.06*Math.sin(t*12) ; }),
-      sanxingdui: gen(function(t){ var s=Math.exp(-Math.pow((t-0.35)/0.04,2))+Math.exp(-Math.pow((t-0.78)/0.05,2)); return 0.18 + 0.78*s; }),
-      apsaras: gen(function(t){ return 0.30 + (0.18+0.5*t)*Math.abs(Math.sin(t*26))*0.9 ; })
-    };
-    var colors = {apsaras:'var(--gold)', palace:'var(--silk-dim)', sanxingdui:'var(--vermilion)'};
-    var strokes = {apsaras:'#c9a24b', palace:'rgba(236,227,207,.55)', sanxingdui:'#b3422f'};
-    function draw(active){
-      var svg='';
-      // grid
-      for(var g=0;g<=4;g++){ var y=pad+g/4*(H-2*pad); svg+='<line x1="'+pad+'" y1="'+y+'" x2="'+(W-pad)+'" y2="'+y+'" stroke="rgba(236,227,207,0.07)"/>'; }
-      ['palace','sanxingdui','apsaras'].forEach(function(k){
-        if(active.indexOf(k)<0) return;
-        var d=path(series[k]);
-        svg+='<path d="'+d+'" fill="none" stroke="'+strokes[k]+'" stroke-width="'+(k==='apsaras'?3:2)+'" stroke-linejoin="round" opacity="'+(k==='apsaras'?1:.85)+'"/>';
-      });
-      ipChart.innerHTML = svg;
-    }
-    var active = ['apsaras','palace','sanxingdui'];
-    var drawn=false;
-    var ipObs = new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting && !drawn){ drawn=true; draw(active);} });},{threshold:0.4});
-    ipObs.observe(ipChart);
-    document.querySelectorAll('#ipToggles .toggle').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var k=btn.getAttribute('data-k');
-        var i=active.indexOf(k);
-        if(i>=0){ active.splice(i,1); btn.classList.remove('on'); } else { active.push(k); btn.classList.add('on'); }
-        draw(active);
-      });
-    });
-  }
+  /* ---------- REAL platform data bars (S3.4): grow on view ---------- */
+  (function(){
+    var lit=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('lit'); lit.unobserve(e.target); }
+    });},{threshold:0.25});
+    ['engines','prov'].forEach(function(id){ var el=document.getElementById(id); if(el) lit.observe(el); });
+  })();
 
   /* ---------- PROCESS FLOW highlight (S4.1) ---------- */
   var fsteps = document.querySelectorAll('#flow .fstep');
@@ -1956,24 +1998,30 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   /* ---------- GLOBAL MAP arcs (S5.1) ---------- */
   var mapSvg = document.getElementById('mapSvg');
   if(mapSvg){
-    var origin=[210,250];
-    // real holding cities relative to 敦煌 (schematic, west→east)
+    // project real lon/lat onto the world-map.svg viewBox (equirectangular fit)
+    function P(lon,lat){
+      return [ 30.767 + (lon+169)/360*784.077, 241.591 + (83-lat)/140*458.627 ];
+    }
+    var origin=P(94.66,40.14); // 敦煌
     var dests=[
-      {x:430,y:120,c:'伦敦'},{x:470,y:150,c:'巴黎'},{x:520,y:95,c:'柏林'},
-      {x:560,y:80,c:'圣彼得堡'},{x:700,y:300,c:'剑桥(美)'},{x:820,y:175,c:'京都'},{x:455,y:215,c:'新德里'}
+      {ll:[-0.13,51.51],c:'伦敦',a:'大英博物馆'},{ll:[2.35,48.86],c:'巴黎',a:'吉美博物馆'},
+      {ll:[13.40,52.52],c:'柏林',a:'柏林'},{ll:[30.31,59.94],c:'圣彼得堡',a:'东方文献研究所'},
+      {ll:[-71.11,42.37],c:'剑桥',a:'哈佛福格'},{ll:[135.77,35.01],c:'京都',a:'龙谷大学'},
+      {ll:[77.21,28.61],c:'新德里',a:'印度国博'}
     ];
     var svg='';
-    svg+='<ellipse cx="500" cy="170" rx="420" ry="135" fill="rgba(58,124,165,0.06)"/>';
     dests.forEach(function(d,i){
-      var mx=(origin[0]+d.x)/2, my=Math.min(origin[1],d.y)-70-(i*4);
-      svg+='<path d="M'+origin[0]+' '+origin[1]+' Q'+mx+' '+my+' '+d.x+' '+d.y+'" fill="none" stroke="rgba(201,162,75,0.5)" stroke-width="1.2">'
-         +'<animate attributeName="stroke-dasharray" from="0 600" to="600 0" dur="'+(2+i*0.3)+'s" begin="'+(i*0.15)+'s" fill="freeze"/></path>';
-      svg+='<circle cx="'+d.x+'" cy="'+d.y+'" r="3.4" fill="#e3c878"><animate attributeName="r" values="3.4;5;3.4" dur="2.4s" repeatCount="indefinite" begin="'+(i*0.2)+'s"/></circle>';
-      svg+='<text x="'+d.x+'" y="'+(d.y-9)+'" fill="rgba(236,227,207,0.62)" font-size="11" font-family="serif" text-anchor="middle">'+d.c+'</text>';
+      var p=P(d.ll[0],d.ll[1]);
+      var mx=(origin[0]+p[0])/2, my=Math.min(origin[1],p[1])-46-(i*5);
+      svg+='<path d="M'+origin[0].toFixed(1)+' '+origin[1].toFixed(1)+' Q'+mx.toFixed(1)+' '+my.toFixed(1)+' '+p[0].toFixed(1)+' '+p[1].toFixed(1)+'" fill="none" stroke="rgba(227,200,120,0.7)" stroke-width="1.4" filter="url(#mglow)">'
+         +'<animate attributeName="stroke-dasharray" from="0 420" to="420 0" dur="'+(1.8+i*0.25)+'s" begin="'+(i*0.15)+'s" fill="freeze"/></path>';
+      svg+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="3.6" fill="#e3c878" filter="url(#mglow)"><animate attributeName="r" values="3.6;5.4;3.6" dur="2.4s" repeatCount="indefinite" begin="'+(i*0.2)+'s"/></circle>';
+      svg+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]-7).toFixed(1)+'" fill="rgba(244,236,217,0.92)" font-size="11" font-weight="600" font-family="sans-serif" text-anchor="middle">'+d.c+'</text>';
     });
-    svg+='<circle cx="'+origin[0]+'" cy="'+origin[1]+'" r="7" fill="#b3422f" stroke="#e3c878" stroke-width="2"/>';
-    svg+='<text x="'+origin[0]+'" y="'+(origin[1]+26)+'" fill="rgba(236,227,207,0.8)" font-size="13" font-family="serif" letter-spacing="2" text-anchor="middle">敦煌</text>';
-    var mapObs = new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ mapSvg.innerHTML=svg; mapObs.disconnect(); } });},{threshold:0.4});
+    svg+='<circle cx="'+origin[0].toFixed(1)+'" cy="'+origin[1].toFixed(1)+'" r="6" fill="#b3422f" stroke="#e3c878" stroke-width="2" filter="url(#mglow)"/>';
+    svg+='<text x="'+origin[0].toFixed(1)+'" y="'+(origin[1]+15).toFixed(1)+'" fill="#f4ecd9" font-size="12" font-weight="600" font-family="serif" letter-spacing="1" text-anchor="middle">敦煌</text>';
+    svg='<defs><filter id="mglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'+svg;
+    var mapObs = new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ mapSvg.innerHTML=svg; mapObs.disconnect(); } });},{threshold:0.05});
     mapObs.observe(mapSvg);
   }
 
