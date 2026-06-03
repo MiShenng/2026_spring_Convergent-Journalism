@@ -579,6 +579,12 @@ h1,h2,h3{font-weight:500;line-height:1.12}
    SYMBOL ANATOMY (S2.3)
    ============================================================ */
 .anatomy{position:relative;border-radius:4px;overflow:hidden;border:1px solid var(--rule);box-shadow:var(--shadow)}
+.bodyfig{margin:0}
+.bodyfig img{width:100%;display:block;transition:transform 8s ease}
+.bodyfig:hover img{transform:scale(1.05)}
+.bodyfig figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem 1.1rem .9rem;
+  background:linear-gradient(transparent,rgba(6,7,14,.92));font-family:var(--font-cn);
+  font-size:.92rem;color:var(--silk);line-height:1.5;letter-spacing:.01em}
 .anatomy img{width:100%;display:block}
 .hot{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 6px rgba(201,162,75,.22);cursor:pointer;transform:translate(-50%,-50%);transition:.3s}
 .hot::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--ink)}
@@ -633,6 +639,16 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .chart{background:var(--panel-soft);border:1px solid var(--rule);border-radius:4px;padding:1.4rem;box-shadow:var(--shadow)}
 .chart .ctitle{font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.3rem}
 .chart .cnote{font-size:.68rem;color:var(--silk-faint);margin-top:.6rem;font-style:italic}
+/* collapsible footnote — small "ⓘ 注" that reveals on click, never blatant */
+.note{margin-top:.7rem}
+.note>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.32em;width:max-content;
+  font-family:var(--font-sans-cn);font-size:.58rem;letter-spacing:.14em;color:var(--silk-faint);
+  border:1px solid var(--rule);border-radius:999px;padding:.16rem .6rem;transition:.25s}
+.note>summary::-webkit-details-marker{display:none}
+.note>summary::before{content:"ⓘ";font-style:normal}
+.note>summary:hover,.note[open]>summary{color:var(--gold-soft);border-color:var(--gold)}
+.note .nt{display:block;font-size:.66rem;color:var(--silk-faint);line-height:1.6;margin-top:.5rem;max-width:48ch;font-style:normal;animation:noteIn .35s ease}
+@keyframes noteIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
 .toggle-row{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
 .toggle{font-family:var(--font-sans-cn);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silk-dim);border:1px solid var(--rule);background:transparent;padding:.4rem .8rem;border-radius:2px;cursor:pointer;transition:.25s}
 .toggle.on,.toggle:hover{color:var(--ink);background:var(--gold);border-color:var(--gold)}
@@ -929,8 +945,13 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
    animated callouts + 古意→今用 stage + mineral swatches
    ============================================================ */
 .decode-fig{position:relative;border-radius:5px;overflow:hidden;border:1px solid var(--rule);box-shadow:var(--shadow)}
-.decode-fig>img{width:100%;display:block;transition:transform 1.4s ease;transform:scale(1.02)}
-.decode-fig.motion-in>img{transform:scale(1)}
+.decode-fig>img{width:100%;display:block;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),transform-origin 1s cubic-bezier(.2,.7,.2,1);transform:scale(1.03);transform-origin:50% 45%}
+.decode-fig.motion-in>img{transform:scale(1.16)}  /* focus-zoom; JS pans transform-origin to active part */
+/* dim vignette that brightens the focused region */
+.decode-fig::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(circle at var(--fx,58%) var(--fy,40%), transparent 16%, rgba(6,7,14,.5) 62%);
+  opacity:0;transition:opacity .9s ease}
+.decode-fig.focusing::before{opacity:1}
 .decode-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
 .decode-lines path{fill:none;stroke:rgba(227,200,120,.0);stroke-width:1.4;stroke-dasharray:340;stroke-dashoffset:340;transition:stroke .4s,stroke-dashoffset .9s ease}
 .decode-lines path.on{stroke:rgba(227,200,120,.85);stroke-dashoffset:0;filter:drop-shadow(0 0 4px rgba(227,200,120,.7))}
@@ -1301,7 +1322,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <h3>残痕对照：被识别之前，飞天先经历了时间留下的斑驳。</h3>
       <p>风化、起甲、酥碱不是抽象的保护术语——它们直接吞掉了壁画上原本可看的部分。残损、褪色和模糊轮廓并不是背景信息，而是飞天可见方式的一部分。</p>
       <p>切换下方五组壁画、拖动滑块：左侧是风化与昏暗中肉眼所见，右侧是数字高清采集后重新读出的色彩与线条——保护与传播，由此不可分。</p>
-      <p class="cnote" style="margin-top:.8rem">注：左右为同一壁画的“风化／暗光”与“数字高清”两种读法对照，用以示意数字化对可读性的提升，非逐像素修复成果。</p>
+      <details class="note"><summary>注</summary><span class="nt">左右为同一壁画的“风化／暗光”与“数字高清”两种读法对照，用以示意数字化对可读性的提升，非逐像素修复成果。</span></details>
     </div>
   </div>
 
@@ -1396,7 +1417,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <h3>直播盛宴：短视频与直播，改变了飞天的时间结构。</h3>
       <p>洞窟观看是缓慢的，短视频观看则是快速的。舞姿、妆容、修复对比和视觉转场在几十秒内完成吸引；直播和讲解又把这种观看延长为持续停留。</p>
       <p>飞天的可见度不只靠十几秒的短视频，还靠持续几个小时的现场直播撑着。单独一屏才能看清这种量级——才会意识到传播不只是碎片流量的积累。</p>
-      <p class="cnote" style="margin-top:.7rem">注：单场 366 万、活动曝光 5,029 万为公开报道口径的示意样本（待核）；平台真实抓取数据见图 4。</p>
+      <details class="note"><summary>注</summary><span class="nt">单场 366 万、活动曝光 5,029 万为公开报道口径的示意样本（待核）；平台真实抓取数据见下方数据透视。</span></details>
     </div>
   </div>
 
@@ -1404,7 +1425,6 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen flip">
     <div class="visual reveal">
       <div class="chart">
-        <div class="ctitle">真实评论高频词 · 21,134 条（抖音 18,996 + B站 2,138）</div>
         <div class="cloud" title="字号 = 真实出现次数">
           <span class="w s1">泪目<sub>2067</sub></span><span class="w s1">美<sub>1083</sub></span>
           <span class="w s2">敦煌<sub>466</sub></span><span class="w s2">好看<sub>352</sub></span><span class="w s2">喜欢<sub>275</sub></span>
@@ -1417,7 +1437,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <div class="sbar"><span>美·惊艳</span><div class="track"><div class="fill" data-w="52" style="background:var(--malachite)"></div></div><span>1083</span></div>
           <div class="sbar"><span>可惜·流失</span><div class="track"><div class="fill" data-w="7" style="background:var(--vermilion)"></div></div><span>145</span></div>
         </div>
-        <div class="cnote">图 3：基于真实评论的高频词统计（子串计数，2026-06 清洗）。情绪为词典近似——含明确情感词的评论中正面约 94%、负面约 2.4%，仅作趋势示意。</div>
+        <details class="note"><summary>数据说明</summary><span class="nt">基于 21,134 条真实评论（抖音 18,996 + B站 2,138，2026-06 清洗）的高频词统计，字号即出现次数（子串计数）。情绪为词典近似——含明确情感词的评论中正面约 94%、负面约 2.4%，仅作趋势示意。</span></details>
       </div>
     </div>
     <div class="copy reveal d1">
@@ -1459,7 +1479,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
             <div class="erow"><span class="k">投币</span><div class="bar"><i style="--w:8%"></i></div><span class="v">129</span></div>
           </div>
         </div>
-        <p class="cnote">注：bar 为各平台“内部归一化”（占该平台最高互动的比例），数字为单条视频平均值。抖音点赞一柱独大＝刷过即赞；B站收藏 ＞ 点赞、且独有投币与弹幕＝把飞天“存起来慢慢看”。</p>
+        <details class="note"><summary>注</summary><span class="nt">bar 为各平台“内部归一化”（占该平台最高互动的比例），数字为单条视频平均值。抖音点赞一柱独大＝刷过即赞；B站收藏 ＞ 点赞、且独有投币与弹幕＝把飞天“存起来慢慢看”。</span></details>
         <div class="ctitle" style="margin-top:1.5rem">抖音评论来自哪里 · IP 属地 Top 10（样本 18,996 条 / 覆盖 55 省区）</div>
         <div class="prov" id="prov">
           <div class="prow"><span class="pn">广东</span><div class="pb"><i style="--w:100%"></i></div><span class="pv">988</span></div>
@@ -1473,7 +1493,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <div class="prow home"><span class="pn">宁夏</span><div class="pb"><i style="--w:35%"></i></div><span class="pv">345</span></div>
           <div class="prow"><span class="pn">湖南</span><div class="pb"><i style="--w:32%"></i></div><span class="pv">316</span></div>
         </div>
-        <p class="cnote">注：按抖音评论 IP 属地统计。广东居首；而敦煌所在的<em style="color:var(--gold-soft);font-style:normal">甘肃、宁夏</em>在人口体量不大的情况下挤进前列——一种“家乡视角”的超额关注。</p>
+        <details class="note"><summary>注</summary><span class="nt">按抖音评论 IP 属地统计。广东居首；而敦煌所在的<b style="color:var(--gold-soft);font-weight:400">甘肃、宁夏</b>在人口体量不大的情况下挤进前列——一种“家乡视角”的超额关注。</span></details>
       </div>
     </div>
   </div>
@@ -1516,19 +1536,15 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <!-- S4.2 -->
   <div class="screen">
     <div class="visual reveal">
-      <div class="compare" id="cmp2" style="--img:url('assets/dh_scene_tang.webp')">
-        <div class="layer after"></div>
-        <div class="layer before degrade"></div>
-        <div class="tag l">壁面 · 风化所见</div>
-        <div class="tag r">数字 · 高清读取</div>
-        <div class="handle"><div class="grip"></div></div>
-      </div>
+      <figure class="anatomy bodyfig">
+        <img loading="lazy" decoding="async" src="assets/dh_apsaras_wide.webp" alt="敦煌洞窟壁画中的飞天与说法场景">
+        <figcaption>无论被跳成舞、仿成妆、印成盲盒——飞天的来处，始终是这面墙。</figcaption>
+      </figure>
     </div>
     <div class="copy reveal d1">
-      <h3>焕新对比：日常化，不能切断飞天与文物本体的联系。</h3>
-      <p>残损壁画被数字高清采集后，飞天从昏暗中难辨的痕迹，变成可观看、可讲述、可转译的图像。技术究竟补回了多少可读性，用眼睛感受比数字更直接。</p>
-      <p>如果一件产品只是借用图案，传播往往停留在审美层面；如果它能提示图像来源与莫高窟语境，消费场景就可能成为文化传播的入口。</p>
-      <p class="cnote" style="margin-top:.8rem">注：与上同理，左右为同一壁画的“风化／暗光”与“数字高清”两种读法对照，示意数字化对可读性的提升。</p>
+      <h3>回到本体：日常化，不能切断飞天与文物本体的联系。</h3>
+      <p>飞天可以被跳、被仿、被穿、被收藏，但每一次借用都应当能<em style="color:var(--gold-soft);font-style:normal">指回它的来处</em>——洞窟那面墙、那段历史、那套矿物色与飘带的语法。</p>
+      <p>如果一件产品只是借用图案，传播往往停留在审美层面；如果它能提示图像来源与莫高窟语境，消费场景就可能反过来成为文化传播的入口。</p>
     </div>
   </div>
 
@@ -1536,24 +1552,24 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen flip">
     <div class="visual reveal">
       <div class="chart">
-        <div class="ctitle">飞天文创产品结构 · 50 个主题、3000+ 款设计</div>
+        <div class="ctitle">抖音飞天内容品类 · 263 条真实视频样本</div>
         <div class="donut-wrap">
-          <div class="donut"><div class="ctr"><b>3,000+</b><span>款产品</span></div></div>
+          <div class="donut" style="background:conic-gradient(var(--gold) 0 47.5%,var(--vermilion) 47.5% 74.5%,var(--azurite) 74.5% 85.5%,var(--malachite) 85.5% 96.5%,#7a6a9a 96.5% 100%)"><div class="ctr"><b>263</b><span>条样本</span></div></div>
           <div class="cat-list">
-            <div class="cat"><i style="background:var(--gold)"></i><span>盲盒与手办</span><b>32%</b></div>
-            <div class="cat"><i style="background:var(--vermilion)"></i><span>汉服与服饰</span><b>24%</b></div>
-            <div class="cat"><i style="background:var(--azurite)"></i><span>美妆与香氛</span><b>20%</b></div>
-            <div class="cat"><i style="background:var(--malachite)"></i><span>联名食品</span><b>14%</b></div>
-            <div class="cat"><i style="background:#7a6a9a"></i><span>数字藏品</span><b>10%</b></div>
+            <div class="cat"><i style="background:var(--gold)"></i><span>综合 · 泛展示</span><b>48%</b></div>
+            <div class="cat"><i style="background:var(--vermilion)"></i><span>舞蹈 · 乐舞</span><b>27%</b></div>
+            <div class="cat"><i style="background:var(--azurite)"></i><span>妆造 · 仿妆</span><b>11%</b></div>
+            <div class="cat"><i style="background:var(--malachite)"></i><span>文创 · 穿搭 · 文旅</span><b>11%</b></div>
+            <div class="cat"><i style="background:#7a6a9a"></i><span>讲解 · AI</span><b>3%</b></div>
           </div>
         </div>
-        <div class="cnote">图 6：示意性品类占比，正式数据可由平台销量、复购率与评论关键词替换。</div>
+        <details class="note"><summary>数据说明</summary><span class="nt">按 263 条抖音视频标题归类（“综合·泛展示”为未含明确主题的飞天片段）。本作品无真实文创销量数据，此处以平台内容品类近似呈现“可消费的飞天”结构。</span></details>
       </div>
     </div>
     <div class="copy reveal d1">
-      <h3>文创焕新：飞天被转化为可购买、穿戴、收藏与展示的对象。</h3>
-      <p>盲盒、手办、汉服、美妆、香氛、联名食品和数字藏品，让飞天不再只是被观看的图像，也成为进入日常生活的文化物件。</p>
-      <p>飘带适合转化为包装线条，敦煌色适合进入美妆和服饰，反弹琵琶适合成为拍摄姿势。飞天在商品中的出现，通常不是完整复制某一幅壁画，而是对若干识别元素的重新组合。当这些元素不断被抽取，文化来源可能随之变浅。</p>
+      <h3>文创焕新：真实内容里，“可消费的飞天”已是主角。</h3>
+      <p>把 263 条抖音飞天视频按题材摊开：舞蹈翻跳、妆造仿妆、穿搭文创与旅行打卡合计约占一半——飞天不再只是被观看的图像，而是被<em style="color:var(--gold-soft);font-style:normal">跳、仿、穿、打卡</em>的“可消费对象”；而讲解与 AI 复原这类“知识向”仅约 3%。</p>
+      <p>飘带转化为包装线条，敦煌色进入美妆与服饰，琵琶乐舞成为拍摄姿势。飞天在商品与内容中的出现，通常不是完整复制某一幅壁画，而是对若干识别元素的重新组合——当这些元素不断被抽取，文化来源也可能随之变浅。</p>
     </div>
   </div>
 
@@ -1569,7 +1585,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     <div class="copy reveal d1">
       <h3>文旅共生：平台与商品，也把人重新带回敦煌。</h3>
       <p>短视频制造向往，妆造激发旅行想象，文创产品延长记忆。公众可能因为一次平台观看走向敦煌，也可能因为一次敦煌旅行继续在社交媒体上分享飞天。</p>
-      <p class="cnote" style="margin-top:.7rem">注：2024 年游客约 2,000 万、2025 年 1–5 月旅游收入 70.83 亿元，据敦煌市文旅公开数据整理（阶段口径，待核）。</p>
+      <details class="note"><summary>注</summary><span class="nt">2024 年游客约 2,000 万、2025 年 1–5 月旅游收入 70.83 亿元，据敦煌市文旅公开数据整理（阶段口径，待核）。</span></details>
     </div>
   </div>
 </section>
@@ -2089,11 +2105,25 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       chips.forEach(function(x){x.classList.toggle('active', +x.getAttribute('data-i')===i);});
       flags.forEach(function(x){x.classList.toggle('on', +x.getAttribute('data-i')===i);});
       lines.forEach(function(x){x.classList.toggle('on', +x.getAttribute('data-i')===i);});
+      // camera pan-zoom: focus the image on the active part
+      var ah=document.querySelector('#anatomyFig .hot[data-i="'+i+'"]');
+      if(ah && fig && img){
+        var fx=ah.style.left||'58%', fy=ah.style.top||'40%';
+        img.style.transformOrigin=fx+' '+fy;
+        fig.style.setProperty('--fx',fx); fig.style.setProperty('--fy',fy);
+        fig.classList.add('focusing');
+      }
     }
+    var fig=document.getElementById('anatomyFig');
+    var img=fig?fig.querySelector('img'):null;
     hots.forEach(function(x){var i=+x.getAttribute('data-i');
       x.addEventListener('click',function(){show(i);});
       x.addEventListener('mouseenter',function(){show(i);});});
-    chips.forEach(function(x){var i=+x.getAttribute('data-i'); x.addEventListener('click',function(){show(i);});});
+    chips.forEach(function(x){var i=+x.getAttribute('data-i');
+      x.addEventListener('click',function(){show(i);});
+      x.addEventListener('mouseenter',function(){show(i);});});
+    // release focus-zoom when the cursor leaves the figure (back to full view)
+    if(fig){ fig.addEventListener('mouseleave',function(){ fig.classList.remove('focusing'); if(img) img.style.transformOrigin='50% 45%'; }); }
     show(0);
   })();
 
