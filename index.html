@@ -22,7 +22,7 @@
 <meta name="description" content="一篇融合叙事作品，讲述莫高窟飞天如何从洞窟壁画进入数字档案、平台传播、日常消费与海外语境。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    DECODING THE APSARAS — single-file scrollytelling
@@ -306,7 +306,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 #chapter-number{display:none}
 #chapter-title{
-  font-family:"Songti SC","SimSun","Noto Serif SC",serif;
+  font-family:"Noto Serif SC","Songti SC","SimSun",serif;
   font-size:clamp(30px,2.6vw,40px);
   line-height:1.22;
   font-weight:500;
@@ -315,7 +315,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   text-align:center;
 }
 #chapter-desc{
-  font-family:"Songti SC","SimSun","Noto Serif SC",serif;
+  font-family:"Noto Serif SC","Songti SC","SimSun",serif;
   color:rgba(242,234,216,.6);
   font-size:15px;
   line-height:1.95;
@@ -575,6 +575,14 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .compare .layer{position:absolute;inset:0;background-size:cover;background-position:center}
 .compare .after{background-image:url('assets/restored.webp')}
 .compare .before{background-image:url('assets/mural.webp');width:50%;border-right:2px solid var(--gold)}
+/* S2.2 multi-group compare: same image, two readings, switchable */
+#cmp1 .after,#cmp1 .before{background-image:var(--img)}
+.compare-set{width:100%}
+.cmp-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-top:.7rem}
+.cmp-thumb{position:relative;aspect-ratio:4/3;border:1px solid var(--rule);border-radius:3px;background-size:cover;background-position:center;cursor:pointer;overflow:hidden;padding:0;filter:grayscale(.35) brightness(.66);transition:filter .3s,border-color .3s,box-shadow .3s}
+.cmp-thumb span{position:absolute;left:0;right:0;bottom:0;font-size:.54rem;color:var(--silk);background:linear-gradient(transparent,rgba(7,8,16,.92));padding:.6rem .2rem .25rem;text-align:center;letter-spacing:.02em}
+.cmp-thumb:hover,.cmp-thumb.on{filter:none;border-color:var(--gold);box-shadow:0 0 16px -5px var(--gold)}
+@media(max-width:560px){.cmp-thumb span{font-size:.5rem}}
 .compare .before.degrade{filter:grayscale(.55) brightness(.7) contrast(1.1)}
 .compare .tag{position:absolute;bottom:.8rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silk);background:rgba(7,8,16,.7);padding:.3rem .6rem;border-radius:2px;z-index:3}
 .compare .tag.l{left:.8rem}.compare .tag.r{right:.8rem;color:var(--gold-soft)}
@@ -758,6 +766,15 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 footer{position:relative;z-index:3;border-top:1px solid var(--rule);padding:2.6rem clamp(1.4rem,5vw,3rem);text-align:center;background:var(--ink)}
 footer .src{font-size:.72rem;color:var(--silk-faint);max-width:80ch;margin:0 auto;line-height:1.7}
 footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silk-dim);margin-top:1rem}
+/* APA references — left aligned with hanging indent */
+.refs{max-width:82ch;margin:1.3rem auto 0;text-align:left;border-top:1px solid var(--rule);padding-top:1rem}
+.refs .refs-title{font-family:var(--font-sans-cn);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.6rem}
+.refs p{font-size:.72rem;color:var(--silk-dim);line-height:1.65;padding-left:2.2em;text-indent:-2.2em;margin:.35rem 0}
+.refs .refs-title,.refs .refs-note{padding-left:0;text-indent:0}
+.refs i{font-style:italic;color:var(--silk)}
+.refs a{color:var(--gold-soft);border-bottom:1px solid var(--rule);word-break:break-all}
+.refs a:hover{color:var(--gold);border-color:var(--gold)}
+.refs .refs-note{font-size:.66rem;color:var(--silk-faint);font-style:italic;margin-top:.7rem}
 
 @keyframes pulseRing{
   0%,100%{transform:scale(.82);opacity:.18}
@@ -1261,7 +1278,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
             <figure class="chr-frame" data-i="1"><img loading="lazy" decoding="async" src="assets/dh_apsaras_wide.webp" alt="隋代飞天"></figure>
             <figure class="chr-frame" data-i="2"><img loading="lazy" decoding="async" src="assets/dh_scene_tang.webp" alt="盛唐飞天"></figure>
             <figure class="chr-frame" data-i="3"><img loading="lazy" decoding="async" src="assets/anatomy.webp" alt="中晚唐反弹琵琶"></figure>
-            <figure class="chr-frame" data-i="4"><img loading="lazy" decoding="async" src="assets/dh_mural_217.webp" alt="宋元飞天"></figure>
+            <figure class="chr-frame" data-i="4"><img loading="lazy" decoding="async" src="assets/dh_bodhisattva.webp" alt="宋元程式化飞天（壁画示意）"></figure>
           </div>
           <div class="chr-trait" id="chrTrait"></div>
           <div class="chr-cartouche">
@@ -1282,26 +1299,36 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <button class="chr-node" data-i="3" data-era="中晚唐 · 反弹琵琶" data-yr="781 – 907 · 第112窟" data-traits="反弹琵琶·动作定型" data-form="反弹琵琶 · 动作定型" data-desc="第 112 窟“反弹琵琶”伎乐天身体后仰、双手反转于背后弹奏，成为今天最易被识别与再创作的飞天动作。"><b>晚唐</b><span>781</span></button>
           <button class="chr-node" data-i="4" data-era="宋元 · 程式化" data-yr="960 – 1368" data-traits="程式·模板·可借用" data-form="程式 · 模板 · 可借用" data-desc="形态进一步程式化，成为后世媒体、舞蹈与文创可直接借用的视觉模板。"><b>宋元</b><span>960</span></button>
         </div>
-        <div class="cnote">图 1：风格演变示意。典型洞窟——西魏第 249、285 窟，隋第 390 窟，盛唐第 320 窟，中唐“反弹琵琶”第 112 窟。分期与造型特征参考宋丽娜《敦煌壁画中各时期飞天形象特点及造型研究》、缪斯《早期敦煌飞天的艺术风格与当代价值研究》。</div>
+        <div class="cnote">图 1：风格演变示意。典型洞窟——西魏第 249、285 窟，隋第 390 窟，盛唐第 320 窟，中唐“反弹琵琶”第 112 窟。各时期图为<b style="color:var(--silk-dim);font-weight:400">风格示意与艺术再现</b>，非对应洞窟原迹照片。分期与造型特征参考宋丽娜《敦煌壁画中各时期飞天形象特点及造型研究》、缪斯《早期敦煌飞天的艺术风格与当代价值研究》。</div>
       </div>
     </div>
   </div>
 
   <!-- S2.2 -->
   <div class="screen">
-    <div class="visual reveal">
-      <div class="compare" id="cmp1">
-        <div class="layer after"></div>
-        <div class="layer before degrade"></div>
-        <div class="tag l">风化残存</div>
-        <div class="tag r">数字修复</div>
-        <div class="handle"><div class="grip"></div></div>
+    <div class="visual reveal" style="max-width:560px">
+      <div class="compare-set">
+        <div class="compare" id="cmp1" style="--img:url('assets/dh_caves_interior.webp')">
+          <div class="layer after"></div>
+          <div class="layer before degrade"></div>
+          <div class="tag l">风化 · 肉眼所见</div>
+          <div class="tag r">数字 · 高清读取</div>
+          <div class="handle"><div class="grip"></div></div>
+        </div>
+        <div class="cmp-thumbs" id="cmpThumbs">
+          <button class="cmp-thumb on" data-img="assets/dh_caves_interior.webp" style="background-image:url('assets/dh_caves_interior.webp')"><span>西魏 · 说法图</span></button>
+          <button class="cmp-thumb" data-img="assets/dh_apsaras_wide.webp" style="background-image:url('assets/dh_apsaras_wide.webp')"><span>北周 · 飞天群</span></button>
+          <button class="cmp-thumb" data-img="assets/dh_scene_tang.webp" style="background-image:url('assets/dh_scene_tang.webp')"><span>盛唐 · 经变</span></button>
+          <button class="cmp-thumb" data-img="assets/dh_mural_217.webp" style="background-image:url('assets/dh_mural_217.webp')"><span>中唐 · 净土变</span></button>
+          <button class="cmp-thumb" data-img="assets/mural.webp" style="background-image:url('assets/mural.webp')"><span>残壁 · 风化飞天</span></button>
+        </div>
       </div>
     </div>
     <div class="copy reveal d1">
       <h3>残痕对照：被识别之前，飞天先经历了时间留下的斑驳。</h3>
       <p>风化、起甲、酥碱不是抽象的保护术语——它们直接吞掉了壁画上原本可看的部分。残损、褪色和模糊轮廓并不是背景信息，而是飞天可见方式的一部分。</p>
-      <p>拖动滑块，可以看到从壁画残痕到数字读法的距离，也能看见保护与传播为何不可分。</p>
+      <p>切换下方五组壁画、拖动滑块：左侧是风化与昏暗中肉眼所见，右侧是数字高清采集后重新读出的色彩与线条——保护与传播，由此不可分。</p>
+      <p class="cnote" style="margin-top:.8rem">注：左右为同一壁画的“风化／暗光”与“数字高清”两种读法对照，用以示意数字化对可读性的提升，非逐像素修复成果。</p>
     </div>
   </div>
 
@@ -1309,7 +1336,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen flip" id="s23">
     <div class="visual reveal">
       <div class="decode-fig anatomy" id="anatomyFig">
-        <img loading="lazy" decoding="async" src="assets/anatomy.webp" alt="敦煌飞天反弹琵琶姿态的视觉拆解">
+        <img loading="lazy" decoding="async" src="assets/anatomy.webp" alt="敦煌持琵琶飞天（艺术再现）的视觉拆解">
         <svg class="decode-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <path data-i="0" d="M62,30 L88,13"/>
           <path data-i="1" d="M42,40 L14,28"/>
@@ -1321,7 +1348,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         <button class="hot" data-i="2" style="left:46%;top:66%"><span class="hn">3</span></button>
         <button class="hot" data-i="3" style="left:30%;top:24%"><span class="hn">4</span></button>
         <span class="decode-flag" data-i="0" style="left:62%;top:30%">飘带</span>
-        <span class="decode-flag" data-i="1" style="left:42%;top:40%">反弹琵琶</span>
+        <span class="decode-flag" data-i="1" style="left:42%;top:40%">琵琶乐舞</span>
         <span class="decode-flag" data-i="2" style="left:46%;top:66%">敦煌色系</span>
         <span class="decode-flag" data-i="3" style="left:30%;top:24%">冠饰佩饰</span>
       </div>
@@ -1330,7 +1357,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <h3>飞天被识别，靠一套可拆解、可挪用的视觉密码。</h3>
       <div class="sym-chips" id="symChips">
         <button class="chip active" data-i="0">① 飘带</button>
-        <button class="chip" data-i="1">② 反弹琵琶</button>
+        <button class="chip" data-i="1">② 琵琶乐舞</button>
         <button class="chip" data-i="2">③ 敦煌色系</button>
         <button class="chip" data-i="3">④ 冠饰佩饰</button>
       </div>
@@ -1733,10 +1760,13 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 
 <footer>
   <p class="src">数据与素材来源：数字敦煌资源库、“数字敦煌·开放素材库”（敦煌研究院 × 腾讯，2022 年 12 月上线，首批 6500 余份高清资源、区块链确权）、国际敦煌项目 IDP（1994 年大英图书馆发起，六语种、20+ 合作机构）、藏经洞文物海外散佚史料（斯坦因—大英博物馆/大英图书馆、伯希和—吉美博物馆/法国国家图书馆、华尔纳—哈佛福格艺术馆、奥登堡—俄罗斯东方文献研究所/艾尔米塔什）、新华社等公开报道、Wikimedia Commons 与 MET Open Access 开放图像。文中部分传播与销量数据为示意样本，已在图注标注；详见 Materials/SOURCES.md。</p>
-  <p class="src" style="margin-top:.9rem">学术参考（APA）：<br>
-  宋丽娜.（n.d.）.《敦煌壁画中各时期飞天形象特点及造型研究》. 国画家.<br>
-  缪斯.（2023）.《早期敦煌飞天的艺术风格与当代价值研究》［硕士学位论文，江西科技师范大学］. 中国知网（CNKI）.<br>
-  蔡彦.（n.d.）.《地域性色彩初探——从敦煌飞天色彩演变谈地域性色彩的成因和演化规律》. 载《当代亚洲色彩应用：第四届亚洲色彩论坛论文集》.</p>
+  <div class="refs">
+    <p class="refs-title">学术参考 · References（APA）</p>
+    <p>宋丽娜. (n.d.). 敦煌壁画中各时期飞天形象特点及造型研究. <i>国画家</i>. 中国知网. <a href="https://kns.cnki.net" target="_blank" rel="noopener">https://kns.cnki.net</a></p>
+    <p>缪斯. (2023). <i>早期敦煌飞天的艺术风格与当代价值研究</i> [硕士学位论文, 江西科技师范大学]. 中国知网. <a href="https://kns.cnki.net/kcms2/article/abstract?v=&filename=1022664577.nh" target="_blank" rel="noopener">kns.cnki.net/…/1022664577.nh</a></p>
+    <p>蔡彦. (n.d.). 地域性色彩初探——从敦煌飞天色彩演变谈地域性色彩的成因和演化规律. 见 <i>当代亚洲色彩应用：第四届亚洲色彩论坛论文集</i>. 中国知网. <a href="https://kns.cnki.net" target="_blank" rel="noopener">https://kns.cnki.net</a></p>
+    <p class="refs-note">注：上述中文期刊/学位/会议文献暂未分配 DOI，故以中国知网（CNKI）稳定检索链接代替；如后续获取 DOI 可直接补入。</p>
+  </div>
   <p class="credit">飞天何以被看见 · 莫高窟文化符号的数字流转 · 融合叙事作品 2026</p>
 </footer>
 
@@ -1950,6 +1980,21 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   initCompare(document.getElementById('cmp1'));
   initCompare(document.getElementById('cmp2'));
 
+  /* S2.2 — switch the compared mural across 5 groups */
+  (function(){
+    var cmp=document.getElementById('cmp1'), thumbs=document.getElementById('cmpThumbs');
+    if(!cmp||!thumbs) return;
+    var before=cmp.querySelector('.before'), handle=cmp.querySelector('.handle');
+    thumbs.querySelectorAll('.cmp-thumb').forEach(function(t){
+      t.addEventListener('click', function(){
+        thumbs.querySelectorAll('.cmp-thumb').forEach(function(x){x.classList.remove('on');});
+        t.classList.add('on');
+        cmp.style.setProperty('--img', "url('"+t.getAttribute('data-img')+"')");
+        before.style.width='50%'; handle.style.left='50%'; // reset wipe
+      });
+    });
+  })();
+
   /* ---------- PLATFORM MATRIX (S3.1) ---------- */
   var matrix = document.getElementById('matrix');
   if(matrix){
@@ -2031,8 +2076,8 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       {name:'飘带',en:'FLYING RIBBON',
         old:'飞天没有翅膀，凌空感全靠飘带的回旋、舒展与翻卷——它是“飞行”被一眼识别的关键。',
         now:'被抽象成礼盒包装线条、品牌纹样、动画运动轨迹与服饰廓形。'},
-      {name:'反弹琵琶',en:'REVERSE PIPA',
-        old:'身体后仰、双手反转于背后弹奏，是敦煌乐舞最凝练的一个动作记忆。',
+      {name:'琵琶乐舞',en:'PIPA DANCE',
+        old:'伎乐天怀抱琵琶凌空起舞；其最著名的变体“反弹琵琶”（第112窟）双手反转于背后弹奏，是敦煌乐舞最凝练的动作记忆。',
         now:'成为舞蹈翻跳、古风拍摄与短视频里最常被复刻的标志性姿势。'},
       {name:'敦煌色系',en:'MINERAL PALETTE',
         old:'石青、石绿、朱砂、赭石与泥金等矿物色，随地域物产与时代审美层层叠染、缓慢演化，构成敦煌独有的色彩经验。',
@@ -2259,7 +2304,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         tw:Math.random()*6.28
       };
     }
-    var motes=[], M=120;                   // more particles
+    var motes=[], M=58;                    // sparser dust
     for(var i=0;i<M;i++){ motes.push(spawn()); }
     var run=true;
     function frame(){
