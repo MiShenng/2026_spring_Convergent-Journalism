@@ -22,7 +22,7 @@
 <meta name="description" content="一篇融合叙事作品，讲述莫高窟飞天如何从洞窟壁画进入数字档案、平台传播、日常消费与海外语境。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    DECODING THE APSARAS — single-file scrollytelling
@@ -550,23 +550,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .vcard .plat{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;color:var(--gold-soft);text-transform:uppercase}
 .vcard .views{font-size:.78rem;color:var(--silk);margin-top:.2rem}
 
-/* ============================================================
-   TIMELINE (S2.1)
-   ============================================================ */
-.timeline{position:relative;padding:1.5rem 0}
-.timeline .axis{position:absolute;left:0;right:0;top:46px;height:1px;background:var(--rule)}
-.tl-track{display:flex;justify-content:space-between;position:relative}
-.tl-node{flex:1;text-align:center;cursor:pointer;position:relative}
-.tl-node .dot{width:14px;height:14px;border-radius:50%;background:var(--ink);border:2px solid var(--gold);margin:39px auto 0;transition:.3s;position:relative;z-index:2}
-.tl-node .era{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;color:var(--silk-dim);margin-bottom:.2rem;transition:.3s}
-.tl-node .yr{font-size:.62rem;color:var(--silk-faint)}
-.tl-node:hover .dot,.tl-node.on .dot{background:var(--gold);transform:scale(1.4);box-shadow:0 0 16px var(--gold)}
-.tl-node:hover .era,.tl-node.on .era{color:var(--gold-soft)}
-.tl-detail{margin-top:2.2rem;min-height:84px;background:var(--panel-soft);border:1px solid var(--rule);border-left:3px solid var(--vermilion);border-radius:3px;padding:1.1rem 1.3rem}
-.tl-detail.switching{animation:detailTurn .42s ease}
-.tl-detail h4{font-family:var(--font-cn);font-size:1.4rem;color:var(--gold-soft);font-weight:600}
-.tl-detail p{font-size:.9rem;color:var(--silk-dim);margin-top:.3rem}
-@keyframes detailTurn{0%{opacity:.25;transform:translateY(10px)}100%{opacity:1;transform:none}}
+/* (legacy timeline styles removed — replaced by .chronicle) */
 
 /* ============================================================
    COMPARISON SLIDER (S2.2 / S4.2)
@@ -576,7 +560,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .compare .after{background-image:url('assets/restored.webp')}
 .compare .before{background-image:url('assets/mural.webp');width:50%;border-right:2px solid var(--gold)}
 /* S2.2 multi-group compare: same image, two readings, switchable */
-#cmp1 .after,#cmp1 .before{background-image:var(--img)}
+#cmp1 .after,#cmp1 .before,#cmp2 .after,#cmp2 .before{background-image:var(--img)}
 .compare-set{width:100%}
 .cmp-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-top:.7rem}
 .cmp-thumb{position:relative;aspect-ratio:4/3;border:1px solid var(--rule);border-radius:3px;background-size:cover;background-position:center;cursor:pointer;overflow:hidden;padding:0;filter:grayscale(.35) brightness(.66);transition:filter .3s,border-color .3s,box-shadow .3s}
@@ -635,6 +619,9 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .cloud .s3{font-size:1.4rem;color:var(--azurite)}
 .cloud .s4{font-size:1.1rem;color:var(--silk-dim)}
 .cloud .s5{font-size:.9rem;color:var(--silk-faint)}
+.cloud .w{font-family:var(--font-cn);font-weight:500}
+.cloud .w sub{font-family:'Cinzel',serif;font-size:.4em;color:var(--silk-faint);vertical-align:super;margin-left:.12em;bottom:0}
+.cloud .w.ct{color:var(--vermilion-soft)}
 .senti{margin-top:1.6rem;display:grid;gap:.7rem}
 .sbar{display:grid;grid-template-columns:90px 1fr 44px;align-items:center;gap:.8rem;font-size:.78rem}
 .sbar .track{height:8px;background:rgba(236,227,207,.08);border-radius:4px;overflow:hidden}
@@ -854,14 +841,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .finale-apsara{opacity:.9;--reveal:60%}
 }
 
-/* ===== Timeline image panel (S2.1) ===== */
-.tl-detail{display:flex;gap:1.2rem;align-items:center}
-.tl-detail .tl-img{width:128px;height:128px;flex:none;border-radius:4px;overflow:hidden;border:1px solid var(--rule);background:var(--ink)}
-.tl-detail .tl-img img{width:100%;height:100%;object-fit:cover}
-.tl-detail .tl-txt{flex:1;text-align:left}
-.tl-detail .tl-form{font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.08em;color:var(--vermilion-soft);margin-left:.6em;font-weight:400}
-@media(max-width:600px){.tl-detail{flex-direction:column;text-align:center}.tl-detail .tl-txt{text-align:center}}
-
 /* ===== Symbol anatomy interaction (S2.3) ===== */
 .hot{border:none;padding:0;display:grid;place-items:center}
 .hot .hn{position:relative;z-index:3;font-family:'Cinzel',serif;font-size:.66rem;color:var(--ink);font-weight:700}
@@ -871,12 +850,6 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 .chip{font-family:var(--font-sans-cn);font-size:.82rem;color:var(--silk-dim);border:1px solid var(--rule);background:transparent;padding:.4rem .85rem;border-radius:999px;cursor:pointer;transition:.25s}
 .chip:hover{color:var(--gold-soft);border-color:var(--gold)}
 .chip.active{color:var(--ink);background:var(--gold);border-color:var(--gold)}
-.sym-panel{background:var(--panel-soft);border:1px solid var(--rule);border-left:3px solid var(--gold);border-radius:4px;padding:1.2rem 1.3rem;min-height:150px}
-.sym-panel .sym-name{font-family:var(--font-cn);font-size:1.5rem;color:var(--gold-soft);font-weight:600}
-.sym-panel .sym-mean{color:var(--silk-dim);margin:.5rem 0 .9rem;font-size:.96rem;line-height:1.7}
-.sym-panel .sym-mod{display:flex;gap:.7rem;align-items:flex-start;font-size:.92rem;color:var(--silk);border-top:1px dashed var(--rule);padding-top:.8rem}
-.sym-panel .sym-mod .lbl{flex:none;font-family:var(--font-sans-cn);font-size:.62rem;letter-spacing:.1em;color:var(--vermilion-soft);border:1px solid var(--rule);border-radius:3px;padding:.2rem .45rem;margin-top:.15rem}
-.sym-panel.switching{animation:detailTurn .42s ease}
 .sym-hint{font-size:.74rem;color:var(--silk-faint);margin-top:.8rem}
 
 /* ===== Platform cards (S3.1) ===== */
@@ -1343,10 +1316,10 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <path data-i="2" d="M46,66 L18,84"/>
           <path data-i="3" d="M30,24 L10,9"/>
         </svg>
-        <button class="hot active" data-i="0" style="left:62%;top:30%"><span class="hn">1</span></button>
-        <button class="hot" data-i="1" style="left:42%;top:40%"><span class="hn">2</span></button>
-        <button class="hot" data-i="2" style="left:46%;top:66%"><span class="hn">3</span></button>
-        <button class="hot" data-i="3" style="left:30%;top:24%"><span class="hn">4</span></button>
+        <button class="hot active" data-i="0" style="left:62%;top:30%" aria-label="飘带"><span class="hn">1</span></button>
+        <button class="hot" data-i="1" style="left:42%;top:40%" aria-label="琵琶乐舞"><span class="hn">2</span></button>
+        <button class="hot" data-i="2" style="left:46%;top:66%" aria-label="敦煌色系"><span class="hn">3</span></button>
+        <button class="hot" data-i="3" style="left:30%;top:24%" aria-label="冠饰佩饰"><span class="hn">4</span></button>
         <span class="decode-flag" data-i="0" style="left:62%;top:30%">飘带</span>
         <span class="decode-flag" data-i="1" style="left:42%;top:40%">琵琶乐舞</span>
         <span class="decode-flag" data-i="2" style="left:46%;top:66%">敦煌色系</span>
@@ -1407,7 +1380,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <div class="pf-bars"><div class="pf-bar"><span>文博直播</span><div class="pfb"><i style="--w:80%"></i></div></div><div class="pf-bar"><span>舞蹈翻跳</span><div class="pfb"><i style="--w:75%"></i></div></div><div class="pf-bar"><span>AI再创作</span><div class="pfb"><i style="--w:68%"></i></div></div><div class="pf-bar"><span>妆造教程</span><div class="pfb"><i style="--w:60%"></i></div></div><div class="pf-bar"><span>壁画讲解</span><div class="pfb"><i style="--w:55%"></i></div></div></div>
     </article>
       </div>
-      <p class="cnote" style="text-align:center;margin-top:1rem;font-size:.68rem;color:var(--silk-faint);font-style:italic">图 2：各平台主导的飞天内容形态（相对强度，示意数据，后续可替换为真实平台样本）。</p>
+      <p class="cnote" style="text-align:center;margin-top:1rem;font-size:.68rem;color:var(--silk-faint);font-style:italic">图 2：各平台主导的飞天内容形态（相对强度，<b style="color:var(--vermilion-soft);font-weight:400">示意 · 行业观察</b>）。本作品仅抓取了 B站与抖音的真实样本，其余三个平台暂无实测数据；B站 × 抖音 的真实对比见下方图 4。</p>
     </div>
   </div>
 
@@ -1423,6 +1396,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <h3>直播盛宴：短视频与直播，改变了飞天的时间结构。</h3>
       <p>洞窟观看是缓慢的，短视频观看则是快速的。舞姿、妆容、修复对比和视觉转场在几十秒内完成吸引；直播和讲解又把这种观看延长为持续停留。</p>
       <p>飞天的可见度不只靠十几秒的短视频，还靠持续几个小时的现场直播撑着。单独一屏才能看清这种量级——才会意识到传播不只是碎片流量的积累。</p>
+      <p class="cnote" style="margin-top:.7rem">注：单场 366 万、活动曝光 5,029 万为公开报道口径的示意样本（待核）；平台真实抓取数据见图 4。</p>
     </div>
   </div>
 
@@ -1430,23 +1404,26 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen flip">
     <div class="visual reveal">
       <div class="chart">
-        <div class="ctitle">用户如何称呼它 · 热词与情绪</div>
-        <div class="cloud">
-          <span class="w s1">国潮</span><span class="w s2">敦煌舞</span><span class="w s1">美学</span>
-          <span class="w s3">AI修复</span><span class="w s2">文化复兴</span><span class="w s4">仿妆</span>
-          <span class="w s3">非遗</span><span class="w s4">妆造</span><span class="w s5">研学</span><span class="w s4">二创</span>
+        <div class="ctitle">真实评论高频词 · 21,134 条（抖音 18,996 + B站 2,138）</div>
+        <div class="cloud" title="字号 = 真实出现次数">
+          <span class="w s1">泪目<sub>2067</sub></span><span class="w s1">美<sub>1083</sub></span>
+          <span class="w s2">敦煌<sub>466</sub></span><span class="w s2">好看<sub>352</sub></span><span class="w s2">喜欢<sub>275</sub></span>
+          <span class="w s3">飞天<sub>206</sub></span><span class="w s3">中国<sub>167</sub></span><span class="w s3 ct">可惜<sub>145</sub></span><span class="w s3">莫高窟<sub>141</sub></span><span class="w s3">文化<sub>128</sub></span>
+          <span class="w s4">壁画<sub>95</sub></span><span class="w s4">绝了<sub>85</sub></span><span class="w s4">历史<sub>79</sub></span><span class="w s4">保护<sub>62</sub></span><span class="w s4">舞蹈<sub>60</sub></span><span class="w s4">甘肃<sub>55</sub></span>
+          <span class="w s5">想去<sub>44</sub></span><span class="w s5">AI<sub>19</sub></span>
         </div>
         <div class="senti" id="senti">
-          <div class="sbar"><span>赞赏</span><div class="track"><div class="fill" data-w="64" style="background:var(--malachite)"></div></div><span>64%</span></div>
-          <div class="sbar"><span>中性</span><div class="track"><div class="fill" data-w="27" style="background:var(--azurite)"></div></div><span>27%</span></div>
-          <div class="sbar"><span>担忧</span><div class="track"><div class="fill" data-w="9" style="background:var(--vermilion)"></div></div><span>9%</span></div>
+          <div class="sbar"><span>泪目·破防</span><div class="track"><div class="fill" data-w="100" style="background:var(--gold)"></div></div><span>2067</span></div>
+          <div class="sbar"><span>美·惊艳</span><div class="track"><div class="fill" data-w="52" style="background:var(--malachite)"></div></div><span>1083</span></div>
+          <div class="sbar"><span>可惜·流失</span><div class="track"><div class="fill" data-w="7" style="background:var(--vermilion)"></div></div><span>145</span></div>
         </div>
-        <div class="cnote">图 3：示意性评论情绪分布，后续可用真实评论池重新编码。</div>
+        <div class="cnote">图 3：基于真实评论的高频词统计（子串计数，2026-06 清洗）。情绪为词典近似——含明确情感词的评论中正面约 94%、负面约 2.4%，仅作趋势示意。</div>
       </div>
     </div>
     <div class="copy reveal d1">
-      <h3>热词回响：热词说明公众并非以单一方式理解飞天。</h3>
-      <p>国潮、敦煌舞、美学、AI修复、仿妆、研学和二创并列出现：有人把她看作审美资源，有人通过她进入传统文化，也有人关注技术复原。</p>
+      <h3>热词回响：最高频的词，是“泪目”。</h3>
+      <p>把两万余条真实评论摊开，跳出来的不是“国潮”这类标签，而是<em style="color:var(--gold-soft);font-style:normal">情绪</em>：每百条里约 10 条说“泪目／破防”、5 条直说“美”——公众首先是被打动，其次才谈文化、历史与保护。</p>
+      <p>而“可惜／流失”（145 次）、“保护”（62 次）虽是少数，却真实存在：在赞叹之外，仍有人记挂着她从墙上消退、流散海外的那一面。</p>
     </div>
   </div>
 
@@ -1539,18 +1516,19 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <!-- S4.2 -->
   <div class="screen">
     <div class="visual reveal">
-      <div class="compare" id="cmp2">
+      <div class="compare" id="cmp2" style="--img:url('assets/dh_scene_tang.webp')">
         <div class="layer after"></div>
         <div class="layer before degrade"></div>
-        <div class="tag l">原始壁面</div>
-        <div class="tag r">AI修复读法</div>
+        <div class="tag l">壁面 · 风化所见</div>
+        <div class="tag r">数字 · 高清读取</div>
         <div class="handle"><div class="grip"></div></div>
       </div>
     </div>
     <div class="copy reveal d1">
       <h3>焕新对比：日常化，不能切断飞天与文物本体的联系。</h3>
-      <p>残损壁画被复原时，飞天从不可辨认的痕迹变成可观看、可讲述、可转译的图像。技术究竟给传播补回了多少东西，用眼睛感受比数字更直接。</p>
-      <p>如果一件产品只是借用图案，传播效果往往停留在审美层面。如果它能够提示图像来源和莫高窟语境，消费场景就可能成为文化传播的入口。</p>
+      <p>残损壁画被数字高清采集后，飞天从昏暗中难辨的痕迹，变成可观看、可讲述、可转译的图像。技术究竟补回了多少可读性，用眼睛感受比数字更直接。</p>
+      <p>如果一件产品只是借用图案，传播往往停留在审美层面；如果它能提示图像来源与莫高窟语境，消费场景就可能成为文化传播的入口。</p>
+      <p class="cnote" style="margin-top:.8rem">注：与上同理，左右为同一壁画的“风化／暗光”与“数字高清”两种读法对照，示意数字化对可读性的提升。</p>
     </div>
   </div>
 
@@ -1591,6 +1569,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     <div class="copy reveal d1">
       <h3>文旅共生：平台与商品，也把人重新带回敦煌。</h3>
       <p>短视频制造向往，妆造激发旅行想象，文创产品延长记忆。公众可能因为一次平台观看走向敦煌，也可能因为一次敦煌旅行继续在社交媒体上分享飞天。</p>
+      <p class="cnote" style="margin-top:.7rem">注：2024 年游客约 2,000 万、2025 年 1–5 月旅游收入 70.83 亿元，据敦煌市文旅公开数据整理（阶段口径，待核）。</p>
     </div>
   </div>
 </section>

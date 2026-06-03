@@ -2,3 +2,9 @@
 
 .claude/
 assets/_src/
+
+# large source docs / raw data (kept locally, not needed on the site)
+*.pdf
+*.xlsx
+第二页动屏特效/
+materials for part intro/
