@@ -2,22 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" id="vp">
-<script>
-/* Mobile adaptation (additive — desktop layout & CSS untouched):
-   on phones, render the full desktop layout at a fixed 1280px width and let the
-   browser scale it to fit, so the phone shows a shrunk-down copy of the desktop
-   view instead of a reflowed layout. Tablets/desktop keep their normal behavior. */
-(function(){
-  var shortSide = Math.min(screen.width || 9999, screen.height || 9999);
-  if (shortSide <= 480) {
-    document.getElementById('vp').setAttribute('content', 'width=1280, viewport-fit=cover');
-    // mark <html> so full-screen sections use a desktop 16:9 height instead of the
-    // phone's tall viewport — keeps each screen in the same proportion as desktop
-    document.documentElement.className += ' mobile-scaled';
-  }
-})();
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>飞天何以被看见：莫高窟文化符号的数字流转</title>
 <meta name="description" content="一篇融合叙事作品，讲述莫高窟飞天如何从洞窟壁画进入数字档案与平台传播，以及日常消费和海外语境。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,6 +112,13 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 /* progress bar (right rail) */
 #progress{position:fixed;top:0;right:0;width:3px;height:100vh;z-index:49;background:rgba(236,227,207,.06)}
 #progress .fill{position:absolute;top:0;left:0;width:100%;height:0;background:linear-gradient(var(--gold-soft),var(--vermilion));box-shadow:0 0 14px rgba(201,162,75,.6)}
+/* back-to-top — appears after scrolling, returns to the opening question */
+#toTop{position:fixed;right:1.1rem;bottom:1.2rem;z-index:48;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--gold);background:rgba(11,12,22,.78);color:var(--gold-soft);
+  font-size:1.1rem;line-height:1;cursor:pointer;opacity:0;pointer-events:none;
+  transition:opacity .35s ease, transform .35s ease;backdrop-filter:blur(4px)}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{transform:translateY(-3px);color:var(--silk)}
 
 /* ============================================================
    HERO
@@ -157,9 +149,12 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 @keyframes heroSweep{to{transform:translateX(115%)}}
 .hero::before{
   content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(105deg,rgba(11,12,22,.93) 0%,rgba(11,12,22,.74) 38%,rgba(11,12,22,.32) 68%,rgba(11,12,22,.55) 100%);
+  /* darker veil so the longer lede + data hook stay legible over the mural */
+  background:
+    linear-gradient(105deg,rgba(8,9,18,.96) 0%,rgba(8,9,18,.84) 42%,rgba(8,9,18,.5) 74%,rgba(8,9,18,.6) 100%),
+    linear-gradient(to top,rgba(8,9,18,.5),transparent 30%);
 }
-.hero-inner{max-width:760px}
+.hero-inner{max-width:780px}
 .hero h1{
   font-family:'Cinzel',serif;font-weight:600;
   font-size:clamp(2.6rem,7vw,5.6rem);line-height:1.02;letter-spacing:.01em;
@@ -168,8 +163,14 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .hero h1 em{font-style:normal;color:var(--gold-soft);display:block}
 .hero .sub{
   font-family:var(--font-cn);font-weight:400;font-style:normal;
-  font-size:clamp(1.1rem,2.4vw,1.7rem);color:var(--silk);margin-top:1.4rem;max-width:48ch;
+  font-size:clamp(1.1rem,2.4vw,1.62rem);color:var(--silk);margin-top:1.4rem;max-width:42ch;line-height:1.55;
 }
+.hero .hook{
+  font-family:var(--font-sans-cn);font-size:clamp(.86rem,1.3vw,1rem);line-height:1.7;
+  color:var(--silk-dim);margin-top:1.3rem;max-width:46ch;
+  padding-left:.95rem;border-left:2px solid var(--gold);
+}
+.hero .hook b{color:var(--gold-soft);font-weight:600}
 .hero .cn-title{font-family:var(--font-sans-cn);letter-spacing:.36em;color:var(--gold);font-size:.9rem;margin-bottom:1.4rem}
 .scroll-cue{
   position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
@@ -184,7 +185,8 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .hero .reveal-stagger>*:nth-child(1){animation-delay:1s}
 .hero .reveal-stagger>*:nth-child(2){animation-delay:1.45s}
 .hero .reveal-stagger>*:nth-child(3){animation-delay:1.95s}
-.hero .reveal-stagger>*:nth-child(4){animation-delay:2.5s}
+.hero .reveal-stagger>*:nth-child(4){animation-delay:2.4s}
+.hero .reveal-stagger>*:nth-child(5){animation-delay:2.95s}
 @keyframes rise{to{opacity:1;transform:none}}
 
 /* #2 图像自下而上"显影"展开（壁画先出现局部，再完整） */
@@ -387,6 +389,40 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .person-4{left:65%}
 .person-5{left:84%}
 .person-3 img{filter:brightness(.9) saturate(.95) drop-shadow(0 14px 14px rgba(0,0,0,.42)) drop-shadow(0 0 1px rgba(201,162,77,.5))}
+
+/* always-visible chapter label under each figure (so the entry never depends on hover) */
+.gate-cap{
+  display:block;text-align:center;margin-top:.55rem;
+  font-family:var(--font-sans-cn);font-size:.72rem;line-height:1.32;
+  color:var(--silk-dim);letter-spacing:.01em;
+  text-shadow:0 1px 7px rgba(0,0,0,.85);transition:color .3s ease;
+}
+.gate-cap b{display:block;font-weight:600;color:var(--gold-soft);font-size:.86rem;margin-bottom:.12rem}
+.gate-person:hover .gate-cap,.gate-person.active .gate-cap{color:var(--silk)}
+.gate-person:hover .gate-cap b,.gate-person.active .gate-cap b{color:var(--gold)}
+.gate-person:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:4px}
+
+/* mobile-only stacked entry list — hidden on desktop, shown when figures are too small to tap */
+.gate-list{display:none}
+.gate-intro-m{margin-bottom:.4rem}
+.gate-intro-m h3{font-family:var(--font-cn);font-weight:600;font-size:1.3rem;line-height:1.35;color:#f4ecd9;margin-bottom:.5rem}
+.gate-intro-m p{font-size:.92rem;line-height:1.7;color:rgba(242,234,216,.62)}
+.gate-card{
+  display:flex;align-items:center;gap:.85rem;
+  padding:.95rem 1rem;border:1px solid rgba(201,162,77,.3);border-radius:6px;
+  background:rgba(20,22,42,.55);text-decoration:none;
+  min-height:64px;-webkit-tap-highlight-color:rgba(201,162,77,.2);
+}
+.gate-card:active{background:rgba(201,162,77,.14)}
+.gate-card .gc-n{font-family:'Cinzel',serif;font-size:1.15rem;color:var(--gold);flex:0 0 auto;width:1.8rem}
+.gate-card .gc-b{display:flex;flex-direction:column;gap:.2rem}
+.gate-card .gc-b b{font-family:var(--font-cn);font-weight:600;font-size:1.02rem;color:var(--silk)}
+.gate-card .gc-b em{font-style:normal;font-size:.82rem;line-height:1.5;color:var(--silk-dim)}
+@media(max-width:560px){
+  .character-gate{min-height:auto;padding:3rem 5vw 3.4rem}
+  .painting-stage{display:none}
+  .gate-list{display:grid;gap:.7rem;width:100%;max-width:560px;margin:0 auto}
+}
 
 .material-wall{position:relative;z-index:3;padding:5rem clamp(1.2rem,5vw,5rem);background:rgba(7,8,16,.96)}
 .material-inner{max-width:var(--maxw);margin:0 auto}
@@ -633,12 +669,37 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .sbar .track{height:8px;background:rgba(236,227,207,.08);border-radius:4px;overflow:hidden}
 .sbar .fill{height:100%;width:0;border-radius:4px;transition:width 1.2s ease}
 
+/* marks an editorial-observation figure (dashed border, not scraped data) */
+.is-editorial{border-style:dashed!important;border-color:rgba(204,106,79,.4)!important}
+
+/* ranked high-frequency word bars (replaces the word cloud as the core chart) */
+.wordbars{display:grid;gap:1.1rem}
+.wb-group{display:grid;gap:.4rem}
+.wb-cat{font-family:var(--font-sans-cn);font-size:.66rem;letter-spacing:.14em;color:var(--gold-soft);margin-bottom:.1rem}
+.wb-row{display:grid;grid-template-columns:5.4rem 1fr 3rem;align-items:center;gap:.6rem;font-size:.76rem}
+.wb-row .wb-k{color:var(--silk-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wb-track{height:9px;background:rgba(236,227,207,.07);border-radius:5px;overflow:hidden}
+.wb-track i{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,var(--azurite),var(--gold-soft));transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.wb-group.emo .wb-track i{background:linear-gradient(90deg,var(--gold),var(--gold-soft))}
+.wb-group.care .wb-track i{background:linear-gradient(90deg,var(--vermilion),var(--vermilion-soft))}
+.chart.motion-in .wb-track i{width:var(--w)}
+.wb-row .wb-v{font-family:'Cinzel',serif;color:var(--silk-dim);font-size:.72rem;text-align:right}
+@media(max-width:560px){.wb-row{grid-template-columns:4.6rem 1fr 2.6rem;font-size:.72rem}}
+/* category bars (wider label column) — used by S4.3 content-category chart */
+.catbars{display:grid;gap:.7rem;margin-top:.4rem}
+.catbars .wb-row{grid-template-columns:8.2rem 1fr 2.8rem}
+.catbars .wb-v{font-size:.8rem;color:var(--gold-soft)}
+@media(max-width:560px){.catbars .wb-row{grid-template-columns:7rem 1fr 2.6rem}}
+
 /* ============================================================
    GENERIC SVG CHART FRAME
    ============================================================ */
 .chart{background:var(--panel-soft);border:1px solid var(--rule);border-radius:4px;padding:1.4rem;box-shadow:var(--shadow)}
 .chart .ctitle{font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.3rem}
-.chart .cnote{font-size:.68rem;color:var(--silk-faint);margin-top:.6rem;font-style:italic}
+/* unified caption / source-note style for charts and figures */
+.cnote{font-size:.72rem;line-height:1.6;color:var(--silk-faint);margin-top:.7rem;font-style:normal}
+.cnote b{color:var(--silk-dim);font-weight:600}
+.chart .cnote{font-size:.7rem;color:var(--silk-faint);margin-top:.7rem;font-style:normal}
 /* collapsible footnote — small "ⓘ 注" that reveals on click, never blatant */
 .note{margin-top:.7rem}
 .note>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.32em;width:max-content;
@@ -1074,22 +1135,41 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 .prow .pv{font-family:'Cinzel',serif;color:var(--silk-dim);font-size:.68rem}
 
 /* ============================================================
-   PHONE: desktop-scaled mode (toggled by the head script on phones).
-   The viewport is locked to 1280px wide, so the only thing that breaks
-   is vh-based full-screen heights becoming the phone's tall viewport.
-   Here we pin them to desktop 16:9 proportions so every screen looks
-   like the desktop version, just shrunk to fit. Desktop never gets this.
+   PHONE — true responsive single-column.
+   Replaces the old "render desktop at fixed 1280px and shrink" hack.
+   Content reflows to the real device width; text stays readable.
    ============================================================ */
-.mobile-scaled .hero{min-height:760px}
-.mobile-scaled .character-gate{min-height:auto}
-.mobile-scaled .painting-stage{height:640px;min-height:640px}
-.mobile-scaled .chapter-intro{min-height:480px}
-.mobile-scaled .screen{padding-top:52px;padding-bottom:52px}
-.mobile-scaled .finale{height:3344px}
-.mobile-scaled .finale-stage{height:760px}
-.mobile-scaled .finale-apsara{width:540px}
-.mobile-scaled .finale-ribbon{width:720px;height:480px}
-.mobile-scaled .finale-text[data-act="4"]{bottom:90px}
+@media(max-width:560px){
+  html{-webkit-text-size-adjust:100%}
+  body{font-size:16px;line-height:1.75}
+  /* full-screen sections: let content decide height instead of locking vh */
+  .hero{min-height:86vh}
+  .hero-inner{max-width:92vw;padding:0 1rem}
+  .hero h1{font-size:clamp(2.4rem,13vw,3.4rem)}
+  .hero .sub{font-size:1rem;line-height:1.6}
+  .hero .cn-title{font-size:.74rem;letter-spacing:.22em}
+  .hero .hook{font-size:.92rem}
+  .chapter-intro{min-height:auto;padding:15vh 6vw 8vh}
+  .chapter-intro h2{font-size:clamp(1.5rem,7vw,2.1rem)}
+  .chapter-intro p{font-size:1rem;max-width:100%}
+  .screen{padding:7vh 5vw;gap:1.6rem}
+  .copy h3{font-size:1.15rem}
+  .copy p{font-size:.96rem}
+  /* big-number boards and grids stack on phones */
+  .dash.cols-3,.dash.cols-2{grid-template-columns:1fr;gap:1rem}
+  .stat .num,.stat.big .num{font-size:2.4rem}
+  .fdash{grid-template-columns:1fr 1fr}
+  .map-stats{grid-template-columns:1fr 1fr}
+  .return-strip{grid-template-columns:1fr 1fr}
+  .tiers{gap:.7rem}
+  /* charts that can't shrink may scroll sideways instead of clipping */
+  .chart,.mapbox{max-width:100%;overflow-x:auto}
+  .worldmap{min-width:0}
+  /* dampen the global gold-dust overlay so it never fights the text */
+  #dust{opacity:.35}
+  /* captions a touch larger so they remain legible */
+  .cnote,.note .nt{font-size:.72rem}
+}
 </style>
 </head>
 <body>
@@ -1112,6 +1192,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   </ul>
 </nav>
 <div id="progress"><div class="fill"></div></div>
+<button id="toTop" aria-label="返回顶部，回到开篇问题">↑</button>
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
@@ -1125,7 +1206,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="hero-inner reveal-stagger">
     <div class="cn-title">莫高窟文化符号的数字流转</div>
     <h1>飞天何以<br><em>被看见</em></h1>
-    <p class="sub">莫高飞天，如何被再度看见？</p>
+    <p class="sub">很多人第一次遇见飞天，不在洞窟，而在短视频信息流里。被刷到，是否等于被理解？</p>
     <div class="scroll-cue"><span>下滑阅读</span><span class="line"></span></div>
   </div>
 </header>
@@ -1146,44 +1227,62 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     <div class="chapter-text is-intro">
       <p id="chapter-number"></p>
       <h3 id="chapter-title">莫高窟的飞天，<br>最初并不是为屏幕而生。</h3>
-      <p id="chapter-desc">她从洞窟深处走向屏幕，从壁画残痕进入数字图像，从文化遗产转化为公共视觉符号。将光标移向每一位引路人，沿五条路径，重新理解飞天如何被再度看见。</p>
+      <p id="chapter-desc">她从洞窟深处走向屏幕，从壁画残痕进入数字图像，从文化遗产转化为公共视觉符号。点按下方任一位引路人，沿五条路径追问：被看见之后，飞天是否被理解？</p>
     </div>
     <button class="gate-person person-1"
       data-title="洞窟如何看见"
       data-desc="从残损壁画出发，理解保护为什么是观看的前提。"
       data-target="#cave"
-      aria-label="洞窟如何看见">
+      aria-label="第一章 洞窟：如何看见">
       <img src="assets/gate/guide-boy-cutout.webp" alt="引路童子">
+      <span class="gate-cap"><b>洞窟</b>如何看见</span>
     </button>
     <button class="gate-person person-2"
       data-title="飞天如何识别"
       data-desc="从乐舞和飘带以及姿态与色彩中，辨认飞天的视觉语法。"
       data-target="#identify"
-      aria-label="飞天如何识别">
+      aria-label="第二章 识别：视觉语法">
       <img src="assets/gate/motif-maiden-cutout.webp" alt="持乐伎人">
+      <span class="gate-cap"><b>识别</b>视觉语法</span>
     </button>
     <button class="gate-person person-3"
       data-title="平台如何改写"
       data-desc="看短视频和直播以及评论和推荐机制如何重组观看方式。"
       data-target="#platform"
-      aria-label="平台如何改写">
+      aria-label="第三章 平台：如何改写">
       <img src="assets/gate/scroll-recorder-cutout.webp" alt="持卷录者">
+      <span class="gate-cap"><b>平台</b>如何改写</span>
     </button>
     <button class="gate-person person-4"
       data-title="日常如何携带"
       data-desc="从文创和妆造以及旅行到分享，追踪飞天进入生活的路径。"
       data-target="#daily"
-      aria-label="日常如何携带">
+      aria-label="第四章 日常：如何携带">
       <img src="assets/gate/traveler-woman-cutout.webp" alt="行旅女子">
+      <span class="gate-cap"><b>日常</b>如何携带</span>
     </button>
     <button class="gate-person person-5"
       data-title="海外如何重读"
       data-desc="当飞天进入跨文化语境，解释和授权以及边界随之出现。"
       data-target="#global"
-      aria-label="海外如何重读">
+      aria-label="第五章 海外：如何重读">
       <img src="assets/gate/silkroad-scholar-cutout.webp" alt="西来学者">
+      <span class="gate-cap"><b>海外</b>如何重读</span>
     </button>
   </div>
+
+  <!-- mobile-only tappable entry list (replaces the absolute-positioned figures on phones) -->
+  <nav class="gate-list" aria-label="章节入口">
+    <div class="gate-intro-m">
+      <h3>莫高窟的飞天，最初并不是为屏幕而生。</h3>
+      <p>她从洞窟走向屏幕，从壁画残痕进入数字图像。点按任一章节，追问：被看见之后，飞天是否被理解？</p>
+    </div>
+    <a class="gate-card" href="#cave"><span class="gc-n">01</span><span class="gc-b"><b>洞窟 · 如何看见</b><em>从残损壁画出发，保护为什么是观看的前提。</em></span></a>
+    <a class="gate-card" href="#identify"><span class="gc-n">02</span><span class="gc-b"><b>识别 · 视觉语法</b><em>飘带、乐舞、色彩、冠饰，如何让飞天被一眼认出。</em></span></a>
+    <a class="gate-card" href="#platform"><span class="gc-n">03</span><span class="gc-b"><b>平台 · 如何改写</b><em>短视频、直播、评论与推荐，如何重组观看方式。</em></span></a>
+    <a class="gate-card" href="#daily"><span class="gc-n">04</span><span class="gc-b"><b>日常 · 如何携带</b><em>文创、妆造、旅行打卡，飞天进入生活的路径。</em></span></a>
+    <a class="gate-card" href="#global"><span class="gc-n">05</span><span class="gc-b"><b>海外 · 如何重读</b><em>跨文化语境里，解释、授权与误读随之出现。</em></span></a>
+  </nav>
 </section>
 
 <!-- material wall + longform intro removed: imagery and narration now distributed into chapters -->
@@ -1196,9 +1295,9 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 <section class="chapter" id="cave">
   <div class="chapter-intro">
     <div class="eyebrow reveal">第一章 · 开篇</div>
-    <h2 class="reveal d1">洞窟中的飞天，如何被看见？</h2>
+    <h2 class="reveal d1">被刷到的飞天，从哪里来？</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">数字存档已成定局，千年飞天却仍在屏幕上不断重逢。在洞窟里，她从不是孤立的图案，而是与洞窟中所有图像共同构成的整体。故事，要从戈壁崖壁上的这道文明叩问讲起。</p>
+    <p class="reveal d2">两万余条评论里，很多人对着屏幕上的飞天说“泪目”。但洞窟无法承受无限的现场观看，飞天要先被保护、被数字化，才能被这么多人看见。飞天的数字传播，并不是从图案开始，而是从保护开始。故事，要从洞窟本身讲起。</p>
   </div>
 
   <!-- S1.1 -->
@@ -1217,15 +1316,16 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen flip">
     <div class="visual reveal">
       <div class="dash cols-3">
-        <div class="stat"><div><span class="num" data-target="24">0</span><span class="unit">M+</span></div><div class="lab">数字敦煌累计线上访问量</div></div>
-        <div class="stat"><div><span class="num" data-target="78">0</span><span class="unit">国</span></div><div class="lab">开放数字档案触达范围</div></div>
-        <div class="stat"><div><span class="num" data-target="300">0</span><span class="unit">窟</span></div><div class="lab">已完成数字采集与入库</div></div>
+        <div class="stat"><div><span class="num" data-target="24">0</span><span class="unit">M+</span></div><div class="lab">数字敦煌资源库累计访问量</div></div>
+        <div class="stat"><div><span class="num" data-target="78">0</span><span class="unit">国</span></div><div class="lab">资源库用户覆盖国家和地区</div></div>
+        <div class="stat"><div><span class="num" data-target="30">0</span><span class="unit">窟</span></div><div class="lab">资源库在线全景开放浏览</div></div>
       </div>
+      <details class="note"><summary>数据与口径</summary><span class="nt">数字敦煌资源库（2016 年上线）累计访问超 2400 万人次、用户来自 78 个国家和地区、在线开放 30 个洞窟全景。另据敦煌研究院，截至 2023 年已完成约 295 个洞窟的高精度数字化采集；“采集入库”（约 295 窟）与“在线全景开放”（30 窟）不是同一口径。来源：国务院新闻办 china.org.cn、国家数据局“数字中国”典型案例、敦煌研究院公开资料。</span></details>
     </div>
     <div class="copy reveal d1">
-      <h3>数字敦煌。正因可见并不稳固，保护才成为观看的前提。</h3>
-      <p>没有保护，飞天会继续从墙面上消退；没有记录，许多细节会在后来的时间中难以追索。数字采集让飞天以高清图像进入档案系统，也让屏幕观看成为可能。</p>
-      <p>数字化让飞天获得了新的可见方式，不再只依赖现场观看，也可以在屏幕上被放大，加以对照和讲解。这是飞天从洞窟走向平台的技术前提。</p>
+      <h3>数字敦煌：保护，是观看的前提。</h3>
+      <p>洞窟无法无限承受现场观看，温度、湿度与人流都会加速壁画消退。数字采集先把飞天以高清图像存档，屏幕观看才成为可能。这是飞天从洞窟走向平台的技术前提。</p>
+      <p>但这个入口也带来新的问题：当飞天离开洞窟、进入屏幕和商品，它还保留多少原来的语境？这正是后面几章要追问的。</p>
     </div>
   </div>
 
@@ -1233,15 +1333,16 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen">
     <div class="visual reveal">
       <div class="vwall">
-        <div class="vcard"><div class="ph a"></div><div class="play"></div><div class="meta"><div class="plat">抖音 · 敦煌舞</div><div class="views">366 万观看</div></div></div>
-        <div class="vcard"><div class="ph b"></div><div class="play"></div><div class="meta"><div class="plat">B 站 · 壁画讲解</div><div class="views">120 万观看</div></div></div>
-        <div class="vcard"><div class="ph c"></div><div class="play"></div><div class="meta"><div class="plat">视频号 · AI再创作</div><div class="views">88 万观看</div></div></div>
+        <div class="vcard"><div class="ph a"></div><div class="play"></div><div class="meta"><div class="plat">抖音</div><div class="views">舞蹈翻跳</div></div></div>
+        <div class="vcard"><div class="ph b"></div><div class="play"></div><div class="meta"><div class="plat">B 站</div><div class="views">壁画讲解</div></div></div>
+        <div class="vcard"><div class="ph c"></div><div class="play"></div><div class="meta"><div class="plat">视频号</div><div class="views">AI 再创作</div></div></div>
       </div>
+      <p class="cnote">图：飞天的几种常见传播形态（示意，非数据）。</p>
     </div>
     <div class="copy reveal d1">
-      <h3>破圈现场。屏幕扩大了可见范围，却替代不了洞窟中的飞天。</h3>
-      <p>短视频和讲解以及AI复原让更多人接近莫高窟，但数字图像必须不断回到壁画本体。前者扩大观看范围，后者提供历史深度和空间依据。</p>
-      <p>飞天之所以能在平台和商品中被迅速认出，不是因为她被随意改造，而是因为她已形成一套稳定的视觉语言。这套语言是如何建立的？要回到壁画里找答案。</p>
+      <h3>屏幕扩大了可见范围，却替代不了洞窟里的飞天。</h3>
+      <p>短视频、讲解和 AI 复原让更多人接近莫高窟，但屏幕上的飞天必须不断回到壁画本体：前者扩大观看范围，后者提供历史深度和空间依据。</p>
+      <p>飞天能在平台和商品里被迅速认出，不是因为被随意改造，而是因为她已形成一套稳定的视觉语言。这套语言是怎么建立的？下一章回到壁画里找答案。</p>
     </div>
   </div>
 </section>
@@ -1252,16 +1353,16 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 <section class="chapter" id="identify">
   <div class="chapter-intro">
     <div class="eyebrow reveal">第二章 · 溯源</div>
-    <h2 class="reveal d1">飞天为什么能被识别？</h2>
+    <h2 class="reveal d1">飞天为什么能被一眼认出？</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">从石窟丹青到全民符号，飞天的美学基因经过千年积淀。她并非某一幅固定图像，而是一类不断演变的视觉母题，之所以能被一眼认出，靠的是长期形成而足够稳定的视觉语言。</p>
+    <p class="reveal d2">飞天不是某一幅固定图像，而是一类不断演变的视觉母题。她能被一眼认出，靠的是长期形成、足够稳定的几样视觉元素：飘带、乐舞、色彩、冠饰。也正是这几样，后来最容易被平台、妆造和文创抽取。</p>
   </div>
 
   <!-- S2.1 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:64ch">
-      <h3>一千六百年流变，锤炼出飞天稳定的美学基因。</h3>
-      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">从北凉粗犷的西域画风，经隋唐雍容的中原融合，到宋元简约的写意定型——王朝更迭逐步雕琢出敦煌飞天的完整艺术体系。历代画匠以矿物颜料为墨、以岩壁为纸，把飘带形制、器乐造型与敦煌配色凝练成辨识度极强的文化内核。正是这套淬炼千年的基因，让她跨越世代，在今天完成破圈。</p>
+      <h3>约一千六百年，飞天的造型逐步稳定下来。</h3>
+      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">从北凉的西域画风，到隋唐的中原融合，再到宋元的程式定型，飞天的样式经过约一千六百年逐步收敛。画匠用矿物颜料在岩壁上反复描绘，把飘带形制、器乐造型和敦煌配色固定成一套高辨识度的视觉语言。到宋元，这套语言已经程式化，成为后世舞蹈、媒体和文创可以直接借用的模板。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:1080px">
       <div class="chronicle" id="chronicle">
@@ -1293,7 +1394,8 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <button class="chr-node" data-i="3" data-era="中晚唐 · 反弹琵琶" data-yr="781 – 907 · 第112窟" data-traits="反弹琵琶·动作定型" data-form="反弹琵琶 · 动作定型" data-desc="第 112 窟”反弹琵琶”伎乐天身体后仰、双手反转于背后弹奏，成为今天最易被识别与再创作的飞天动作。"><b>晚唐</b><span>781</span></button>
           <button class="chr-node" data-i="4" data-era="宋元 · 程式化" data-yr="960 – 1368" data-traits="程式·模板·可借用" data-form="程式 · 模板 · 可借用" data-desc="形态进一步程式化，成为后世媒体、舞蹈与文创可直接借用的视觉模板。"><b>宋元</b><span>960</span></button>
         </div>
-        <div class="cnote">图 1：风格演变示意。典型洞窟——西魏第 249、285 窟，隋第 390 窟，盛唐第 320 窟，中唐”反弹琵琶”第 112 窟。各时期图为<b style="color:var(--silk-dim);font-weight:400">风格示意与艺术再现</b>，非对应洞窟原迹照片。分期与造型特征参考宋丽娜《敦煌壁画中各时期飞天形象特点及造型研究》、缪斯《早期敦煌飞天的艺术风格与当代价值研究》。</div>
+        <p class="cnote">图 1：飞天形态演变（<b>风格示意</b>，配图不一定对应所列洞窟原迹）。</p>
+        <details class="note"><summary>图注 · 来源</summary><span class="nt">配图为公共领域 / 开放许可的敦煌壁画图像（来源见文末），用作各时期的风格示意。所列典型洞窟：西魏第 249、285 窟，隋第 390 窟，盛唐第 320 窟，中唐“反弹琵琶”第 112 窟；分期与造型特征参考宋丽娜《敦煌壁画中各时期飞天形象特点及造型研究》、缪斯《早期敦煌飞天的艺术风格与当代价值研究》。</span></details>
       </div>
     </div>
   </div>
@@ -1322,7 +1424,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <h3>残痕对照。被识别之前，飞天先经历了时间留下的斑驳。</h3>
       <p>壁画的风化与起甲，酥碱与剥落，不是抽象的保护术语，它们直接吞掉了原本可看的部分。残损和褪色，以及模糊的轮廓，并不是背景信息，而是飞天可见方式的一部分。</p>
       <p>切换下方五组壁画并拖动滑块，左侧是风化与昏暗中肉眼所见，右侧是数字高清采集后重新读出的色彩与线条，保护与传播由此不可分。</p>
-      <details class="note"><summary>注</summary><span class="nt">左右为同一壁画的“风化／暗光”与“数字高清”两种读法对照，用以示意数字化对可读性的提升，非逐像素修复成果。</span></details>
+      <details class="note"><summary>注</summary><span class="nt">左右为同一壁画“风化／暗光”与“数字高清”两种读法的对照演示，说明数字化对可读性的提升，非逐像素修复成果。图像为开放许可的敦煌壁画照片（来源见文末）。</span></details>
     </div>
   </div>
 
@@ -1356,7 +1458,8 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         <button class="chip" data-i="3">④ 冠饰佩饰</button>
       </div>
       <div class="sym-stage" id="symPanel"></div>
-      <p class="sym-hint">点击图上的标记或上方标签，看每个部件从古意到今用的转译。</p>
+      <p class="sym-hint">点击图上的标记或上方标签，看每个部件从古意到今用的转译。（拆解示意图，用于说明视觉元素。）</p>
+      <p style="margin-top:1rem">这套视觉语法让飞天在洞窟中成立，也让她在平台上被迅速识别。问题随之出现：当飞天被拆成飘带、色彩和姿态，剩下的是文化理解，还是可消费的图案？</p>
     </div>
   </div>
 </section>
@@ -1369,17 +1472,17 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     <div class="eyebrow reveal">第三章 · 破圈</div>
     <h2 class="reveal d1">平台如何改变飞天的可见方式？</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">全平台流量赋能，飞天完成全民视野的深度渗透。很多人今天第一次看见飞天，并不在敦煌，而在各大短视频与社交平台的信息流里，平台已然改变了她被理解的顺序。</p>
+    <p class="reveal d2">很多人第一次遇见飞天，不在洞窟，而在短视频信息流里。问题是：被刷到，是否等于被理解？这一章用两个平台的真实抓取样本，看“触达”和“理解”之间的差别。</p>
   </div>
 
   <!-- S3.1 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
-      <h3>矩阵传播。五大平台，塑造出五种不同的飞天。</h3>
-      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">抖音和快手强调动作与视觉冲击；B站更适合长视频讲解；小红书把飞天转化为审美和生活方式；视频号和直播延长了观看时间。横轴是平台，纵轴是内容形式，色块深浅表示相对传播强度。</p>
+      <h3>不同平台，分工出不同的飞天。</h3>
+      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">抖音、快手强调动作与视觉冲击；B 站更适合长视频讲解；小红书把飞天转化为审美和生活方式；视频号和直播延长了观看时间。下图是<b style="color:var(--vermilion-soft);font-weight:400">编辑观察</b>，不是抓取数据：仅抖音、B 站有本作品的真实样本，其余平台依据公开内容形态归纳，条形长短为编辑判断，不能与后面的数据图直接比较。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:1060px">
-      <div class="platforms" id="platforms">
+      <div class="platforms is-editorial" id="platforms">
     <article class="pf-card" style="--accent:var(--vermilion)">
       <div class="pf-head"><span class="pf-name">抖音</span><span class="pf-sig">舞蹈 · 直播</span></div>
       <div class="pf-bars"><div class="pf-bar"><span>舞蹈翻跳</span><div class="pfb"><i style="--w:95%"></i></div></div><div class="pf-bar"><span>文博直播</span><div class="pfb"><i style="--w:88%"></i></div></div><div class="pf-bar"><span>妆造教程</span><div class="pfb"><i style="--w:80%"></i></div></div><div class="pf-bar"><span>AI再创作</span><div class="pfb"><i style="--w:72%"></i></div></div><div class="pf-bar"><span>壁画讲解</span><div class="pfb"><i style="--w:60%"></i></div></div></div>
@@ -1401,7 +1504,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <div class="pf-bars"><div class="pf-bar"><span>文博直播</span><div class="pfb"><i style="--w:80%"></i></div></div><div class="pf-bar"><span>舞蹈翻跳</span><div class="pfb"><i style="--w:75%"></i></div></div><div class="pf-bar"><span>AI再创作</span><div class="pfb"><i style="--w:68%"></i></div></div><div class="pf-bar"><span>妆造教程</span><div class="pfb"><i style="--w:60%"></i></div></div><div class="pf-bar"><span>壁画讲解</span><div class="pfb"><i style="--w:55%"></i></div></div></div>
     </article>
       </div>
-      <p class="cnote" style="text-align:center;margin-top:1rem;font-size:.68rem;color:var(--silk-faint);font-style:italic">图 2：各平台主导的飞天内容形态（相对强度，<b style="color:var(--vermilion-soft);font-weight:400">示意 · 行业观察</b>）。B站与抖音基于本作品抓取样本，其余平台依据公开内容形态与平台传播特征归纳；B站 × 抖音 的真实对比见下方图 4。</p>
+      <details class="note" style="margin-top:.8rem"><summary>图注 · 说明</summary><span class="nt">图 2 为<b>编辑观察，非抓取数据</b>：条形长短是编辑对各平台内容形态的相对判断，不能横向比较，也不能与后面的数据图混看。仅抖音、B 站基于本作品抓取样本，其余平台依据公开内容形态归纳。抖音 × B 站的真实数据对比见下方图 4。</span></details>
     </div>
   </div>
 
@@ -1409,15 +1512,15 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen">
     <div class="visual reveal">
       <div class="dash cols-2">
-        <div class="stat big"><div><span class="num" data-target="3" data-dec="66">0</span><span class="unit">M</span></div><div class="lab">单场直播观看规模</div></div>
-        <div class="stat big"><div><span class="num" data-target="50" data-dec="29">0</span><span class="unit">M</span></div><div class="lab">活动累计曝光规模</div></div>
+        <div class="stat big"><div><span class="num" data-target="358">0</span><span class="unit">条视频</span></div><div class="lab">抓取视频样本（抖音 263 + B站 95）</div></div>
+        <div class="stat big"><div><span class="num" data-target="21134">0</span><span class="unit">条评论</span></div><div class="lab">抓取评论样本（抖音 18,996 + B站 2,138）</div></div>
       </div>
+      <details class="note"><summary>数据口径</summary><span class="nt">本作品抓取样本，非全网总体；本章判断建立在该样本上。</span></details>
     </div>
     <div class="copy reveal d1">
-      <h3>直播盛宴。短视频与直播，改变了飞天的时间结构。</h3>
-      <p>洞窟观看是缓慢的，短视频观看则是快速的。舞姿和妆容，修复对比和视觉转场在几十秒内完成吸引；直播和讲解又把这种观看延长为持续停留。</p>
-      <p>飞天的可见度不只靠十几秒的短视频，还靠持续几个小时的现场直播撑着。单独一屏才能看清这种量级，才会意识到传播不只是碎片流量的积累。</p>
-      <details class="note"><summary>注</summary><span class="nt">单场 366 万，活动曝光 5,029 万，为公开报道口径的示意样本（待核）；平台真实抓取数据见下方数据透视。</span></details>
+      <h3>先把样本摊开：两个平台，两万余条留言。</h3>
+      <p>短视频把洞窟里缓慢的观看压缩成几十秒：舞姿、妆容、修复对比、视觉转场在一瞬间完成吸引；直播和讲解又把它延长为持续停留。</p>
+      <p>这一章的判断，都建立在上面这批真实样本上：抖音 263 条视频、18,996 条评论，B 站 95 条视频、2,138 条评论。它不能代表全网，但足以看出两个平台让飞天被看见的方式并不相同。</p>
     </div>
   </div>
 
@@ -1425,37 +1528,61 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen flip">
     <div class="visual reveal">
       <div class="chart">
-        <div class="cloud" title="字号 = 真实出现次数">
-          <span class="w s1">泪目<sub>2067</sub></span><span class="w s1">美<sub>1083</sub></span>
-          <span class="w s2">敦煌<sub>466</sub></span><span class="w s2">好看<sub>352</sub></span><span class="w s2">喜欢<sub>275</sub></span>
-          <span class="w s3">飞天<sub>206</sub></span><span class="w s3">中国<sub>167</sub></span><span class="w s3 ct">可惜<sub>145</sub></span><span class="w s3">莫高窟<sub>141</sub></span><span class="w s3">文化<sub>128</sub></span>
-          <span class="w s4">壁画<sub>95</sub></span><span class="w s4">绝了<sub>85</sub></span><span class="w s4">历史<sub>79</sub></span><span class="w s4">保护<sub>62</sub></span><span class="w s4">舞蹈<sub>60</sub></span><span class="w s4">甘肃<sub>55</sub></span>
-          <span class="w s5">想去<sub>44</sub></span><span class="w s5">AI<sub>19</sub></span>
+        <div class="ctitle">两万余条留言里，情绪词压过知识词 · 高频词 Top 18（按词义分组）</div>
+        <div class="wordbars">
+          <div class="wb-group emo">
+            <div class="wb-cat">情绪表达</div>
+            <div class="wb-row"><span class="wb-k">泪目·破防</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">2067</span></div>
+            <div class="wb-row"><span class="wb-k">美·惊艳</span><div class="wb-track"><i style="--w:52%"></i></div><span class="wb-v">1083</span></div>
+            <div class="wb-row"><span class="wb-k">好看</span><div class="wb-track"><i style="--w:17%"></i></div><span class="wb-v">352</span></div>
+            <div class="wb-row"><span class="wb-k">喜欢</span><div class="wb-track"><i style="--w:13%"></i></div><span class="wb-v">275</span></div>
+            <div class="wb-row"><span class="wb-k">绝了</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">85</span></div>
+          </div>
+          <div class="wb-group">
+            <div class="wb-cat">知识理解</div>
+            <div class="wb-row"><span class="wb-k">敦煌</span><div class="wb-track"><i style="--w:23%"></i></div><span class="wb-v">466</span></div>
+            <div class="wb-row"><span class="wb-k">飞天</span><div class="wb-track"><i style="--w:10%"></i></div><span class="wb-v">206</span></div>
+            <div class="wb-row"><span class="wb-k">中国</span><div class="wb-track"><i style="--w:8%"></i></div><span class="wb-v">167</span></div>
+            <div class="wb-row"><span class="wb-k">莫高窟</span><div class="wb-track"><i style="--w:7%"></i></div><span class="wb-v">141</span></div>
+            <div class="wb-row"><span class="wb-k">文化</span><div class="wb-track"><i style="--w:6%"></i></div><span class="wb-v">128</span></div>
+            <div class="wb-row"><span class="wb-k">壁画</span><div class="wb-track"><i style="--w:5%"></i></div><span class="wb-v">95</span></div>
+            <div class="wb-row"><span class="wb-k">历史</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">79</span></div>
+          </div>
+          <div class="wb-group care">
+            <div class="wb-cat">保护意识</div>
+            <div class="wb-row"><span class="wb-k">可惜·流失</span><div class="wb-track"><i style="--w:7%"></i></div><span class="wb-v">145</span></div>
+            <div class="wb-row"><span class="wb-k">保护</span><div class="wb-track"><i style="--w:3%"></i></div><span class="wb-v">62</span></div>
+          </div>
+          <div class="wb-group">
+            <div class="wb-cat">旅游意向</div>
+            <div class="wb-row"><span class="wb-k">甘肃</span><div class="wb-track"><i style="--w:3%"></i></div><span class="wb-v">55</span></div>
+            <div class="wb-row"><span class="wb-k">想去</span><div class="wb-track"><i style="--w:2%"></i></div><span class="wb-v">44</span></div>
+          </div>
+          <div class="wb-group">
+            <div class="wb-cat">内容与二创</div>
+            <div class="wb-row"><span class="wb-k">舞蹈</span><div class="wb-track"><i style="--w:3%"></i></div><span class="wb-v">60</span></div>
+            <div class="wb-row"><span class="wb-k">AI</span><div class="wb-track"><i style="--w:1%"></i></div><span class="wb-v">19</span></div>
+          </div>
         </div>
-        <div class="senti" id="senti">
-          <div class="sbar"><span>泪目·破防</span><div class="track"><div class="fill" data-w="100" style="background:var(--gold)"></div></div><span>2067</span></div>
-          <div class="sbar"><span>美·惊艳</span><div class="track"><div class="fill" data-w="52" style="background:var(--malachite)"></div></div><span>1083</span></div>
-          <div class="sbar"><span>可惜·流失</span><div class="track"><div class="fill" data-w="7" style="background:var(--vermilion)"></div></div><span>145</span></div>
-        </div>
-        <details class="note"><summary>数据说明</summary><span class="nt">基于 21,134 条真实评论（抖音 18,996 + B站 2,138，2026-06 清洗）的高频词统计，字号即出现次数（子串计数）。情绪为词典近似，含明确情感词的评论中正面约 94%，负面约 2.4%，仅作趋势示意。</span></details>
+        <details class="note"><summary>数据说明</summary><span class="nt">基于 21,134 条评论（抖音 18,996 + B站 2,138）的高频词统计，数值为出现次数（子串计数，同一条评论多次出现计多次），条长以最高频词“泪目”为 100%。分组为编辑按词义归类。情绪正负为词典近似，仅作趋势参考。</span></details>
       </div>
     </div>
     <div class="copy reveal d1">
-      <h3>热词回响。最高频的词，是”泪目”。</h3>
-      <p>把两万余条真实评论摊开，跳出来的不是”国潮”这类标签，而是<em style="color:var(--gold-soft);font-style:normal">情绪</em>，每百条里约 10 条说”泪目／破防”，5 条直说”美”，公众首先是被打动，其次才谈文化历史与保护。</p>
-      <p>而”可惜／流失”（145 次）和”保护”（62 次）虽是少数，却真实存在，在赞叹之外，仍有人记挂着她从墙上消退和流散海外的那一面。</p>
+      <h3>最高频的词是“泪目”，不是任何一个知识词。</h3>
+      <p>把两万余条留言摊开，跳出来的不是“国潮”这类标签，而是<em style="color:var(--gold-soft);font-style:normal">情绪</em>：每百条里约 10 条说“泪目／破防”，5 条直说“美”。公众首先是被打动，其次才谈文化、历史与保护。</p>
+      <p>“可惜／流失”（145 次）和“保护”（62 次）虽是少数，却真实存在。在赞叹之外，仍有人记挂着她从墙上消退、流散海外的那一面。</p>
     </div>
   </div>
 
   <!-- S3.4 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:68ch">
-      <h3>数据实证。B站 × 抖音，是两种”被看见”。</h3>
-      <p>本作品抓取了两平台的飞天内容样本，抖音 263 条视频 / 18,996 条评论，B站 95 条视频 / 2,138 条评论。把每条视频的平均互动摊开看，两个平台塑造的是两种完全不同的飞天，<em style="color:var(--gold-soft);font-style:normal">抖音负责”被看见”，B站负责”被理解”。</em></p>
+      <h3>在本样本里，抖音和 B 站是两种“被看见”。</h3>
+      <p>把每条视频的平均互动摊开看，<em style="color:var(--gold-soft);font-style:normal">在本样本中，抖音带来更高的即时互动（点赞、转发），B 站呈现更高的收藏倾向（收藏、投币）</em>。两个平台让飞天进入公众视野的方式并不相同，但这只是这批样本的结构，不是平台的全部。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:1080px">
       <div class="chart">
-        <div class="ctitle">单条视频平均互动 · 抖音 vs B站（真实抓取样本，2026-06 清洗）</div>
+        <div class="ctitle">单条视频平均互动 · 抖音 vs B站（本作品抓取样本）</div>
         <div class="engines" id="engines">
           <div class="engine dy">
             <div class="ehead"><b>抖音</b><em>DOUYIN · 263 视频</em></div>
@@ -1479,8 +1606,8 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
             <div class="erow"><span class="k">投币</span><div class="bar"><i style="--w:8%"></i></div><span class="v">129</span></div>
           </div>
         </div>
-        <details class="note"><summary>注</summary><span class="nt">bar 为各平台”内部归一化”（占该平台最高互动的比例），数字为单条视频平均值。抖音点赞一柱独大＝刷过即赞；B站收藏 ＞ 点赞，且独有投币与弹幕＝把飞天”存起来慢慢看”。</span></details>
-        <div class="ctitle" style="margin-top:1.5rem">抖音评论来自哪里 · IP 属地 Top 10（样本 18,996 条 / 覆盖 55 省区）</div>
+        <details class="note"><summary>注</summary><span class="nt"><b>各平台条形为本平台内部归一化（占本平台最高互动的比例），不能直接比较两边的柱长。</b>跨平台差异请看右侧比值卡片。数字为单条视频平均值。抖音点赞一柱独大＝刷过即赞；B站收藏多于点赞、且有投币与弹幕＝把飞天“存起来慢慢看”。</span></details>
+        <div class="ctitle" style="margin-top:1.5rem">样本中抖音评论的 IP 属地分布 · Top 10（样本 18,996 条评论）</div>
         <div class="prov" id="prov">
           <div class="prow"><span class="pn">广东</span><div class="pb"><i style="--w:100%"></i></div><span class="pv">988</span></div>
           <div class="prow"><span class="pn">河南</span><div class="pb"><i style="--w:50%"></i></div><span class="pv">494</span></div>
@@ -1493,7 +1620,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <div class="prow home"><span class="pn">宁夏</span><div class="pb"><i style="--w:35%"></i></div><span class="pv">345</span></div>
           <div class="prow"><span class="pn">湖南</span><div class="pb"><i style="--w:32%"></i></div><span class="pv">316</span></div>
         </div>
-        <details class="note"><summary>注</summary><span class="nt">按抖音评论 IP 属地统计。广东居首；而敦煌所在的<b style="color:var(--gold-soft);font-weight:400">甘肃和宁夏</b>在人口体量不大的情况下挤进前列，形成一种”家乡视角”的超额关注。</span></details>
+        <details class="note"><summary>注</summary><span class="nt">按抖音评论显示的 IP 属地统计（样本 18,996 条）。这是评论发布时显示的属地，<b>不等于真实居住地</b>，也<b>未按各地人口或网民规模标准化</b>，因此只反映本样本中的评论来源分布，不能据此判断“哪个省更关注”。可注意的是，敦煌所在的甘肃、宁夏也进入前列。</span></details>
       </div>
     </div>
   </div>
@@ -1504,21 +1631,24 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
      ==================================================================== -->
 <section class="chapter" id="daily">
   <div class="chapter-intro">
-    <div class="eyebrow reveal">第四章 · 复兴</div>
+    <div class="eyebrow reveal">第四章 · 日常</div>
     <h2 class="reveal d1">从屏幕到日常，飞天如何被携带和消费？</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">数字技术赋能产业落地，古典纹样完成生活化场景转化。当飞天进入文创与消费场景，她从影像动作和话题中，转化为可以在日常中携带的文化物件，无论是购买和穿戴还是收藏。</p>
+    <p class="reveal d2">当飞天进入妆造、文创和旅行打卡，古老图像被拆成飘带、色彩和姿态。哪些转译保留了来处，哪些只剩图案？消费不是天然的错误，但需要标明来处、语境和边界。</p>
   </div>
 
-  <!-- S4.1 -->
+  <!-- S4.1 + S4.2 合并：从图像来源到消费转译 -->
   <div class="screen">
     <div class="visual reveal">
-      <div class="anatomy"><img loading="lazy" decoding="async" src="assets/dh_scene_tang.webp" alt="敦煌盛唐壁画全景，色彩完整而丰富"></div>
+      <figure class="anatomy bodyfig">
+        <img loading="lazy" decoding="async" src="assets/dh_apsaras_wide.webp" alt="敦煌洞窟壁画中的飞天与说法场景">
+        <figcaption>不管以什么方式被借用，飞天的来处始终是这面墙。</figcaption>
+      </figure>
     </div>
     <div class="copy reveal d1">
-      <h3>数智重生。消费不一定是理解的终点，也可能成为入口。</h3>
-      <p>一件产品只是借用飞天图案，传播效果往往停留在审美层面。但如果它能够提示图像来源，呈现壁画细节，消费场景就可能变成文化传播的入口。</p>
-      <p>这条路径得以成立，依靠的是数字技术先把图像从墙面上完整地读出来。高清采集与AI修复，三维建模与AR互动，构成飞天从洞窟进入日常的技术前提。</p>
+      <h3>从图像来源到消费转译：哪些保留了来处，哪些只剩图案？</h3>
+      <p>消费不一定是理解的终点，也可能成为入口。一件产品若只借用飞天图案，传播往往停留在审美层面；若它能提示图像来源、呈现壁画细节与莫高窟语境，消费场景就可能反过来成为文化传播的入口。</p>
+      <p>这条路径成立的前提，是数字技术先把图像从墙面上完整读出来（见下图）。但无论怎样被借用，每一次借用都应当能<em style="color:var(--gold-soft);font-style:normal">指回它的来处</em>：那面洞窟的墙、那段历史，以及那套矿物色与飘带的语法。</p>
     </div>
   </div>
   <div class="screen solo">
@@ -1529,22 +1659,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         <div class="fstep"><div class="n">03</div><h4>三维建模</h4><p>平面壁画获得空间导航层，便于展示与教育。</p></div>
         <div class="fstep"><div class="n">04</div><h4>AR互动</h4><p>洞窟图像被送到移动屏幕，进入个人观看场景。</p></div>
       </div>
-      <p class="cnote" style="text-align:center;margin-top:.8rem;font-size:.68rem;color:var(--silk-faint);font-style:italic">图 5：从高清采集到互动展示，数字技术为后续平台传播和日常消费提供素材基础。</p>
-    </div>
-  </div>
-
-  <!-- S4.2 -->
-  <div class="screen">
-    <div class="visual reveal">
-      <figure class="anatomy bodyfig">
-        <img loading="lazy" decoding="async" src="assets/dh_apsaras_wide.webp" alt="敦煌洞窟壁画中的飞天与说法场景">
-        <figcaption>不管以什么方式被借用，飞天的来处始终是这面墙。</figcaption>
-      </figure>
-    </div>
-    <div class="copy reveal d1">
-      <h3>回到本体。日常化，不能切断飞天与文物本体的联系。</h3>
-      <p>飞天可以以多种方式被借用，但每一次借用都应当能<em style="color:var(--gold-soft);font-style:normal">指回它的来处</em>，那面洞窟的墙和那段历史，以及那套矿物色与飘带的语法。</p>
-      <p>如果一件产品只是借用图案，传播往往停留在审美层面；如果它能提示图像来源与莫高窟语境，消费场景就可能反过来成为文化传播的入口。</p>
+      <p class="cnote" style="text-align:center;margin-top:.8rem">图 5：数字化流程示意（采集 → 修复 → 建模 → 互动）。</p>
     </div>
   </div>
 
@@ -1552,24 +1667,21 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen flip">
     <div class="visual reveal">
       <div class="chart">
-        <div class="ctitle">抖音飞天内容品类 · 263 条真实视频样本</div>
-        <div class="donut-wrap">
-          <div class="donut" style="background:conic-gradient(var(--gold) 0 47.5%,var(--vermilion) 47.5% 74.5%,var(--azurite) 74.5% 85.5%,var(--malachite) 85.5% 96.5%,#7a6a9a 96.5% 100%)"><div class="ctr"><b>263</b><span>条样本</span></div></div>
-          <div class="cat-list">
-            <div class="cat"><i style="background:var(--gold)"></i><span>综合 · 泛展示</span><b>48%</b></div>
-            <div class="cat"><i style="background:var(--vermilion)"></i><span>舞蹈 · 乐舞</span><b>27%</b></div>
-            <div class="cat"><i style="background:var(--azurite)"></i><span>妆造 · 仿妆</span><b>11%</b></div>
-            <div class="cat"><i style="background:var(--malachite)"></i><span>文创 · 穿搭 · 文旅</span><b>11%</b></div>
-            <div class="cat"><i style="background:#7a6a9a"></i><span>讲解 · AI</span><b>3%</b></div>
-          </div>
+        <div class="ctitle">“可消费的飞天”已是主角 · 抖音内容品类（263 条视频样本）</div>
+        <div class="catbars">
+          <div class="wb-row"><span class="wb-k">综合·泛展示</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">48%</span></div>
+          <div class="wb-row"><span class="wb-k">舞蹈·乐舞</span><div class="wb-track"><i style="--w:56%"></i></div><span class="wb-v">27%</span></div>
+          <div class="wb-row"><span class="wb-k">妆造·仿妆</span><div class="wb-track"><i style="--w:23%"></i></div><span class="wb-v">11%</span></div>
+          <div class="wb-row"><span class="wb-k">文创·穿搭·文旅</span><div class="wb-track"><i style="--w:23%"></i></div><span class="wb-v">11%</span></div>
+          <div class="wb-row"><span class="wb-k">讲解·AI</span><div class="wb-track"><i style="--w:6%"></i></div><span class="wb-v">3%</span></div>
         </div>
-        <details class="note"><summary>数据说明</summary><span class="nt">按 263 条抖音视频标题归类（”综合·泛展示”为未含明确主题的飞天片段）。</span></details>
+        <details class="note"><summary>数据说明</summary><span class="nt">按 263 条抖音视频<b>标题</b>归类，每条计入一个主类。“综合·泛展示”指标题未点明具体主题的飞天片段，多为景区随拍、舞台/图像混剪与泛展示，因仅凭标题无法稳定区分其中的展示、表演与混剪，故暂不继续拆分；舞蹈、妆造、文创、讲解为标题中有明确主题词的视频。</span></details>
       </div>
     </div>
     <div class="copy reveal d1">
-      <h3>文创焕新。真实内容里，”可消费的飞天”已是主角。</h3>
-      <p>把 263 条抖音飞天视频按题材摊开，舞蹈翻跳和妆造仿妆，加上穿搭文创与旅行打卡，合计约占一半，飞天不再只是被观看的图像，而是被<em style="color:var(--gold-soft);font-style:normal">跳/仿/穿/打卡</em>的”可消费对象”；讲解与 AI 复原这类”知识向”仅约 3%。</p>
-      <p>飘带转化为包装线条，敦煌色进入美妆与服饰，琵琶乐舞成为拍摄姿势。飞天在商品与内容中的出现，通常不是完整复制某一幅壁画，而是对若干识别元素的重新组合，当这些元素不断被抽取，文化来源也可能随之变浅。</p>
+      <h3>真实内容里，“可消费的飞天”已经是主角。</h3>
+      <p>把 263 条抖音飞天视频按题材摊开，舞蹈翻跳、妆造仿妆，加上穿搭文创与旅行打卡，合计约占一半。飞天不再只是被观看的图像，而是被<em style="color:var(--gold-soft);font-style:normal">跳、仿、穿、打卡</em>的“可消费对象”；讲解与 AI 复原这类“知识向”仅约 3%。</p>
+      <p>飘带变成包装线条，敦煌色进入美妆与服饰，琵琶乐舞成为拍摄姿势。飞天在商品里出现，通常不是完整复制某一幅壁画，而是对几样识别元素的重新组合。当这些元素不断被抽取，文化来源也可能随之变浅。</p>
     </div>
   </div>
 
@@ -1577,15 +1689,15 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen">
     <div class="visual reveal">
       <div class="dash cols-3">
-        <div class="stat"><div><span class="num" data-target="20">0</span><span class="unit">M+</span></div><div class="lab">2024 年敦煌游客规模</div></div>
-        <div class="stat"><div><span class="num" data-target="7" data-dec="69">0</span><span class="unit">M</span></div><div class="lab">2025 年 1-5 月游客规模</div></div>
-        <div class="stat"><div><span class="num" data-target="7" data-dec="08">0</span><span class="unit">B¥</span></div><div class="lab">2025 年 1-5 月旅游收入</div></div>
+        <div class="stat"><div><span class="num" data-target="20" data-dec="92">0</span><span class="unit">M</span></div><div class="lab">2024 年敦煌游客（同比 +24.3%）</div></div>
+        <div class="stat"><div><span class="num" data-target="7" data-dec="69">0</span><span class="unit">M</span></div><div class="lab">2025 年 1-5 月游客（+21.72%）</div></div>
+        <div class="stat"><div><span class="num" data-target="7" data-dec="08">0</span><span class="unit">B¥</span></div><div class="lab">2025 年 1-5 月旅游花费（+37.69%）</div></div>
       </div>
+      <details class="note"><summary>数据与来源</summary><span class="nt">2024 年敦煌游客 2092 万人次（同比 +24.3%）；2025 年 1–5 月游客 769.44 万人次、旅游花费 70.83 亿元。来源：甘肃日报、敦煌市文旅公开数据。</span></details>
     </div>
     <div class="copy reveal d1">
-      <h3>文旅共生。平台与商品，也把人重新带回敦煌。</h3>
-      <p>短视频制造向往，妆造激发旅行想象，文创产品延长记忆。公众可能因为一次平台观看走向敦煌，也可能因为一次敦煌旅行继续在社交媒体上分享飞天。</p>
-      <details class="note"><summary>注</summary><span class="nt">2024 年游客约 2,000 万，2025 年 1–5 月旅游收入 70.83 亿元，据敦煌市文旅公开数据整理（阶段口径，待核）。</span></details>
+      <h3>平台与商品，也把人重新带回敦煌。</h3>
+      <p>短视频制造向往，妆造激发旅行想象，文创产品延长记忆。公众可能因为一次平台观看走向敦煌，也可能因为一次敦煌旅行，继续在社交媒体上分享飞天。</p>
     </div>
   </div>
 </section>
@@ -1596,16 +1708,16 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 <section class="chapter" id="global">
   <div class="chapter-intro">
     <div class="eyebrow reveal">第五章 · 远方</div>
-    <h2 class="reveal d1">飞向海外之后，飞天如何被重新阅读？</h2>
+    <h2 class="reveal d1">飞向海外之后，谁有权解释飞天？</h2>
     <div class="gold-rule reveal d1"></div>
-    <p class="reveal d2">跨越国境走向全球，飞天在版权规制中探寻文化传播的边界。当她进入海外语境，会获得新的可见度，也面临新的解释关系，传播越远，解释和授权乃至误读也随之而来。</p>
+    <p class="reveal d2">飞天图像不只是在博物馆和数据库里被保存，也在今天被复制、改写和商业使用。一百年前它被带往海外、被重新归类；今天它在图像授权、AI 二创和文创商品里被再次使用。传播越远，解释、授权乃至误读也随之而来。</p>
   </div>
 
   <!-- S5.1 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:68ch">
-      <h3>丝路回响。飞天散落世界，又在数字时代被重新看见。</h3>
-      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">1900 年藏经洞被发现，约六万件写本、绢画与法器出土；二十世纪初被探险队大量带走，如今分藏于英、法、俄、美等十余家机构。同一身飞天进入海外馆藏后，常被重新归类为”中国佛教绘画 / 亚洲艺术”，理解的入口随之改变。</p>
+      <h3>飞天散落世界，又在数字时代被重新看见。</h3>
+      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.9rem">1900 年藏经洞被发现，约六万件写本、绢画与法器出土；二十世纪初被探险队大量带走，如今分藏于英、法、俄、美等十余家机构。同一身飞天进入海外馆藏后，常被重新归类为“中国佛教绘画／亚洲艺术”，理解的入口随之改变——同一张图，在不同机构里被放进不同的故事。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:1060px">
       <div class="case-grid">
@@ -1635,8 +1747,8 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         </a>
         <a class="case span2" href="https://idp.bl.uk" target="_blank" rel="noopener">
           <div class="place"><b>国际敦煌项目 IDP · 数字重聚</b><span class="geo">EST. 1994 · British Library</span></div>
-          <div class="who">大英图书馆发起 · 中 / 英 / 法 / 俄 / 日 / 德 六语种</div>
-          <p>把散落于英、法、俄、日、德等 20 余家机构的敦煌文献与艺术品高清扫描，在线免费公开，让被带走的飞天以数字方式重新聚回一处。截至 2024 年 9 月，已是全球最大的敦煌文献与文物图像数据库。</p>
+          <div class="who">大英图书馆 1994 年发起 · 40 余家成员机构 · 横跨 15 国 · 6 语种网站</div>
+          <p>把散落于英、法、俄、日、德等机构的敦煌文献与艺术品高清扫描、在线免费公开，让被带走的飞天以数字方式重新聚回一处，是规模最大的敦煌文献与文物图像在线数据库之一。来源：IDP（idp.bl.uk）、维基百科 IDP 条目。</p>
           <span class="reclass">数字回归 · 在线重聚</span>
         </a>
       </div>
@@ -1644,15 +1756,16 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.7rem">敦煌散佚 · 海外馆藏地图</div>
         <div class="worldmap">
           <img class="wm-base" src="assets/world-map.svg" alt="世界地图" loading="lazy">
+          <!-- TODO(来源核验)：地图标点为主要收藏城市的示意位置；每个机构的精确馆藏数量与坐标尚需逐项核对（斯坦因—大英、伯希和—吉美/BnF、华尔纳—哈佛、奥登堡—俄藏）。不代表全部流散路径。 -->
           <svg class="wm-overlay" id="mapSvg" viewBox="30.767 241.591 784.077 458.627" preserveAspectRatio="xMidYMid meet"></svg>
         </div>
         <div class="map-stats">
           <div><b>78</b>触达国家 · 数字敦煌</div>
-          <div><b>20+</b>IDP 合作机构</div>
+          <div><b>40+</b>IDP 成员机构</div>
           <div><b>6</b>语种在线数据库</div>
           <div><b>6,500+</b>开放素材库资源</div>
         </div>
-        <details class="note"><summary>ⓘ 图注</summary><span class="nt">图 7：藏经洞文物海外散佚示意。底图为真实世界地图（CC BY-SA 3.0），标点为主要收藏城市；数据据敦煌研究院、国际敦煌项目（IDP）与公开报道整理。</span></details>
+        <details class="note"><summary>图注 · 来源</summary><span class="nt">图 7：藏经洞文物海外主要收藏机构。<b>主要机构示意，不代表全部流散路径。</b>底图为开放许可世界地图（CC BY-SA 3.0），标点为主要收藏城市的示意位置；机构与散佚史据敦煌研究院、国际敦煌项目（IDP）及公开报道整理，个别标点的精确馆藏数量仍需逐项核对。</span></details>
       </div>
     </div>
   </div>
@@ -1673,10 +1786,26 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       </div>
     </div>
     <div class="copy reveal d1">
-      <h3>授权护航。开放，不等于无限制使用。</h3>
-      <p>2022 年底，敦煌研究院与腾讯上线”数字敦煌·开放素材库”，这是全球首个基于区块链的数字文化遗产开放共享平台，首批 6500 余份高清资源向全球开放下载，并通过”上链”实现可追溯，可查证，也可管控。</p>
-      <p>资源按三档拆分：科研与教育免费使用；商业用途申请付费；少数涉及宗教核心语义的品类不允许商业再创作。飞天飞得越远，授权就越不能绕开，这把复兴从乐观情绪拉回到制度层面。</p>
+      <h3>开放，不等于无限制使用。</h3>
+      <p>2022 年底，敦煌研究院与腾讯上线“数字敦煌·开放素材库”，这是全球首个基于区块链的数字文化遗产开放共享平台，首批 6500 余份高清资源向全球开放下载，并通过“上链”实现可追溯、可查证、可管控。来源：新华社、中央网信办公开报道。</p>
+      <p>资源按三档拆分：科研与教育免费使用；商业用途申请付费；少数涉及宗教核心语义的品类不允许商业再创作。飞天飞得越远，授权就越不能绕开——它把传播从乐观情绪拉回到制度层面。</p>
       <a class="copy-link" href="https://www.e-dunhuang.com" target="_blank" rel="noopener">前往「数字敦煌」资源库 ↗</a>
+    </div>
+  </div>
+
+  <!-- S5.2b 现实连接：海外重读与今天的关系 -->
+  <div class="screen flip">
+    <div class="visual reveal">
+      <div class="tiers">
+        <div class="tier t1"><div class="ic">①</div><div><h4>图像授权</h4><p>把飞天用在商品、海报或视频之前，先确认它的授权：开放素材库区分免费与付费，海外馆藏图像也各有许可条款。</p><span class="pill">先确认许可</span></div></div>
+        <div class="tier t2"><div class="ic">②</div><div><h4>AI 二创</h4><p>AI 生成的“飞天”可能混入多种来源、丢失宗教与历史语境。二创不必禁止，但应说明它是再创作，而不是原迹。</p><span class="pill">标明再创作</span></div></div>
+        <div class="tier t3"><div class="ic">③</div><div><h4>来源标注</h4><p>文创和内容里用到飞天，标明它来自哪一窟、哪段历史、经过怎样的转译，让观看者还能找回来处。</p><span class="pill">注明来处</span></div></div>
+      </div>
+    </div>
+    <div class="copy reveal d1">
+      <h3>海外重读，和今天的你有关。</h3>
+      <p>飞天的流散、归类与数字回归，看似是博物馆里的旧事；但同一套问题，今天落在每个使用飞天图像的人身上：用之前确认授权，二创时标明再创作，商用时注明来源。</p>
+      <p>海外馆藏、开放素材库、授权与误读，是同一条链上的不同环节：图像被保存下来，也在被复制、改写和商业使用。被看见之后，谁来标明来处，谁来为误读与挪用负责？</p>
     </div>
   </div>
 
@@ -1690,32 +1819,32 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         </div>
         <div class="ccol"><h4>文化激活</h4>
           <div class="ccard"><p>“看完讲解才真正理解反弹琵琶，顺手去查了莫高窟。”</p><div class="src">B站 · 高赞评论 · 2025-02</div></div>
-          <div class="ccard expert"><p>“数字化让壁画获得第二次生命，但线条背后的意义不能只剩一个外壳。”</p><div class="src">学者访谈 · 摘录示意 · 2025</div></div>
         </div>
         <div class="ccol"><h4>中间地带</h4>
           <div class="ccard"><p>“喜欢这个趋势，但 AI 二创还保留原来的宗教和文化意味吗？”</p><div class="src">视频号 · 高赞评论 · 2025-05</div></div>
-          <div class="ccard expert"><p>“传播和保护必须一起推进，任何一边缺位都会把符号掏空。”</p><div class="src">公开演讲 · 摘录示意 · 2025</div></div>
         </div>
       </div>
+      <details class="note"><summary>说明</summary><span class="nt">评论摘自本作品抓取样本中的高赞评论，已按内容分组；账号信息略去。</span></details>
     </div>
     <div class="copy reveal d1">
-      <h3>众声喧哗。飞天的可见性，并不单纯。</h3>
-      <p>她被更多人看见，可能意味着文化遗产进入公共生活；也可能意味着复杂语境被压缩为视觉消费。飞天的破圈，是一次关于保护和传播，以及产业与边界的持续协商。</p>
+      <h3>飞天的可见，并不单纯。</h3>
+      <p>她被更多人看见，可能意味着文化遗产进入公共生活，也可能意味着复杂语境被压缩成一次视觉消费。两种情形常常同时发生。</p>
+      <p>于是问题落到归属上：被看见之后，<em style="color:var(--gold-soft);font-style:normal">谁有权解释飞天？谁应该标明来源？谁需要为误读与挪用负责？</em>飞天的破圈，是一场关于保护、传播、产业与边界的持续协商。</p>
     </div>
   </div>
 
   <!-- S5.4 -->
   <div class="screen solo">
     <div class="copy reveal" style="max-width:60ch">
-      <h3>未来看板。任何单一环节，都不足以构成飞天完整的重生。</h3>
-      <p>洞窟中的飞天提供历史深度，数字图像扩大观看范围，平台传播制造公共入口，文创消费延展日常接触，国际传播打开跨文化理解的可能。</p>
+      <h3>任何单一环节，都不足以构成飞天完整的“被看见”。</h3>
+      <p>洞窟提供历史深度，数字图像扩大观看范围，平台制造公共入口，文创延展日常接触，国际传播打开跨文化理解的可能。被看见之后，理解才是下一步。</p>
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="fdash">
-        <div class="fmetric"><div class="ic">保护</div><div class="num">30<span style="font-size:.5em">窟+</span></div><div class="lab">数字敦煌上线洞窟</div></div>
-        <div class="fmetric"><div class="ic">开放</div><div class="num">350<span style="font-size:.5em">万+</span></div><div class="lab">开放素材库访问</div></div>
-        <div class="fmetric"><div class="ic">协作</div><div class="num">20<span style="font-size:.5em">+</span></div><div class="lab">IDP 合作机构</div></div>
-        <div class="fmetric"><div class="ic">全球</div><div class="num">78</div><div class="lab">触达国家</div></div>
+        <div class="fmetric"><div class="ic">保护</div><div class="num">30<span style="font-size:.5em">窟</span></div><div class="lab">资源库在线全景洞窟</div></div>
+        <div class="fmetric"><div class="ic">开放</div><div class="num">350<span style="font-size:.5em">万+</span></div><div class="lab">开放素材库访问 · 截至 2023</div></div>
+        <div class="fmetric"><div class="ic">协作</div><div class="num">40<span style="font-size:.5em">+</span></div><div class="lab">IDP 成员机构</div></div>
+        <div class="fmetric"><div class="ic">全球</div><div class="num">78</div><div class="lab">数字敦煌触达国家</div></div>
       </div>
     </div>
   </div>
@@ -1745,16 +1874,16 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     </div>
     <div class="finale-text" data-act="1"><p>她飞过洞窟，也飞过屏幕。</p></div>
     <div class="finale-text" data-act="2"><p>屏幕让她更近，<br>也让她更容易被重新命名。</p></div>
-    <div class="finale-text" data-act="3"><p>可见不是终点。理解，才是归途。</p></div>
+    <div class="finale-text" data-act="3"><p>看见不是终点。<br>理解，才是下一步。</p></div>
     <div class="finale-text" data-act="4">
       <h2>她仍在飞行。</h2>
-      <p class="small">只是每一次被看见，都需要一次重新理解。</p>
+      <p class="small">一次负责任的观看，应该知道图像来自哪里、<br>经过怎样的转译，又在什么语境中被重新使用。</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <p class="src">数据与素材来源：数字敦煌资源库；”数字敦煌·开放素材库”（敦煌研究院 × 腾讯，2022 年 12 月上线，首批 6500 余份高清资源，区块链确权）；国际敦煌项目 IDP（1994 年大英图书馆发起，六语种，20+ 合作机构）；藏经洞文物海外散佚史料（斯坦因—大英博物馆/大英图书馆，伯希和—吉美博物馆/法国国家图书馆，华尔纳—哈佛福格艺术馆，奥登堡—俄罗斯东方文献研究所/艾尔米塔什）；新华社等公开报道；Wikimedia Commons 与 MET Open Access 开放图像。详见 Materials/SOURCES.md。</p>
+  <p class="src">数据与素材来源：抖音、B 站平台抓取样本（抖音 263 视频 / 18,996 评论，B 站 95 视频 / 2,138 评论）；数字敦煌资源库；“数字敦煌·开放素材库”（敦煌研究院 × 腾讯，2022 年 12 月上线，首批 6500 余份高清资源，区块链确权，截至 2023 访问超 350 万人次）；国际敦煌项目 IDP（1994 年大英图书馆发起，六语种，40+ 成员机构、横跨 15 国）；藏经洞文物海外散佚史料（斯坦因—大英博物馆/大英图书馆，伯希和—吉美博物馆/法国国家图书馆，华尔纳—哈佛福格艺术馆，奥登堡—俄罗斯东方文献研究所/艾尔米塔什）；敦煌旅游数据据甘肃日报、敦煌市文旅；新华社、人民网、国家数据局等公开报道；Wikimedia Commons 与 MET Open Access 开放图像。详见 Materials/SOURCES.md。</p>
   <div class="refs">
     <p class="refs-title">学术参考 · References（APA）</p>
     <p>宋丽娜. (n.d.). 敦煌壁画中各时期飞天形象特点及造型研究. <i>国画家</i>. 中国知网. <a href="https://kns.cnki.net" target="_blank" rel="noopener">https://kns.cnki.net</a></p>
@@ -1775,6 +1904,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
   var sections = ['cave','identify','platform','daily','global'].map(function(id){return document.getElementById(id);});
   var progressFill = document.querySelector('#progress .fill');
+  var toTop = document.getElementById('toTop');
 
   function onScroll(){
     var y = window.scrollY || window.pageYOffset;
@@ -1782,6 +1912,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     var doc = document.documentElement;
     var h = doc.scrollHeight - doc.clientHeight;
     progressFill.style.height = (h>0 ? (y/h*100) : 0) + '%';
+    if(toTop) toTop.classList.toggle('show', y > 700);
 
     var current = sections[0];
     sections.forEach(function(s){ if(s && s.offsetTop <= y + window.innerHeight*0.4) current = s; });
@@ -1789,6 +1920,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
+  if(toTop) toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 
   /* ---------- REVEAL on scroll ---------- */
   var revealObserver = new IntersectionObserver(function(entries){
@@ -2038,9 +2170,11 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   /* ---------- GLOBAL MAP arcs (S5.1) ---------- */
   var mapSvg = document.getElementById('mapSvg');
   if(mapSvg){
-    // project real lon/lat onto the world-map.svg viewBox (equirectangular fit)
+    // project real lon/lat onto this world-map.svg's coordinate system.
+    // constants fitted from ~20 compact countries' true positions in the SVG
+    // (Al MacDonald "Simple World Map", equirectangular); mean error ~7px.
     function P(lon,lat){
-      return [ 30.767 + (lon+169)/360*784.077, 241.591 + (83-lat)/140*458.627 ];
+      return [ 2.3592*lon + 405.18, -2.7359*lat + 530.83 ];
     }
     var origin=P(94.66,40.14); // 敦煌
     var dests=[
@@ -2178,7 +2312,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 
     // mineral pigments: 石青 石绿 朱砂 泥金 壁面粉尘
     var pigments = ['#2f5d8a','#3a7ca5','#5a9276','#4f7d5e','#b3422f','#cc6a4f','#c9a24b','#e3c878','#d8cdb0'];
-    var words = ['国潮','敦煌舞','AI修复','非遗','二创','仿妆','美学','研学','文化复兴','转发','收藏','飞天'];
+    var words = ['国潮','敦煌舞','AI修复','非遗','二创','仿妆','美学','研学','打卡','转发','收藏','飞天'];
     var rnd = function(a,b){ return a + Math.random()*(b-a); };
 
     var N = 40, frags = [];
@@ -2313,7 +2447,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         tw:Math.random()*6.28
       };
     }
-    var motes=[], M=58;                    // sparser dust
+    var motes=[], M=(window.innerWidth<=560?20:58); // fewer motes on phones (less distraction over text/charts)
     for(var i=0;i<M;i++){ motes.push(spawn()); }
     var run=true;
     function frame(){
