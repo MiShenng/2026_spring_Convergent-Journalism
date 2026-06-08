@@ -1055,9 +1055,9 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 .decode-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
 .decode-lines path{fill:none;stroke:rgba(227,200,120,.0);stroke-width:1.4;stroke-dasharray:340;stroke-dashoffset:340;transition:stroke .4s,stroke-dashoffset .9s ease}
 .decode-lines path.on{stroke:rgba(227,200,120,.85);stroke-dashoffset:0;filter:drop-shadow(0 0 4px rgba(227,200,120,.7))}
-.decode-flag{position:absolute;z-index:4;transform:translate(-50%,-220%) scale(.9);
-  font-family:var(--font-cn);font-size:.74rem;color:var(--ink);background:var(--gold-soft);
-  padding:.16rem .55rem;border-radius:3px;white-space:nowrap;letter-spacing:.04em;font-weight:600;
+.decode-flag{position:absolute;z-index:4;transform:translate(-50%,-220%) scale(.95);
+  font-family:var(--font-cn);font-size:.82rem;color:var(--ink);background:var(--gold-soft);
+  padding:.22rem .65rem;border-radius:3px;white-space:nowrap;letter-spacing:.04em;font-weight:600;
   box-shadow:0 6px 16px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .35s ease,transform .35s ease}
 .decode-flag::after{content:"";position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);
   border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--gold-soft)}
@@ -1472,12 +1472,6 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     <div class="visual reveal">
       <div class="decode-fig anatomy" id="anatomyFig">
         <img loading="lazy" decoding="async" src="assets/anatomy.webp" alt="敦煌持琵琶飞天（艺术再现）的视觉拆解">
-        <svg class="decode-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path data-i="0" d="M62,30 L88,13"/>
-          <path data-i="1" d="M42,40 L14,28"/>
-          <path data-i="2" d="M46,66 L18,84"/>
-          <path data-i="3" d="M30,24 L10,9"/>
-        </svg>
         <button class="hot active" data-i="0" style="left:62%;top:30%" aria-label="飘带"><span class="hn">1</span></button>
         <button class="hot" data-i="1" style="left:42%;top:40%" aria-label="琵琶乐舞"><span class="hn">2</span></button>
         <button class="hot" data-i="2" style="left:46%;top:66%" aria-label="敦煌色系"><span class="hn">3</span></button>
