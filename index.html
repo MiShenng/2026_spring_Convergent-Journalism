@@ -671,6 +671,33 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 
 /* marks an editorial-observation figure (dashed border, not scraped data) */
 .is-editorial{border-style:dashed!important;border-color:rgba(204,106,79,.4)!important}
+/* placeholder badge — figure whose real data is still being collected */
+.ph-badge{display:inline-block;font-family:var(--font-sans-cn);font-size:.62rem;letter-spacing:.12em;
+  color:var(--azurite);border:1px dashed rgba(58,124,165,.6);border-radius:3px;
+  padding:.2rem .55rem;margin-bottom:.7rem}
+.is-placeholder .wb-track i{opacity:.5;background:linear-gradient(90deg,var(--azurite),var(--silk-faint))}
+/* wider label column for English-tag / English-word bars (overseas section) */
+.catbars.en .wb-row,.wordbars.en .wb-row{grid-template-columns:9.6rem 1fr 2.6rem}
+@media(max-width:560px){.catbars.en .wb-row,.wordbars.en .wb-row{grid-template-columns:8.4rem 1fr 2.4rem}}
+
+/* ============================================================
+   OVERSEAS section — refined azurite "foreign-gaze" treatment
+   ============================================================ */
+.os-eyebrow{font-family:var(--font-sans-cn);font-size:.66rem;letter-spacing:.34em;color:var(--azurite);text-transform:uppercase;margin-bottom:.7rem}
+.os-card{position:relative;background:linear-gradient(180deg,rgba(58,124,165,.09),rgba(20,22,42,.6));
+  border:1px dashed rgba(58,124,165,.45);border-radius:7px;padding:1.5rem 1.4rem;box-shadow:var(--shadow)}
+.os-card .ctitle{color:#8fc0db}
+.os-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:.1rem 0 1.4rem;text-align:center}
+.os-kpi div{border:1px solid rgba(58,124,165,.22);border-radius:5px;padding:.7rem .3rem;background:rgba(11,12,22,.35)}
+.os-kpi b{font-family:'Cinzel',serif;font-size:clamp(1.3rem,3.2vw,1.9rem);color:var(--gold-soft);display:block;line-height:1}
+.os-kpi span{font-size:.6rem;color:var(--silk-dim);letter-spacing:.04em;line-height:1.4;display:block;margin-top:.35rem}
+.os-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:1.5rem;align-items:start}
+.os-quotes{display:grid;gap:.7rem}
+.os-qh{font-family:var(--font-sans-cn);font-size:.66rem;letter-spacing:.14em;color:#8fc0db;margin-bottom:.1rem}
+.os-q{border-left:2px solid var(--azurite);background:rgba(20,22,42,.5);padding:.75rem .9rem;border-radius:0 5px 5px 0}
+.os-q p{font-size:.86rem;line-height:1.55;color:var(--silk);font-style:italic}
+.os-q .src{font-size:.62rem;color:var(--silk-faint);margin-top:.4rem;letter-spacing:.03em;font-style:normal}
+@media(max-width:760px){.os-grid{grid-template-columns:1fr;gap:1.6rem}.os-kpi b{font-size:1.5rem}}
 
 /* ranked high-frequency word bars (replaces the word cloud as the core chart) */
 .wordbars{display:grid;gap:1.1rem}
@@ -839,6 +866,10 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 .refs a{color:var(--gold-soft);border-bottom:1px solid var(--rule);word-break:break-all}
 .refs a:hover{color:var(--gold);border-color:var(--gold)}
 .refs .refs-note{font-size:.66rem;color:var(--silk-faint);font-style:italic;margin-top:.7rem}
+/* grouped, labeled footer sources (more readable than one long line) */
+.src-groups{max-width:82ch;margin:0 auto;text-align:left;display:grid;gap:.85rem}
+.srcg h4{font-family:var(--font-sans-cn);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.25rem}
+.srcg p{font-size:.72rem;color:var(--silk-faint);line-height:1.65}
 
 @keyframes pulseRing{
   0%,100%{transform:scale(.82);opacity:.18}
@@ -1598,7 +1629,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           </div>
           <div class="engine bz">
             <div class="ehead"><b>B站</b><em>BILIBILI · 95 视频</em></div>
-            <div class="esig">纪录片 · 讲解 · 知识 · 深度沉淀</div>
+            <div class="esig">纪录片 · 讲解 · 知识 · 慢看收藏</div>
             <div class="erow"><span class="k">收藏</span><div class="bar"><i style="--w:100%"></i></div><span class="v">1,660</span></div>
             <div class="erow"><span class="k">点赞</span><div class="bar"><i style="--w:40%"></i></div><span class="v">667</span></div>
             <div class="erow"><span class="k">分享</span><div class="bar"><i style="--w:35%"></i></div><span class="v">577</span></div>
@@ -1756,7 +1787,6 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.7rem">敦煌散佚 · 海外馆藏地图</div>
         <div class="worldmap">
           <img class="wm-base" src="assets/world-map.svg" alt="世界地图" loading="lazy">
-          <!-- TODO(来源核验)：地图标点为主要收藏城市的示意位置；每个机构的精确馆藏数量与坐标尚需逐项核对（斯坦因—大英、伯希和—吉美/BnF、华尔纳—哈佛、奥登堡—俄藏）。不代表全部流散路径。 -->
           <svg class="wm-overlay" id="mapSvg" viewBox="30.767 241.591 784.077 458.627" preserveAspectRatio="xMidYMid meet"></svg>
         </div>
         <div class="map-stats">
@@ -1766,6 +1796,94 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <div><b>6,500+</b>开放素材库资源</div>
         </div>
         <details class="note"><summary>图注 · 来源</summary><span class="nt">图 7：藏经洞文物海外主要收藏机构。<b>主要机构示意，不代表全部流散路径。</b>底图为开放许可世界地图（CC BY-SA 3.0），标点为主要收藏城市的示意位置；机构与散佚史据敦煌研究院、国际敦煌项目（IDP）及公开报道整理，个别标点的精确馆藏数量仍需逐项核对。</span></details>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5.1b 触达：海外平台上的飞天（数据采集中，占位结构） -->
+  <div class="screen flip" id="overseas">
+    <div class="visual reveal">
+      <div class="chart os-card is-placeholder">
+        <span class="ph-badge">数据采集中 · 占位示意</span>
+        <div class="os-eyebrow">海外 · 触达</div>
+        <div class="os-kpi">
+          <div><b>~1,200</b><span>海外相关视频<br>占位</span></div>
+          <div><b>~24K</b><span>海外评论样本<br>占位</span></div>
+          <div><b>40+</b><span>评论来源国<br>占位</span></div>
+        </div>
+        <div class="ctitle">飞天相关内容 · 平台分布（占位）</div>
+        <div class="catbars">
+          <div class="wb-row"><span class="wb-k">YouTube</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">100%</span></div>
+          <div class="wb-row"><span class="wb-k">TikTok</span><div class="wb-track"><i style="--w:75%"></i></div><span class="wb-v">75%</span></div>
+          <div class="wb-row"><span class="wb-k">Instagram</span><div class="wb-track"><i style="--w:55%"></i></div><span class="wb-v">55%</span></div>
+          <div class="wb-row"><span class="wb-k">X · Twitter</span><div class="wb-track"><i style="--w:33%"></i></div><span class="wb-v">33%</span></div>
+          <div class="wb-row"><span class="wb-k">Reddit</span><div class="wb-track"><i style="--w:20%"></i></div><span class="wb-v">20%</span></div>
+        </div>
+        <details class="note"><summary>说明</summary><span class="nt"><b>本图为占位示意，数字为虚构占位，真实数据采集中（预计补充：〔填写日期〕）。</b>计划抓取 YouTube、TikTok、Instagram、X、Reddit 等海外平台上 “Dunhuang / flying apsara / 飞天” 相关内容与评论，统计内容量、评论来源与高频主题；采集时间、关键词与去重口径届时一并补充，并替换此处占位数字。</span></details>
+      </div>
+    </div>
+    <div class="copy reveal d1">
+      <h3>海外平台如何看敦煌？</h3>
+      <p>很多外国人第一次遇见飞天，也是在信息流里：YouTube 的丝路纪录片切片、TikTok 的 #dunhuang 舞蹈、Instagram 的壁画美图。问题同样成立——被刷到，是否等于被理解？</p>
+      <p>这一节不靠想象，而是去挖 <b>海外平台的真实评论</b>：它们用什么词谈飞天，把它接进哪种框架，又有多少人想知道它来自哪一窟。</p>
+      <p><b>数据正在采集</b>，本节先以占位示意搭好结构，真实抓取结果补齐后替换。</p>
+    </div>
+  </div>
+
+  <!-- S5.1c 倾听：海外评论在说什么（数据采集中，占位） -->
+  <div class="screen solo" id="overseas-voices">
+    <div class="copy reveal" style="max-width:66ch">
+      <div class="os-eyebrow">海外 · 倾听</div>
+      <h3>海外评论在说什么？</h3>
+      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.6rem">把海外平台的评论摊开，先跳出来的往往是 “beautiful” 这类赞叹，其次才是 “Chinese culture”“Buddhism”“Silk Road” 这些给飞天定位的词。被看见，先发生在审美层面；理解，要再走一步。<b>下面是占位示意，真实数据补齐后替换。</b></p>
+    </div>
+    <div class="visual reveal d1" style="width:100%;max-width:1080px">
+      <div class="chart os-card is-placeholder">
+        <span class="ph-badge">数据采集中 · 占位示意</span>
+        <div class="os-grid">
+          <div>
+            <div class="ctitle">海外评论高频词 · 按主题分组（占位）</div>
+            <div class="wordbars en">
+              <div class="wb-group emo">
+                <div class="wb-cat">赞叹 · Praise</div>
+                <div class="wb-row"><span class="wb-k">beautiful</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">100</span></div>
+                <div class="wb-row"><span class="wb-k">stunning</span><div class="wb-track"><i style="--w:66%"></i></div><span class="wb-v">66</span></div>
+                <div class="wb-row"><span class="wb-k">gorgeous</span><div class="wb-track"><i style="--w:45%"></i></div><span class="wb-v">45</span></div>
+              </div>
+              <div class="wb-group">
+                <div class="wb-cat">文化认知 · Culture</div>
+                <div class="wb-row"><span class="wb-k">Chinese culture</span><div class="wb-track"><i style="--w:60%"></i></div><span class="wb-v">60</span></div>
+                <div class="wb-row"><span class="wb-k">Buddhism</span><div class="wb-track"><i style="--w:40%"></i></div><span class="wb-v">40</span></div>
+                <div class="wb-row"><span class="wb-k">history</span><div class="wb-track"><i style="--w:33%"></i></div><span class="wb-v">33</span></div>
+              </div>
+              <div class="wb-group">
+                <div class="wb-cat">跨文化坐标 · Cross-ref</div>
+                <div class="wb-row"><span class="wb-k">Silk Road</span><div class="wb-track"><i style="--w:30%"></i></div><span class="wb-v">30</span></div>
+                <div class="wb-row"><span class="wb-k">India / Gandhara</span><div class="wb-track"><i style="--w:18%"></i></div><span class="wb-v">18</span></div>
+              </div>
+              <div class="wb-group">
+                <div class="wb-cat">行动 · Intent</div>
+                <div class="wb-row"><span class="wb-k">want to visit</span><div class="wb-track"><i style="--w:26%"></i></div><span class="wb-v">26</span></div>
+                <div class="wb-row"><span class="wb-k">where to see</span><div class="wb-track"><i style="--w:17%"></i></div><span class="wb-v">17</span></div>
+              </div>
+              <div class="wb-group">
+                <div class="wb-cat">二创 · Remix</div>
+                <div class="wb-row"><span class="wb-k">AI art</span><div class="wb-track"><i style="--w:22%"></i></div><span class="wb-v">22</span></div>
+                <div class="wb-row"><span class="wb-k">cosplay</span><div class="wb-track"><i style="--w:13%"></i></div><span class="wb-v">13</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="os-qh">代表性评论 · 占位示意</div>
+            <div class="os-quotes">
+              <div class="os-q"><p>“So beautiful — I had no idea China had murals like this.”</p><div class="src">YouTube · 占位示意</div></div>
+              <div class="os-q"><p>“Looks like Buddhist art from along the Silk Road.”</p><div class="src">Reddit · 占位示意</div></div>
+              <div class="os-q"><p>“Is this AI or a real mural? I want to visit Dunhuang someday.”</p><div class="src">Instagram · 占位示意</div></div>
+              <div class="os-q"><p>“Gorgeous dance, but what's the story behind it?”</p><div class="src">TikTok · 占位示意</div></div>
+            </div>
+          </div>
+        </div>
+        <details class="note"><summary>说明</summary><span class="nt"><b>本屏为占位示意，词条、数值与评论均为虚构占位，真实数据采集中（预计补充：〔填写日期〕）。</b>计划对 YouTube / TikTok / Instagram / X / Reddit 的飞天相关评论做高频词与主题统计，并摘录代表性评论；采集时间、关键词、语言与去重口径届时一并补充。</span></details>
       </div>
     </div>
   </div>
@@ -1824,12 +1942,12 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <div class="ccard"><p>“喜欢这个趋势，但 AI 二创还保留原来的宗教和文化意味吗？”</p><div class="src">视频号 · 高赞评论 · 2025-05</div></div>
         </div>
       </div>
-      <details class="note"><summary>说明</summary><span class="nt">评论摘自本作品抓取样本中的高赞评论，已按内容分组；账号信息略去。</span></details>
+      <details class="note"><summary>说明</summary><span class="nt">评论为各平台公开高赞评论的摘录，用于呈现不同声音（示意），账号信息略去；其中抖音、B 站与本作品抓取样本一致，小红书、视频号为公开平台评论，不计入第三章的量化样本。</span></details>
     </div>
     <div class="copy reveal d1">
       <h3>飞天的可见，并不单纯。</h3>
       <p>她被更多人看见，可能意味着文化遗产进入公共生活，也可能意味着复杂语境被压缩成一次视觉消费。两种情形常常同时发生。</p>
-      <p>于是问题落到归属上：被看见之后，<em style="color:var(--gold-soft);font-style:normal">谁有权解释飞天？谁应该标明来源？谁需要为误读与挪用负责？</em>飞天的破圈，是一场关于保护、传播、产业与边界的持续协商。</p>
+      <p>于是问题落到归属上：被看见之后，<em style="color:var(--gold-soft);font-style:normal">谁有权解释飞天？谁应该标明来源？谁需要为误读与挪用负责？</em>飞天的破圈，一直在保护、传播、产业与边界之间拉扯。</p>
     </div>
   </div>
 
@@ -1883,7 +2001,11 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 </section>
 
 <footer>
-  <p class="src">数据与素材来源：抖音、B 站平台抓取样本（抖音 263 视频 / 18,996 评论，B 站 95 视频 / 2,138 评论）；数字敦煌资源库；“数字敦煌·开放素材库”（敦煌研究院 × 腾讯，2022 年 12 月上线，首批 6500 余份高清资源，区块链确权，截至 2023 访问超 350 万人次）；国际敦煌项目 IDP（1994 年大英图书馆发起，六语种，40+ 成员机构、横跨 15 国）；藏经洞文物海外散佚史料（斯坦因—大英博物馆/大英图书馆，伯希和—吉美博物馆/法国国家图书馆，华尔纳—哈佛福格艺术馆，奥登堡—俄罗斯东方文献研究所/艾尔米塔什）；敦煌旅游数据据甘肃日报、敦煌市文旅；新华社、人民网、国家数据局等公开报道；Wikimedia Commons 与 MET Open Access 开放图像。详见 Materials/SOURCES.md。</p>
+  <div class="src-groups">
+    <div class="srcg"><h4>抓取样本</h4><p>抖音 263 条视频 / 18,996 条评论，B 站 95 条视频 / 2,138 条评论；海外平台数据采集中。</p></div>
+    <div class="srcg"><h4>事实数据</h4><p>数字敦煌资源库；“数字敦煌·开放素材库”（敦煌研究院 × 腾讯，2022 年 12 月上线，首批 6500 余份高清资源，区块链确权，截至 2023 访问超 350 万人次）；国际敦煌项目 IDP（1994 年大英图书馆发起，40+ 成员机构、横跨 15 国、6 语种）；敦煌旅游数据据甘肃日报、敦煌市文旅；新华社、人民网、国家数据局等公开报道。</p></div>
+    <div class="srcg"><h4>图像素材</h4><p>藏经洞文物海外散佚史料（斯坦因—大英博物馆/大英图书馆，伯希和—吉美博物馆/法国国家图书馆，华尔纳—哈佛福格艺术馆，奥登堡—俄罗斯东方文献研究所/艾尔米塔什）；Wikimedia Commons 与 MET Open Access 开放图像。详见 Materials/SOURCES.md。</p></div>
+  </div>
   <div class="refs">
     <p class="refs-title">学术参考 · References（APA）</p>
     <p>宋丽娜. (n.d.). 敦煌壁画中各时期飞天形象特点及造型研究. <i>国画家</i>. 中国知网. <a href="https://kns.cnki.net" target="_blank" rel="noopener">https://kns.cnki.net</a></p>

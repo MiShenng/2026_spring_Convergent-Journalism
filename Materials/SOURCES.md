@@ -10,14 +10,6 @@
 - 许可：Public Domain Mark 1.0；二维公有领域作品的忠实复制图像。
 - 页面用途：首页后的章节门户第一张卡片。
 
-## `dunhuang-reverse-pipa-stage.jpg`
-
-- 来源：Wikimedia Commons, `File:Dunhuang (23971482995).jpg`
-- 链接：https://commons.wikimedia.org/wiki/File:Dunhuang_(23971482995).jpg
-- 作者：Laika ac
-- 许可：Creative Commons Attribution-ShareAlike 2.0 Generic。
-- 页面用途：章节门户第三张卡片，用于表现“反弹琵琶/舞台化传播”视觉。
-
 ## `met-flying-celestial-apsara.jpg`
 
 - 来源：Wikimedia Commons / The Metropolitan Museum of Art, `Flying Celestial Apsara (Feitian 飛天)`
@@ -59,5 +51,4 @@
 ## 由 Materials 原图转换的展示版（webp）
 
 - `assets/dh_met_apsara.webp` ← `met-flying-celestial-apsara.jpg`（MET Open Access / CC0，海外章节具体案例）。
-- `assets/dh_reverse_pipa.webp` ← `dunhuang-reverse-pipa-stage.jpg`（CC BY-SA 2.0, 作者 Laika ac，素材墙“反弹琵琶”）。
-- `assets/dh_apsara_wei.webp` ← `dunhuang-flying-apsara-western-wei.jpg`（Public Domain，素材墙“千年形象流变”）。
+- `assets/dh_apsara_wei.webp` ← `dunhuang-flying-apsara-western-wei.jpg`（Public Domain，识别章节形态流变）。
