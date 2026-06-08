@@ -697,6 +697,14 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .os-q{border-left:2px solid var(--azurite);background:rgba(20,22,42,.5);padding:.75rem .9rem;border-radius:0 5px 5px 0}
 .os-q p{font-size:.86rem;line-height:1.55;color:var(--silk);font-style:italic}
 .os-q .src{font-size:.62rem;color:var(--silk-faint);margin-top:.4rem;letter-spacing:.03em;font-style:normal}
+.os-q .src a{color:#8fc0db;text-decoration:none;border-bottom:1px solid rgba(143,192,219,.4)}
+/* sentiment stacked bar (VADER approximation) */
+.senti-bar{display:flex;width:100%;height:1.7rem;border-radius:5px;overflow:hidden;margin-top:.45rem;
+  font-family:var(--font-sans-cn);font-size:.62rem;letter-spacing:.02em}
+.senti-bar span{display:flex;align-items:center;justify-content:center;color:#0b0c16;white-space:nowrap;overflow:hidden}
+.senti-pos{background:var(--gold-soft)}
+.senti-neu{background:rgba(143,192,219,.45);color:var(--silk)}
+.senti-neg{background:var(--vermilion-soft);color:#fff}
 @media(max-width:760px){.os-grid{grid-template-columns:1fr;gap:1.6rem}.os-kpi b{font-size:1.5rem}}
 
 /* ranked high-frequency word bars (replaces the word cloud as the core chart) */
@@ -1801,90 +1809,125 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   </div>
 
   <!-- S5.1b 触达：海外平台上的飞天 -->
-  <div class=”screen flip” id=”overseas”>
-    <div class=”visual reveal”>
-      <div class=”chart os-card”>
-        <div class=”os-eyebrow”>海外 · 触达</div>
-        <div class=”os-kpi”>
-          <div><b>232</b><span>YouTube 相关视频<br>抓取样本</span></div>
-          <div><b>1,589</b><span>评论样本</span></div>
-          <div><b>10</b><span>评论语言数</span></div>
+  <div class="screen flip" id="overseas">
+    <div class="visual reveal">
+      <div class="chart os-card">
+        <div class="os-eyebrow">海外 · 触达</div>
+        <div class="os-kpi">
+          <div><b>989万</b><span>样本视频总播放</span></div>
+          <div><b>230</b><span>YouTube 相关视频<br>抓取样本</span></div>
+          <div><b>1,397</b><span>评论样本</span></div>
         </div>
-        <div class=”ctitle”>飞天相关内容 · 平台分布（YouTube API 抓取样本，2026-06-08）</div>
-        <div class=”catbars”>
-          <div class=”wb-row”><span class=”wb-k”>YouTube</span><div class=”wb-track”><i style=”--w:100%”></i></div><span class=”wb-v”>232 视频</span></div>
-          <div class=”wb-row”><span class=”wb-k”>TikTok</span><div class=”wb-track”><i style=”--w:0%”></i></div><span class=”wb-v” style=”color:var(--silk-dim)”>API 受限</span></div>
-          <div class=”wb-row”><span class=”wb-k”>Instagram</span><div class=”wb-track”><i style=”--w:0%”></i></div><span class=”wb-v” style=”color:var(--silk-dim)”>API 受限</span></div>
-          <div class=”wb-row”><span class=”wb-k”>X · Twitter</span><div class=”wb-track”><i style=”--w:0%”></i></div><span class=”wb-v” style=”color:var(--silk-dim)”>API 付费</span></div>
-          <div class=”wb-row”><span class=”wb-k”>Reddit</span><div class=”wb-track”><i style=”--w:0%”></i></div><span class=”wb-v” style=”color:var(--silk-dim)”>待采集</span></div>
+        <div class="ctitle">飞天相关内容 · 平台分布（YouTube Data API，2026-06-08）</div>
+        <div class="catbars">
+          <div class="wb-row"><span class="wb-k">YouTube</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">230 视频</span></div>
+          <div class="wb-row"><span class="wb-k">TikTok</span><div class="wb-track"><i style="--w:0%"></i></div><span class="wb-v" style="color:var(--silk-dim)">API 受限</span></div>
+          <div class="wb-row"><span class="wb-k">Instagram</span><div class="wb-track"><i style="--w:0%"></i></div><span class="wb-v" style="color:var(--silk-dim)">API 受限</span></div>
+          <div class="wb-row"><span class="wb-k">X · Twitter</span><div class="wb-track"><i style="--w:0%"></i></div><span class="wb-v" style="color:var(--silk-dim)">API 付费</span></div>
+          <div class="wb-row"><span class="wb-k">Reddit</span><div class="wb-track"><i style="--w:0%"></i></div><span class="wb-v" style="color:var(--silk-dim)">待采集</span></div>
         </div>
-        <details class=”note”><summary>说明</summary><span class=”nt”>数据来源：YouTube Data API v3，关键词 “Dunhuang / flying apsara / feitian / Dunhuang mural / Mogao caves”，2026-06-08 抓取，去重后 232 个视频、1,589 条评论。TikTok / Instagram / X 因 API 限制未采集，Reddit 待后续配置。样本仅反映 API 搜索排序，非全网总量。</span></details>
+        <div class="ctitle" style="margin-top:1.4rem">评论语言分布 · Top 7（样本 1,397 条评论）</div>
+        <div class="catbars">
+          <div class="wb-row"><span class="wb-k">English 英语</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">66%</span></div>
+          <div class="wb-row"><span class="wb-k">Spanish 西语</span><div class="wb-track"><i style="--w:12%"></i></div><span class="wb-v">8%</span></div>
+          <div class="wb-row"><span class="wb-k">简体中文</span><div class="wb-track"><i style="--w:8%"></i></div><span class="wb-v">5%</span></div>
+          <div class="wb-row"><span class="wb-k">Korean 韩语</span><div class="wb-track"><i style="--w:5%"></i></div><span class="wb-v">3%</span></div>
+          <div class="wb-row"><span class="wb-k">Russian 俄语</span><div class="wb-track"><i style="--w:3%"></i></div><span class="wb-v">2%</span></div>
+          <div class="wb-row"><span class="wb-k">French 法语</span><div class="wb-track"><i style="--w:3%"></i></div><span class="wb-v">2%</span></div>
+          <div class="wb-row"><span class="wb-k">繁体中文</span><div class="wb-track"><i style="--w:3%"></i></div><span class="wb-v">2%</span></div>
+        </div>
+        <details class="note"><summary>说明</summary><span class="nt">数据来源：YouTube Data API v3，关键词 “Dunhuang / flying apsara / feitian / Dunhuang mural / Mogao caves”，2026-06-08 抓取，去重后 230 个视频、1,397 条评论，覆盖 10 种评论语言。已用标题与评论双层过滤剔除与敦煌无关的同名内容（如 EXO 成员 LAY 的同名歌曲《飞天》）。播放高度集中：前 2 条爆款合计约占总播放的 65%，其余视频播放中位数仅 1,525 次。TikTok / Instagram / X 因 API 限制或付费未采集，Reddit 待后续配置。样本仅反映 API 搜索排序，非全网总量。</span></details>
       </div>
     </div>
-    <div class=”copy reveal d1”>
+    <div class="copy reveal d1">
       <h3>海外平台如何看敦煌？</h3>
-      <p>很多外国人第一次遇见飞天，也是在信息流里：YouTube 的丝路纪录片切片、TikTok 的 #dunhuang 舞蹈、Instagram 的壁画美图。问题同样成立——被刷到，是否等于被理解？</p>
-      <p>这一节不靠想象，而是去挖 <b>海外平台的真实评论</b>：它们用什么词谈飞天，把它接进哪种框架，又有多少人想知道它来自哪一窟。</p>
-      <p>YouTube 样本显示，评论跨越 <b>10 种语言</b>，英语占 66%，其次是西班牙语（9%）和简体中文（5%）——飞天在海外的受众本就是多语言的。</p>
+      <p>很多外国人第一次遇见飞天，也是在信息流里：YouTube 的丝路纪录片切片、舞台舞蹈、城市旅拍。问题同样成立——被刷到，是否等于被理解？</p>
+      <p>这一节不靠想象，而是去挖 <b>YouTube 上的真实评论</b>：它们用什么词谈飞天，把它接进哪种框架，又有多少人想再走一步、去了解它来自哪里。</p>
+      <p>样本里的“被看见”极不平均：230 条视频累计 989 万次播放，但 <b>前 2 条爆款就占了约三分之二</b>，长尾视频的播放中位数仅 1,525 次。评论跨越 10 种语言，英语占 66%，西语和中文紧随其后。</p>
     </div>
   </div>
 
   <!-- S5.1c 倾听：海外评论在说什么 -->
-  <div class=”screen solo” id=”overseas-voices”>
-    <div class=”copy reveal” style=”max-width:66ch”>
-      <div class=”os-eyebrow”>海外 · 倾听</div>
+  <div class="screen solo" id="overseas-voices">
+    <div class="copy reveal" style="max-width:66ch">
+      <div class="os-eyebrow">海外 · 倾听</div>
       <h3>海外评论在说什么？</h3>
-      <p style=”color:var(--silk-dim);font-size:1rem;margin-top:.6rem”>把 YouTube 的 1,589 条评论摊开，先跳出来的是 “beautiful”（89次）这类赞叹；其次才是 “culture””ancient””Silk Road” 这些给飞天定位的词。被看见，先发生在审美层面；理解，要再走一步。</p>
+      <p style="color:var(--silk-dim);font-size:1rem;margin-top:.6rem">把 1,397 条评论摊开，先跳出来的是 “beautiful”（82 次）、“amazing”（75 次）这类赞叹；其次才是 “culture”“ancient”“Silk Road” 这些给飞天定位的词。被看见，先发生在审美层面；理解，要再走一步。</p>
     </div>
-    <div class=”visual reveal d1” style=”width:100%;max-width:1080px”>
-      <div class=”chart os-card”>
-        <div class=”os-grid”>
+    <div class="visual reveal d1" style="width:100%;max-width:1080px">
+      <div class="chart os-card">
+        <div class="os-grid">
           <div>
-            <div class=”ctitle”>海外评论高频词 · 按主题分组（YouTube 样本，n=1,589）</div>
-            <div class=”wordbars en”>
-              <div class=”wb-group emo”>
-                <div class=”wb-cat”>赞叹 · Praise</div>
-                <div class=”wb-row”><span class=”wb-k”>beautiful</span><div class=”wb-track”><i style=”--w:100%”></i></div><span class=”wb-v”>89</span></div>
-                <div class=”wb-row”><span class=”wb-k”>amazing</span><div class=”wb-track”><i style=”--w:94%”></i></div><span class=”wb-v”>84</span></div>
-                <div class=”wb-row”><span class=”wb-k”>wow</span><div class=”wb-track”><i style=”--w:38%”></i></div><span class=”wb-v”>34</span></div>
+            <div class="ctitle">海外评论高频词 · 按主题分组（YouTube 样本，n=1,397）</div>
+            <div class="wordbars en">
+              <div class="wb-group emo">
+                <div class="wb-cat">赞叹 · Praise</div>
+                <div class="wb-row"><span class="wb-k">beautiful</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">82</span></div>
+                <div class="wb-row"><span class="wb-k">amazing</span><div class="wb-track"><i style="--w:91%"></i></div><span class="wb-v">75</span></div>
+                <div class="wb-row"><span class="wb-k">wow</span><div class="wb-track"><i style="--w:37%"></i></div><span class="wb-v">30</span></div>
               </div>
-              <div class=”wb-group”>
-                <div class=”wb-cat”>文化认知 · Culture</div>
-                <div class=”wb-row”><span class=”wb-k”>culture</span><div class=”wb-track”><i style=”--w:49%”></i></div><span class=”wb-v”>44</span></div>
-                <div class=”wb-row”><span class=”wb-k”>ancient</span><div class=”wb-track”><i style=”--w:45%”></i></div><span class=”wb-v”>40</span></div>
-                <div class=”wb-row”><span class=”wb-k”>history</span><div class=”wb-track”><i style=”--w:30%”></i></div><span class=”wb-v”>27</span></div>
+              <div class="wb-group">
+                <div class="wb-cat">文化认知 · Culture</div>
+                <div class="wb-row"><span class="wb-k">culture</span><div class="wb-track"><i style="--w:38%"></i></div><span class="wb-v">31</span></div>
+                <div class="wb-row"><span class="wb-k">ancient</span><div class="wb-track"><i style="--w:35%"></i></div><span class="wb-v">29</span></div>
+                <div class="wb-row"><span class="wb-k">history</span><div class="wb-track"><i style="--w:32%"></i></div><span class="wb-v">26</span></div>
+                <div class="wb-row"><span class="wb-k">Buddhist</span><div class="wb-track"><i style="--w:24%"></i></div><span class="wb-v">20</span></div>
               </div>
-              <div class=”wb-group”>
-                <div class=”wb-cat”>跨文化坐标 · Cross-ref</div>
-                <div class=”wb-row”><span class=”wb-k”>India</span><div class=”wb-track”><i style=”--w:46%”></i></div><span class=”wb-v”>41</span></div>
-                <div class=”wb-row”><span class=”wb-k”>Silk Road</span><div class=”wb-track”><i style=”--w:28%”></i></div><span class=”wb-v”>25</span></div>
-                <div class=”wb-row”><span class=”wb-k”>Central Asia</span><div class=”wb-track”><i style=”--w:3%”></i></div><span class=”wb-v”>3</span></div>
+              <div class="wb-group">
+                <div class="wb-cat">跨文化坐标 · Cross-ref</div>
+                <div class="wb-row"><span class="wb-k">India</span><div class="wb-track"><i style="--w:51%"></i></div><span class="wb-v">42</span></div>
+                <div class="wb-row"><span class="wb-k">Silk Road</span><div class="wb-track"><i style="--w:22%"></i></div><span class="wb-v">18</span></div>
+                <div class="wb-row"><span class="wb-k">Central Asia</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">3</span></div>
               </div>
-              <div class=”wb-group”>
-                <div class=”wb-cat”>行动 · Intent</div>
-                <div class=”wb-row”><span class=”wb-k”>visit</span><div class=”wb-track”><i style=”--w:34%”></i></div><span class=”wb-v”>30</span></div>
-                <div class=”wb-row”><span class=”wb-k”>travel</span><div class=”wb-track”><i style=”--w:20%”></i></div><span class=”wb-v”>18</span></div>
-                <div class=”wb-row”><span class=”wb-k”>bucket list</span><div class=”wb-track”><i style=”--w:3%”></i></div><span class=”wb-v”>3</span></div>
+              <div class="wb-group">
+                <div class="wb-cat">行动 · Intent</div>
+                <div class="wb-row"><span class="wb-k">visit</span><div class="wb-track"><i style="--w:37%"></i></div><span class="wb-v">30</span></div>
+                <div class="wb-row"><span class="wb-k">travel</span><div class="wb-track"><i style="--w:22%"></i></div><span class="wb-v">18</span></div>
+                <div class="wb-row"><span class="wb-k">bucket list</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">3</span></div>
               </div>
-              <div class=”wb-group”>
-                <div class=”wb-cat”>二创 · Remix</div>
-                <div class=”wb-row”><span class=”wb-k”>AI</span><div class=”wb-track”><i style=”--w:10%”></i></div><span class=”wb-v”>9</span></div>
-                <div class=”wb-row”><span class=”wb-k”>cosplay</span><div class=”wb-track”><i style=”--w:3%”></i></div><span class=”wb-v”>3</span></div>
-                <div class=”wb-row”><span class=”wb-k”>makeup</span><div class=”wb-track”><i style=”--w:2%”></i></div><span class=”wb-v”>2</span></div>
+              <div class="wb-group">
+                <div class="wb-cat">二创 · Remix</div>
+                <div class="wb-row"><span class="wb-k">AI</span><div class="wb-track"><i style="--w:7%"></i></div><span class="wb-v">6</span></div>
+                <div class="wb-row"><span class="wb-k">cosplay</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">3</span></div>
+                <div class="wb-row"><span class="wb-k">makeup</span><div class="wb-track"><i style="--w:2%"></i></div><span class="wb-v">2</span></div>
               </div>
             </div>
           </div>
           <div>
-            <div class=”os-qh”>代表性评论 · YouTube 实采（点赞数排序）</div>
-            <div class=”os-quotes”>
-              <div class=”os-q”><p>”as an Indian classical dancer, I can't help but notice all the similarities between the two. this is amazing!”</p><div class=”src”><a href=”https://www.youtube.com/watch?v=bgGqgjkBLek” target=”_blank” rel=”noopener”>YouTube</a> · 2,740 赞</div></div>
-              <div class=”os-q”><p>”It's an evidence of coexistence of two greatest civilizations — China and India. Can't we stop fighting over nothing and just appreciate this.”</p><div class=”src”><a href=”https://www.youtube.com/watch?v=bgGqgjkBLek” target=”_blank” rel=”noopener”>YouTube</a> · 1,640 赞</div></div>
-              <div class=”os-q”><p>”Kalavinka (迦陵頻伽) is a celestial creature in Buddhism, said to be dwelling in Sukhavati (Western Pureland of Amitabha Buddha).”</p><div class=”src”>YouTube · 1,785 赞</div></div>
-              <div class=”os-q”><p>”I've been watching your channel for a few years, finally I went to China last month — what an amazing country! The people, the food…”</p><div class=”src”>YouTube · 1,847 赞</div></div>
+            <div class="os-qh">代表性评论 · YouTube 实采（点赞数排序）</div>
+            <div class="os-quotes">
+              <div class="os-q"><p>“as an Indian classical dancer, I can't help but notice all the similarities between the two. this is amazing!”</p><div class="src"><a href="https://www.youtube.com/watch?v=bgGqgjkBLek" target="_blank" rel="noopener">YouTube</a> · 2,740 赞</div></div>
+              <div class="os-q"><p>“It's an evidence of coexistence of two greatest civilizations — China and India. Can't we stop fighting over nothing and just appreciate this.”</p><div class="src"><a href="https://www.youtube.com/watch?v=bgGqgjkBLek" target="_blank" rel="noopener">YouTube</a> · 1,640 赞</div></div>
+              <div class="os-q"><p>“Kalavinka (迦陵頻伽) is a celestial creature in Buddhism, said to be dwelling in Sukhavati (Western Pureland of Amitabha Buddha).”</p><div class="src">YouTube · 1,785 赞</div></div>
+              <div class="os-q"><p>“I've been watching your channel for a few years, finally I went to China last month — what an amazing country! The people, the food…”</p><div class="src">YouTube · 1,847 赞</div></div>
+            </div>
+            <div class="os-qh" style="margin-top:1.3rem">评论情绪 · VADER 词典近似（英语评论 n=963）</div>
+            <div class="senti-bar">
+              <span class="senti-pos" style="width:71.4%">正面 71%</span>
+              <span class="senti-neu" style="width:22.0%">中性 22%</span>
+              <span class="senti-neg" style="width:6.5%">负面 7%</span>
             </div>
           </div>
         </div>
-        <details class=”note”><summary>说明</summary><span class=”nt”>数据来源：YouTube Data API v3，2026-06-08 抓取，关键词 “Dunhuang / flying apsara / feitian / Dunhuang mural / Mogao caves”，去重后 232 视频、1,589 条评论。高频词为编辑定义关键词的出现次数统计（非 NLP 分类器）；情感分析采用 VADER（仅英语评论，n=1,093，正面 72.3%）。代表性评论按实采点赞数排序，已过滤与敦煌主题无关的条目。</span></details>
+        <details class="note"><summary>说明</summary><span class="nt">数据来源：YouTube Data API v3，2026-06-08 抓取，去重后 230 视频、1,397 条评论。高频词为编辑定义关键词的出现次数统计（子串计数，非 NLP 分类器）；情绪为 VADER 词典近似，仅英语评论（n=963，正面 71.4% / 中性 22.0% / 负面 6.5%），只作趋势参考。代表性评论按实采点赞数排序，已过滤与敦煌主题无关的条目。</span></details>
+      </div>
+    </div>
+
+    <!-- 主动检索：Wikipedia 浏览量 -->
+    <div class="visual reveal d2" style="width:100%;max-width:1080px;margin-top:1.8rem">
+      <div class="chart os-card">
+        <div class="os-eyebrow">海外 · 主动检索</div>
+        <div class="ctitle">维基百科词条浏览量 · 近一年（2025-05 至 2026-05，全语种合计 40.6 万次）</div>
+        <div class="catbars en">
+          <div class="wb-row"><span class="wb-k">Apsara（飞天）</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">139,642</span></div>
+          <div class="wb-row"><span class="wb-k">Mogao Caves</span><div class="wb-track"><i style="--w:83%"></i></div><span class="wb-v">116,002</span></div>
+          <div class="wb-row"><span class="wb-k">Dunhuang · EN</span><div class="wb-track"><i style="--w:68%"></i></div><span class="wb-v">94,987</span></div>
+          <div class="wb-row"><span class="wb-k">敦煌 · 日语</span><div class="wb-track"><i style="--w:31%"></i></div><span class="wb-v">43,676</span></div>
+          <div class="wb-row"><span class="wb-k">Dunhuang · 法语</span><div class="wb-track"><i style="--w:5%"></i></div><span class="wb-v">6,466</span></div>
+          <div class="wb-row"><span class="wb-k">Dunhuang · 西语</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">5,657</span></div>
+        </div>
+        <p style="color:var(--silk-dim);font-size:.92rem;line-height:1.6;margin-top:.9rem">愿意主动去查的人，搜的更多是 <b style="color:var(--gold-soft);font-weight:400">“Apsara”（飞天这个审美概念）</b>，而不是地名“Dunhuang”或遗产地“Mogao Caves”。海外受众先被“飞天/天女”的形象吸引，再慢慢回溯到它的来处——和评论里 “beautiful” 远多于 “Mogao” 是同一个方向。</p>
+        <details class="note"><summary>说明</summary><span class="nt">数据来源：Wikimedia Pageviews REST API（all-access / user agent，月度），统计 2025-05 至 2026-05 各词条浏览量合计，免密钥公开接口。仅取 6 个主要词条，非全部相关条目；浏览量含搜索引擎导流，不等于独立访客数。</span></details>
       </div>
     </div>
   </div>
@@ -2003,7 +2046,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 
 <footer>
   <div class="src-groups">
-    <div class="srcg"><h4>抓取样本</h4><p>抖音 263 条视频 / 18,996 条评论，B 站 95 条视频 / 2,138 条评论；YouTube 232 条视频 / 1,589 条评论（关键词：Dunhuang / flying apsara / feitian / Dunhuang mural / Mogao caves，2026-06-08 采集，YouTube Data API v3）。</p></div>
+    <div class="srcg"><h4>抓取样本</h4><p>抖音 263 条视频 / 18,996 条评论，B 站 95 条视频 / 2,138 条评论；YouTube 230 条视频 / 1,397 条评论（关键词：Dunhuang / flying apsara / feitian / Dunhuang mural / Mogao caves，2026-06-08 采集，YouTube Data API v3，含播放量与 VADER 情绪近似）；维基百科词条浏览量经 Wikimedia Pageviews API 采集（2025-05 至 2026-05，6 个词条合计 40.6 万次）。</p></div>
     <div class="srcg"><h4>事实数据</h4><p>数字敦煌资源库；“数字敦煌·开放素材库”（敦煌研究院 × 腾讯，2022 年 12 月上线，首批 6500 余份高清资源，区块链确权，截至 2023 访问超 350 万人次）；国际敦煌项目 IDP（1994 年大英图书馆发起，40+ 成员机构、横跨 15 国、6 语种）；敦煌旅游数据据甘肃日报、敦煌市文旅；新华社、人民网、国家数据局等公开报道。</p></div>
     <div class="srcg"><h4>图像素材</h4><p>藏经洞文物海外散佚史料（斯坦因—大英博物馆/大英图书馆，伯希和—吉美博物馆/法国国家图书馆，华尔纳—哈佛福格艺术馆，奥登堡—俄罗斯东方文献研究所/艾尔米塔什）；Wikimedia Commons 与 MET Open Access 开放图像。详见 Materials/SOURCES.md。</p></div>
   </div>

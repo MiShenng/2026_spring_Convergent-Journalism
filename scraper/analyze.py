@@ -53,6 +53,29 @@ def _platform_distribution(items: List[MediaItem], comments: List[Comment]) -> L
     return rows
 
 
+def _engagement(items: List[MediaItem], top_n: int = 5) -> dict:
+    """Aggregate view counts: total reach plus the most-watched videos."""
+    total_views = sum(i.views for i in items)
+    ranked = sorted(items, key=lambda i: i.views, reverse=True)
+    top = [
+        {"title": i.title, "views": i.views, "url": i.url, "platform": i.platform}
+        for i in ranked[:top_n]
+    ]
+    return {
+        "total_views": total_views,
+        "median_views": _median([i.views for i in items]),
+        "top_videos": top,
+    }
+
+
+def _median(values: List[int]) -> int:
+    if not values:
+        return 0
+    s = sorted(values)
+    mid = len(s) // 2
+    return s[mid] if len(s) % 2 else (s[mid - 1] + s[mid]) // 2
+
+
 def _word_frequency(comments: List[Comment]) -> Dict[str, dict]:
     texts = [c.text.lower() for c in comments]
     result: Dict[str, dict] = {}
@@ -167,6 +190,7 @@ def build_dataset(items: List[MediaItem], comments: List[Comment],
             "comments": len(comments),
             "languages": len(languages),
         },
+        "engagement": _engagement(items),
         "platform_distribution": _platform_distribution(items, comments),
         "language_distribution": languages,
         "sentiment": _sentiment(comments),

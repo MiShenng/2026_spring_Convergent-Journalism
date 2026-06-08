@@ -1,0 +1,359 @@
+{
+  "meta": {
+    "collected_at": "2026-06-08",
+    "keywords": [
+      "Dunhuang",
+      "flying apsara",
+      "feitian",
+      "Dunhuang mural",
+      "Mogao caves"
+    ],
+    "platforms_collected": [
+      "YouTube"
+    ],
+    "limits": {
+      "max_videos_per_keyword": 50,
+      "max_posts_per_keyword": 50,
+      "max_comments_per_item": 100
+    },
+    "dedup": "by platform item id and by comment id",
+    "caveats": [
+      "Sample only — not the whole platform; reflects API search ranking.",
+      "Theme grouping is an editor-defined keyword heuristic, not a classifier.",
+      "Sentiment is a VADER dictionary approximation over English comments.",
+      "Commenter geolocation is NOT available from these APIs; we report comment LANGUAGE distribution instead of country.",
+      "Reddit exposes no view counts; platform 'views' is 0 there."
+    ]
+  },
+  "kpi": {
+    "items": 230,
+    "comments": 1397,
+    "languages": 10
+  },
+  "engagement": {
+    "total_views": 9885134,
+    "median_views": 1525,
+    "top_videos": [
+      {
+        "title": "Dunhuang dance show \"Flying Apsaras\"",
+        "views": 3325256,
+        "url": "https://www.youtube.com/watch?v=vvZbhLd8YfM",
+        "platform": "YouTube"
+      },
+      {
+        "title": "【北舞】敦煌古典舞《迦陵频伽》Chinese Classical Dance Dunhuang \"Kalaviṅka\" | BDA Graduate School Graduation 2022",
+        "views": 3072181,
+        "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
+        "platform": "YouTube"
+      },
+      {
+        "title": "Life looks a bit different in this Chinese city… it’s IN THE DESERT!!",
+        "views": 617596,
+        "url": "https://www.youtube.com/watch?v=OtS-vg81miA",
+        "platform": "YouTube"
+      },
+      {
+        "title": "CRAZY Desert Food Feast! China Dunhuang Food Tour of Hexi Corridor【Alin Food Walk】",
+        "views": 459604,
+        "url": "https://www.youtube.com/watch?v=yylw4qciZdU",
+        "platform": "YouTube"
+      },
+      {
+        "title": "This Feitian Artifact is so fun to shoot and edit. Feitian special effects video production.",
+        "views": 263536,
+        "url": "https://www.youtube.com/watch?v=2RsDAyrSgrQ",
+        "platform": "YouTube"
+      }
+    ]
+  },
+  "platform_distribution": [
+    {
+      "platform": "YouTube",
+      "items": 230,
+      "comments": 1397,
+      "pct": 100
+    }
+  ],
+  "language_distribution": [
+    {
+      "lang": "en",
+      "count": 835,
+      "pct": 66
+    },
+    {
+      "lang": "es",
+      "count": 102,
+      "pct": 8
+    },
+    {
+      "lang": "zh-cn",
+      "count": 69,
+      "pct": 5
+    },
+    {
+      "lang": "ko",
+      "count": 34,
+      "pct": 3
+    },
+    {
+      "lang": "ru",
+      "count": 25,
+      "pct": 2
+    },
+    {
+      "lang": "fr",
+      "count": 24,
+      "pct": 2
+    },
+    {
+      "lang": "zh-tw",
+      "count": 21,
+      "pct": 2
+    },
+    {
+      "lang": "ja",
+      "count": 13,
+      "pct": 1
+    },
+    {
+      "lang": "pt",
+      "count": 11,
+      "pct": 1
+    },
+    {
+      "lang": "tl",
+      "count": 11,
+      "pct": 1
+    }
+  ],
+  "sentiment": {
+    "n": 963,
+    "positive_pct": 71.4,
+    "negative_pct": 6.5,
+    "neutral_pct": 22.0
+  },
+  "word_frequency": {
+    "praise": {
+      "label_cn": "赞叹",
+      "label_en": "Praise",
+      "words": [
+        {
+          "word": "beautiful",
+          "count": 82
+        },
+        {
+          "word": "amazing",
+          "count": 75
+        },
+        {
+          "word": "wow",
+          "count": 30
+        },
+        {
+          "word": "stunning",
+          "count": 11
+        },
+        {
+          "word": "gorgeous",
+          "count": 9
+        },
+        {
+          "word": "lovely",
+          "count": 9
+        },
+        {
+          "word": "incredible",
+          "count": 7
+        },
+        {
+          "word": "breathtaking",
+          "count": 5
+        },
+        {
+          "word": "elegant",
+          "count": 4
+        },
+        {
+          "word": "masterpiece",
+          "count": 1
+        }
+      ]
+    },
+    "culture": {
+      "label_cn": "文化认知",
+      "label_en": "Culture",
+      "words": [
+        {
+          "word": "culture",
+          "count": 31
+        },
+        {
+          "word": "ancient",
+          "count": 29
+        },
+        {
+          "word": "history",
+          "count": 26
+        },
+        {
+          "word": "buddhist",
+          "count": 20
+        },
+        {
+          "word": "buddhism",
+          "count": 14
+        },
+        {
+          "word": "chinese culture",
+          "count": 4
+        },
+        {
+          "word": "religion",
+          "count": 4
+        },
+        {
+          "word": "heritage",
+          "count": 3
+        },
+        {
+          "word": "spiritual",
+          "count": 3
+        },
+        {
+          "word": "tradition",
+          "count": 1
+        }
+      ]
+    },
+    "crossref": {
+      "label_cn": "跨文化坐标",
+      "label_en": "Cross-ref",
+      "words": [
+        {
+          "word": "india",
+          "count": 42
+        },
+        {
+          "word": "silk road",
+          "count": 18
+        },
+        {
+          "word": "central asia",
+          "count": 3
+        },
+        {
+          "word": "persian",
+          "count": 2
+        },
+        {
+          "word": "greek",
+          "count": 1
+        },
+        {
+          "word": "japan",
+          "count": 1
+        },
+        {
+          "word": "korea",
+          "count": 1
+        }
+      ]
+    },
+    "intent": {
+      "label_cn": "行动",
+      "label_en": "Intent",
+      "words": [
+        {
+          "word": "visit",
+          "count": 30
+        },
+        {
+          "word": "travel",
+          "count": 18
+        },
+        {
+          "word": "bucket list",
+          "count": 3
+        },
+        {
+          "word": "want to visit",
+          "count": 2
+        },
+        {
+          "word": "where can i",
+          "count": 2
+        },
+        {
+          "word": "go there",
+          "count": 2
+        },
+        {
+          "word": "see it",
+          "count": 1
+        }
+      ]
+    },
+    "remix": {
+      "label_cn": "二创",
+      "label_en": "Remix",
+      "words": [
+        {
+          "word": "ai",
+          "count": 6
+        },
+        {
+          "word": "cosplay",
+          "count": 3
+        },
+        {
+          "word": "makeup",
+          "count": 2
+        }
+      ]
+    }
+  },
+  "sample_comments": [
+    {
+      "text": "as an Indian classical dancer, I can't help but notice all the similarities between the two. this is amazing!",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
+      "likes": 2740,
+      "lang": "en"
+    },
+    {
+      "text": "I’ve been watching your channel for few years, finally I went to China last month, what a amazing country! The ppl, the food,ETC… best experience ever! Definitely gonna go there again with all my family! Thank you Amy! Your videos will inspire many ppl.",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=OtS-vg81miA",
+      "likes": 1847,
+      "lang": "en"
+    },
+    {
+      "text": "Kalavinka (迦陵頻伽) is a celestial creature in Buddhism, said to be dwelling in Sukhavati (Western Pureland of Amitabha Buddha). \nKalavinka has a human head and bird torso.\n\nI think the dancers did a great job portraying it. Love the bird chirping sounds in the background too. 💖",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
+      "likes": 1785,
+      "lang": "en"
+    },
+    {
+      "text": "It's an evidence of coexistence of two greatest civilizations- China and India. Can't we stop fighting over nothing and just appreciate this.",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
+      "likes": 1640,
+      "lang": "en"
+    },
+    {
+      "text": "One of my fave channels. It has everything: yummy food, insightful travel, and a beautiful and articulate presenter.",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=OtS-vg81miA",
+      "likes": 1094,
+      "lang": "en"
+    },
+    {
+      "text": "To be able to dance around, maintain balance and remember the choreography without looking even one bit tired? These ladies are truly athletes! Very beautiful performance 🖤👏🏻",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
+      "likes": 836,
+      "lang": "en"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "window": {
+    "start": "20250501",
+    "end": "20260601",
+    "months": 12,
+    "granularity": "monthly",
+    "access": "all-access",
+    "agent": "user"
+  },
+  "articles": [
+    {
+      "project": "en.wikipedia",
+      "article": "Apsara",
+      "label": "English · Apsara",
+      "views": 139642
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Mogao_Caves",
+      "label": "English · Mogao Caves",
+      "views": 116002
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Dunhuang",
+      "label": "English · Dunhuang",
+      "views": 94987
+    },
+    {
+      "project": "ja.wikipedia",
+      "article": "敦煌市",
+      "label": "Japanese · 敦煌",
+      "views": 43676
+    },
+    {
+      "project": "fr.wikipedia",
+      "article": "Dunhuang",
+      "label": "French · Dunhuang",
+      "views": 6466
+    },
+    {
+      "project": "es.wikipedia",
+      "article": "Dunhuang",
+      "label": "Spanish · Dunhuang",
+      "views": 5657
+    }
+  ],
+  "total_views": 406430
+}

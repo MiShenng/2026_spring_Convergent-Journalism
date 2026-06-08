@@ -43,29 +43,50 @@ set -a; source .env; set +a   # 把变量导入当前 shell
 
 ## 3. 运行
 
+平台抓取（YouTube + Reddit）：
+
 ```bash
 python run.py
 ```
 
-输出：`output/overseas_data.json`。**把这个文件发回给我，我就把真实数字填进页面。**
+输出：`output/overseas_data.json`。
+
+维基百科词条浏览量（免密钥，独立运行）：
+
+```bash
+python collect_wikipedia.py
+```
+
+输出：`output/wikipedia_data.json`。统计 6 个敦煌相关词条近一年的浏览量，
+作为「主动检索」信号，与平台「被动刷到」对照。
 
 调参在 [config.py](config.py)：`keywords`、`max_videos_per_keyword`、
-`max_comments_per_item` 等。
+`max_comments_per_item` 等；维基词条列表在 [collect_wikipedia.py](collect_wikipedia.py) 的 `_ARTICLES`。
 
 ## 4. 输出字段 → 页面位置
 
+`overseas_data.json`：
+
 | JSON 字段 | 页面位置 |
 |---|---|
-| `kpi.items` | 第一屏 KPI「海外相关内容」 |
-| `kpi.comments` | 第一屏 KPI「海外评论样本」 |
-| `kpi.languages` | 第一屏 KPI（建议把「评论来源国」改为「评论语言数」，见下） |
+| `kpi.items` / `kpi.comments` / `kpi.languages` | 第一屏 KPI（相关视频 / 评论样本 / 评论语言数） |
+| `engagement.total_views` / `median_views` | 第一屏 KPI「样本视频总播放」与「播放高度集中」口径 |
+| `engagement.top_videos[]` | 可选，最高播放视频清单 |
 | `platform_distribution[].pct` | 第一屏「平台分布」条形宽度 |
+| `language_distribution[]` | 第一屏「评论语言分布」条形 |
 | `word_frequency.<theme>.words` | 第二屏「高频词·按主题分组」各条 |
 | `sample_comments[]` | 第二屏「代表性评论」卡片（含来源链接） |
-| `language_distribution` / `sentiment` | 可选，作图注或新增小图 |
+| `sentiment` | 第二屏「评论情绪」堆叠条（VADER 近似） |
+
+`wikipedia_data.json`：
+
+| JSON 字段 | 页面位置 |
+|---|---|
+| `articles[].views` | 第二屏底部「主动检索」维基浏览量条形 |
+| `total_views` | 该图标题「全语种合计」 |
 
 > 注意：YouTube / Reddit 的 API **拿不到评论者所在国家**（没有 IP / 地理字段）。
-> 所以脚本给的是**评论语言分布**，页面那个「评论来源国」KPI 建议改成「评论语言数」，
+> 所以脚本给的是**评论语言分布**，KPI 用「评论语言数」而非「评论来源国」，
 > 否则属于无法核验的指标。
 
 `meta.caveats` 里已经写好可直接放进图注的口径与局限说明。

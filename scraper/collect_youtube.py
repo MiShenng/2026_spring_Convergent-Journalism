@@ -6,6 +6,7 @@ units/day; each search.list costs 100 units). Set YOUTUBE_API_KEY in the env.
 from __future__ import annotations
 
 import logging
+import re
 from typing import List, Tuple
 
 from config import ScraperConfig
@@ -22,8 +23,15 @@ _BLOCKLIST_TERMS = {
     "xiao zhan", "wang yibo", "cdrama",
 }
 
+# Stage name "LAY" (EXO member Zhang Yixing). His song is literally titled
+# "飞天 / Flying Apsaras", so word-boundary uppercase "LAY" catches those videos
+# without hitting normal English words like "display" or "player".
+_LAY_RE = re.compile(r"\bLAY\b")
+
 
 def _is_relevant(title: str, channel: str) -> bool:
+    if _LAY_RE.search(title) or _LAY_RE.search(channel):
+        return False
     low = (title + " " + channel).lower()
     return not any(t in low for t in _BLOCKLIST_TERMS)
 
