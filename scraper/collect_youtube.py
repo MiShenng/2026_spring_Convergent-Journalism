@@ -15,6 +15,18 @@ logger = logging.getLogger(__name__)
 
 _PLATFORM = "YouTube"
 
+# Title/channel blocklist — filters K-pop content that shares keywords (e.g. Lay/EXO "飞天")
+_BLOCKLIST_TERMS = {
+    "lay zhang", "zhang yixing", "exo", "kpop", "k-pop",
+    "bts", "blackpink", "idol", "mv", "music video",
+    "xiao zhan", "wang yibo", "cdrama",
+}
+
+
+def _is_relevant(title: str, channel: str) -> bool:
+    low = (title + " " + channel).lower()
+    return not any(t in low for t in _BLOCKLIST_TERMS)
+
 
 def collect_youtube(cfg: ScraperConfig) -> Tuple[List[MediaItem], List[Comment]]:
     """Return (videos, comments). Empty if no API key or the client is missing."""
@@ -78,10 +90,14 @@ def _fetch_video_stats(yt, video_ids: List[str]) -> List[MediaItem]:
         for it in resp.get("items", []):
             stats = it.get("statistics", {})
             snip = it.get("snippet", {})
+            title = snip.get("title", "")
+            channel = snip.get("channelTitle", "")
+            if not _is_relevant(title, channel):
+                continue
             items.append(MediaItem(
                 platform=_PLATFORM,
                 item_id=it["id"],
-                title=snip.get("title", ""),
+                title=title,
                 url=f"https://www.youtube.com/watch?v={it['id']}",
                 views=int(stats.get("viewCount", 0) or 0),
                 comment_count=int(stats.get("commentCount", 0) or 0),

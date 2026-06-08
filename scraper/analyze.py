@@ -103,8 +103,31 @@ def _sentiment(comments: List[Comment]) -> Optional[dict]:
     }
 
 
+_COMMENT_BLOCKLIST = {
+    "lay zhang", "zhang yixing", "exo", "kpop", "k-pop",
+    "bts", "blackpink", "idol", "yixing", "xiao zhan", "wang yibo",
+    "most talented artist", "raises the bar",  # K-pop fan phrases
+}
+
+_COMMENT_ALLOWLIST = {
+    "dunhuang", "mural", "cave", "mogao", "apsara", "feitian",
+    "silk road", "buddhist", "fresco", "ancient", "culture",
+    "history", "heritage", "painting", "dance", "art", "india",
+    "china", "civilization", "beautiful",
+}
+
+
 def _sample_comments(comments: List[Comment], n: int = 6) -> List[dict]:
-    english = [c for c in comments if c.lang in ("en", "") and 12 <= len(c.text) <= 180]
+    def _is_good(c: Comment) -> bool:
+        low = c.text.lower()
+        if any(b in low for b in _COMMENT_BLOCKLIST):
+            return False
+        return any(a in low for a in _COMMENT_ALLOWLIST)
+
+    english = [
+        c for c in comments
+        if c.lang in ("en", "") and 20 <= len(c.text) <= 280 and _is_good(c)
+    ]
     english.sort(key=lambda c: c.likes, reverse=True)
     return [
         {"text": c.text.strip(), "platform": c.platform, "url": c.url,
