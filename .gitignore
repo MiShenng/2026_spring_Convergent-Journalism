@@ -11,3 +11,10 @@ materials for part intro/
 
 # local scratch planning notes (not part of the site)
 plan/
+
+# scraper secrets, outputs, caches (never commit API keys or pulled data)
+scraper/.env
+scraper/output/
+scraper/.venv/
+**/__pycache__/
+*.pyc
