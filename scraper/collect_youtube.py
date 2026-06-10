@@ -28,12 +28,31 @@ _BLOCKLIST_TERMS = {
 # without hitting normal English words like "display" or "player".
 _LAY_RE = re.compile(r"\bLAY\b")
 
+# Positive allowlist: with broad keywords like "apsara dance" the search returns a
+# flood of Indian "Apsara Aali" (Marathi song) content that shares the word "apsara"
+# but has nothing to do with Dunhuang. A video must name a Dunhuang-specific anchor
+# term to count. "apsara" alone is NOT enough; it must co-occur with a Dunhuang anchor.
+_ANCHORS = (
+    "dunhuang", "mogao", "feitian", "敦煌", "莫高", "飞天",
+    "gansu", "甘肃", "thousand buddha", "千佛",
+)
+# Off-topic anchors that mark the Indian/Bollywood "Apsara Aali" cluster.
+_OFFTOPIC = (
+    "apsara aali", "natarang", "marathi", "sai pallavi", "lavani",
+    "sonalee", "bollywood", "tollywood", "telugu", "tamil", "hindi song",
+)
+
 
 def _is_relevant(title: str, channel: str) -> bool:
     if _LAY_RE.search(title) or _LAY_RE.search(channel):
         return False
     low = (title + " " + channel).lower()
-    return not any(t in low for t in _BLOCKLIST_TERMS)
+    if any(t in low for t in _BLOCKLIST_TERMS):
+        return False
+    if any(t in low for t in _OFFTOPIC):
+        return False
+    # require at least one Dunhuang-specific anchor term
+    return any(a in low for a in _ANCHORS)
 
 
 def collect_youtube(cfg: ScraperConfig) -> Tuple[List[MediaItem], List[Comment]]:
