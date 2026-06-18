@@ -207,18 +207,21 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 .character-gate{
   position:relative;z-index:3;
   min-height:100svh;
-  padding:clamp(10px,1.8vh,18px) clamp(14px,2.2vw,30px);
+  padding:0;
   background:
     radial-gradient(circle at 50% 0%, rgba(58,45,30,.12), transparent 42%),
     #070812;
   color:#f2ead8;
-  border-top:1px solid rgba(197,156,86,.3);
-  border-bottom:1px solid rgba(197,156,86,.3);
+  border:0;
   overflow:hidden;
 }
 .gate-header{
-  width:min(97vw,1680px);
-  margin:0 auto 8px;
+  position:absolute;
+  left:clamp(18px,3vw,48px);
+  top:clamp(14px,2vh,24px);
+  z-index:20;
+  width:auto;
+  margin:0;
 }
 .gate-label{
   font-family:var(--font-sans-cn);
@@ -230,14 +233,14 @@ h1,h2,h3{font-weight:500;line-height:1.12}
 }
 .painting-stage{
   position:relative;
-  width:min(97vw,1680px);
-  height:calc(100svh - 58px);
-  min-height:560px;
-  margin:0 auto;
+  width:100vw;
+  height:100svh;
+  min-height:0;
+  margin:0;
   overflow:hidden;
-  border:1px solid rgba(201,162,77,.26);
-  border-radius:4px;
-  box-shadow:inset 0 0 90px rgba(7,8,18,.4), 0 30px 90px -40px rgba(0,0,0,.9);
+  border:0;
+  border-radius:0;
+  box-shadow:inset 0 0 90px rgba(7,8,18,.34);
 }
 .stage-bg{
   position:absolute;
@@ -478,7 +481,7 @@ h1,h2,h3{font-weight:500;line-height:1.12}
   background-repeat:no-repeat;
 }
 #cave .chapter-intro{background-image:radial-gradient(820px 420px at 88% 20%,rgba(201,162,75,.14),transparent 62%),linear-gradient(96deg,rgba(7,8,16,.96) 28%,rgba(7,8,16,.55) 68%,rgba(7,8,16,.42)),url('assets/dh_caves_interior.webp')}
-#identify .chapter-intro{background-image:radial-gradient(820px 420px at 88% 20%,rgba(201,162,75,.14),transparent 62%),linear-gradient(96deg,rgba(7,8,16,.96) 28%,rgba(7,8,16,.55) 68%,rgba(7,8,16,.42)),url('assets/feitian-detail.png')}
+#identify .chapter-intro{background-image:radial-gradient(820px 420px at 88% 20%,rgba(201,162,75,.14),transparent 62%),linear-gradient(96deg,rgba(7,8,16,.96) 28%,rgba(7,8,16,.55) 68%,rgba(7,8,16,.42)),url('assets/dh_bodhisattva_tall.webp')}
 #platform .chapter-intro{background-image:radial-gradient(820px 420px at 88% 20%,rgba(201,162,75,.14),transparent 62%),linear-gradient(96deg,rgba(7,8,16,.96) 28%,rgba(7,8,16,.55) 68%,rgba(7,8,16,.42)),url('assets/dh_apsaras_wide.webp')}
 #daily .chapter-intro{background-image:radial-gradient(820px 420px at 88% 20%,rgba(201,162,75,.14),transparent 62%),linear-gradient(96deg,rgba(7,8,16,.96) 28%,rgba(7,8,16,.55) 68%,rgba(7,8,16,.42)),url('assets/dh_scene_tang.webp')}
 #global .chapter-intro{background-image:radial-gradient(820px 420px at 88% 20%,rgba(201,162,75,.14),transparent 62%),linear-gradient(96deg,rgba(7,8,16,.96) 28%,rgba(7,8,16,.55) 68%,rgba(7,8,16,.42)),url('assets/dh_procession.webp')}
@@ -867,7 +870,7 @@ a.vcard{display:block;color:inherit;text-decoration:none}
 .fmetric .lab{font-size:.74rem;color:var(--silk-dim)}
 
 /* ============================================================
-   FINALE — 长卷收束 · 题跋落印
+   FINALE — 长卷收束
    一卷敦煌长卷横向铺开 → 滚动时卷轴向心收拢、画面沉为矿物色 →
    颜料沉淀显出一方壁画 → 题跋浮现、朱印落定
    ============================================================ */
@@ -951,7 +954,7 @@ a.vcard{display:block;color:inherit;text-decoration:none}
 .finale-marks span{font-family:var(--font-cn);font-size:.8rem;letter-spacing:.4em;text-indent:.4em;
   color:rgba(227,200,120,.6);text-shadow:0 0 12px rgba(0,0,0,.8);
   opacity:0;transform:translateY(8px);transition:opacity 1s ease,transform 1s ease}
-.finale-marks span:not(:last-child)::after{content:"·";margin:0 1.05rem;color:rgba(227,200,120,.32);letter-spacing:normal;text-indent:0}
+.finale-marks span:not(:last-child)::after{content:"/";margin:0 1.05rem;color:rgba(227,200,120,.32);letter-spacing:normal;text-indent:0}
 .finale-marks span.show{opacity:1;transform:translateY(0)}
 @media(max-width:560px){
   .finale-marks span{font-size:.62rem;letter-spacing:.22em;text-indent:.22em}
@@ -1008,7 +1011,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .nav-links{gap:.9rem}
   .nav-links a{font-size:.68rem;letter-spacing:.1em}
   .brand .cn{display:none}
-  .painting-stage{height:64vh;min-height:520px}
+  .painting-stage{height:100svh;min-height:0}
   .chapter-text{left:50%;top:24%;width:84%;text-align:center;transform:translateX(-50%);opacity:.94}
   .chapter-text.is-changing{transform:translateX(-50%) translateY(10px)}
   .hero-feitian{right:-6%;top:-6%;left:auto;bottom:auto;width:52%}
@@ -1025,8 +1028,8 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
   .nav-links{gap:.55rem;overflow-x:auto;max-width:62vw;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .nav-links::-webkit-scrollbar{display:none}
   .nav-links a{font-size:.65rem;letter-spacing:.05em;white-space:nowrap}
-  .character-gate{padding:3rem 1.2rem 3.4rem}
-  .painting-stage{height:72vh;min-height:480px}
+  .character-gate{padding:0}
+  .painting-stage{height:100svh;min-height:0}
   .chapter-text{width:90%;top:22%}
   #chapter-title{font-size:1.7rem}
   #chapter-desc{font-size:.9rem;line-height:1.8}
@@ -1423,11 +1426,11 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <h3>莫高窟的飞天，最初并不是为屏幕而生。</h3>
       <p>她从洞窟走向屏幕，从壁画残痕进入数字图像。点按任一章节，追问：被看见之后，飞天是否被理解？</p>
     </div>
-    <a class="gate-card" href="#cave"><span class="gc-n">01</span><span class="gc-b"><b>洞窟 · 如何看见</b><em>从残损壁画出发，保护为什么是观看的前提。</em></span></a>
-    <a class="gate-card" href="#identify"><span class="gc-n">02</span><span class="gc-b"><b>识别 · 视觉语法</b><em>飘带、乐舞、色彩、冠饰，如何让飞天被一眼认出。</em></span></a>
-    <a class="gate-card" href="#platform"><span class="gc-n">03</span><span class="gc-b"><b>平台 · 如何改写</b><em>短视频、直播、评论与推荐，如何重组观看方式。</em></span></a>
-    <a class="gate-card" href="#daily"><span class="gc-n">04</span><span class="gc-b"><b>日常 · 如何携带</b><em>文创、妆造、旅行打卡，飞天进入生活的路径。</em></span></a>
-    <a class="gate-card" href="#global"><span class="gc-n">05</span><span class="gc-b"><b>海外 · 如何重读</b><em>跨文化语境里，解释、授权与误读随之出现。</em></span></a>
+    <a class="gate-card" href="#cave"><span class="gc-n">01</span><span class="gc-b"><b>洞窟</b><em>从残损壁画出发，保护为什么是观看的前提。</em></span></a>
+    <a class="gate-card" href="#identify"><span class="gc-n">02</span><span class="gc-b"><b>识别</b><em>飘带、乐舞、色彩、冠饰，如何让飞天被一眼认出。</em></span></a>
+    <a class="gate-card" href="#platform"><span class="gc-n">03</span><span class="gc-b"><b>平台</b><em>短视频、直播、评论与推荐，如何重组观看方式。</em></span></a>
+    <a class="gate-card" href="#daily"><span class="gc-n">04</span><span class="gc-b"><b>日常</b><em>文创、妆造、旅行打卡，飞天进入生活的路径。</em></span></a>
+    <a class="gate-card" href="#global"><span class="gc-n">05</span><span class="gc-b"><b>海外</b><em>跨文化语境里，解释、授权与误读随之出现。</em></span></a>
   </nav>
 </section>
 
@@ -1440,7 +1443,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
      ==================================================================== -->
 <section class="chapter" id="cave">
   <div class="chapter-intro">
-    <div class="eyebrow reveal">第一章 · 开篇</div>
+    <div class="eyebrow reveal">第一章</div>
     <h2 class="reveal d1">被刷到的飞天，从哪里来？</h2>
     <div class="gold-rule reveal d1"></div>
     <p class="reveal d2">在两万余条评论里，很多人对着屏幕上的飞天说“泪目”。但洞窟无法承受无限的现场观看，飞天要先被保护、被数字化，才能被这么多人看见。飞天的数字传播，并非从图案开始，而是从保护开始。故事，要从洞窟本身讲起。</p>
@@ -1497,7 +1500,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
      ==================================================================== -->
 <section class="chapter" id="identify">
   <div class="chapter-intro">
-    <div class="eyebrow reveal">第二章 · 溯源</div>
+    <div class="eyebrow reveal">第二章</div>
     <h2 class="reveal d1">飞天为什么能被一眼认出？</h2>
     <div class="gold-rule reveal d1"></div>
     <p class="reveal d2">飞天不是某一幅固定图像，而是一类不断演变的视觉母题。她能被一眼认出，靠的是长期形成、足够稳定的几样视觉元素：飘带、乐舞、色彩、冠饰。也正是这几样，后来最容易被平台、妆造和文创抽取。</p>
@@ -1511,7 +1514,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:1080px">
       <div class="chronicle" id="chronicle">
-        <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.8rem">飞天形态演变 · 早期至晚期 · 视觉线索图卷</div>
+        <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.8rem">飞天形态演变</div>
         <div class="chr-stage">
           <div class="chr-frames" id="chrFrames">
             <figure class="chr-frame is-on" data-i="0"><img loading="lazy" decoding="async" src="assets/dh_apsara_wei.webp" alt="西魏飞天局部"></figure>
@@ -1523,24 +1526,24 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <div class="chr-trait" id="chrTrait"></div>
           <div class="chr-cartouche">
             <span class="chr-era" id="chrEra">西魏</span>
-            <span class="chr-yr" id="chrYr">第285窟 · 早期局部</span>
+            <span class="chr-yr" id="chrYr">第285窟，早期局部</span>
           </div>
           <button class="chr-play" id="chrPlay" aria-label="自动巡览千年流变"><i></i></button>
         </div>
         <div class="chr-caption" id="chrCaption">
-          <h4 id="chrForm">厚重 · 朴拙 · 西域式</h4>
+          <h4 id="chrForm">厚重、朴拙、西域式</h4>
           <p id="chrDesc">第 285 窟飞天局部为代表。早期飞天承印度与中亚画风，多用凹凸晕染，线条厚重、身体朴拙，飞行动势相对克制。</p>
         </div>
         <div class="chr-rail" id="chrRail">
           <div class="chr-progress"><i id="chrFill"></i></div>
-          <button class="chr-node is-on" data-i="0" data-era="西魏" data-yr="第285窟 · 早期局部" data-traits="厚重·朴拙·西域式" data-form="厚重 · 朴拙 · 西域式" data-desc="第 285 窟飞天局部为代表。早期飞天承印度与中亚画风，多用凹凸晕染，线条厚重、身体朴拙，飞行动势相对克制。"><b>西魏</b><span>285</span></button>
-          <button class="chr-node" data-i="1" data-era="北周" data-yr="第428窟 · 飞天群像" data-traits="群像·上升·飘带增多" data-form="群像 · 上升 · 飘带增多" data-desc="第 428 窟飞天群像中，飞天围绕主尊展开，飘带和云气增多，身体开始进入更明确的上升与回旋动势。"><b>北周</b><span>428</span></button>
-          <button class="chr-node" data-i="2" data-era="盛唐" data-yr="第217窟 · 经变壁画" data-traits="饱满·回旋·色彩成熟" data-form="饱满 · 回旋 · 色彩成熟" data-desc="第 217 窟经变壁画体现盛唐时期更成熟的矿物色、衣纹与空间组织，飞天不再只是边饰，而成为整体叙事中的流动线索。"><b>盛唐</b><span>217</span></button>
-          <button class="chr-node" data-i="3" data-era="中晚期 · 供养飞天" data-yr="飞天壁画局部" data-traits="供养·云气·线描收束" data-form="供养 · 云气 · 线描收束" data-desc="中晚期壁画局部里，飞天与莲花、云气并置，身体动势被收进更清晰的线描和供养姿态中。它承接盛唐经变中的流动感，也让飘带、云气、手持物这些识别部件更容易被拆解出来。"><b>中晚期</b><span>局部</span></button>
-          <button class="chr-node" data-i="4" data-era="晚期 · 程式化" data-yr="乐舞飞天局部" data-traits="线条·模板·可借用" data-form="线条 · 模板 · 可借用" data-desc="后期图像中，飞天的飘带、云气和乐舞姿态更容易被提炼为可复制的线条模板。此处作为程式化特征的局部示意，不作为宋元断代证据。"><b>晚期</b><span>式样</span></button>
+          <button class="chr-node is-on" data-i="0" data-era="西魏" data-yr="第285窟，早期局部" data-traits="厚重、朴拙、西域式" data-form="厚重、朴拙、西域式" data-desc="第 285 窟飞天局部为代表。早期飞天承印度与中亚画风，多用凹凸晕染，线条厚重、身体朴拙，飞行动势相对克制。"><b>西魏</b><span>285</span></button>
+          <button class="chr-node" data-i="1" data-era="北周" data-yr="第428窟，飞天群像" data-traits="群像、上升、飘带增多" data-form="群像、上升、飘带增多" data-desc="第 428 窟飞天群像中，飞天围绕主尊展开，飘带和云气增多，身体开始进入更明确的上升与回旋动势。"><b>北周</b><span>428</span></button>
+          <button class="chr-node" data-i="2" data-era="盛唐" data-yr="第217窟，经变壁画" data-traits="饱满、回旋、色彩成熟" data-form="饱满、回旋、色彩成熟" data-desc="第 217 窟经变壁画体现盛唐时期更成熟的矿物色、衣纹与空间组织，飞天不再只是边饰，而成为整体叙事中的流动线索。"><b>盛唐</b><span>217</span></button>
+          <button class="chr-node" data-i="3" data-era="中晚期" data-yr="飞天壁画局部" data-traits="供养、云气、线描收束" data-form="供养、云气、线描收束" data-desc="中晚期壁画局部里，飞天与莲花、云气并置，身体动势被收进更清晰的线描和供养姿态中。它承接盛唐经变中的流动感，也让飘带、云气、手持物这些识别部件更容易被拆解出来。"><b>中晚期</b><span>局部</span></button>
+          <button class="chr-node" data-i="4" data-era="晚期" data-yr="乐舞飞天局部" data-traits="线条、模板、可借用" data-form="线条、模板、可借用" data-desc="后期图像中，飞天的飘带、云气和乐舞姿态更容易被提炼为可复制的线条模板。此处作为程式化特征的局部示意，不作为宋元断代证据。"><b>晚期</b><span>式样</span></button>
         </div>
         <p class="cnote">图 1：按现有可核素材整理的飞天视觉线索。最后一帧为程式化特征局部，不再硬标为宋元断代图像。</p>
-        <details class="note"><summary>图注 · 来源</summary><span class="nt">配图依次为西魏第 285 窟飞天局部、北周第 428 窟飞天群像、盛唐第 217 窟经变壁画、用户新增飞天壁画局部、用户新增乐舞飞天局部。后两帧作为中晚期到晚期的视觉线索示意，不作具体洞窟断代证据；分期与造型特征参考宋丽娜《敦煌壁画中各时期飞天形象特点及造型研究》、缪斯《早期敦煌飞天的艺术风格与当代价值研究》。</span></details>
+        <details class="note"><summary>图注</summary><span class="nt">配图依次为西魏第 285 窟飞天局部、北周第 428 窟飞天群像、盛唐第 217 窟经变壁画、用户新增飞天壁画局部、用户新增乐舞飞天局部。后两帧作为中晚期到晚期的视觉线索示意，不作具体洞窟断代证据；分期与造型特征参考宋丽娜《敦煌壁画中各时期飞天形象特点及造型研究》、缪斯《早期敦煌飞天的艺术风格与当代价值研究》。</span></details>
       </div>
     </div>
   </div>
@@ -1552,16 +1555,16 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
         <div class="compare" id="cmp1" style="--img:url('assets/dh_caves_interior.webp')">
           <div class="layer after"></div>
           <div class="layer before degrade"></div>
-          <div class="tag l">风化 · 肉眼所见</div>
-          <div class="tag r">数字 · 高清读取</div>
+          <div class="tag l">风化</div>
+          <div class="tag r">数字高清</div>
           <div class="handle"><div class="grip"></div></div>
         </div>
         <div class="cmp-thumbs" id="cmpThumbs">
-          <button class="cmp-thumb on" data-img="assets/dh_caves_interior.webp" style="background-image:url('assets/dh_caves_interior.webp')"><span>西魏 · 说法图</span></button>
-          <button class="cmp-thumb" data-img="assets/dh_apsaras_wide.webp" style="background-image:url('assets/dh_apsaras_wide.webp')"><span>北周 · 飞天群</span></button>
-          <button class="cmp-thumb" data-img="assets/dh_scene_tang.webp" style="background-image:url('assets/dh_scene_tang.webp')"><span>盛唐 · 经变</span></button>
-          <button class="cmp-thumb" data-img="assets/dh_mural_217.webp" style="background-image:url('assets/dh_mural_217.webp')"><span>盛唐 · 法华经变</span></button>
-          <button class="cmp-thumb" data-img="assets/dh_apsara_wei.webp" style="background-image:url('assets/dh_apsara_wei.webp')"><span>残壁 · 风化飞天</span></button>
+          <button class="cmp-thumb on" data-img="assets/dh_caves_interior.webp" style="background-image:url('assets/dh_caves_interior.webp')"><span>西魏</span></button>
+          <button class="cmp-thumb" data-img="assets/dh_apsaras_wide.webp" style="background-image:url('assets/dh_apsaras_wide.webp')"><span>北周</span></button>
+          <button class="cmp-thumb" data-img="assets/dh_scene_tang.webp" style="background-image:url('assets/dh_scene_tang.webp')"><span>盛唐</span></button>
+          <button class="cmp-thumb" data-img="assets/dh_mural_217.webp" style="background-image:url('assets/dh_mural_217.webp')"><span>法华经变</span></button>
+          <button class="cmp-thumb" data-img="assets/dh_apsara_wei.webp" style="background-image:url('assets/dh_apsara_wei.webp')"><span>残壁飞天</span></button>
         </div>
       </div>
     </div>
@@ -1608,7 +1611,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
      ==================================================================== -->
 <section class="chapter" id="platform">
   <div class="chapter-intro">
-    <div class="eyebrow reveal">第三章 · 破圈</div>
+    <div class="eyebrow reveal">第三章</div>
     <h2 class="reveal d1">平台如何改变飞天的可见方式？</h2>
     <div class="gold-rule reveal d1"></div>
     <p class="reveal d2">很多人第一次遇见飞天，不在洞窟，而在短视频信息流里。</p>
@@ -1623,27 +1626,27 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     <div class="visual reveal d1" style="width:100%;max-width:1060px">
       <div class="platforms is-editorial" id="platforms">
     <article class="pf-card" style="--accent:var(--vermilion)">
-      <div class="pf-head"><span class="pf-name">抖音</span><span class="pf-sig">舞蹈 · 直播</span></div>
+      <div class="pf-head"><span class="pf-name">抖音</span><span class="pf-sig">舞蹈，直播</span></div>
       <div class="pf-bars"><div class="pf-bar"><span>舞蹈翻跳</span><div class="pfb"><i style="--w:95%"></i></div></div><div class="pf-bar"><span>文博直播</span><div class="pfb"><i style="--w:88%"></i></div></div><div class="pf-bar"><span>妆造教程</span><div class="pfb"><i style="--w:80%"></i></div></div><div class="pf-bar"><span>AI再创作</span><div class="pfb"><i style="--w:72%"></i></div></div><div class="pf-bar"><span>壁画讲解</span><div class="pfb"><i style="--w:60%"></i></div></div></div>
     </article>
     <article class="pf-card" style="--accent:var(--gold)">
-      <div class="pf-head"><span class="pf-name">快手</span><span class="pf-sig">舞蹈 · 短平快</span></div>
+      <div class="pf-head"><span class="pf-name">快手</span><span class="pf-sig">舞蹈，短平快</span></div>
       <div class="pf-bars"><div class="pf-bar"><span>舞蹈翻跳</span><div class="pfb"><i style="--w:70%"></i></div></div><div class="pf-bar"><span>文博直播</span><div class="pfb"><i style="--w:65%"></i></div></div><div class="pf-bar"><span>妆造教程</span><div class="pfb"><i style="--w:55%"></i></div></div><div class="pf-bar"><span>AI再创作</span><div class="pfb"><i style="--w:50%"></i></div></div><div class="pf-bar"><span>壁画讲解</span><div class="pfb"><i style="--w:40%"></i></div></div></div>
     </article>
     <article class="pf-card" style="--accent:var(--azurite)">
-      <div class="pf-head"><span class="pf-name">B站</span><span class="pf-sig">讲解 · 知识</span></div>
+      <div class="pf-head"><span class="pf-name">B站</span><span class="pf-sig">讲解，知识</span></div>
       <div class="pf-bars"><div class="pf-bar"><span>壁画讲解</span><div class="pfb"><i style="--w:92%"></i></div></div><div class="pf-bar"><span>AI再创作</span><div class="pfb"><i style="--w:85%"></i></div></div><div class="pf-bar"><span>舞蹈翻跳</span><div class="pfb"><i style="--w:60%"></i></div></div><div class="pf-bar"><span>文博直播</span><div class="pfb"><i style="--w:58%"></i></div></div><div class="pf-bar"><span>妆造教程</span><div class="pfb"><i style="--w:45%"></i></div></div></div>
     </article>
     <article class="pf-card" style="--accent:var(--vermilion-soft)">
-      <div class="pf-head"><span class="pf-name">小红书</span><span class="pf-sig">妆造 · 审美</span></div>
+      <div class="pf-head"><span class="pf-name">小红书</span><span class="pf-sig">妆造，审美</span></div>
       <div class="pf-bars"><div class="pf-bar"><span>妆造教程</span><div class="pfb"><i style="--w:90%"></i></div></div><div class="pf-bar"><span>舞蹈翻跳</span><div class="pfb"><i style="--w:55%"></i></div></div><div class="pf-bar"><span>文博直播</span><div class="pfb"><i style="--w:52%"></i></div></div><div class="pf-bar"><span>壁画讲解</span><div class="pfb"><i style="--w:50%"></i></div></div><div class="pf-bar"><span>AI再创作</span><div class="pfb"><i style="--w:48%"></i></div></div></div>
     </article>
     <article class="pf-card" style="--accent:var(--malachite)">
-      <div class="pf-head"><span class="pf-name">视频号</span><span class="pf-sig">直播 · 文博</span></div>
+      <div class="pf-head"><span class="pf-name">视频号</span><span class="pf-sig">直播，文博</span></div>
       <div class="pf-bars"><div class="pf-bar"><span>文博直播</span><div class="pfb"><i style="--w:80%"></i></div></div><div class="pf-bar"><span>舞蹈翻跳</span><div class="pfb"><i style="--w:75%"></i></div></div><div class="pf-bar"><span>AI再创作</span><div class="pfb"><i style="--w:68%"></i></div></div><div class="pf-bar"><span>妆造教程</span><div class="pfb"><i style="--w:60%"></i></div></div><div class="pf-bar"><span>壁画讲解</span><div class="pfb"><i style="--w:55%"></i></div></div></div>
     </article>
       </div>
-      <details class="note" style="margin-top:.8rem"><summary>图注 · 说明</summary><span class="nt">图 2 为<b>编辑观察，非抓取数据</b>：条形长短是编辑对各平台内容形态的相对判断，不能横向比较，也不能与后面的数据图混看。仅抖音、B 站基于本作品抓取样本，其余平台依据公开内容形态归纳。抖音 × B 站的真实数据对比见下方图 4。</span></details>
+      <details class="note" style="margin-top:.8rem"><summary>图注</summary><span class="nt">图 2 为<b>编辑观察，非抓取数据</b>：条形长短是编辑对各平台内容形态的相对判断，不能横向比较，也不能与后面的数据图混看。仅抖音、B 站基于本作品抓取样本，其余平台依据公开内容形态归纳。抖音 × B 站的真实数据对比见下方图 4。</span></details>
     </div>
   </div>
 
@@ -1666,11 +1669,11 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen flip">
     <div class="visual reveal">
       <div class="chart">
-        <div class="ctitle">两万余条留言的关键词信号 · 按主题合并</div>
+        <div class="ctitle">两万余条留言的关键词信号</div>
         <div class="signal-board">
           <div class="signal-card emotion">
             <div class="sg-head"><b>情绪表达</b><span>Emotion</span></div>
-            <div class="sg-count">70%<small>3,862 次命中</small></div>
+            <div class="sg-count">70%</div>
             <div class="sg-tags"><span>泪目 <b>2067</b></span><span>惊艳 <b>1083</b></span><span>好看 <b>352</b></span><span>喜欢 <b>275</b></span><span>绝了 <b>85</b></span></div>
           </div>
           <div class="signal-card knowledge">
@@ -1681,19 +1684,19 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <div class="signal-card minor">
             <div class="sg-head"><b>后续信号</b><span>Care / Action / Remix</span></div>
             <div class="sg-count">7%</div>
-            <div class="sg-tags"><span>可惜·流失 <b>145</b></span><span>保护 <b>62</b></span><span>舞蹈 <b>60</b></span><span>甘肃 <b>55</b></span><span>想去 <b>44</b></span><span>AI <b>19</b></span></div>
+            <div class="sg-tags"><span>可惜/流失 <b>145</b></span><span>保护 <b>62</b></span><span>舞蹈 <b>60</b></span><span>甘肃 <b>55</b></span><span>想去 <b>44</b></span><span>AI <b>19</b></span></div>
           </div>
           <div class="signal-card method">
-            <div class="sg-head"><b>统计口径</b><span>5,529 次关键词命中</span></div>
+            <div class="sg-head"><b>统计口径</b><span>按展示词表分组计算</span></div>
             <div class="sg-tags"><span>情绪词 <b>70%</b></span><span>知识词 <b>23%</b></span><span>保护/行动/二创 <b>7%</b></span></div>
           </div>
         </div>
-        <details class="note"><summary>数据说明</summary><span class="nt">基于 21,134 条评论（抖音 18,996 + B站 2,138）的高频词统计。数值为关键词出现次数（子串计数，同一条评论多次出现计多次）。百分比以本图展示的 5,529 次关键词命中为分母，分组为编辑按词义归类；不等于评论条数占比。</span></details>
+        <details class="note"><summary>数据说明</summary><span class="nt">基于 21,134 条评论（抖音 18,996 + B站 2,138）的高频词统计。数值为关键词出现次数（子串计数，同一条评论多次出现计多次）。百分比以本图展示词表的分组合计为分母，分组为编辑按词义归类；不等于评论条数占比。</span></details>
       </div>
     </div>
     <div class="copy reveal d1">
       <h3>最高频的词是“泪目”，不是任何一个知识词。</h3>
-      <p>把两万余条留言中的关键词命中合并来看，跳出来的并非国潮这类标签，而是<em style="color:var(--gold-soft);font-style:normal">情绪</em>。“泪目”和“惊艳”压过了所有知识词，说明公众首先是被打动，其次才谈文化、历史与保护。</p>
+      <p>把两万余条留言中的关键词合并来看，跳出来的并非国潮这类标签，而是<em style="color:var(--gold-soft);font-style:normal">情绪</em>。“泪目”和“惊艳”压过了所有知识词，说明公众首先是被打动，其次才谈文化、历史与保护。</p>
       <p>可惜和保护虽是少数，却真实存在。在赞叹之外，仍有人记挂着她从墙上消退、流散海外的那一面。</p>
     </div>
   </div>
@@ -1706,11 +1709,11 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     </div>
     <div class="visual reveal d1" style="width:100%;max-width:1080px">
       <div class="chart">
-        <div class="ctitle">单条视频平均互动 · 抖音 vs B站</div>
+        <div class="ctitle">单条视频平均互动</div>
         <div class="engines" id="engines">
           <div class="engine dy">
-            <div class="ehead"><b>抖音</b><em>DOUYIN · 263 视频</em></div>
-            <div class="esig">舞蹈 · 妆造 · 短平快 · 爆发式传播</div>
+            <div class="ehead"><b>抖音</b><em>DOUYIN，263 视频</em></div>
+            <div class="esig">舞蹈，妆造，短平快，爆发式传播</div>
             <div class="erow"><span class="k">点赞</span><div class="bar"><i style="--w:100%"></i></div><span class="v">183,582</span></div>
             <div class="erow"><span class="k">分享</span><div class="bar"><i style="--w:16%"></i></div><span class="v">28,713</span></div>
             <div class="erow"><span class="k">收藏</span><div class="bar"><i style="--w:4%"></i></div><span class="v">7,070</span></div>
@@ -1721,8 +1724,8 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
             <div><b>65×</b><span>B站“收藏÷点赞”<br>≈ 抖音的 65 倍</span></div>
           </div>
           <div class="engine bz">
-            <div class="ehead"><b>B站</b><em>BILIBILI · 95 视频</em></div>
-            <div class="esig">纪录片 · 讲解 · 知识 · 慢看收藏</div>
+            <div class="ehead"><b>B站</b><em>BILIBILI，95 视频</em></div>
+            <div class="esig">纪录片，讲解，知识，慢看收藏</div>
             <div class="erow"><span class="k">收藏</span><div class="bar"><i style="--w:100%"></i></div><span class="v">1,660</span></div>
             <div class="erow"><span class="k">点赞</span><div class="bar"><i style="--w:40%"></i></div><span class="v">667</span></div>
             <div class="erow"><span class="k">分享</span><div class="bar"><i style="--w:35%"></i></div><span class="v">577</span></div>
@@ -1731,7 +1734,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           </div>
         </div>
         <details class="note"><summary>注</summary><span class="nt"><b>各平台条形为本平台内部归一化（占本平台最高互动的比例），不能直接比较两边的柱长。</b>跨平台差异请看右侧比值卡片。数字为单条视频平均值。抖音点赞一柱独大＝刷过即赞；B站收藏多于点赞、且有投币与弹幕＝把飞天“存起来慢慢看”。</span></details>
-        <div class="ctitle" style="margin-top:1.5rem">样本中抖音评论的 IP 属地分布 · Top 10</div>
+        <div class="ctitle" style="margin-top:1.5rem">样本中抖音评论的 IP 属地分布</div>
         <div class="prov" id="prov">
           <div class="prow"><span class="pn">广东</span><div class="pb"><i style="--w:100%"></i></div><span class="pv">988</span></div>
           <div class="prow"><span class="pn">河南</span><div class="pb"><i style="--w:50%"></i></div><span class="pv">494</span></div>
@@ -1755,7 +1758,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
      ==================================================================== -->
 <section class="chapter" id="daily">
   <div class="chapter-intro">
-    <div class="eyebrow reveal">第四章 · 日常</div>
+    <div class="eyebrow reveal">第四章</div>
     <h2 class="reveal d1">从屏幕到日常，飞天如何被携带和消费？</h2>
     <div class="gold-rule reveal d1"></div>
     <p class="reveal d2">当飞天进入妆造、文创和旅行打卡，古老图像被拆成飘带、色彩和姿态。哪些转译保留了来处，哪些只剩图案？</p>
@@ -1831,7 +1834,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
      ==================================================================== -->
 <section class="chapter" id="global">
   <div class="chapter-intro">
-    <div class="eyebrow reveal">第五章 · 远方</div>
+    <div class="eyebrow reveal">第五章</div>
     <h2 class="reveal d1">飞向海外之后，谁在解释飞天？</h2>
     <div class="gold-rule reveal d1"></div>
     <p class="reveal d2">飞天图像不只是在博物馆和数据库里被保存，也在今天被复制、改写和商业使用。一百年前它被带往海外、被重新归类。今天它在图像授权、AI 二创和文创商品里被再次使用。传播越远，解释、授权乃至误读也随之而来。</p>
@@ -1846,49 +1849,49 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     <div class="visual reveal d1" style="width:100%;max-width:1060px">
       <div class="case-grid">
         <a class="case" href="https://www.britishmuseum.org" target="_blank" rel="noopener">
-          <div class="place"><b>大英博物馆 · 大英图书馆</b><span class="geo">UK · London</span></div>
-          <div class="who">奥莱尔·斯坦因 · 1907 / 1914</div>
+          <div class="place"><b>大英博物馆 / 大英图书馆</b><span class="geo">UK, London</span></div>
+          <div class="who">斯坦因，1907 / 1914</div>
           <p>携走唐宋绢画约 200 件和写本数千卷；绢画多被归入中国佛教绘画，纸本写本入藏大英图书馆。</p>
           <span class="reclass">中国佛教绘画</span>
         </a>
         <a class="case" href="https://www.guimet.fr" target="_blank" rel="noopener">
-          <div class="place"><b>吉美博物馆 · 法国国家图书馆</b><span class="geo">FR · Paris</span></div>
-          <div class="who">保罗·伯希和 · 1908</div>
+          <div class="place"><b>吉美博物馆 / 法国国家图书馆</b><span class="geo">FR, Paris</span></div>
+          <div class="who">伯希和，1908</div>
           <p>取走写本约 6600 卷，以及唐代绢画与幡幢 200 余件；绘画藏吉美博物馆，写本入法国国家图书馆。</p>
           <span class="reclass">亚洲艺术</span>
         </a>
         <a class="case" href="https://harvardartmuseums.org" target="_blank" rel="noopener">
-          <div class="place"><b>哈佛福格艺术馆</b><span class="geo">US · Cambridge</span></div>
-          <div class="who">兰登·华尔纳 · 1924</div>
+          <div class="place"><b>哈佛福格艺术馆</b><span class="geo">US, Cambridge</span></div>
+          <div class="who">华尔纳，1924</div>
           <p>以胶布剥离第 320 至 335 窟中多处壁画，并掠走第 328 窟盛唐供养菩萨彩塑一身。</p>
           <span class="reclass">剥离壁画</span>
         </a>
         <a class="case" href="https://www.orientalstudies.ru" target="_blank" rel="noopener">
-          <div class="place"><b>东方文献研究所 · 艾尔米塔什</b><span class="geo">RU · St.Petersburg</span></div>
-          <div class="who">谢尔盖·奥登堡 · 1914–1915</div>
+          <div class="place"><b>东方文献研究所 / 艾尔米塔什</b><span class="geo">RU, St.Petersburg</span></div>
+          <div class="who">奥登堡，1914–1915</div>
           <p>考察所获壁画残块和塑像，以及大量文献残片，分藏俄罗斯科学院东方文献研究所与艾尔米塔什博物馆。</p>
           <span class="reclass">中亚收集品</span>
         </a>
         <a class="case span2" href="https://idp.bl.uk" target="_blank" rel="noopener">
-          <div class="place"><b>国际敦煌项目 IDP · 数字重聚</b><span class="geo">EST. 1994 · British Library</span></div>
-          <div class="who">大英图书馆 1994 年发起 · 40 余家成员机构 · 横跨 15 国 · 6 语种网站</div>
+          <div class="place"><b>国际敦煌项目 IDP</b><span class="geo">EST. 1994, British Library</span></div>
+          <div class="who">大英图书馆 1994 年发起，40 余家成员机构，横跨 15 国，6 语种网站</div>
           <p>把散落于英、法、俄、日、德等机构的敦煌文献与艺术品高清扫描、在线免费公开，让被带走的飞天以数字方式重新聚回一处，是规模最大的敦煌文献与文物图像在线数据库之一。</p>
           <span class="reclass">在线重聚</span>
         </a>
       </div>
       <div class="mapbox">
-        <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.7rem">敦煌散佚 · 海外馆藏地图</div>
+        <div class="ctitle" style="font-family:var(--font-sans-cn);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.7rem">敦煌散佚</div>
         <div class="worldmap">
           <img class="wm-base" src="assets/world-map.svg" alt="世界地图" loading="lazy">
           <svg class="wm-overlay" id="mapSvg" viewBox="30.767 241.591 784.077 458.627" preserveAspectRatio="xMidYMid meet"></svg>
         </div>
         <div class="map-stats">
-          <div><b>78</b>触达国家 · 数字敦煌</div>
+          <div><b>78</b>触达国家</div>
           <div><b>40+</b>IDP 成员机构</div>
           <div><b>6</b>语种在线数据库</div>
           <div><b>6,500+</b>开放素材库资源</div>
         </div>
-        <details class="note"><summary>图注 · 来源</summary><span class="nt">图 7：藏经洞文物海外主要收藏机构。<b>主要机构示意，不代表全部流散路径。</b>底图为开放许可世界地图（CC BY-SA 3.0），标点为主要收藏城市的示意位置；机构与散佚史据敦煌研究院、国际敦煌项目（IDP）及公开报道整理。</span></details>
+        <details class="note"><summary>图注</summary><span class="nt">图 7：藏经洞文物海外主要收藏机构。<b>主要机构示意，不代表全部流散路径。</b>底图为开放许可世界地图（CC BY-SA 3.0），标点为主要收藏城市的示意位置；机构与散佚史据敦煌研究院、国际敦煌项目（IDP）及公开报道整理。</span></details>
       </div>
     </div>
   </div>
@@ -1897,13 +1900,13 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen flip" id="overseas">
     <div class="visual reveal">
       <div class="chart os-card">
-        <div class="os-eyebrow">海外 · 触达</div>
+        <div class="os-eyebrow">海外</div>
         <div class="os-kpi">
           <div><b>4,022万</b><span>样本视频总播放</span></div>
           <div><b>805</b><span>YouTube 相关视频<br>抓取样本</span></div>
           <div><b>3,471</b><span>评论样本</span></div>
         </div>
-        <div class="ctitle">评论语言分布 · Top 7（样本 3,471 条）</div>
+        <div class="ctitle">评论语言分布</div>
         <div class="catbars">
           <div class="wb-row"><span class="wb-k">English 英语</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">47%</span></div>
           <div class="wb-row"><span class="wb-k">Korean 韩语</span><div class="wb-track"><i style="--w:23%"></i></div><span class="wb-v">11%</span></div>
@@ -1913,9 +1916,9 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
           <div class="wb-row"><span class="wb-k">Japanese 日语</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">2%</span></div>
           <div class="wb-row"><span class="wb-k">Russian 俄语</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">2%</span></div>
         </div>
-        <div class="ctitle" style="margin-top:1.4rem">样本播放量 Top 3 · 点击可播放（YouTube 实采）</div>
+        <div class="ctitle" style="margin-top:1.4rem">样本播放量 Top 3</div>
         <div class="os-vids">
-          <a href="https://www.youtube.com/watch?v=hZ7Kudk6uB4" target="_blank" rel="noopener"><span class="ov-t">敦煌風 · 引路 神話印象 · 敦煌飛天</span><span class="ov-v">518.2万 ↗</span></a>
+          <a href="https://www.youtube.com/watch?v=hZ7Kudk6uB4" target="_blank" rel="noopener"><span class="ov-t">敦煌風：引路 神話印象 敦煌飛天</span><span class="ov-v">518.2万 ↗</span></a>
           <a href="https://www.youtube.com/watch?v=vvZbhLd8YfM" target="_blank" rel="noopener"><span class="ov-t">Dunhuang dance show “Flying Apsaras”</span><span class="ov-v">332.5万 ↗</span></a>
           <a href="https://www.youtube.com/watch?v=bgGqgjkBLek" target="_blank" rel="noopener"><span class="ov-t">【北舞】敦煌古典舞《迦陵频伽》</span><span class="ov-v">307.6万 ↗</span></a>
         </div>
@@ -1933,7 +1936,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <!-- S5.1c 倾听：海外评论在说什么 -->
   <div class="screen solo" id="overseas-voices">
     <div class="copy reveal" style="max-width:66ch">
-      <div class="os-eyebrow">海外 · 倾听</div>
+      <div class="os-eyebrow">海外</div>
       <h3>海外评论在说什么？</h3>
       <p style="color:var(--silk-dim);font-size:1rem;margin-top:.6rem">把 3,471 条评论摊开，先跳出来的是 “beautiful”、“amazing”这类赞叹；其次才是 “culture”“ancient”“Silk Road” 这些给飞天定位的词。被看见，先发生在审美层面，理解，要再走一步。</p>
     </div>
@@ -1941,11 +1944,11 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <div class="chart os-card">
         <div class="os-grid">
           <div>
-            <div class="ctitle">海外评论关键词信号 · YouTube 样本（n=3,471）</div>
+            <div class="ctitle">海外评论关键词信号</div>
             <div class="signal-board">
               <div class="signal-card emotion">
                 <div class="sg-head"><b>赞叹</b><span>Praise</span></div>
-                <div class="sg-count">57%<small>479 次命中</small></div>
+                <div class="sg-count">57%</div>
                 <div class="sg-tags"><span>beautiful <b>208</b></span><span>amazing <b>120</b></span><span>wow <b>67</b></span><span>incredible <b>17</b></span></div>
               </div>
               <div class="signal-card knowledge">
@@ -1961,12 +1964,12 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
             </div>
           </div>
           <div>
-            <div class="os-qh">代表性评论 · YouTube 实采（点赞数排序）</div>
+            <div class="os-qh">代表性评论</div>
             <div class="os-quotes">
-              <div class="os-q"><p>“as an Indian classical dancer, I can't help but notice all the similarities between the two. this is amazing!”</p><div class="src"><a href="https://www.youtube.com/watch?v=bgGqgjkBLek" target="_blank" rel="noopener">YouTube</a> · 2,740 赞</div></div>
-              <div class="os-q"><p>“It's an evidence of coexistence of two greatest civilizations — China and India. Can't we stop fighting over nothing and just appreciate this.”</p><div class="src"><a href="https://www.youtube.com/watch?v=bgGqgjkBLek" target="_blank" rel="noopener">YouTube</a> · 1,640 赞</div></div>
-              <div class="os-q"><p>“Kalavinka (迦陵頻伽) is a celestial creature in Buddhism, said to be dwelling in Sukhavati (Western Pureland of Amitabha Buddha).”</p><div class="src"><a href="https://www.youtube.com/watch?v=bgGqgjkBLek" target="_blank" rel="noopener">YouTube</a> · 1,785 赞</div></div>
-              <div class="os-q"><p>“I've been watching your channel for a few years, finally I went to China last month — what an amazing country! The people, the food…”</p><div class="src"><a href="https://www.youtube.com/watch?v=OtS-vg81miA" target="_blank" rel="noopener">YouTube</a> · 1,847 赞</div></div>
+              <div class="os-q"><p>“as an Indian classical dancer, I can't help but notice all the similarities between the two. this is amazing!”</p><div class="src"><a href="https://www.youtube.com/watch?v=bgGqgjkBLek" target="_blank" rel="noopener">YouTube</a>，2,740 赞</div></div>
+              <div class="os-q"><p>“It's an evidence of coexistence of two greatest civilizations — China and India. Can't we stop fighting over nothing and just appreciate this.”</p><div class="src"><a href="https://www.youtube.com/watch?v=bgGqgjkBLek" target="_blank" rel="noopener">YouTube</a>，1,640 赞</div></div>
+              <div class="os-q"><p>“Kalavinka (迦陵頻伽) is a celestial creature in Buddhism, said to be dwelling in Sukhavati (Western Pureland of Amitabha Buddha).”</p><div class="src"><a href="https://www.youtube.com/watch?v=bgGqgjkBLek" target="_blank" rel="noopener">YouTube</a>，1,785 赞</div></div>
+              <div class="os-q"><p>“I've been watching your channel for a few years, finally I went to China last month — what an amazing country! The people, the food…”</p><div class="src"><a href="https://www.youtube.com/watch?v=OtS-vg81miA" target="_blank" rel="noopener">YouTube</a>，1,847 赞</div></div>
             </div>
             <div class="os-qh" style="margin-top:1.3rem">评论情绪分布</div>
             <div class="senti-bar">
@@ -1976,22 +1979,22 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
             </div>
           </div>
         </div>
-        <details class="note"><summary>说明</summary><span class="nt">数据来源：YouTube Data API v3，2026-06-10 抓取，去重后 805 视频、3,471 条评论。关键词为编辑定义词表的出现次数统计（子串计数，非 NLP 分类器）；本图百分比以 840 次关键词命中为分母，不等于评论条数占比。情绪为 VADER 词典近似，仅英语评论（n=1,915，正面 64.2% / 中性 28.2% / 负面 7.6%），只作趋势参考。代表性评论按实采点赞数排序，已过滤与敦煌主题无关的条目。</span></details>
+        <details class="note"><summary>说明</summary><span class="nt">数据来源：YouTube Data API v3，2026-06-10 抓取，去重后 805 视频、3,471 条评论。关键词为编辑定义词表的出现次数统计（子串计数，非 NLP 分类器）；本图百分比以展示词表的分组合计为分母，不等于评论条数占比。情绪为 VADER 词典近似，仅英语评论（n=1,915，正面 64.2% / 中性 28.2% / 负面 7.6%），只作趋势参考。代表性评论按实采点赞数排序，已过滤与敦煌主题无关的条目。</span></details>
       </div>
     </div>
 
     <!-- 主动检索：Wikipedia 浏览量 -->
     <div class="visual reveal d2" style="width:100%;max-width:1080px;margin-top:1.8rem">
       <div class="chart os-card">
-        <div class="os-eyebrow">海外 · 主动检索</div>
-        <div class="ctitle">维基百科词条浏览量 · 近一年（2025-05 至 2026-05，全语种合计 40.6 万次）</div>
+        <div class="os-eyebrow">海外</div>
+        <div class="ctitle">维基百科词条浏览量</div>
         <div class="catbars en">
           <div class="wb-row"><span class="wb-k">Apsara（飞天）</span><div class="wb-track"><i style="--w:100%"></i></div><span class="wb-v">139,642</span></div>
           <div class="wb-row"><span class="wb-k">Mogao Caves</span><div class="wb-track"><i style="--w:83%"></i></div><span class="wb-v">116,002</span></div>
-          <div class="wb-row"><span class="wb-k">Dunhuang · EN</span><div class="wb-track"><i style="--w:68%"></i></div><span class="wb-v">94,987</span></div>
-          <div class="wb-row"><span class="wb-k">敦煌 · 日语</span><div class="wb-track"><i style="--w:31%"></i></div><span class="wb-v">43,676</span></div>
-          <div class="wb-row"><span class="wb-k">Dunhuang · 法语</span><div class="wb-track"><i style="--w:5%"></i></div><span class="wb-v">6,466</span></div>
-          <div class="wb-row"><span class="wb-k">Dunhuang · 西语</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">5,657</span></div>
+          <div class="wb-row"><span class="wb-k">Dunhuang EN</span><div class="wb-track"><i style="--w:68%"></i></div><span class="wb-v">94,987</span></div>
+          <div class="wb-row"><span class="wb-k">敦煌 日语</span><div class="wb-track"><i style="--w:31%"></i></div><span class="wb-v">43,676</span></div>
+          <div class="wb-row"><span class="wb-k">Dunhuang 法语</span><div class="wb-track"><i style="--w:5%"></i></div><span class="wb-v">6,466</span></div>
+          <div class="wb-row"><span class="wb-k">Dunhuang 西语</span><div class="wb-track"><i style="--w:4%"></i></div><span class="wb-v">5,657</span></div>
         </div>
         <p style="color:var(--silk-dim);font-size:.92rem;line-height:1.6;margin-top:.9rem">愿意主动去查的人，搜的更多是 <b style="color:var(--gold-soft);font-weight:400">“Apsara”（飞天这个审美概念）</b>，而不是地名“Dunhuang”或遗产地“Mogao Caves”。海外受众先被“飞天/天女”的形象吸引，再慢慢回溯到它的来处——和评论里 “beautiful” 远多于 “Mogao” 是同一个方向。</p>
         <details class="note"><summary>说明</summary><span class="nt">数据来源：Wikimedia Pageviews REST API（all-access / user agent，月度），统计 2025-05 至 2026-05 各词条浏览量合计，免密钥公开接口。仅取 6 个主要词条，非全部相关条目，浏览量含搜索引擎导流，不等于独立访客数。</span></details>
@@ -2005,18 +2008,18 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       <div class="return-strip">
         <div><b>2022.12</b><span>开放素材库上线</span></div>
         <div><b>6,500+</b><span>首批高清资源</span></div>
-        <div><b>350万+</b><span>累计访问 · 截至 2023</span></div>
-        <div><b>区块链</b><span>确权 · 可追溯</span></div>
+        <div><b>350万+</b><span>累计访问，截至 2023</span></div>
+        <div><b>区块链</b><span>确权，可追溯</span></div>
       </div>
       <div class="tiers">
-        <div class="tier t1"><div class="ic">1</div><div><h4>研究与教育</h4><p>学术研究与课程展示以及教育传播，可免费下载使用。</p><span class="pill">开放 · 非商业</span></div></div>
-        <div class="tier t2"><div class="ic">2</div><div><h4>商业授权</h4><p>品牌联名和广告，以及影视和商业化使用，须提交申请并获取授权。</p><span class="pill">申请 · 付费</span></div></div>
+        <div class="tier t1"><div class="ic">1</div><div><h4>研究与教育</h4><p>学术研究与课程展示以及教育传播，可免费下载使用。</p><span class="pill">开放，非商业</span></div></div>
+        <div class="tier t2"><div class="ic">2</div><div><h4>商业授权</h4><p>品牌联名和广告，以及影视和商业化使用，须提交申请并获取授权。</p><span class="pill">申请，付费</span></div></div>
         <div class="tier t3"><div class="ic">3</div><div><h4>限制类别</h4><p>涉及宗教核心语义，或易被误读和庸俗化的再创作，不予放行。</p><span class="pill">限制使用</span></div></div>
       </div>
     </div>
     <div class="copy reveal d1">
       <h3>开放，不等于无限制使用。</h3>
-      <p>2022 年底，敦煌研究院与腾讯上线“数字敦煌·开放素材库”，这是全球首个基于区块链的数字文化遗产开放共享平台，首批 6500 余份高清资源向全球开放下载，并通过“上链”实现可追溯、可查证、可管控。</p>
+      <p>2022 年底，敦煌研究院与腾讯上线“数字敦煌开放素材库”，这是全球首个基于区块链的数字文化遗产开放共享平台，首批 6500 余份高清资源向全球开放下载，并通过“上链”实现可追溯、可查证、可管控。</p>
       <p>资源按三档拆分：科研与教育免费使用；商业用途申请付费；少数涉及宗教核心语义的品类不允许商业再创作。飞天飞得越远，授权就越不能绕开——它把传播从乐观情绪拉回到制度层面。</p>
       <a class="copy-link" href="https://www.e-dunhuang.com" target="_blank" rel="noopener">前往「数字敦煌」资源库 ↗</a>
     </div>
@@ -2043,14 +2046,14 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     <div class="visual reveal">
       <div class="cwall">
         <div class="ccol"><h4>消费符号</h4>
-          <div class="ccard"><p>“买盲盒就是因为飘带太好看，对我来说首先是美学。”</p><div class="src">抖音 · 高赞评论 · 2025-04</div></div>
-          <div class="ccard"><p>“敦煌妆造已经变成我的春季审美关键词。”</p><div class="src">小红书 · 高赞评论 · 2025-03</div></div>
+          <div class="ccard"><p>“买盲盒就是因为飘带太好看，对我来说首先是美学。”</p><div class="src">抖音，高赞评论，2025-04</div></div>
+          <div class="ccard"><p>“敦煌妆造已经变成我的春季审美关键词。”</p><div class="src">小红书，高赞评论，2025-03</div></div>
         </div>
         <div class="ccol"><h4>文化激活</h4>
-          <div class="ccard"><p>“看完讲解才真正理解反弹琵琶，顺手去查了莫高窟。”</p><div class="src">B站 · 高赞评论 · 2025-02</div></div>
+          <div class="ccard"><p>“看完讲解才真正理解反弹琵琶，顺手去查了莫高窟。”</p><div class="src">B站，高赞评论，2025-02</div></div>
         </div>
         <div class="ccol"><h4>中间地带</h4>
-          <div class="ccard"><p>“喜欢这个趋势，但 AI 二创还保留原来的宗教和文化意味吗？”</p><div class="src">视频号 · 高赞评论 · 2025-05</div></div>
+          <div class="ccard"><p>“喜欢这个趋势，但 AI 二创还保留原来的宗教和文化意味吗？”</p><div class="src">视频号，高赞评论，2025-05</div></div>
         </div>
       </div>
       <details class="note"><summary>说明</summary><span class="nt">评论为各平台公开高赞评论的摘录，用于呈现不同声音（示意），账号信息略去；其中抖音、B 站与本作品抓取样本一致，小红书、视频号为公开平台评论，不计入第三章的量化样本。</span></details>
@@ -2071,7 +2074,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     <div class="visual reveal d1" style="width:100%;max-width:980px">
       <div class="fdash">
         <div class="fmetric"><div class="ic">保护</div><div class="num">30<span style="font-size:.5em">窟</span></div><div class="lab">资源库在线全景洞窟</div></div>
-        <div class="fmetric"><div class="ic">开放</div><div class="num">350<span style="font-size:.5em">万+</span></div><div class="lab">开放素材库访问 · 截至 2023</div></div>
+        <div class="fmetric"><div class="ic">开放</div><div class="num">350<span style="font-size:.5em">万+</span></div><div class="lab">开放素材库访问，截至 2023</div></div>
         <div class="fmetric"><div class="ic">协作</div><div class="num">40<span style="font-size:.5em">+</span></div><div class="lab">IDP 成员机构</div></div>
         <div class="fmetric"><div class="ic">全球</div><div class="num">78</div><div class="lab">数字敦煌触达国家</div></div>
       </div>
@@ -2080,7 +2083,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
 </section>
 </main>
 
-<!-- ============ FINALE — 长卷收束 · 题跋落印 ============ -->
+<!-- ============ FINALE — 长卷收束 ============ -->
 <section class="finale" id="coda" aria-label="结尾：长卷收束">
   <div class="finale-stage">
     <!-- 横向铺开的敦煌长卷（真实壁画为面） -->
@@ -2129,14 +2132,17 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="src-groups">
     <div class="srcg"><h4>抓取样本</h4><p>抖音 263 条视频、18,996 条评论；B 站 95 条视频、2,138 条评论。YouTube 805 条视频、3,471 条评论，2026-06-10 通过 YouTube Data API v3 采集，并经标题/频道锚词过滤。维基浏览量来自 Wikimedia Pageviews API，统计 2025-05 至 2026-05 的 6 个词条。</p></div>
     <div class="srcg"><h4>事实数据</h4><p>数字敦煌资源库、数字敦煌开放素材库、国际敦煌项目 IDP、敦煌旅游数据等，依据敦煌研究院、新华社、国家数据局、甘肃日报、敦煌市文旅等公开资料整理。页面中涉及口径差异的数字，已在对应图注中说明。</p></div>
-    <div class="srcg"><h4>图像素材</h4><p>公开素材主要来自 Wikimedia Commons 与 MET Open Access；许可、作者与原始链接见 Materials/SOURCES.md。新使用的飞天、童子飞天、拍齐鼓局部为用户新增素材，已转换为标准 PNG 展示副本。</p></div>
+    <div class="srcg"><h4>图像素材</h4><p>图像素材来自 Wikimedia Commons、MET Open Access、敦煌研究院公开图像，以及用户提供的飞天、童子飞天和拍齐鼓壁画局部。页面中使用的新增壁画局部已转换为标准图片格式。</p></div>
   </div>
   <div class="refs">
-    <p class="refs-title">学术参考 · APA</p>
-    <p>缪斯. (2023). <i>早期敦煌飞天的艺术风格与当代价值研究</i> [硕士学位论文, 江西科技师范大学]. 中国知网. <a href="https://kns.cnki.net/kcms2/article/abstract?v=&filename=1022664577.nh" target="_blank" rel="noopener">kns.cnki.net/…/1022664577.nh</a></p>
-    <p class="refs-note">仅列入年份明确、格式可统一的学术条目；其余公开资料归入上方来源分组。</p>
+    <p class="refs-title">学术参考</p>
+    <p>Agnew, N., Reed, M., & Ball, T. (Eds.). (2016). <i>Cave temples of Dunhuang: Buddhist art on China’s Silk Road</i>. Getty Conservation Institute.</p>
+    <p>Duan, W. (1994). <i>Dunhuang art: Through the eyes of Duan Wenjie</i>. Abhinav Publications.</p>
+    <p>Fraser, S. E. (2004). <i>Performing the visual: The practice of Buddhist wall painting in China and Central Asia, 618–960</i>. Stanford University Press.</p>
+    <p>Rong, X. (2013). <i>Eighteen lectures on Dunhuang</i>. Brill.</p>
+    <p>Whitfield, R., Whitfield, S., & Agnew, N. (2015). <i>Cave temples of Mogao at Dunhuang: Art history on the Silk Road</i> (2nd ed.). Getty Publications.</p>
   </div>
-  <p class="credit">飞天何以被看见 · 莫高窟文化符号的数字流转 · 融合叙事作品 2026</p>
+  <p class="credit">飞天何以被看见</p>
 </footer>
 
 <script>
@@ -2303,7 +2309,7 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       var n = nodes[i];
       era.textContent = n.getAttribute('data-era');
       yr.textContent = n.getAttribute('data-yr');
-      trait.innerHTML = (n.getAttribute('data-traits')||'').split('·').map(function(t){ return '<span>'+t+'</span>'; }).join('');
+      trait.innerHTML = (n.getAttribute('data-traits')||'').split('、').map(function(t){ return '<span>'+t+'</span>'; }).join('');
       fill.style.width = (i/(nodes.length-1)*100)+'%';
       cap.classList.add('turn');
       window.setTimeout(function(){
@@ -2471,9 +2477,9 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       panel.innerHTML =
         '<div class="sn"><b>'+p.name+'</b><em>'+p.en+'</em></div>'+
         '<div class="sym-flow">'+
-          '<div class="sym-cell"><span class="lbl">古意 · 壁上</span><p>'+p.old+'</p></div>'+
+          '<div class="sym-cell"><span class="lbl">古意</span><p>'+p.old+'</p></div>'+
           '<div class="sym-arrow"><span>→</span></div>'+
-          '<div class="sym-cell"><span class="lbl now">今用 · 屏上</span><p>'+p.now+'</p>'+sw+'</div>'+
+          '<div class="sym-cell"><span class="lbl now">今用</span><p>'+p.now+'</p>'+sw+'</div>'+
         '</div>';
       panel.classList.remove('turn','shown'); void panel.offsetWidth; panel.classList.add('turn');
       window.setTimeout(function(){ panel.classList.add('shown'); }, 30);
@@ -2503,8 +2509,8 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     show(0);
   })();
 
-  /* ---------- FINALE: 长卷收束 · 题跋落印 ----------
-     I 长卷铺展 · II 向心收拢 · III 画面沉为矿物色 · IV 题跋落印
+  /* ---------- FINALE: 长卷收束 ----------
+     I 长卷铺展，II 向心收拢，III 画面沉为矿物色，IV 题跋落印
      scroll progress 0→1 drives: handscroll shift/zoom, pigment settling,
      plate reveal, and the staggered colophon + seal. */
   (function(){
