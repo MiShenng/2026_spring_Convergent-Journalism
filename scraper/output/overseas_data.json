@@ -1,18 +1,23 @@
 {
   "meta": {
-    "collected_at": "2026-06-08",
+    "collected_at": "2026-06-10",
     "keywords": [
       "Dunhuang",
       "flying apsara",
       "feitian",
       "Dunhuang mural",
-      "Mogao caves"
+      "Mogao caves",
+      "Dunhuang dance",
+      "敦煌飞天",
+      "apsara dance",
+      "Dunhuang Buddhist art",
+      "Silk Road Dunhuang"
     ],
     "platforms_collected": [
       "YouTube"
     ],
     "limits": {
-      "max_videos_per_keyword": 50,
+      "max_videos_per_keyword": 120,
       "max_posts_per_keyword": 50,
       "max_comments_per_item": 100
     },
@@ -26,42 +31,42 @@
     ]
   },
   "kpi": {
-    "items": 230,
-    "comments": 1397,
+    "items": 805,
+    "comments": 3471,
     "languages": 10
   },
   "engagement": {
-    "total_views": 9885134,
-    "median_views": 1525,
+    "total_views": 40223122,
+    "median_views": 509,
     "top_videos": [
       {
+        "title": "大西北的浪漫 前所未有的自由# 鸣沙山万人星空#MingshaMountainStarryNightConcert #travel #旅行 #dunhuang",
+        "views": 10540563,
+        "url": "https://www.youtube.com/watch?v=SFvdzQ7q4tM",
+        "platform": "YouTube"
+      },
+      {
+        "title": "敦煌風 - 引路 神話印象 | Himekami（姬神）敦煌 敦煌飛天 菜菜 +小梦李孟羲 | 真的菜菜",
+        "views": 5181532,
+        "url": "https://www.youtube.com/watch?v=hZ7Kudk6uB4",
+        "platform": "YouTube"
+      },
+      {
         "title": "Dunhuang dance show \"Flying Apsaras\"",
-        "views": 3325256,
+        "views": 3325359,
         "url": "https://www.youtube.com/watch?v=vvZbhLd8YfM",
         "platform": "YouTube"
       },
       {
+        "title": "【千年の祈り】反弹琵琶/敦煌艺术，中国古典舞太美了！",
+        "views": 3152505,
+        "url": "https://www.youtube.com/watch?v=e9fwMOwCTww",
+        "platform": "YouTube"
+      },
+      {
         "title": "【北舞】敦煌古典舞《迦陵频伽》Chinese Classical Dance Dunhuang \"Kalaviṅka\" | BDA Graduate School Graduation 2022",
-        "views": 3072181,
+        "views": 3075700,
         "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
-        "platform": "YouTube"
-      },
-      {
-        "title": "Life looks a bit different in this Chinese city… it’s IN THE DESERT!!",
-        "views": 617596,
-        "url": "https://www.youtube.com/watch?v=OtS-vg81miA",
-        "platform": "YouTube"
-      },
-      {
-        "title": "CRAZY Desert Food Feast! China Dunhuang Food Tour of Hexi Corridor【Alin Food Walk】",
-        "views": 459604,
-        "url": "https://www.youtube.com/watch?v=yylw4qciZdU",
-        "platform": "YouTube"
-      },
-      {
-        "title": "This Feitian Artifact is so fun to shoot and edit. Feitian special effects video production.",
-        "views": 263536,
-        "url": "https://www.youtube.com/watch?v=2RsDAyrSgrQ",
         "platform": "YouTube"
       }
     ]
@@ -69,68 +74,68 @@
   "platform_distribution": [
     {
       "platform": "YouTube",
-      "items": 230,
-      "comments": 1397,
+      "items": 805,
+      "comments": 3471,
       "pct": 100
     }
   ],
   "language_distribution": [
     {
       "lang": "en",
-      "count": 835,
-      "pct": 66
-    },
-    {
-      "lang": "es",
-      "count": 102,
-      "pct": 8
-    },
-    {
-      "lang": "zh-cn",
-      "count": 69,
-      "pct": 5
+      "count": 1370,
+      "pct": 47
     },
     {
       "lang": "ko",
-      "count": 34,
-      "pct": 3
+      "count": 332,
+      "pct": 11
+    },
+    {
+      "lang": "zh-cn",
+      "count": 306,
+      "pct": 10
+    },
+    {
+      "lang": "zh-tw",
+      "count": 154,
+      "pct": 5
+    },
+    {
+      "lang": "es",
+      "count": 131,
+      "pct": 4
+    },
+    {
+      "lang": "ja",
+      "count": 72,
+      "pct": 2
     },
     {
       "lang": "ru",
-      "count": 25,
+      "count": 65,
       "pct": 2
     },
     {
       "lang": "fr",
-      "count": 24,
+      "count": 64,
       "pct": 2
     },
     {
-      "lang": "zh-tw",
-      "count": 21,
+      "lang": "vi",
+      "count": 60,
       "pct": 2
     },
     {
-      "lang": "ja",
-      "count": 13,
-      "pct": 1
-    },
-    {
-      "lang": "pt",
-      "count": 11,
-      "pct": 1
-    },
-    {
-      "lang": "tl",
-      "count": 11,
+      "lang": "id",
+      "count": 43,
       "pct": 1
     }
   ],
   "sentiment": {
-    "n": 963,
-    "positive_pct": 71.4,
-    "negative_pct": 6.5,
-    "neutral_pct": 22.0
+    "n": 1915,
+    "positive_pct": 64.2,
+    "negative_pct": 7.6,
+    "neutral_pct": 28.2
   },
   "word_frequency": {
     "praise": {
@@ -139,43 +144,43 @@
       "words": [
         {
           "word": "beautiful",
-          "count": 82
+          "count": 208
         },
         {
           "word": "amazing",
-          "count": 75
+          "count": 120
         },
         {
           "word": "wow",
-          "count": 30
-        },
-        {
-          "word": "stunning",
-          "count": 11
-        },
-        {
-          "word": "gorgeous",
-          "count": 9
-        },
-        {
-          "word": "lovely",
-          "count": 9
+          "count": 67
         },
         {
           "word": "incredible",
-          "count": 7
+          "count": 17
         },
         {
-          "word": "breathtaking",
-          "count": 5
+          "word": "gorgeous",
+          "count": 16
+        },
+        {
+          "word": "lovely",
+          "count": 16
+        },
+        {
+          "word": "stunning",
+          "count": 15
         },
         {
           "word": "elegant",
-          "count": 4
+          "count": 10
+        },
+        {
+          "word": "breathtaking",
+          "count": 6
         },
         {
           "word": "masterpiece",
-          "count": 1
+          "count": 4
         }
       ]
     },
@@ -185,35 +190,35 @@
       "words": [
         {
           "word": "culture",
-          "count": 31
+          "count": 47
         },
         {
           "word": "ancient",
-          "count": 29
+          "count": 47
         },
         {
           "word": "history",
-          "count": 26
+          "count": 33
         },
         {
           "word": "buddhist",
-          "count": 20
+          "count": 21
         },
         {
           "word": "buddhism",
-          "count": 14
+          "count": 15
         },
         {
           "word": "chinese culture",
-          "count": 4
+          "count": 10
+        },
+        {
+          "word": "heritage",
+          "count": 5
         },
         {
           "word": "religion",
           "count": 4
-        },
-        {
-          "word": "heritage",
-          "count": 3
         },
         {
           "word": "spiritual",
@@ -221,7 +226,7 @@
         },
         {
           "word": "tradition",
-          "count": 1
+          "count": 2
         }
       ]
     },
@@ -231,18 +236,22 @@
       "words": [
         {
           "word": "india",
-          "count": 42
+          "count": 48
         },
         {
           "word": "silk road",
-          "count": 18
+          "count": 24
         },
         {
           "word": "central asia",
           "count": 3
         },
         {
-          "word": "persian",
+          "word": "japan",
+          "count": 2
+        },
+        {
+          "word": "korea",
           "count": 2
         },
         {
@@ -250,11 +259,7 @@
           "count": 1
         },
         {
-          "word": "japan",
-          "count": 1
-        },
-        {
-          "word": "korea",
+          "word": "persian",
           "count": 1
         }
       ]
@@ -265,30 +270,30 @@
       "words": [
         {
           "word": "visit",
-          "count": 30
+          "count": 36
         },
         {
           "word": "travel",
-          "count": 18
-        },
-        {
-          "word": "bucket list",
-          "count": 3
+          "count": 14
         },
         {
           "word": "want to visit",
           "count": 2
         },
         {
-          "word": "where can i",
-          "count": 2
-        },
-        {
-          "word": "go there",
+          "word": "bucket list",
           "count": 2
         },
         {
           "word": "see it",
+          "count": 2
+        },
+        {
+          "word": "where can i",
+          "count": 1
+        },
+        {
+          "word": "go there",
           "count": 1
         }
       ]
@@ -299,7 +304,7 @@
       "words": [
         {
           "word": "ai",
-          "count": 6
+          "count": 29
         },
         {
           "word": "cosplay",
@@ -308,6 +313,10 @@
         {
           "word": "makeup",
           "count": 2
+        },
+        {
+          "word": "edit",
+          "count": 1
         }
       ]
     }
@@ -317,35 +326,21 @@
       "text": "as an Indian classical dancer, I can't help but notice all the similarities between the two. this is amazing!",
       "platform": "YouTube",
       "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
-      "likes": 2740,
-      "lang": "en"
-    },
-    {
-      "text": "I’ve been watching your channel for few years, finally I went to China last month, what a amazing country! The ppl, the food,ETC… best experience ever! Definitely gonna go there again with all my family! Thank you Amy! Your videos will inspire many ppl.",
-      "platform": "YouTube",
-      "url": "https://www.youtube.com/watch?v=OtS-vg81miA",
-      "likes": 1847,
+      "likes": 2745,
       "lang": "en"
     },
     {
       "text": "Kalavinka (迦陵頻伽) is a celestial creature in Buddhism, said to be dwelling in Sukhavati (Western Pureland of Amitabha Buddha). \nKalavinka has a human head and bird torso.\n\nI think the dancers did a great job portraying it. Love the bird chirping sounds in the background too. 💖",
       "platform": "YouTube",
       "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
-      "likes": 1785,
+      "likes": 1787,
       "lang": "en"
     },
     {
       "text": "It's an evidence of coexistence of two greatest civilizations- China and India. Can't we stop fighting over nothing and just appreciate this.",
       "platform": "YouTube",
       "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
-      "likes": 1640,
-      "lang": "en"
-    },
-    {
-      "text": "One of my fave channels. It has everything: yummy food, insightful travel, and a beautiful and articulate presenter.",
-      "platform": "YouTube",
-      "url": "https://www.youtube.com/watch?v=OtS-vg81miA",
-      "likes": 1094,
+      "likes": 1646,
       "lang": "en"
     },
     {
@@ -353,6 +348,20 @@
       "platform": "YouTube",
       "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
       "likes": 836,
+      "lang": "en"
+    },
+    {
+      "text": "The dancers and the choreography are absolutely amazing. Thank you for the awesome performance.",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=bgGqgjkBLek",
+      "likes": 410,
+      "lang": "en"
+    },
+    {
+      "text": "It was beautiful how Yan lit up when she saw Flo.  Happy for you being reunited with Flo.  I want to thank him for helping to make Little Chinese Everywhere such a great video channel.",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=cXWEbPNfh0A",
+      "likes": 360,
       "lang": "en"
     }
   ]

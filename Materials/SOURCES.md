@@ -52,3 +52,11 @@
 
 - `assets/dh_met_apsara.webp` ← `met-flying-celestial-apsara.jpg`（MET Open Access / CC0，海外章节具体案例）。
 - `assets/dh_apsara_wei.webp` ← `dunhuang-flying-apsara-western-wei.jpg`（Public Domain，识别章节形态流变）。
+
+## 用户新增壁画局部素材
+
+- `assets/feitian-detail.png` ← `assets/飞天.png`
+- `assets/child-feitian-detail.png` ← `assets/裸体童子飞天.png`
+- `assets/drum-detail.png` ← `assets/拍齐鼓.png`
+
+说明：上述 3 个展示文件由用户新增素材转换为标准 PNG，供页面替换外景和识别章节局部图使用；原始来源信息待用户补充。
