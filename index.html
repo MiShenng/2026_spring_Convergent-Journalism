@@ -1121,13 +1121,7 @@ footer .credit{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;t
 .chr-trait{position:absolute;right:1.1rem;top:1rem;z-index:5;display:flex;gap:.4rem;flex-wrap:wrap;justify-content:flex-end;max-width:60%}
 .chr-trait span{font-family:var(--font-sans-cn);font-size:.62rem;letter-spacing:.1em;color:var(--gold-soft);
   border:1px solid rgba(201,162,77,.4);background:rgba(7,8,16,.5);border-radius:999px;padding:.2rem .6rem;backdrop-filter:blur(3px)}
-.chr-play{position:absolute;right:1rem;bottom:1rem;z-index:6;width:38px;height:38px;border-radius:50%;
-  border:1px solid var(--gold);background:rgba(7,8,16,.55);display:grid;place-items:center;cursor:pointer;transition:.3s}
-.chr-play:hover{background:var(--gold)}
-.chr-play i{width:0;height:0;border-left:10px solid var(--gold-soft);border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px;transition:.3s}
-.chr-play:hover i{border-left-color:var(--ink)}
-.chr-play.playing i{border:0;width:9px;height:9px;background:var(--gold-soft);margin:0}
-.chr-play.playing:hover i{background:var(--ink)}
+
 .chr-caption{margin:1rem .2rem .4rem;min-height:74px}
 .chr-caption h4{font-family:var(--font-cn);font-size:1.2rem;color:var(--gold-soft);font-weight:600;margin-bottom:.3rem;
   transition:opacity .4s ease,transform .4s ease}
@@ -1481,9 +1475,9 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
   <div class="screen">
     <div class="visual reveal">
       <div class="vwall">
-        <a class="vcard" href="https://www.douyin.com/search/%E6%95%A6%E7%85%8C%E9%A3%9E%E5%A4%A9%E8%88%9E" target="_blank" rel="noopener" aria-label="前往抖音观看敦煌飞天舞蹈视频（新窗口）"><div class="ph a"></div><div class="play"></div><div class="meta"><div class="plat">抖音</div><div class="views">舞蹈翻跳</div></div></a>
-        <a class="vcard" href="https://www.bilibili.com/video/BV1iS5TzAEuk" target="_blank" rel="noopener" aria-label="前往 B 站观看飞天壁画讲解视频（新窗口）"><div class="ph b"></div><div class="play"></div><div class="meta"><div class="plat">B 站</div><div class="views">壁画讲解</div></div></a>
-        <a class="vcard" href="https://www.bilibili.com/video/BV1AaPazxEpu" target="_blank" rel="noopener" aria-label="前往 B 站观看飞天壁画 AI 动态再创作视频（新窗口）"><div class="ph c"></div><div class="play"></div><div class="meta"><div class="plat">B 站</div><div class="views">AI 再创作</div></div></a>
+        <a class="vcard" href="https://class-presentation-1449259844.cos.ap-guangzhou.myqcloud.com/%E8%88%9E%E8%B9%88%E7%BF%BB%E8%B7%B3.mp4" target="_blank" rel="noopener" aria-label="观看舞蹈翻跳视频（新窗口）"><div class="ph a"></div><div class="play"></div><div class="meta"><div class="plat">抖音</div><div class="views">舞蹈翻跳</div></div></a>
+        <a class="vcard" href="https://class-presentation-1449259844.cos.ap-guangzhou.myqcloud.com/%E5%A3%81%E7%94%BB%E8%AE%B2%E8%A7%A3.mp4" target="_blank" rel="noopener" aria-label="观看壁画讲解视频（新窗口）"><div class="ph b"></div><div class="play"></div><div class="meta"><div class="plat">B 站</div><div class="views">壁画讲解</div></div></a>
+        <a class="vcard" href="https://class-presentation-1449259844.cos.ap-guangzhou.myqcloud.com/AI%E5%88%9B%E4%BD%9C.mp4" target="_blank" rel="noopener" aria-label="观看AI再创作视频（新窗口）"><div class="ph c"></div><div class="play"></div><div class="meta"><div class="plat">B 站</div><div class="views">AI 再创作</div></div></a>
       </div>
       <p class="cnote">飞天的几种常见传播形态</p>
     </div>
@@ -1528,7 +1522,6 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
             <span class="chr-era" id="chrEra">西魏</span>
             <span class="chr-yr" id="chrYr">第285窟，早期局部</span>
           </div>
-          <button class="chr-play" id="chrPlay" aria-label="自动巡览千年流变"><i></i></button>
         </div>
         <div class="chr-caption" id="chrCaption">
           <h4 id="chrForm">厚重、朴拙、西域式</h4>
@@ -2300,8 +2293,8 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     var era = document.getElementById('chrEra'), yr = document.getElementById('chrYr');
     var trait = document.getElementById('chrTrait'), form = document.getElementById('chrForm');
     var desc = document.getElementById('chrDesc'), fill = document.getElementById('chrFill');
-    var cap = document.getElementById('chrCaption'), playBtn = document.getElementById('chrPlay');
-    var cur = 0, timer = null;
+    var cap = document.getElementById('chrCaption');
+    var cur = 0;
     function go(i){
       cur = i;
       nodes.forEach(function(n,k){ n.classList.toggle('is-on', k===i); });
@@ -2319,12 +2312,9 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
       }, 260);
     }
     nodes.forEach(function(n,i){
-      n.addEventListener('click', function(){ stop(); go(i); });
-      n.addEventListener('mouseenter', function(){ if(!timer) go(i); });
+      n.addEventListener('click', function(){ go(i); });
+      n.addEventListener('mouseenter', function(){ go(i); });
     });
-    function play(){ playBtn.classList.add('playing'); timer = window.setInterval(function(){ go((cur+1)%nodes.length); }, 2600); }
-    function stop(){ playBtn.classList.remove('playing'); if(timer){ clearInterval(timer); timer=null; } }
-    playBtn.addEventListener('click', function(){ timer ? stop() : play(); });
     go(0);
   })();
 
@@ -2695,6 +2685,9 @@ a.case:hover::after{opacity:1;transform:translate(2px,-2px)}
     });
   })();
 })();
+</script>
+<script>
+(function(){var m;function c(){if(m)return;m=document.createElement('div');m.id='vm';m.innerHTML='<style>#vm{display:none;position:fixed;inset:0;background:rgba(139,119,101,.4);z-index:999}#vm.s{display:flex;align-items:center;justify-content:center}#vm video{max-width:90%;max-height:90%;outline:0;border:1px solid rgba(218,195,130,.4);box-shadow:0 0 8px rgba(218,195,130,.15);border-radius:8px}#vm .x{position:absolute;top:36px;right:30px;color:#fff;cursor:pointer;font-size:32px;user-select:none;line-height:1;transform-origin:center center;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),color 0.2s ease-in-out;will-change:transform,color}#vm .x:hover{transform:scale(1.15);color:#FFD700}</style><div class="x" onclick="this.closest(\'#vm\').classList.remove(\'s\')">&times;</div><video controls controlsList="nodownload" playsinline></video>';document.body.appendChild(m);document.addEventListener('keydown',function(e){if(e.key==='Escape')m.classList.remove('s')})};document.addEventListener('DOMContentLoaded',function(){c();document.querySelectorAll('a').forEach(function(a){var h=a.getAttribute('href')||'';if(/\.(mp4|webm|mov)$/i.test(h)){a.removeAttribute('target');a.dataset.videoSrc=h;a.addEventListener('click',function(e){e.preventDefault();var v=m.querySelector('video');v.src=h;m.classList.add('s');v.play()})}})})})();
 </script>
 </body>
 </html>
